@@ -1,0 +1,4887 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The public Workday API.",
+    "version": "v1",
+    "title": "common",
+    "x-workday-internal-source": "xo",
+    "x-workday-internal-routing": "Public",
+    "x-workday-internal-protected-usage-enabled": false,
+    "x-workday-internal-service-container-id": "27d54c0f796e10000b3b7fd383f2002b"
+  },
+  "host": "<tenantHostname>",
+  "basePath": "/api/common/v1",
+  "tags": [
+    {
+      "name": "businessTitleChanges"
+    },
+    {
+      "name": "currencies"
+    },
+    {
+      "name": "customers"
+    },
+    {
+      "name": "jobChangeReasons"
+    },
+    {
+      "name": "organizationTypes"
+    },
+    {
+      "name": "organizations",
+      "description": "Retrieves organizations for the specified organization type. If you don't specify the organizationType query parameter, this endpoint returns no results."
+    },
+    {
+      "name": "supervisoryOrganizations"
+    },
+    {
+      "name": "validateWorktags",
+      "description": "DEPRECATED as of 02/03/2024. Workday recommends that you use the Worktag v1 REST service instead."
+    },
+    {
+      "name": "workers",
+      "description": "A collection of workers in Workday"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/workers/{ID}/timeOffPlans/{subresourceID}": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a particular time off plan for a specific worker.",
+        "description": "Retrieves a time off plan for a worker with the specified ID.\n\n<b>Secured by:</b> Self-Service: Time Off Balances, Worker Data: Time Off (Time Off Balances Manager View), Worker Data: Time Off (Time Off Balances)\n\n<b>Scope:</b> Time Off and Leave",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/timeOffPlans_581c389cce1410000feacaebd2e40002"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "581c389cce1410000ff399298ba10006"
+      }
+    },
+    "/organizations": {
+      "get": {
+        "tags": [
+          "organizations"
+        ],
+        "summary": "Retrieves a collection of organizations.",
+        "description": "\n\n<b>Secured by:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "organizationType",
+            "in": "query",
+            "description": "Reference to an Organization Type. Example: Organization Type WID. Requests must provide an Organization Type.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/organizationSummary_a03132f19b911000119b05cfd7cf0032"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false",
+        "x-workday-operation-id": "a03132f19b91100011bb405bfeb70034"
+      }
+    },
+    "/jobChangeReasons": {
+      "get": {
+        "tags": [
+          "jobChangeReasons"
+        ],
+        "summary": "Retrieves a collection of job change reasons.",
+        "description": "Retrieves all job change reasons.\n\n<b>Secured by:</b> Staffing Actions: Change Job Date and Reason\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/jobChangeReasonSummary_69b1f5fbb40c4cd6b9c55b226ca2424c"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "0edf6078b26046bb988499f0b7f92dee"
+      }
+    },
+    "/workers/{ID}/businessTitleChanges/{subresourceID}": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a business title change instance for a specific worker.",
+        "description": "Retrieves a business title change event with the specified ID.\n\n<b>Secured by:</b> Staffing Actions: Business Title\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/businessTitleChangeDetail_f3169dd3470046378f404ac21e864ab4"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "a865e2c38bd74c80a6f289390d3e619f"
+      }
+    },
+    "/businessTitleChanges/{ID}": {
+      "get": {
+        "tags": [
+          "businessTitleChanges"
+        ],
+        "summary": "Retrieves a business title change instance.",
+        "description": "\n\n<b>Secured by:</b> Staffing Actions: Business Title\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/businessTitleChangeDetail_f3169dd3470046378f404ac21e864ab4"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false",
+        "x-workday-operation-id": "45a9c799b3fd4e70a0b53d07c20c867f"
+      }
+    },
+    "/workers/{ID}/businessTitleChanges?type=me": {
+      "post": {
+        "tags": [
+          "workers"
+        ],
+        "description": "\n\n<b>Secured by:</b> Change My Business Title\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "in": "body",
+            "name": "businessTitleChangeInput",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/businessTitleChangeInput_0123d0c7e84e4263a53f5d74968690af"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/businessTitleChangeInput_0123d0c7e84e4263a53f5d74968690af"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nProposed Business Title is required.\n\nThe last filled date for the position is after the current date.\n\nThe position has been vacated by this worker.\n\nThere are other staffing or business title business processes that affect this business title that are effective after this date.\n\nWorker has additional jobs. This task is not supported for workers with multiple jobs.\n\nWorker is terminated and does not have a future hire.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false",
+        "x-workday-operation-id": "9c0a3c288a2c1000017eb88849a30002"
+      }
+    },
+    "/currencies/{ID}": {
+      "get": {
+        "tags": [
+          "currencies"
+        ],
+        "summary": "Retrieves a currency instance.",
+        "description": "Retrieves a currency with the specified ID\n\n<b>Secured by:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Benefits, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/currencySummary_7ceb0e9ce857100019c6099ce1ad00fa"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "4b1c5da0cff34a3c88438ffebbfbd970"
+      }
+    },
+    "/workers/{ID}/inboxTasks": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a collection of inbox tasks for a specific worker.",
+        "description": "\n\n<b>Secured by:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Benefits, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/inboxTaskSummary_1bbb07a8ab4349dd934ca72301974204"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false",
+        "x-workday-operation-id": "d02ccd56f7894dabb8e0dd66e42e94b9"
+      }
+    },
+    "/currencies": {
+      "get": {
+        "tags": [
+          "currencies"
+        ],
+        "summary": "Retrieves a collection of currencies.",
+        "description": "Retrieves all currencies.\n\n<b>Secured by:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Benefits, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/currencySummary_7ceb0e9ce857100019c6099ce1ad00fa"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "4b1c5da0cff34a3c88438ffebbfbd970"
+      }
+    },
+    "/customers/{ID}": {
+      "get": {
+        "tags": [
+          "customers"
+        ],
+        "summary": "Retrieves a customer instance.",
+        "description": "\n\n<b>Secured by:</b> View: Customer\n\n<b>Scope:</b> Customers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/customer_b7ecfe5ec60c10000aa161405fa5002c"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false",
+        "x-workday-operation-id": "b7ecfe5ec60c10000ac57590b2650034"
+      }
+    },
+    "/workers/{ID}/organizations/{subresourceID}": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves an organization instance for a specific worker.",
+        "description": "Retrieves an organization with the specified ID for a specific worker.\n\n<b>Secured by:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/workerOrganizationSummary_b09201ecbe6f10000c600196a3f70012"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "b09201ecbe6f10000c612f777e670015"
+      }
+    },
+    "/workers/{ID}/history": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a collection of history items for a specific worker.",
+        "description": "Retrieves all history items for the worker.\n\n<b>Secured by:</b> Worker Data: Historical Staffing Information\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/businessProcessSummary_5a3be01347ed4c30b2ab02b28d97b655"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "0d02120b4f9f4494adf71d47d6621668"
+      }
+    },
+    "/organizationTypes": {
+      "get": {
+        "tags": [
+          "organizationTypes"
+        ],
+        "summary": "Retrieves a collection of organization types.",
+        "description": "Retrieves all organization types.\n\n<b>Secured by:</b> Set Up: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/organizationTypeSummary_e91ac1399cd410000481d84f988f0ec7"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "e91ac1399cd410000486288a174f0ec9"
+      }
+    },
+    "/workers": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a collection of workers.",
+        "description": "Retrieves all workers. Use the search parameter to search for workers by name. The search is case-insensitive.\n\n<b>Secured by:</b> FLW Service, Self-Service: Current Staffing Information, Worker Data: Public Worker Reports\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "includeTerminatedWorkers",
+            "in": "query",
+            "description": "Include terminated workers in the output",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/workerSummary_a489aef739484c13a59e6d502a9e7b68"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "94a39e71541b468fa895955508287acd"
+      }
+    },
+    "/workers/{ID}/history/{subresourceID}": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a history instance for a specific worker.",
+        "description": "Retrieves a collection of history items for a specific worker with the specified ID.\n\n<b>Secured by:</b> Worker Data: Historical Staffing Information\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/businessProcessSummary_5a3be01347ed4c30b2ab02b28d97b655"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "0d02120b4f9f4494adf71d47d6621668"
+      }
+    },
+    "/workers/{ID}/organizations": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a collection of organizations for a specific worker.",
+        "description": "Retrieves all organizations for a specific worker.\n\n<b>Secured by:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/workerOrganizationSummary_b09201ecbe6f10000c600196a3f70012"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "b09201ecbe6f10000c612f777e670015"
+      }
+    },
+    "/workers/{ID}/supervisoryOrganizationsManaged": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a collection of supervisory organizations managed by a specific worker.",
+        "description": "Retrieves all managed supervisory organizations for a worker with the specified ID.\n\n<b>Secured by:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/supervisoryOrganizationSummary_3a94b57f042a4ebb95027e09d6192992"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "b6044838fb1f100001fe0872896b0002"
+      }
+    },
+    "/workers/{ID}/timeOffEntries/{subresourceID}": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a time off entry for a specific worker.",
+        "description": "\n\n<b>Secured by:</b> Self-Service: Time Off Balances, Worker Data: Time Off (Time Off Balances Manager View), Worker Data: Time Off (Time Off Balances)\n\n<b>Scope:</b> Time Off and Leave",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/timeOffEntries_436f2afb755f100012528fa3260e000f"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false",
+        "x-workday-operation-id": "436f2afb755f1000125443cdc76e0017"
+      }
+    },
+    "/workers/{ID}/jobChanges": {
+      "post": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Creates a job change instance with the specified data.",
+        "description": "Creates a job change instance with the specified data.\n\n<b>Secured by:</b> Change Job\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "in": "body",
+            "name": "changeJobInput",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/changeJobInput_cadd132f15994dc3bcda042ae1c90629"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/changeJobInput_cadd132f15994dc3bcda042ae1c90629"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nChange Organization is not part of the Change Job workflow definition for the proposed Supervisory Organization\n\nHiring restrictions are missing for the organization selected.\n\nOrganization is not accessible by the user.\n\nOrganizations with the following Organization Types are required: [req_org_types]\n\nProposed Organizations contains inactive Organizations.\n\nProposed Organizations contains multiple Organizations with Organization Types that are restricted to single assignments.\n\nProposed Organizations contains those with Organization Types that cannot be part of Change Organization Assignments.\n\nProposed Supervisory Organization is required.\n\nProposed supervisory organization is not valid. It will be made inactive after the event effective date. This will result in this position not having a supervisory organization.\n\nReason is not valid for the Job Change Event or the processing user is a \\~Manager\\~ and the Reason is not valid for \\~managers\\~.\n\nReason is not valid for the worker type (Employee or Contingent Worker).\n\nReason is required.\n\nSupervisory Organization must be active.\n\nThe Proposed Organization assignments do not meet the restrictions defined for the Proposed Supervisory Organization.\n\nThe current position has a pending organization change or a completed \\~Supervisory Organization\\~ change effective after this date. Therefore, this position cannot have changes as of the effective date.\n\nThe date entered cannot be earlier than the earliest hire date.\n\nThe effective date must be after the date of the last completed Assign Pay Group change.\n\nThe effective date must be after the date of the last completed Change Organization assignment.\n\nThe effective date must be after the date of the last completed Matrix Organization change.\n\nThe effective date must be equal to or greater than the date the position was last updated.\n\nThe hiring restrictions for the proposed \\~supervisory organization\\~ do not allow this type of \\~worker\\~.\n\nThe proposed \\~supervisory organization\\~ is in a Hiring Freeze. It cannot be selected.\n\nThis position is in a pending Merit Event. The effective date must be after the pending Merit Event's effective date.\n\nWorker has additional jobs. This task is not supported for workers with multiple jobs.\n\nWorker is terminated and does not have a future hire.\n\nWorker submitted is the processing user.\n\nYou cannot initiate this action because there are other pending actions for the worker that conflict with this one. Close any pending Staffing, Matrix Organization, Pay Group or Organization events before initiating this action.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false",
+        "x-workday-operation-id": "b4f1492ac4c741378c8d71305f9553f5"
+      }
+    },
+    "/workers/{ID}/paySlips": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a collection of pay slips for a specific worker.",
+        "description": "Retrieves all pay slips for a worker with the specified ID.\n\n<b>Secured by:</b> Self-Service: Payroll (My Payslips), Worker Data: Payroll (Payslips)\n\n<b>Scope:</b> Core Payroll",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/paySlipSummary_056982a2aa04100005cc479e6e5a0022"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "056982a2aa04100005cd56c3da4a0028"
+      }
+    },
+    "/workers/{ID}/directReports": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a collection of direct reports for a specific worker.",
+        "description": "Retrieves all direct reports.\n\n<b>Secured by:</b> Reports: Manager, Reports: Matrix Manager, Self-Service: My Team\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/workerSummary_a489aef739484c13a59e6d502a9e7b68"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "3dad5f33d6974b2691f53037644f40be"
+      }
+    },
+    "/validateWorktags": {
+      "post": {
+        "tags": [
+          "validateWorktags"
+        ],
+        "summary": "(End of Life Date: 2025-08-03 ) Validates allowed and required worktag types and worktag combinations so that you can correct errors before you submit transactions.",
+        "description": "Validate the allowed and required worktag types and worktag combinations based on the configuration in the 'Maintain Related Worktag Usage' and 'Maintain Worktag Usage' tasks and related worktags so that you can correct errors before you submit transactions using web services. This method is a read-only POST that doesn't add data to Workday.\n\n<b>Secured by:</b> Manage: Related Worktags, Worktag REST API\n\n<b>Scope:</b> Common Financial Management, Worktags",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "validateWorktagInput",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/validateWorktagInput_aa8aaaaeca3910002fd14d954eea0371"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/validateWorktagInput_aa8aaaaeca3910002fd14d954eea0371"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nAllow Built-in Worktags must be either true or false.\n\nDuplicate worktag types are not allowed.\n\nTaggable Configuration is required.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "deprecated": true,
+        "x-workday-internal-try-enabled": "false",
+        "x-workday-operation-id": "aa8aaaaeca3910002f9fbcab1262036e"
+      }
+    },
+    "/jobChangeReasons/{ID}": {
+      "get": {
+        "tags": [
+          "jobChangeReasons"
+        ],
+        "summary": "Retrieves a job change reason instance.",
+        "description": "Retrieves a job change reason with the specified ID.\n\n<b>Secured by:</b> Staffing Actions: Change Job Date and Reason\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/jobChangeReasonSummary_69b1f5fbb40c4cd6b9c55b226ca2424c"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "0edf6078b26046bb988499f0b7f92dee"
+      }
+    },
+    "/supervisoryOrganizations": {
+      "get": {
+        "tags": [
+          "supervisoryOrganizations"
+        ],
+        "summary": "Retrieves a collection of supervisory organizations.",
+        "description": "Retrieves all supervisory organizations.\n\n<b>Secured by:</b> FLW Service, Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/supervisoryOrganizationSummary_3a94b57f042a4ebb95027e09d6192992"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "22c69260c8784717a6a7bdec9efbca32"
+      }
+    },
+    "/workers/{ID}/paySlips/{subresourceID}": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a pay slip instance for a specific worker.",
+        "description": "Retrieves a pay slip for a worker with the specified ID.\n\n<b>Secured by:</b> Self-Service: Payroll (My Payslips), Worker Data: Payroll (Payslips)\n\n<b>Scope:</b> Core Payroll",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/paySlipSummary_056982a2aa04100005cc479e6e5a0022"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "056982a2aa04100005cd56c3da4a0028"
+      }
+    },
+    "/supervisoryOrganizations/{ID}": {
+      "get": {
+        "tags": [
+          "supervisoryOrganizations"
+        ],
+        "summary": "Retrieves a supervisory organization instance.",
+        "description": "Retrieves a supervisory organization instance.\n\n<b>Secured by:</b> FLW Service, Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/supervisoryOrganizationSummary_3a94b57f042a4ebb95027e09d6192992"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "22c69260c8784717a6a7bdec9efbca32"
+      }
+    },
+    "/customers/{ID}/activities/{subresourceID}": {
+      "get": {
+        "tags": [
+          "customers"
+        ],
+        "summary": "Retrieves an activity instance for a specific customer.",
+        "description": "\n\n<b>Secured by:</b> Reports: Customer Accounts\n\n<b>Scope:</b> Customer Accounts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/activity_bb1fcf6de05b100009ce64e02ac43c08"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false",
+        "x-workday-operation-id": "c29dedec19201000115c769e98610014"
+      }
+    },
+    "/workers/{ID}/inboxTasks/{subresourceID}": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves an inbox task instance for a specific worker.",
+        "description": "\n\n<b>Secured by:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Benefits, Tenant Non-Configurable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/inboxTaskSummary_1bbb07a8ab4349dd934ca72301974204"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false",
+        "x-workday-operation-id": "d02ccd56f7894dabb8e0dd66e42e94b9"
+      }
+    },
+    "/supervisoryOrganizations/{ID}/workers/{subresourceID}": {
+      "get": {
+        "tags": [
+          "supervisoryOrganizations"
+        ],
+        "summary": "Retrieves a worker instance for a specific supervisory organization.",
+        "description": "Retrieves a supervisory organization for a worker with the specified ID.\n\n<b>Secured by:</b> Worker Data: Public Worker Reports\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/workerSummary_a489aef739484c13a59e6d502a9e7b68"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "5c954a75094a4f6183f8602897afd7ff"
+      }
+    },
+    "/workers/{ID}/directReports/{subresourceID}": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a direct report instance for a specific worker.",
+        "description": "Retrieves a direct report with the specified ID\n\n<b>Secured by:</b> Reports: Manager, Reports: Matrix Manager, Self-Service: My Team\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/workerSummary_a489aef739484c13a59e6d502a9e7b68"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "3dad5f33d6974b2691f53037644f40be"
+      }
+    },
+    "/workers/{ID}/timeOffPlans": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a collection of time off plans for a specific worker.",
+        "description": "Retrieves all time off plans for a worker with the specified ID.\n\n<b>Secured by:</b> Self-Service: Time Off Balances, Worker Data: Time Off (Time Off Balances Manager View), Worker Data: Time Off (Time Off Balances)\n\n<b>Scope:</b> Time Off and Leave",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/timeOffPlans_581c389cce1410000feacaebd2e40002"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "581c389cce1410000ff399298ba10006"
+      }
+    },
+    "/supervisoryOrganizations/{ID}/workers": {
+      "get": {
+        "tags": [
+          "supervisoryOrganizations"
+        ],
+        "summary": "Retrieves a collection of workers for a specific supervisory organization.",
+        "description": "Retrieves all supervisory organizations for a worker with the specified ID.\n\n<b>Secured by:</b> Worker Data: Public Worker Reports\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/workerSummary_a489aef739484c13a59e6d502a9e7b68"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "5c954a75094a4f6183f8602897afd7ff"
+      }
+    },
+    "/workers/{ID}/businessTitleChanges": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a collection of business title changes for a specific worker.",
+        "description": "Retrieves all business title change events.\n\n<b>Secured by:</b> Staffing Actions: Business Title\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/businessTitleChangeDetail_f3169dd3470046378f404ac21e864ab4"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "a865e2c38bd74c80a6f289390d3e619f"
+      },
+      "post": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Creates a business title change instance with the specified data.",
+        "description": "Create a new business title change for the specified worker\n\n<b>Secured by:</b> Change Business Title\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "in": "body",
+            "name": "businessTitleChangeInput",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/businessTitleChangeInput_0123d0c7e84e4263a53f5d74968690af"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created.",
+            "schema": {
+              "$ref": "#/definitions/businessTitleChangeInput_0123d0c7e84e4263a53f5d74968690af"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nProposed Business Title is required.\n\nThe last filled date for the position is after the current date.\n\nThe position has been vacated by this worker.\n\nThere are other staffing or business title business processes that affect this business title that are effective after this date.\n\nWorker has additional jobs. This task is not supported for workers with multiple jobs.\n\nWorker is terminated and does not have a future hire.\n\nWorker submitted is the processing user.",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false",
+        "x-workday-operation-id": "c2ffb30053964fbfa7a46dcfa577adb1"
+      }
+    },
+    "/workers/{ID}": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a worker instance.",
+        "description": "Retrieves a worker instance with the specific ID.\n\n<b>Secured by:</b> FLW Service, Self-Service: Current Staffing Information, Worker Data: Public Worker Reports\n\n<b>Scope:</b> Staffing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/workerProfile_c0a0dce56eb142d39dbffeb505becf7a"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "94a39e71541b468fa895955508287acd"
+      }
+    },
+    "/organizations/{ID}": {
+      "get": {
+        "tags": [
+          "organizations"
+        ],
+        "summary": "Retrieves an organization instance.",
+        "description": "\n\n<b>Secured by:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/organizationSummary_a03132f19b911000119b05cfd7cf0032"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false",
+        "x-workday-operation-id": "a03132f19b91100011bb405bfeb70034"
+      }
+    },
+    "/customers/{ID}/activities": {
+      "get": {
+        "tags": [
+          "customers"
+        ],
+        "summary": "Retrieves a collection of activities for a specific customer.",
+        "description": "\n\n<b>Secured by:</b> Reports: Customer Accounts\n\n<b>Scope:</b> Customer Accounts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/activity_bb1fcf6de05b100009ce64e02ac43c08"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false",
+        "x-workday-operation-id": "c29dedec19201000115c769e98610014"
+      }
+    },
+    "/workers/{ID}/supervisoryOrganizationsManaged/{subresourceID}": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a supervisory organization managed by a specific worker.",
+        "description": "Retrieves a managed supervisory organization for a worker with the specified ID.\n\n<b>Secured by:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "subresourceID",
+            "in": "path",
+            "description": "The Workday ID of the subresource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/supervisoryOrganizationSummary_3a94b57f042a4ebb95027e09d6192992"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "b6044838fb1f100001fe0872896b0002"
+      }
+    },
+    "/workers/{ID}/timeOffEntries": {
+      "get": {
+        "tags": [
+          "workers"
+        ],
+        "summary": "Retrieves a collection of time off entries for a specific worker.",
+        "description": "\n\n<b>Secured by:</b> Self-Service: Time Off Balances, Worker Data: Time Off (Time Off Balances Manager View), Worker Data: Time Off (Time Off Balances)\n\n<b>Scope:</b> Time Off and Leave",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.\n\n- **ID:** Replace with your actual Workday ID\n- **me**",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ID",
+              "me"
+            ]
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/timeOffEntries_436f2afb755f100012528fa3260e000f"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "false",
+        "x-workday-operation-id": "436f2afb755f1000125443cdc76e0017"
+      }
+    },
+    "/organizationTypes/{ID}": {
+      "get": {
+        "tags": [
+          "organizationTypes"
+        ],
+        "summary": "Retrieves an organization type instance.",
+        "description": "Retrieves an organization type with the specified ID.\n\n<b>Secured by:</b> Set Up: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "The Workday ID of the resource.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. A successful response can return no matched data.",
+            "schema": {
+              "$ref": "#/definitions/organizationTypeSummary_e91ac1399cd410000481d84f988f0ec7"
+            }
+          },
+          "400": {
+            "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Missing or invalid credentials. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "403": {
+            "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "404": {
+            "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+            "schema": {
+              "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+            }
+          }
+        },
+        "x-workday-internal-try-enabled": "true",
+        "x-workday-operation-id": "e91ac1399cd410000486288a174f0ec9"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "authorizationUrl": "https://<tenantAuthorizationHostname>",
+      "flow": "implicit"
+    }
+  },
+  "definitions": {
+    "INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Workday Id or Reference Id of the instance.",
+          "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the instance",
+          "readOnly": true
+        },
+        "href": {
+          "type": "string",
+          "description": "A link to the instance",
+          "readOnly": true
+        }
+      }
+    },
+    "ERROR_MODEL_REFERENCE": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "A description of the error"
+        },
+        "code": {
+          "type": "string",
+          "description": "The code that corresponds to the error message. Use the error code to drive programmatic error-handling behavior. Don't use error message strings for this purpose because they are subject to change"
+        },
+        "field": {
+          "type": "string",
+          "description": "The field related to the error"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path of the field related to the error"
+        },
+        "severity": {
+          "type": "string",
+          "description": "Severity of the validation (e.g. Critical, Warning)."
+        },
+        "internalMessage": {
+          "type": "string",
+          "description": "Internal message providing additional context for the validation (e.g. representation content validation details)."
+        }
+      }
+    },
+    "VALIDATION_ERROR_MODEL_REFERENCE": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "A description of the error"
+            },
+            "errors": {
+              "type": "array",
+              "description": "An array of validation errors",
+              "items": {
+                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FACETS_MODEL_REFERENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "This object represents the possible facets for this resource",
+        "readOnly": true,
+        "properties": {
+          "descriptor": {
+            "type": "string",
+            "description": "A description of the facet"
+          },
+          "facetParameter": {
+            "type": "string",
+            "description": "The alias used to select the facet"
+          },
+          "values": {
+            "type": "array",
+            "description": "the facet values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of instances returned by this facet"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Workday Id or Reference Id of the instance.",
+                  "pattern": "^(([0-9a-f]{32})|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                  "type": "string",
+                  "description": "A description of the facet"
+                },
+                "href": {
+                  "type": "string",
+                  "description": "A link to the instance",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+          }
+        }
+      }
+    },
+    "location_d6235be431f940598806053af7ba94ef": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Contains the location for the \\~worker\\~."
+    },
+    "primarySupervisoryOrganization_851e1342d4c2489c9680fb2a899227ca": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~supervisory organization\\~ for the \\~worker's\\~ primary position, if the \\~supervisory organization\\~ is viewable by everyone."
+    },
+    "workerProfile_c0a0dce56eb142d39dbffeb505becf7a": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "supervisoryOrganizationsManaged": {
+              "type": "string",
+              "format": "url",
+              "description": "All \\~supervisory organizations\\~, excluding inherited organizations, in which the \\~worker\\~ has a leadership role.",
+              "readOnly": true,
+              "x-workday-type": "Multi-instance"
+            },
+            "dateOfBirth": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-05-02T07:00:00.000Z",
+              "description": "The birth date of the \\~worker\\~.",
+              "x-workday-type": "Date"
+            },
+            "businessTitle": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The business title for the \\~worker's\\~ primary position. If no business title is defined for a position, the position title is returned back.",
+              "x-workday-type": "Text"
+            },
+            "isManager": {
+              "type": "boolean",
+              "example": true,
+              "description": "Identifies if the \\~worker\\~ has a \\~manager\\~ role.",
+              "x-workday-type": "Boolean"
+            },
+            "primaryWorkEmail": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The primary work email address for the \\~worker\\~.",
+              "x-workday-type": "Text"
+            },
+            "location": {
+              "$ref": "#/definitions/location_d6235be431f940598806053af7ba94ef"
+            },
+            "primaryWorkPhone": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The primary work phone number for the \\~worker\\~ including the area code and \\~country\\~ code.",
+              "x-workday-type": "Text"
+            },
+            "primaryWorkAddressText": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns the primary work address for the \\~worker\\~, or from their default primary work location, full format on a single line.",
+              "x-workday-type": "Text"
+            },
+            "primarySupervisoryOrganization": {
+              "$ref": "#/definitions/primarySupervisoryOrganization_851e1342d4c2489c9680fb2a899227ca"
+            },
+            "yearsOfService": {
+              "type": "number",
+              "example": 99999999999.99,
+              "description": "The years of service for the \\~worker\\~.",
+              "x-workday-type": "Numeric"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Worker"
+            }
+          }
+        }
+      ]
+    },
+    "primarySupervisoryOrganization_642d7497e69c48da946fc503f66d7da1": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~supervisory organization\\~ for the \\~worker's\\~ primary position, if the \\~supervisory organization\\~ is viewable by everyone."
+    },
+    "workerSummary_a489aef739484c13a59e6d502a9e7b68": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "isManager": {
+              "type": "boolean",
+              "example": true,
+              "description": "Identifies if the \\~worker\\~ has a \\~manager\\~ role.",
+              "x-workday-type": "Boolean"
+            },
+            "primaryWorkPhone": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The primary work phone number for the \\~worker\\~ including the area code and \\~country\\~ code.",
+              "x-workday-type": "Text"
+            },
+            "primaryWorkEmail": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The primary work email address for the \\~worker\\~.",
+              "x-workday-type": "Text"
+            },
+            "primarySupervisoryOrganization": {
+              "$ref": "#/definitions/primarySupervisoryOrganization_642d7497e69c48da946fc503f66d7da1"
+            },
+            "businessTitle": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The business title for the \\~worker's\\~ primary position. If no business title is defined for a position, the position title is returned back.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "subject_0cb6354752a84103b396a3d00b503568": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The subject of this business process."
+    },
+    "initiator_f3b51f13346543ba83122960f6c8a9c2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~worker\\~ that initiated the business process.  Does not return \\~workers\\~ who are hired in the future. Please do not use this field in a condition rule for the initiation step of a process, as it will not return results. This is because there is no initiator designated until the process has started. The Initiator field only gets a value after the event is initiated (after the process is submitted). Use the Current \\~Worker\\~ field instead"
+    },
+    "businessProcessSummary_5a3be01347ed4c30b2ab02b28d97b655": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "initiated": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-05-02T07:00:00.000Z",
+              "description": "The date and time this business process was initiated.",
+              "x-workday-type": "Date"
+            },
+            "subject": {
+              "$ref": "#/definitions/subject_0cb6354752a84103b396a3d00b503568"
+            },
+            "initiator": {
+              "$ref": "#/definitions/initiator_f3b51f13346543ba83122960f6c8a9c2"
+            },
+            "due": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-05-02T07:00:00.000Z",
+              "description": "The date the business process needs to be completed.",
+              "x-workday-type": "Date"
+            },
+            "effective": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-05-02T07:00:00.000Z",
+              "description": "The date this business process takes effect.",
+              "x-workday-type": "Date"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Action Event"
+            }
+          }
+        }
+      ]
+    },
+    "status_056982a2aa04100005cc4858775a0026": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Status"
+    },
+    "paySlipSummary_056982a2aa04100005cc479e6e5a0022": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "$ref": "#/definitions/status_056982a2aa04100005cc4858775a0026"
+            },
+            "gross": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "Gross Pay for a Payslip",
+              "x-workday-type": "Numeric"
+            },
+            "date": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-05-02T07:00:00.000Z",
+              "description": "Payment Date",
+              "x-workday-type": "Date"
+            },
+            "net": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "Net Pay for a Payslip",
+              "x-workday-type": "Numeric"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Payroll Result"
+            }
+          }
+        }
+      ]
+    },
+    "businessTitleChangeInput_0123d0c7e84e4263a53f5d74968690af": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "proposedBusinessTitle": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The new business title for the \\~worker\\~ as of the effective date.  If there is no business title override, this field defaults to the job title or job profile name.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "subject_11c61172ead64041a04fc92c28a3b34e": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The subject of this business process."
+    },
+    "initiator_f48f5f155a4448758b8be033ecd99f87": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~worker\\~ that initiated the business process.  Does not return \\~workers\\~ who are hired in the future. Please do not use this field in a condition rule for the initiation step of a process, as it will not return results. This is because there is no initiator designated until the process has started. The Initiator field only gets a value after the event is initiated (after the process is submitted). Use the Current \\~Worker\\~ field instead"
+    },
+    "businessTitleChangeDetail_f3169dd3470046378f404ac21e864ab4": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "subject": {
+              "$ref": "#/definitions/subject_11c61172ead64041a04fc92c28a3b34e"
+            },
+            "currentBusinessTitle": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The business title for the \\~worker\\~ prior to this business process.  If there is no business title override, this field defaults to the job title or job profile name.",
+              "x-workday-type": "Text"
+            },
+            "proposedBusinessTitle": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The new business title for the \\~worker\\~ as of the effective date.  If there is no business title override, this field defaults to the job title or job profile name.",
+              "x-workday-type": "Text"
+            },
+            "due": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-05-02T07:00:00.000Z",
+              "description": "The date the business process needs to be completed.",
+              "x-workday-type": "Date"
+            },
+            "effective": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-05-02T07:00:00.000Z",
+              "description": "The date this business process takes effect.",
+              "x-workday-type": "Date"
+            },
+            "initiator": {
+              "$ref": "#/definitions/initiator_f48f5f155a4448758b8be033ecd99f87"
+            },
+            "initiated": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-05-02T07:00:00.000Z",
+              "description": "The date and time this business process was initiated.",
+              "x-workday-type": "Date"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Business Title Change Event"
+            }
+          }
+        }
+      ]
+    },
+    "employee_436f2afb755f100012528fe3effe0015": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~worker\\~ requesting the paid time off."
+    },
+    "timeOffRequest_436f2afb755f100012528fd1e2e60013": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/timeOffEntryStatus_436f2afb755f1000125176952ea6000c"
+        },
+        {}
+      ],
+      "description": "Returns the Time Off Event which includes this Time Off Entry."
+    },
+    "unitOfTime_436f2afb755f100012528fdc5a960014": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "This is the unit of time (hours or days) associated with the time off for this time off entry."
+    },
+    "timeOff_436f2afb755f100012528fbfc62e0011": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/timeOff_436f2afb755f10001245239d27960009"
+        },
+        {}
+      ],
+      "description": "The Time Off for this time off entry requested (Example: Vacation Time Off for Salaried \\~Employees\\~)."
+    },
+    "timeOffEntries_436f2afb755f100012528fa3260e000f": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "employee": {
+              "$ref": "#/definitions/employee_436f2afb755f100012528fe3effe0015"
+            },
+            "timeOffRequest": {
+              "$ref": "#/definitions/timeOffRequest_436f2afb755f100012528fd1e2e60013"
+            },
+            "unitOfTime": {
+              "$ref": "#/definitions/unitOfTime_436f2afb755f100012528fdc5a960014"
+            },
+            "timeOff": {
+              "$ref": "#/definitions/timeOff_436f2afb755f100012528fbfc62e0011"
+            },
+            "date": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-05-02T07:00:00.000Z",
+              "description": "The date requested to be taken for a paid time off request line item.",
+              "x-workday-type": "Date"
+            },
+            "units": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "The units entered for a time off request line item for all status'.  Excludes adjustments.",
+              "x-workday-type": "Numeric"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "initiator_7f6d98c3e99344df800de3b5defa4549": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The person that initiated the event for this event record."
+    },
+    "status_e00f98895a7b48e7a681a308f8b8ad71": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The status of this business process step."
+    },
+    "stepType_e351106ef7c14ce19def3e2a50eeb806": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the type of step being performed by the event record."
+    },
+    "subject_9d3d194b5fe340cba946593757de5d10": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the subject of the business process this event record is part of."
+    },
+    "overallProcess_f06a97ddf4794a5c8ff063bd51bfc2e4": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the overall process for this event record. The overall process is the outermost process in a business process."
+    },
+    "inboxTaskSummary_1bbb07a8ab4349dd934ca72301974204": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "assigned": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-05-02T07:00:00.000Z",
+              "description": "Returns the date when the event record was last updated on.",
+              "x-workday-type": "Date"
+            },
+            "due": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-05-02T07:00:00.000Z",
+              "description": "Returns the due date for this step.",
+              "x-workday-type": "Date"
+            },
+            "initiator": {
+              "$ref": "#/definitions/initiator_7f6d98c3e99344df800de3b5defa4549"
+            },
+            "status": {
+              "$ref": "#/definitions/status_e00f98895a7b48e7a681a308f8b8ad71"
+            },
+            "stepType": {
+              "$ref": "#/definitions/stepType_e351106ef7c14ce19def3e2a50eeb806"
+            },
+            "subject": {
+              "$ref": "#/definitions/subject_9d3d194b5fe340cba946593757de5d10"
+            },
+            "overallProcess": {
+              "$ref": "#/definitions/overallProcess_f06a97ddf4794a5c8ff063bd51bfc2e4"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Event Record"
+            }
+          }
+        }
+      ]
+    },
+    "unitOfTime_581c389cce1410000feacb26b51c0003": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Identifies the unit of time for which time off and accruals are tracked for the Time Off plan."
+    },
+    "timeOffPlans_581c389cce1410000feacaebd2e40002": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "timeOffBalance": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "Returns the time off balance including pending events for the \\~worker\\~ and time off plan.  This report field should be used within Calculated Fields.",
+              "x-workday-type": "Numeric"
+            },
+            "unitOfTime": {
+              "$ref": "#/definitions/unitOfTime_581c389cce1410000feacb26b51c0003"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Absence Plan (All)"
+            }
+          }
+        }
+      ]
+    },
+    "manager_0c28a4eb372c41ab9a109e9703487457": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~manager\\~ for the \\~supervisory organization\\~. If there is more than 1 \\~manager\\~ assigned, this is the Single Assignment manager."
+    },
+    "supervisoryOrganizationSummary_3a94b57f042a4ebb95027e09d6192992": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "workers": {
+              "type": "string",
+              "format": "url",
+              "description": "Contains the \\~workers\\~ in the organization.",
+              "readOnly": true,
+              "x-workday-type": "Multi-instance"
+            },
+            "manager": {
+              "$ref": "#/definitions/manager_0c28a4eb372c41ab9a109e9703487457"
+            },
+            "code": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The organization id for the organization.",
+              "x-workday-type": "Text"
+            },
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The organization name for the organization.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Supervisory Organization"
+            }
+          }
+        }
+      ]
+    },
+    "jobChangeReason_3679c9f487c4403b90fff56091c0e360": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the reason used in a Change Job business process."
+    },
+    "proposedOrganizations_8c583abbeaf010000c765bd6c36d000c": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/proposedStaffsInput_caa87cab145210000473a5695c1c0011"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Proposed Staff Representation"
+            }
+          }
+        }
+      ]
+    },
+    "supervisoryOrganization_e868185fab874bb994e045d84ad1a658": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~supervisory organization\\~ for the \\~worker\\~ as of the effective date."
+    },
+    "changeJobInput_cadd132f15994dc3bcda042ae1c90629": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "moveManagersTeam": {
+              "type": "boolean",
+              "example": true,
+              "description": "Returns a boolean that indicates whether teams reporting to the \\~Manager\\~ moved with them during the Change Job Event.",
+              "x-workday-type": "Boolean"
+            },
+            "jobChangeReason": {
+              "$ref": "#/definitions/jobChangeReason_3679c9f487c4403b90fff56091c0e360"
+            },
+            "proposedOrganizations": {
+              "type": "array",
+              "description": "Contains the organizations with staffing behavior that are assigned to the position as a result of this event.\nAll staffing behavior organization types are included (company, cost center, region, custom organizations, fund, grant, program, gift, business unit).",
+              "items": {
+                "$ref": "#/definitions/proposedOrganizations_8c583abbeaf010000c765bd6c36d000c"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "effective": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-05-02T07:00:00.000Z",
+              "description": "The date this business process takes effect.",
+              "x-workday-type": "Date"
+            },
+            "supervisoryOrganization": {
+              "$ref": "#/definitions/supervisoryOrganization_e868185fab874bb994e045d84ad1a658"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Change Job"
+            }
+          }
+        }
+      ]
+    },
+    "organizationType_7f3b2f7a5a8910001a137fb9ae22001f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Organization Type"
+    },
+    "workerOrganizationSummary_b09201ecbe6f10000c600196a3f70012": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "organizationType": {
+              "$ref": "#/definitions/organizationType_7f3b2f7a5a8910001a137fb9ae22001f"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Position Set"
+            }
+          }
+        }
+      ]
+    },
+    "validationTypes_7ccdf8f26ee910000b6aff359b1c00c4": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagValidationTypeInput_7ccdf8f26ee910000b6a70bc5fd600c2"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktags REST Validation Type Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "restrictions_f08fabab3cae10001d09c7148c9101ef": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/restrictionInput_4b3cd975feb010000567e14324830071"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Restriction Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "invalidRestrictionsForWorktags_f08fabab3cae10001a21f30e937501b3": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagAndRestrictionInput_f08fabab3cae10001a2f1a982daa01b5"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Constraint Values Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "missingRequiredWorktagTypesForWorktags_3f71b007c34610001ff29543f94900ca": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagAndTypeInput_854b3abfd54d10000e8038b032223278"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Anchor Worktag and Target Worktag Types Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "nonAllowedWorktagTypesForTaggableConfig_3f71b007c34610001c4ca37e7c3f00a0": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagTypeInput_3f71b007c34610000e0bb926bf370056"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Type Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "missingRequiredWorktagTypesForTaggableConfig_3f71b007c34610000e0c8b4c86f00058": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagTypeInput_3f71b007c34610000e0bb926bf370056"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Type Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "nonAllowedInactiveWorktagValues_aa8aaaaeca39100035e3236199f00406": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagInput_aa8aaaaeca39100034443e493aef03ce"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "worktags_aa8aaaaeca391000349a30b2a58203dc": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagInput_aa8aaaaeca39100034443e493aef03ce"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "invalidWorktagCombinations_aa8aaaaeca391000344569c0b5dd03d0": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagsComboInput_f08fabab3cae10000b041ae3234b009d"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Anchor Target Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "taggableConfiguration_aa8aaaaeca391000321b455e3c150390": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "For REST API requests only. Usually the Taggable Type in the 'Maintain Worktag Usage' task that is used for the transaction. Examples: Customer Invoice, Accounting Journal, Expense Report. Exceptions are when the taggable type is Budgets or Time Tracking, the value needs to be either a budget plan structure or time entry template."
+    },
+    "missingRequiredWorktagTypesAfterDefaulting_5ee0ae813753100008c735574add423b": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagTypeInput_3f71b007c34610000e0bb926bf370056"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Type Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "validateWorktagInput_aa8aaaaeca3910002fd14d954eea0371": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "validationTypes": {
+              "type": "array",
+              "description": "For REST API requests only. The validation types to include in the response. If this request parameter is missing or empty, all validation types are included in the response.",
+              "items": {
+                "$ref": "#/definitions/validationTypes_7ccdf8f26ee910000b6aff359b1c00c4"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "restrictions": {
+              "type": "array",
+              "description": "For REST API requests only. Values that are validated for worktag types configured with 'Restricted To' values. Example: Company for a cost center configured with Restricted To Companies.",
+              "items": {
+                "$ref": "#/definitions/restrictions_f08fabab3cae10001d09c7148c9101ef"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "invalidRestrictionsForWorktags": {
+              "type": "array",
+              "description": "When returned in a REST API response, indicates invalid restrictions for a worktag configured with Restricted To values. Use the Worktag With Restricted To Values and Invalid Restricted To Values report fields to view the values.",
+              "items": {
+                "$ref": "#/definitions/invalidRestrictionsForWorktags_f08fabab3cae10001a21f30e937501b3"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "onlyOneProjectOrPhaseOrTaskAllowed": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "When returned in a REST API response, indicates that there is more than one worktag for a \\~Project\\~ in the request. Only one worktag type of \\~Project\\~, \\~Project Phase\\~ or \\~Project Task\\~ is allowed.",
+              "x-workday-type": "Text"
+            },
+            "missingRequiredWorktagTypesForWorktags": {
+              "type": "array",
+              "description": "When returned in a REST API response, indicates that at least one worktag type configured as required in related worktags is missing. Use the Worktag With Required Worktags and Missing Required Worktag Types report fields to view the values.",
+              "items": {
+                "$ref": "#/definitions/missingRequiredWorktagTypesForWorktags_3f71b007c34610001ff29543f94900ca"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "allowBuiltInWorktags": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "When true, REST API requests can include values in the Worktags field that aren't configurable worktag types for the Taggable Type but are valid for validation purposes. Example: Supplier in Supplier Invoice.",
+              "x-workday-type": "Text"
+            },
+            "nonAllowedWorktagTypesForTaggableConfig": {
+              "type": "array",
+              "description": "When returned in a REST API response, indicates that at least one worktag type sent in the request isn't allowed by the Taggable Configuration.",
+              "items": {
+                "$ref": "#/definitions/nonAllowedWorktagTypesForTaggableConfig_3f71b007c34610001c4ca37e7c3f00a0"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "missingRequiredWorktagTypesForTaggableConfig": {
+              "type": "array",
+              "description": "When returned in a REST API response, indicates that at least one worktag type configured as ‘Required’ for the Taggable Configuration is missing in the request.",
+              "items": {
+                "$ref": "#/definitions/missingRequiredWorktagTypesForTaggableConfig_3f71b007c34610000e0c8b4c86f00058"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "nonAllowedInactiveWorktagValues": {
+              "type": "array",
+              "description": "When returned in a REST API response, indicates that at least one inactive worktag was sent in the request that wasn't allowed by the Taggable Configuration.",
+              "items": {
+                "$ref": "#/definitions/nonAllowedInactiveWorktagValues_aa8aaaaeca39100035e3236199f00406"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "status": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The status in the REST API response that indicates whether the worktags sent in the request have validation errors or not.",
+              "x-workday-type": "Text"
+            },
+            "worktags": {
+              "type": "array",
+              "description": "The worktags sent in a REST API request to be validated based on the configuration in the 'Maintain Worktag Usage' and 'Maintain Related Worktag Usage' tasks. Validations consider required and allowed worktag types, allowed values, and whether inactive values are allowed.",
+              "items": {
+                "$ref": "#/definitions/worktags_aa8aaaaeca391000349a30b2a58203dc"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "invalidWorktagCombinations": {
+              "type": "array",
+              "description": "When returned in a REST API response, indicates that at least one combination of worktag values aren't allowed with one another. Use the Worktag with Allowed Values and Invalid Worktag Values report fields to view the values.",
+              "items": {
+                "$ref": "#/definitions/invalidWorktagCombinations_aa8aaaaeca391000344569c0b5dd03d0"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "taggableConfiguration": {
+              "$ref": "#/definitions/taggableConfiguration_aa8aaaaeca391000321b455e3c150390"
+            },
+            "missingRequiredWorktagTypesAfterDefaulting": {
+              "type": "array",
+              "description": "When returned in a REST API response, indicates that at least one worktag type configured as ‘Required’ for the Taggable Configuration is missing in the request and not added by default from related worktags. Use the Worktag With Required Worktags and Missing Required Worktag Types report fields to view the values.",
+              "items": {
+                "$ref": "#/definitions/missingRequiredWorktagTypesAfterDefaulting_5ee0ae813753100008c735574add423b"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "organizationTypeSummary_e91ac1399cd410000481d84f988f0ec7": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "organizationSummary_a03132f19b911000119b05cfd7cf0032": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "jobChangeReasonSummary_69b1f5fbb40c4cd6b9c55b226ca2424c": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "isForContingentWorker": {
+              "type": "boolean",
+              "example": true,
+              "description": "Identifies whether the reason is allowed to be entered for \\~contingent workers\\~.",
+              "x-workday-type": "Boolean"
+            },
+            "managerReason": {
+              "type": "boolean",
+              "example": true,
+              "description": "Identifies whether the reason is allowed to be entered by \\~managers\\~.",
+              "x-workday-type": "Boolean"
+            },
+            "isForEmployee": {
+              "type": "boolean",
+              "example": true,
+              "description": "Identifies whether the reason is allowed to be entered for \\~employees\\~.",
+              "x-workday-type": "Boolean"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "currencySummary_7ceb0e9ce857100019c6099ce1ad00fa": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Currency ID - 3 character currency code identified by ISO 4217",
+              "x-workday-type": "Text"
+            },
+            "precision": {
+              "type": "integer",
+              "example": "9",
+              "description": "Decimal precision for currency amounts",
+              "x-workday-type": "Numeric"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "customer_b7ecfe5ec60c10000aa161405fa5002c": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The name of the customer.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "invoiceOpportunity_671e9196f9971000115942211aba00a8": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/opportunityDisplay_c29dedec19201000119fd1d13ca40019"
+        },
+        {}
+      ],
+      "description": "The opportunity for the invoice."
+    },
+    "activity_bb1fcf6de05b100009ce64e02ac43c08": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "transactionStatus": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The current status of the transaction. Applicable for all transaction types. This is for internal use only on a REST API.",
+              "x-workday-type": "Text"
+            },
+            "transactionNumber": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The transaction number for the reporting transaction. This is for internal use only on a REST API.",
+              "x-workday-type": "Text"
+            },
+            "transactionType": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The transaction type of this customer transaction. This is for internal use only on a REST API.",
+              "x-workday-type": "Text"
+            },
+            "applicationStatus": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The payment or application status of the customer invoice, customer invoice adjustment or customer invoice payment. For customer invoice payments, the application status can be Unapplied, Applied with On Account, or Fully Applied. For invoices, the payment status can be Paid, Partially Paid, or Unpaid.",
+              "x-workday-type": "Text"
+            },
+            "id": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns the Workday ID for a given object.",
+              "maxLength": 36,
+              "x-workday-type": "Text"
+            },
+            "invoiceDueDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-05-02T07:00:00.000Z",
+              "description": "The due date of the customer invoice or invoice adjustment as of the defined reporting date.",
+              "x-workday-type": "Date"
+            },
+            "invoiceOpportunity": {
+              "$ref": "#/definitions/invoiceOpportunity_671e9196f9971000115942211aba00a8"
+            },
+            "paymentReference": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The check number for a customer payment. This is a reference number that's available only when processed through a settlement run and not a check number.",
+              "x-workday-type": "Text"
+            },
+            "transactionDate": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-05-02T07:00:00.000Z",
+              "description": "The date of the customer transaction. This field is for internal use only on a REST API.",
+              "x-workday-type": "Date"
+            },
+            "transactionAmountSigned": {
+              "type": "object",
+              "example": "99999999999.999999",
+              "description": "The positive or negative sign of the transaction amount for this customer transaction. This is for internal use only on a REST API.",
+              "x-workday-type": "Currency"
+            }
+          }
+        }
+      ]
+    },
+    "plan_436f2afb755f1000124523c2d036000a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The time off plan that the accrual or time off belongs to."
+    },
+    "timeOff_436f2afb755f10001245239d27960009": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "plan": {
+              "$ref": "#/definitions/plan_436f2afb755f1000124523c2d036000a"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Time Off"
+            }
+          }
+        }
+      ]
+    },
+    "missingWorktagTypes_854b3abfd54d10000e80396c4dd1327a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagTypeInput_3f71b007c34610000e0bb926bf370056"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Type Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "worktagWithRequiredWorktags_854b3abfd54d10000e8038f3ed3f3279": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "For REST API responses only. Worktags configured with required worktag types in their related worktags."
+    },
+    "worktagAndTypeInput_854b3abfd54d10000e8038b032223278": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "missingWorktagTypes": {
+              "type": "array",
+              "description": "For REST API responses only. The worktag types that are configured as required in related worktags but are missing in the request.",
+              "items": {
+                "$ref": "#/definitions/missingWorktagTypes_854b3abfd54d10000e80396c4dd1327a"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "worktagWithRequiredWorktags": {
+              "$ref": "#/definitions/worktagWithRequiredWorktags_854b3abfd54d10000e8038f3ed3f3279"
+            }
+          }
+        }
+      ]
+    },
+    "worktagInput_aa8aaaaeca39100034443e493aef03ce": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "timeOffEntryStatus_436f2afb755f1000125176952ea6000c": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The current status of the business process.  For example: Successfully Completed, Denied, Terminated.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "restrictionInput_4b3cd975feb010000567e14324830071": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "worktagTypeInput_3f71b007c34610000e0bb926bf370056": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "invalidRestrictedToValues_f08fabab3cae10002bec470e736c0279": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/restrictionInput_4b3cd975feb010000567e14324830071"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Restriction Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "worktagWithRestrictedToValues_f08fabab3cae10002bec472cf4f9027a": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "For REST API responses only. Worktags that are configured with Restricted To values."
+    },
+    "worktagAndRestrictionInput_f08fabab3cae10001a2f1a982daa01b5": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "invalidRestrictedToValues": {
+              "type": "array",
+              "description": "For REST API responses only. The invalid Restricted To values for worktags.",
+              "items": {
+                "$ref": "#/definitions/invalidRestrictedToValues_f08fabab3cae10002bec470e736c0279"
+              },
+              "x-workday-type": "Multi-instance"
+            },
+            "worktagWithRestrictedToValues": {
+              "$ref": "#/definitions/worktagWithRestrictedToValues_f08fabab3cae10002bec472cf4f9027a"
+            }
+          }
+        }
+      ]
+    },
+    "worktagValidationTypeInput_7ccdf8f26ee910000b6a70bc5fd600c2": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "worktagWithAllowedValues_f08fabab3cae10000bd8f5a584f100c1": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "For REST API responses only. Worktags that are configured with allowed values."
+    },
+    "invalidWorktagValues_f08fabab3cae10000bed7987306400c3": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagInput_aa8aaaaeca39100034443e493aef03ce"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "worktagsComboInput_f08fabab3cae10000b041ae3234b009d": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "worktagWithAllowedValues": {
+              "$ref": "#/definitions/worktagWithAllowedValues_f08fabab3cae10000bd8f5a584f100c1"
+            },
+            "invalidWorktagValues": {
+              "type": "array",
+              "description": "For REST API responses only. Worktags from the REST request that are invalid for the worktag with allowed values.",
+              "items": {
+                "$ref": "#/definitions/invalidWorktagValues_f08fabab3cae10000bed7987306400c3"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "opportunityDisplay_c29dedec19201000119fd1d13ca40019": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The non-unique name of the Opportunity. This is for internal use only.",
+              "x-workday-type": "Text"
+            },
+            "opportunityReferenceID": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The Reference ID to use for lookups within our Workday Web Services. For \\~supervisory organizations\\~, this is also the 'Organization ID'",
+              "x-workday-type": "Text"
+            },
+            "id": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Returns the Workday ID for a given object.",
+              "maxLength": 36,
+              "x-workday-type": "Text"
+            }
+          }
+        }
+      ]
+    },
+    "proposedStaffsInput_caa87cab145210000473a5695c1c0011": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

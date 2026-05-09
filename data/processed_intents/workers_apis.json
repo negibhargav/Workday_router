@@ -1,0 +1,678 @@
+[
+    {
+        "id": "581c389cce1410000ff399298ba10006",
+        "api_name": "retrieves_a_particular_time_off_plan_for_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/timeOffPlans/{subresourceID}",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "subresourceID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            }
+        ],
+        "summary": "Retrieves a particular time off plan for a specific worker.",
+        "intent_triggers": [
+            "Retrieves a particular time off plan for a specific worker",
+            "How do I retrieves a particular time off plan for a specific worker?",
+            "I need to retrieves a particular time off plan for a specific worker",
+            "Can you retrieves a particular time off plan for a specific worker?"
+        ]
+    },
+    {
+        "id": "a865e2c38bd74c80a6f289390d3e619f",
+        "api_name": "retrieves_a_business_title_change_instance_for_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/businessTitleChanges/{subresourceID}",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "subresourceID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            }
+        ],
+        "summary": "Retrieves a business title change instance for a specific worker.",
+        "intent_triggers": [
+            "Retrieves a business title change instance for a specific worker",
+            "How do I retrieves a business title change instance for a specific worker?",
+            "I need to retrieves a business title change instance for a specific worker",
+            "Can you retrieves a business title change instance for a specific worker?"
+        ]
+    },
+    {
+        "id": "9c0a3c288a2c1000017eb88849a30002",
+        "api_name": "",
+        "method": "POST",
+        "full_path": "/api/common/v1/workers/{ID}/businessTitleChanges?type=me",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "businessTitleChangeInput",
+                "in": "body",
+                "required": true,
+                "type": "string"
+            }
+        ],
+        "summary": "",
+        "intent_triggers": []
+    },
+    {
+        "id": "d02ccd56f7894dabb8e0dd66e42e94b9",
+        "api_name": "retrieves_a_collection_of_inbox_tasks_for_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/inboxTasks",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "limit",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            },
+            {
+                "name": "offset",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            }
+        ],
+        "summary": "Retrieves a collection of inbox tasks for a specific worker.",
+        "intent_triggers": [
+            "Retrieves a collection of inbox tasks for a specific worker",
+            "How do I retrieves a collection of inbox tasks for a specific worker?",
+            "I need to retrieves a collection of inbox tasks for a specific worker",
+            "Can you retrieves a collection of inbox tasks for a specific worker?"
+        ]
+    },
+    {
+        "id": "b09201ecbe6f10000c612f777e670015",
+        "api_name": "retrieves_an_organization_instance_for_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/organizations/{subresourceID}",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "subresourceID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            }
+        ],
+        "summary": "Retrieves an organization instance for a specific worker.",
+        "intent_triggers": [
+            "Retrieves an organization instance for a specific worker",
+            "How do I retrieves an organization instance for a specific worker?",
+            "I need to retrieves an organization instance for a specific worker",
+            "Can you retrieves an organization instance for a specific worker?"
+        ]
+    },
+    {
+        "id": "0d02120b4f9f4494adf71d47d6621668",
+        "api_name": "retrieves_a_collection_of_history_items_for_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/history",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "limit",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            },
+            {
+                "name": "offset",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            }
+        ],
+        "summary": "Retrieves a collection of history items for a specific worker.",
+        "intent_triggers": [
+            "Retrieves a collection of history items for a specific worker",
+            "How do I retrieves a collection of history items for a specific worker?",
+            "I need to retrieves a collection of history items for a specific worker",
+            "Can you retrieves a collection of history items for a specific worker?"
+        ]
+    },
+    {
+        "id": "94a39e71541b468fa895955508287acd",
+        "api_name": "retrieves_a_collection_of_workers",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers",
+        "parameters": [
+            {
+                "name": "includeTerminatedWorkers",
+                "in": "query",
+                "required": false,
+                "type": "boolean"
+            },
+            {
+                "name": "limit",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            },
+            {
+                "name": "offset",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            },
+            {
+                "name": "search",
+                "in": "query",
+                "required": false,
+                "type": "string"
+            }
+        ],
+        "summary": "Retrieves a collection of workers.",
+        "intent_triggers": [
+            "Retrieves a collection of workers",
+            "How do I retrieves a collection of workers?",
+            "I need to retrieves a collection of workers",
+            "Can you retrieves a collection of workers?"
+        ]
+    },
+    {
+        "id": "0d02120b4f9f4494adf71d47d6621668",
+        "api_name": "retrieves_a_history_instance_for_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/history/{subresourceID}",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "subresourceID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            }
+        ],
+        "summary": "Retrieves a history instance for a specific worker.",
+        "intent_triggers": [
+            "Retrieves a history instance for a specific worker",
+            "How do I retrieves a history instance for a specific worker?",
+            "I need to retrieves a history instance for a specific worker",
+            "Can you retrieves a history instance for a specific worker?"
+        ]
+    },
+    {
+        "id": "b09201ecbe6f10000c612f777e670015",
+        "api_name": "retrieves_a_collection_of_organizations_for_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/organizations",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "limit",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            },
+            {
+                "name": "offset",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            }
+        ],
+        "summary": "Retrieves a collection of organizations for a specific worker.",
+        "intent_triggers": [
+            "Retrieves a collection of organizations for a specific worker",
+            "How do I retrieves a collection of organizations for a specific worker?",
+            "I need to retrieves a collection of organizations for a specific worker",
+            "Can you retrieves a collection of organizations for a specific worker?"
+        ]
+    },
+    {
+        "id": "b6044838fb1f100001fe0872896b0002",
+        "api_name": "retrieves_a_collection_of_supervisory_organizations_managed_by_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/supervisoryOrganizationsManaged",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "limit",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            },
+            {
+                "name": "offset",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            }
+        ],
+        "summary": "Retrieves a collection of supervisory organizations managed by a specific worker.",
+        "intent_triggers": [
+            "Retrieves a collection of supervisory organizations managed by a specific worker",
+            "How do I retrieves a collection of supervisory organizations managed by a specific worker?",
+            "I need to retrieves a collection of supervisory organizations managed by a specific worker",
+            "Can you retrieves a collection of supervisory organizations managed by a specific worker?"
+        ]
+    },
+    {
+        "id": "436f2afb755f1000125443cdc76e0017",
+        "api_name": "retrieves_a_time_off_entry_for_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/timeOffEntries/{subresourceID}",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "subresourceID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            }
+        ],
+        "summary": "Retrieves a time off entry for a specific worker.",
+        "intent_triggers": [
+            "Retrieves a time off entry for a specific worker",
+            "How do I retrieves a time off entry for a specific worker?",
+            "I need to retrieves a time off entry for a specific worker",
+            "Can you retrieves a time off entry for a specific worker?"
+        ]
+    },
+    {
+        "id": "b4f1492ac4c741378c8d71305f9553f5",
+        "api_name": "creates_a_job_change_instance_with_the_specified_data",
+        "method": "POST",
+        "full_path": "/api/common/v1/workers/{ID}/jobChanges",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "changeJobInput",
+                "in": "body",
+                "required": true,
+                "type": "string"
+            }
+        ],
+        "summary": "Creates a job change instance with the specified data.",
+        "intent_triggers": [
+            "Creates a job change instance with the specified data",
+            "How do I creates a job change instance with the specified data?",
+            "I need to creates a job change instance with the specified data",
+            "Can you creates a job change instance with the specified data?"
+        ]
+    },
+    {
+        "id": "056982a2aa04100005cd56c3da4a0028",
+        "api_name": "retrieves_a_collection_of_pay_slips_for_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/paySlips",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "limit",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            },
+            {
+                "name": "offset",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            }
+        ],
+        "summary": "Retrieves a collection of pay slips for a specific worker.",
+        "intent_triggers": [
+            "Retrieves a collection of pay slips for a specific worker",
+            "How do I retrieves a collection of pay slips for a specific worker?",
+            "I need to retrieves a collection of pay slips for a specific worker",
+            "Can you retrieves a collection of pay slips for a specific worker?"
+        ]
+    },
+    {
+        "id": "3dad5f33d6974b2691f53037644f40be",
+        "api_name": "retrieves_a_collection_of_direct_reports_for_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/directReports",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "limit",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            },
+            {
+                "name": "offset",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            }
+        ],
+        "summary": "Retrieves a collection of direct reports for a specific worker.",
+        "intent_triggers": [
+            "Retrieves a collection of direct reports for a specific worker",
+            "How do I retrieves a collection of direct reports for a specific worker?",
+            "I need to retrieves a collection of direct reports for a specific worker",
+            "Can you retrieves a collection of direct reports for a specific worker?"
+        ]
+    },
+    {
+        "id": "056982a2aa04100005cd56c3da4a0028",
+        "api_name": "retrieves_a_pay_slip_instance_for_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/paySlips/{subresourceID}",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "subresourceID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            }
+        ],
+        "summary": "Retrieves a pay slip instance for a specific worker.",
+        "intent_triggers": [
+            "Retrieves a pay slip instance for a specific worker",
+            "How do I retrieves a pay slip instance for a specific worker?",
+            "I need to retrieves a pay slip instance for a specific worker",
+            "Can you retrieves a pay slip instance for a specific worker?"
+        ]
+    },
+    {
+        "id": "d02ccd56f7894dabb8e0dd66e42e94b9",
+        "api_name": "retrieves_an_inbox_task_instance_for_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/inboxTasks/{subresourceID}",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "subresourceID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            }
+        ],
+        "summary": "Retrieves an inbox task instance for a specific worker.",
+        "intent_triggers": [
+            "Retrieves an inbox task instance for a specific worker",
+            "How do I retrieves an inbox task instance for a specific worker?",
+            "I need to retrieves an inbox task instance for a specific worker",
+            "Can you retrieves an inbox task instance for a specific worker?"
+        ]
+    },
+    {
+        "id": "3dad5f33d6974b2691f53037644f40be",
+        "api_name": "retrieves_a_direct_report_instance_for_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/directReports/{subresourceID}",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "subresourceID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            }
+        ],
+        "summary": "Retrieves a direct report instance for a specific worker.",
+        "intent_triggers": [
+            "Retrieves a direct report instance for a specific worker",
+            "How do I retrieves a direct report instance for a specific worker?",
+            "I need to retrieves a direct report instance for a specific worker",
+            "Can you retrieves a direct report instance for a specific worker?"
+        ]
+    },
+    {
+        "id": "581c389cce1410000ff399298ba10006",
+        "api_name": "retrieves_a_collection_of_time_off_plans_for_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/timeOffPlans",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "limit",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            },
+            {
+                "name": "offset",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            }
+        ],
+        "summary": "Retrieves a collection of time off plans for a specific worker.",
+        "intent_triggers": [
+            "Retrieves a collection of time off plans for a specific worker",
+            "How do I retrieves a collection of time off plans for a specific worker?",
+            "I need to retrieves a collection of time off plans for a specific worker",
+            "Can you retrieves a collection of time off plans for a specific worker?"
+        ]
+    },
+    {
+        "id": "a865e2c38bd74c80a6f289390d3e619f",
+        "api_name": "retrieves_a_collection_of_business_title_changes_for_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/businessTitleChanges",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "limit",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            },
+            {
+                "name": "offset",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            }
+        ],
+        "summary": "Retrieves a collection of business title changes for a specific worker.",
+        "intent_triggers": [
+            "Retrieves a collection of business title changes for a specific worker",
+            "How do I retrieves a collection of business title changes for a specific worker?",
+            "I need to retrieves a collection of business title changes for a specific worker",
+            "Can you retrieves a collection of business title changes for a specific worker?"
+        ]
+    },
+    {
+        "id": "c2ffb30053964fbfa7a46dcfa577adb1",
+        "api_name": "creates_a_business_title_change_instance_with_the_specified_data",
+        "method": "POST",
+        "full_path": "/api/common/v1/workers/{ID}/businessTitleChanges",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "businessTitleChangeInput",
+                "in": "body",
+                "required": true,
+                "type": "string"
+            }
+        ],
+        "summary": "Creates a business title change instance with the specified data.",
+        "intent_triggers": [
+            "Creates a business title change instance with the specified data",
+            "How do I creates a business title change instance with the specified data?",
+            "I need to creates a business title change instance with the specified data",
+            "Can you creates a business title change instance with the specified data?"
+        ]
+    },
+    {
+        "id": "94a39e71541b468fa895955508287acd",
+        "api_name": "retrieves_a_worker_instance",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            }
+        ],
+        "summary": "Retrieves a worker instance.",
+        "intent_triggers": [
+            "Retrieves a worker instance",
+            "How do I retrieves a worker instance?",
+            "I need to retrieves a worker instance",
+            "Can you retrieves a worker instance?"
+        ]
+    },
+    {
+        "id": "b6044838fb1f100001fe0872896b0002",
+        "api_name": "retrieves_a_supervisory_organization_managed_by_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/supervisoryOrganizationsManaged/{subresourceID}",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "subresourceID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            }
+        ],
+        "summary": "Retrieves a supervisory organization managed by a specific worker.",
+        "intent_triggers": [
+            "Retrieves a supervisory organization managed by a specific worker",
+            "How do I retrieves a supervisory organization managed by a specific worker?",
+            "I need to retrieves a supervisory organization managed by a specific worker",
+            "Can you retrieves a supervisory organization managed by a specific worker?"
+        ]
+    },
+    {
+        "id": "436f2afb755f1000125443cdc76e0017",
+        "api_name": "retrieves_a_collection_of_time_off_entries_for_a_specific_worker",
+        "method": "GET",
+        "full_path": "/api/common/v1/workers/{ID}/timeOffEntries",
+        "parameters": [
+            {
+                "name": "ID",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            },
+            {
+                "name": "limit",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            },
+            {
+                "name": "offset",
+                "in": "query",
+                "required": false,
+                "type": "integer"
+            }
+        ],
+        "summary": "Retrieves a collection of time off entries for a specific worker.",
+        "intent_triggers": [
+            "Retrieves a collection of time off entries for a specific worker",
+            "How do I retrieves a collection of time off entries for a specific worker?",
+            "I need to retrieves a collection of time off entries for a specific worker",
+            "Can you retrieves a collection of time off entries for a specific worker?"
+        ]
+    }
+]
