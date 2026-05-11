@@ -1,14 +1,10 @@
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from fastapi import FastAPI, Query
-# ... rest of your imports
-
-
-from fastapi import FastAPI, Query
-import os
 from dotenv import load_dotenv
+from fastapi import FastAPI, Query
+
+# Fix path to allow importing from root
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Import your existing project classes
 from src.tools.router_tool import WorkdayRouterTool

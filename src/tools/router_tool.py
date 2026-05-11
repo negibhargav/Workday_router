@@ -8,6 +8,16 @@ class WorkdayRouterTool:
         self.dispatcher = WorkdayDispatcher()
         self.client = WorkdayClient()
 
+    def get_routing_plan(self, user_question: str):
+        """
+        Wraps dispatcher.route_query to return a consistent routing plan.
+        """
+        route = self.dispatcher.route_query(user_question)
+        # Rename full_path to path for compatibility with app.py
+        if "full_path" in route:
+            route["path"] = route["full_path"]
+        return route
+
     def execute_query(self, user_question: str, path_params: dict = None) -> str:
         """
         1. Routes the question to find the API.

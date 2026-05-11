@@ -5,10 +5,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class WorkdayClient:
-    def __init__(self):
+    def __init__(self, api_token=None, base_url=None):
         print("Initializing Workday Client...")
-        self.base_url = os.getenv("WORKDAY_BASE_URL")
-        self.token = os.getenv("WORKDAY_API_TOKEN")
+        self.base_url = base_url or os.getenv("WORKDAY_BASE_URL")
+        self.token = api_token or os.getenv("WORKDAY_API_TOKEN")
         
         if not self.base_url:
             print("WARNING: WORKDAY_BASE_URL is missing from .env")
