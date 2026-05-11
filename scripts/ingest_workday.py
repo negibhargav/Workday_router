@@ -7,7 +7,7 @@ from src.rag.embedder import IntentEmbedder
 from src.rag.pinecone_store import PineconeStore
 
 def ingest_data(input_file="data/processed_intents/workers_apis.json", namespace="common"):
-    print("🚀 Initializing Ingestion Pipeline...")
+    print("Initializing Ingestion Pipeline...")
     
     # 1. Boot up the brain and the database
     embedder = IntentEmbedder()
@@ -16,13 +16,13 @@ def ingest_data(input_file="data/processed_intents/workers_apis.json", namespace
     # 2. Load the parsed APIs
     input_path = Path(input_file)
     if not input_path.exists():
-        print(f"❌ Error: {input_file} not found. Please run src/utils/parser.py first.")
+        print(f"Error: {input_file} not found. Please run src/utils/parser.py first.")
         return
         
     with open(input_path, "r", encoding="utf-8") as f:
         apis = json.load(f)
         
-    print(f"📂 Loaded {len(apis)} API schemas. Generating vectors...")
+    print(f"Loaded {len(apis)} API schemas. Generating vectors...")
     
     vectors_to_upsert = []
     
@@ -55,7 +55,7 @@ def ingest_data(input_file="data/processed_intents/workers_apis.json", namespace
             # Add to our staging list
             vectors_to_upsert.append((vector_id, vector_values, metadata))
             
-    print(f"🧠 Generated {len(vectors_to_upsert)} total intent vectors. Pushing to Pinecone...")
+    print(f"Generated {len(vectors_to_upsert)} total intent vectors. Pushing to Pinecone...")
             
     # 4. Upsert in batches (Pinecone best practice: max 100-200 per batch)
     batch_size = 100
@@ -63,7 +63,7 @@ def ingest_data(input_file="data/processed_intents/workers_apis.json", namespace
         batch = vectors_to_upsert[i:i + batch_size]
         store.upsert_vectors(batch, namespace=namespace)
         
-    print(f"✅ Success! Ingested {len(vectors_to_upsert)} vectors into the '{namespace}' namespace.")
+    print(f"Success! Ingested {len(vectors_to_upsert)} vectors into the '{namespace}' namespace.")
 
 if __name__ == "__main__":
     ingest_data()
