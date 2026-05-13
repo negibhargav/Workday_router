@@ -10,7 +10,7 @@
     "x-workday-internal-service-container-id": "27d54c0f796e10000b3b7fd383f2002b"
   },
   "host": "<tenantHostname>",
-  "basePath": "/api/common/v1",
+  "basePath": "",
   "tags": [
     {
       "name": "businessTitleChanges"

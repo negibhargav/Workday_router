@@ -26,6 +26,10 @@ class WorkdayClient:
                 full_path = full_path.replace(f"{{{key}}}", str(value))
                 full_path = full_path.replace(f"%7B{key}%7D", str(value))
 
+        # SAFETY CHECK: If {ID} is still in the path, it means the router failed to find one
+        if "{" in full_path or "%7B" in full_path:
+            raise ValueError(f"Missing required parameters for path: {full_path}")
+
         url = f"{self.base_url.rstrip('/')}/{full_path.lstrip('/')}"
         
         # --- CACHE CHECK ---
