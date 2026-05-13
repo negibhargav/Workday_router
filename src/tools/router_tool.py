@@ -1,10 +1,11 @@
 import json
-from src.rag.dispatcher import WorkdayDispatcher
-from src.services.workday_client import WorkdayClient
+from rag.dispatcher import WorkdayDispatcher
+from services.workday_client import WorkdayClient
+import sys
 
 class WorkdayRouterTool:
     def __init__(self):
-        print("Initializing Workday Router Tool...")
+        print("Initializing Workday Router Tool...", file=sys.stderr)
         self.dispatcher = WorkdayDispatcher()
         self.client = WorkdayClient()
 
@@ -13,9 +14,11 @@ class WorkdayRouterTool:
         Wraps dispatcher.route_query to return a consistent routing plan.
         """
         route = self.dispatcher.route_query(user_question)
-        # Rename full_path to path for compatibility with app.py
+
+        # Rename full_path to path for server.py tool execution
         if "full_path" in route:
             route["path"] = route["full_path"]
+
         return route
 
     def execute_query(self, user_question: str, path_params: dict = None) -> str:
@@ -23,41 +26,48 @@ class WorkdayRouterTool:
         1. Routes the question to find the API.
         2. Executes the API safely.
         """
-        # Step 1: Find the right API
         route = self.dispatcher.route_query(user_question)
+
         if "error" in route:
-            return json.dumps({"error": "Could not find a matching Workday API.", "details": route})
-            
+            return json.dumps({
+                "error": "Could not find a matching Workday API.",
+                "details": route
+            })
+
         api_name = route.get("api_name")
         method = route.get("method")
         full_path = route.get("full_path")
+
+        # Handle instance vs collection path
         if full_path and "{subresourceID}" in full_path and not (path_params or {}).get("subresourceID"):
             full_path = full_path.replace("/{subresourceID}", "")
-            api_name = api_name.replace("_instance_", "_collection_") if api_name else api_name
-        
-        # Step 2: Execute the actual Workday API
+            if api_name:
+                api_name = api_name.replace("_instance_", "_collection_")
+
         try:
             workday_response = self.client.execute(
-                method=method, 
-                full_path=full_path, 
+                method=method,
+                full_path=full_path,
                 path_params=path_params
             )
-            
-            # Step 3: The Token Limiter Safety Net
+
             response_str = json.dumps(workday_response)
-            
-            MAX_CHARS = 8000 
+
+            MAX_CHARS = 8000
             if len(response_str) > MAX_CHARS:
-                print(f"Truncating response from {len(response_str)} to {MAX_CHARS} characters.")
-                response_str = response_str[:MAX_CHARS] + "\n... [DATA TRUNCATED DUE TO LENGTH] ..."
-            
-            # Package the results
+                print(f"Truncating Workday response from {len(response_str)} to {MAX_CHARS} characters.", file=sys.stderr)
+                response_str = response_str[:MAX_CHARS] + "\n... [DATA TRUNCATED] ..."
+
             final_result = {
                 "routed_api": api_name,
                 "confidence_score": route.get("confidence_score"),
                 "workday_data": response_str
             }
+
             return json.dumps(final_result, indent=2)
-            
+
         except Exception as e:
-            return json.dumps({"error": "Failed to execute Workday API.", "details": str(e)})
+            return json.dumps({
+                "error": "Failed to execute Workday API.",
+                "details": str(e)
+            })
