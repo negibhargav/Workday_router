@@ -20,13 +20,15 @@ class WorkdayClient:
         if "api/common/v1" in self.base_url and full_path.startswith("/api/common/v1"):
             full_path = full_path.replace("/api/common/v1", "", 1)
 
-        # 2. Inject parameters (like 21001 or subresource IDs)
+       # 2. Inject parameters
         if path_params:
             for key, value in path_params.items():
-                # Replace {ID} or {subresourceID} with the actual value
                 full_path = full_path.replace(f"{{{key}}}", str(value))
-                # Also handle the encoded version just in case
                 full_path = full_path.replace(f"%7B{key}%7D", str(value))
+
+        # SAFETY CHECK: If {ID} is still in the path, it means the router failed to find one
+        if "{" in full_path or "%7B" in full_path:
+            raise ValueError(f"Missing required parameters for path: {full_path}")
 
         url = f"{self.base_url.rstrip('/')}/{full_path.lstrip('/')}"
         
