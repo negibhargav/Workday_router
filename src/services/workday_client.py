@@ -1,5 +1,6 @@
 import os
 import requests
+import json
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -9,26 +10,29 @@ class WorkdayClient:
         print("Initializing Workday Client...")
         self.base_url = base_url or os.getenv("WORKDAY_BASE_URL")
         self.token = api_token or os.getenv("WORKDAY_API_TOKEN")
+        self.cache = {} # Simple in-memory cache
         
         if not self.base_url:
             print("WARNING: WORKDAY_BASE_URL is missing from .env")
 
     def execute(self, method, full_path, path_params=None, query_params=None):
         # 1. Fix the double-path issue
-        # Workday tenant base URLs already include the API root, so stored catalog
-        # paths should be tenant-relative before they are appended.
         if "api/common/v1" in self.base_url and full_path.startswith("/api/common/v1"):
             full_path = full_path.replace("/api/common/v1", "", 1)
 
-        # 2. Inject parameters (like 21001 or subresource IDs)
+        # 2. Inject parameters
         if path_params:
             for key, value in path_params.items():
-                # Replace {ID} or {subresourceID} with the actual value
                 full_path = full_path.replace(f"{{{key}}}", str(value))
-                # Also handle the encoded version just in case
                 full_path = full_path.replace(f"%7B{key}%7D", str(value))
 
         url = f"{self.base_url.rstrip('/')}/{full_path.lstrip('/')}"
+        
+        # --- CACHE CHECK ---
+        cache_key = f"{method}:{url}:{json.dumps(query_params, sort_keys=True)}"
+        if method.upper() == "GET" and cache_key in self.cache:
+            print(f"Returning CACHED response for: {url}")
+            return self.cache[cache_key]
         
         # 3. Setup Authentication
         headers = {
@@ -47,13 +51,18 @@ class WorkdayClient:
                 params=query_params
             )
             
-            # Catch HTTP errors (401 Unauthorized, 404 Not Found, etc.)
             response.raise_for_status()
-            return response.json()
+            data = response.json()
+            
+            # Store in cache if GET
+            if method.upper() == "GET":
+                self.cache[cache_key] = data
+                
+            return data
             
         except requests.exceptions.RequestException as e:
             print(f"Workday API Error: {e}")
-            error_details = response.text if response is not None else "No response body."
+            error_details = response.text if 'response' in locals() and response is not None else "No response body."
             return {"error": str(e), "details": error_details}
 
 if __name__ == "__main__":

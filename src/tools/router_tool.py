@@ -1,6 +1,7 @@
 import json
 from src.rag.dispatcher import WorkdayDispatcher
 from src.services.workday_client import WorkdayClient
+from src.utils.token_limiter import clean_workday_response
 
 class WorkdayRouterTool:
     def __init__(self):
@@ -43,13 +44,8 @@ class WorkdayRouterTool:
                 path_params=path_params
             )
             
-            # Step 3: The Token Limiter Safety Net
-            response_str = json.dumps(workday_response)
-            
-            MAX_CHARS = 8000 
-            if len(response_str) > MAX_CHARS:
-                print(f"Truncating response from {len(response_str)} to {MAX_CHARS} characters.")
-                response_str = response_str[:MAX_CHARS] + "\n... [DATA TRUNCATED DUE TO LENGTH] ..."
+            # Step 3: The Token Limiter (Cleans and Truncates)
+            response_str = clean_workday_response(workday_response)
             
             # Package the results
             final_result = {
@@ -60,4 +56,4 @@ class WorkdayRouterTool:
             return json.dumps(final_result, indent=2)
             
         except Exception as e:
-            return json.dumps({"error": "Failed to execute Workday API.", "details": str(e)})
+            return json.dumps({"error": "Failed to execute Workday API.", "details": str(e)})

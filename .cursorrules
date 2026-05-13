@@ -1,0 +1,10 @@
+# Cursor Rules for Workday Router
+
+## Performance & Token Optimization
+- **Do NOT index or read** files in `data/processed_intents/` or `swagger/` unless explicitly asked. These are large files used by the internal RAG system.
+- **Use the `ask_workday` tool** for any Workday-related queries. Do NOT try to manually figure out the API paths or parameters by reading the source code or data files.
+- The `ask_workday` tool handles routing and data fetching internally. You only need to provide the natural language query.
+
+## Tool Usage
+- When using `ask_workday`, provide a clear natural language query.
+- Expect the response to be cleaned and potentially truncated to save tokens.
