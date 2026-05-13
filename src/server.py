@@ -81,15 +81,12 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from src.tools.router_tool import WorkdayRouterTool
 from src.services.workday_client import WorkdayClient
+from src.utils.token_limiter import clean_workday_response
 
-load_dotenv()
+# 1. Initialize the MCP Server
+mcp = FastMCP("Workday RAG Router")
 
-# ============================
-#   MCP SERVER INITIALIZATION
-# ============================
-
-mcp = FastMCP("workday-mcp")
-
+# 2. Boot up your custom routing logic
 router = WorkdayRouterTool()
 client = WorkdayClient(
     api_token=os.getenv("WORKDAY_API_TOKEN"),
@@ -103,45 +100,28 @@ client = WorkdayClient(
 @mcp.tool()
 def ask_workday(q: str):
     """
-    Natural language → Routing plan → Workday API call → Clean JSON
+    Finds the right Workday API and returns the ACTUAL data, not just the URL.
     """
-
-    # 1. Routing via vector search
-    plan = router.get_routing_plan(q)
-    original_path = plan["path"]
-
-    # ---- FALLBACK: if ID missing but endpoint requires one ----
-    if "{ID}" in original_path and not plan.get("path_params"):
-        print("DEBUG: No ID detected → fallback to collection endpoint", file=sys.stderr)
-        plan["path"] = "/api/common/v1/workers"
-
-    # 2. Build full Workday URL
-    base = os.getenv("WORKDAY_BASE_URL", "").rstrip("/")
-    path = plan["path"].lstrip("/")
-
-    # Prevent double "api/common/v1"
-    if "api/common/v1" in base and "api/common/v1" in path:
-        path = path.replace("api/common/v1", "").lstrip("/")
-
-    full_api_link = f"{base}/{path}"
-
-    # 3. Execute Workday Call
+    # 1. Ask the Router to find the API mapping and path
+    plan = router.get_routing_plan(natural_language_query)
+    
+    # 2. Heuristic Field Extraction (Advanced Token Optimization)
+    # If the user mentions specific fields, we filter for them
+    common_fields = ["email", "phone", "name", "title", "position", "manager", "supervisory", "status", "location"]
+    requested_fields = [f for f in common_fields if f in natural_language_query.lower()]
+    
+    # 3. Use the WorkdayClient to fetch the real data
     try:
-        data = client.execute(
+        raw_data = workday_client.execute(
             method=plan["method"],
             full_path=plan["path"],
             path_params=plan.get("path_params")
         )
-
-        return {
-            "status": "success",
-            "query": q,
-            "api_called": full_api_link,
-            "method": plan["method"],
-            "gathered_data": data,
-            "routing_plan": plan,
-        }
-
+        
+        # 4. Clean and Truncate the data (Token Optimization)
+        # Pass the extracted fields to only return what was asked
+        return clean_workday_response(raw_data, required_fields=requested_fields if requested_fields else None)
+        
     except Exception as e:
         return {
             "status": "error",

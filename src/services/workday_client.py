@@ -1,5 +1,6 @@
 import os,sys
 import requests
+import json
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -11,7 +12,8 @@ class WorkdayClient:
         # Load from .env unless overridden
         self.base_url = base_url or os.getenv("WORKDAY_BASE_URL")
         self.token = api_token or os.getenv("WORKDAY_API_TOKEN")
-
+        self.cache = {} # Simple in-memory cache
+        
         if not self.base_url:
             print("WARNING: WORKDAY_BASE_URL is missing from .env", file=sys.stderr)
 
@@ -19,23 +21,11 @@ class WorkdayClient:
             print("WARNING: WORKDAY_API_TOKEN is missing from .env", file=sys.stderr)
 
     def execute(self, method, full_path, path_params=None, query_params=None):
-        """
-        Executes a Workday REST API call using the routed details.
-        """
-
-        # -----------------------------
-        # 1. Fix Double Path Issue
-        # -----------------------------
-        if (
-            self.base_url
-            and "api/common/v1" in self.base_url
-            and full_path.startswith("/api/common/v1")
-        ):
+        # 1. Fix the double-path issue
+        if "api/common/v1" in self.base_url and full_path.startswith("/api/common/v1"):
             full_path = full_path.replace("/api/common/v1", "", 1)
 
-        # -----------------------------
-        # 2. Inject Path Parameters
-        # -----------------------------
+        # 2. Inject parameters
         if path_params:
             for key, value in path_params.items():
                 full_path = full_path.replace(f"{{{key}}}", str(value))
@@ -49,10 +39,14 @@ class WorkdayClient:
         # 3. Construct Full URL Properly
         # -----------------------------
         url = f"{self.base_url.rstrip('/')}/{full_path.lstrip('/')}"
-
-        # -----------------------------
-        # 4. Authentication & Headers
-        # -----------------------------
+        
+        # --- CACHE CHECK ---
+        cache_key = f"{method}:{url}:{json.dumps(query_params, sort_keys=True)}"
+        if method.upper() == "GET" and cache_key in self.cache:
+            print(f"Returning CACHED response for: {url}")
+            return self.cache[cache_key]
+        
+        # 3. Setup Authentication
         headers = {
             "Authorization": f"Bearer {self.token}",
             "Accept": "application/json",
@@ -70,26 +64,20 @@ class WorkdayClient:
                 headers=headers,
                 params=query_params,
             )
-            response.raise_for_status()  # Throw exceptions for 4xx/5xx
-
-            # Workday sometimes returns empty responses (204)
-            if response.text.strip() == "":
-                return {"message": "Success", "status": response.status_code}
-
-            return response.json()
-
+            
+            response.raise_for_status()
+            data = response.json()
+            
+            # Store in cache if GET
+            if method.upper() == "GET":
+                self.cache[cache_key] = data
+                
+            return data
+            
         except requests.exceptions.RequestException as e:
-            print(f"Workday API Error: {e}", file=sys.stderr)
-
-            # FIX: response may not exist → prevent UnboundLocalError
-            error_body = None
-            try:
-                error_body = response.text
-            except Exception:
-                error_body = "No response body."
-
-            return {"error": str(e), "details": error_body}
-
+            print(f"Workday API Error: {e}")
+            error_details = response.text if 'response' in locals() and response is not None else "No response body."
+            return {"error": str(e), "details": error_details}
 
 if __name__ == "__main__":
     client = WorkdayClient()
