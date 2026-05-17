@@ -1,7 +1,9 @@
 import json
 import sys
-from rag.embedder import IntentEmbedder
-from rag.pinecone_store import PineconeStore
+
+# Correct absolute imports to align with your new src/ directory layout
+from src.rag.embedder import IntentEmbedder
+from src.rag.pinecone_store import PineconeStore
 
 
 class WorkdayDispatcher:
@@ -12,36 +14,39 @@ class WorkdayDispatcher:
 
     def route_query(self, user_query, namespace="common", top_k=1):
         """
-        Takes a human question, searches Pinecone, and returns the API schema.
+        Takes a human question, searches Pinecone, and returns the API schema matching template.
         """
         print(f"Routing query: '{user_query}'...", file=sys.stderr)
 
-        # 1. Turn the question into a mathematical vector
+        # 1. Turn the question into a mathematical vector representation
         query_vector = self.embedder.encode_intents(user_query)[0]
 
-        # 2. Search the Pinecone database
+        # 2. Search the vector database
         results = self.store.query_intent(
             query_vector=query_vector,
             namespace=namespace,
             top_k=top_k
         )
 
-        # 3. Parse and return the best match
-        if not results['matches']:
-            return {"error": "No matching API found."}
+        # 3. Parse and return the best match securely
+        if not results or 'matches' not in results or not results['matches']:
+            return {"error": "No matching API template found in vector database."}
 
         best_match = results['matches'][0]
-        score = best_match['score']
-        metadata = best_match['metadata']
+        score = best_match.get('score', 0.0)
+        
+        # Defensive fallback if metadata block is completely absent or empty
+        metadata = best_match.get('metadata') or {}
 
         print(
-            f"Match found with {score:.2f} confidence: {metadata.get('api_name')}",
+            f"Match found with {score:.2f} confidence: {metadata.get('api_name', 'Unknown API')}",
             file=sys.stderr
         )
 
-        # Fix parameters JSON
+        # Safely extract and deserialize the embedded JSON string schema parameters
         try:
-            parameters = json.loads(metadata.get('parameters', '[]'))
+            param_data = metadata.get('parameters', '[]')
+            parameters = json.loads(param_data) if isinstance(param_data, str) else param_data
         except json.JSONDecodeError:
             parameters = []
 
@@ -55,10 +60,10 @@ class WorkdayDispatcher:
 
 
 if __name__ == "__main__":
-    # Test the Dispatcher locally
+    # Test the Dispatcher locally using execution context tools
     dispatcher = WorkdayDispatcher()
 
-    print("\n--- Test 1 ---")  # <-- this is okay since you're not in MCP mode
+    print("\n--- Test 1 Running ---", file=sys.stderr)
     test_question_1 = "Give me the list of workers."
     result_1 = dispatcher.route_query(test_question_1)
     print(json.dumps(result_1, indent=2))

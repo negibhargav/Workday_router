@@ -1,6 +1,7 @@
 import json
 import os
 from pathlib import Path
+import sys
 
 def parse_workday_swagger(file_path, output_name="workers_apis.json"):
     # Define paths
@@ -9,7 +10,7 @@ def parse_workday_swagger(file_path, output_name="workers_apis.json"):
     output_dir.mkdir(parents=True, exist_ok=True)
 
     if not input_file.exists():
-        print(f"Error: Could not find {file_path}")
+        print(f"Error: Could not find {file_path}", file=sys.stderr)
         return
 
     with open(input_file, 'r', encoding='utf-8') as f:
@@ -20,7 +21,7 @@ def parse_workday_swagger(file_path, output_name="workers_apis.json"):
     paths = swagger_data.get("paths", {})
     processed_apis = []
 
-    print(f"Searching for 'workers' APIs in {input_file.name}...")
+    print(f"Searching for 'workers' APIs in {input_file.name}...", file=sys.stderr)
 
     # 2. Iterate through paths
     for path, methods in paths.items():
@@ -64,7 +65,7 @@ def parse_workday_swagger(file_path, output_name="workers_apis.json"):
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(processed_apis, f, indent=4)
 
-    print(f"Success! Extracted {len(processed_apis)} APIs to {output_path}")
+    print(f"Success! Extracted {len(processed_apis)} APIs to {output_path}", file=sys.stderr)
 
 def generate_initial_intents(summary):
     """

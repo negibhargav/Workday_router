@@ -76,8 +76,13 @@ import os
 from dotenv import load_dotenv
 from mcp.server.fastmcp import FastMCP
 
-# Ensure imports work
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# Load environment variables from the root .env file
+load_dotenv()
+
+# Add the root directory to sys.path so internal imports (from src.xxx) resolve cleanly
+root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if root_dir not in sys.path:
+    sys.path.append(root_dir)
 
 from src.tools.router_tool import WorkdayRouterTool
 from src.services.workday_client import WorkdayClient
@@ -94,11 +99,11 @@ client = WorkdayClient(
 )
 
 # =====================================================================
-#  TOOL 1: ask_workday (equivalent to /ask endpoint in your FastAPI)
+#   TOOL 1: ask_workday (equivalent to /ask endpoint in your FastAPI)
 # =====================================================================
 
 @mcp.tool()
-def ask_workday(q: str):
+def ask_workday(natural_language_query: str):
     """
     Finds the right Workday API and returns the ACTUAL data, not just the URL.
     """
@@ -112,7 +117,7 @@ def ask_workday(q: str):
     
     # 3. Use the WorkdayClient to fetch the real data
     try:
-        raw_data = workday_client.execute(
+        raw_data = client.execute(
             method=plan["method"],
             full_path=plan["path"],
             path_params=plan.get("path_params")
@@ -123,6 +128,10 @@ def ask_workday(q: str):
         return clean_workday_response(raw_data, required_fields=requested_fields if requested_fields else None)
         
     except Exception as e:
+        # Fallback tracking if plan dict doesn't contain a path key on failure
+        attempted_path = plan.get("path", "Unknown Path") if isinstance(plan, dict) else "Unknown Path"
+        full_api_link = f"{os.getenv('WORKDAY_BASE_URL', '')}{attempted_path}"
+        
         return {
             "status": "error",
             "api_link_attempted": full_api_link,
