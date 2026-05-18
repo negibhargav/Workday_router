@@ -36,7 +36,8 @@ class WorkdayRouterTool:
     def execute_query(self, user_question: str, path_params: dict = None) -> str:
         """
         1. Routes the question to find the API.
-        2. Executes the API safely.
+        2. Extracts parameters contextually for Cursor/MCP calls.
+        3. Executes the API safely.
         """
         route = self.dispatcher.route_query(user_question)
 
@@ -49,7 +50,21 @@ class WorkdayRouterTool:
         api_name = route.get("api_name")
         method = route.get("method")
         full_path = route.get("full_path")
+        
+        # Initialize params safely
         params = path_params if path_params is not None else {}
+
+        # --- ADD THIS: CONTEXTUAL PARAMETER EXTRACTION FOR CURSOR ---
+        if full_path and "{ID}" in full_path and "ID" not in params:
+            import re
+            # If the user says "me", "my", or "I", automatically assign the "me" token
+            if any(word in user_question.lower() for word in ["me", "my", "i ", "myself"]):
+                params["ID"] = "me"
+            else:
+                # Look for a fallback employee ID number in the text string
+                numeric_ids = re.findall(r'\d+', user_question)
+                if numeric_ids:
+                    params["ID"] = numeric_ids[0]
 
         # Handle instance vs collection path safely
         if full_path and "{subresourceID}" in full_path and not params.get("subresourceID"):
@@ -61,7 +76,7 @@ class WorkdayRouterTool:
             workday_response = self.client.execute(
                 method=method,
                 full_path=full_path,
-                path_params=params
+                path_params=params  # Now contains {"ID": "me"} when Cursor calls it!
             )
             
             # Step 3: The Token Limiter (Cleans and Truncates)

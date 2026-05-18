@@ -1,75 +1,3 @@
-# import sys
-# import os
-
-# # ---------- FIX PYTHONPATH ----------
-# sys.path.append(os.getcwd())
-# ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# sys.path.insert(0, ROOT_DIR)
-
-# # IMPORTANT: send to STDERR, not STDOUT
-# print("PYTHONPATH FIX APPLIED:", ROOT_DIR, file=sys.stderr)
-
-# # ---------- IMPORTS ----------
-# from mcp.server.fastmcp import FastMCP
-
-# # Lazy-load objects
-# router = None
-# workday_client = None
-
-
-# def get_router():
-#     global router
-#     if router is None:
-#         print("MCP Loading Router Tool...", file=sys.stderr)
-#         from tools.router_tool import WorkdayRouterTool
-#         router = WorkdayRouterTool()
-#     return router
-
-
-# def get_client():
-#     global workday_client
-#     if workday_client is None:
-#         print("[MCP] Initializing Workday Client...", file=sys.stderr)
-#         from services.workday_client import WorkdayClient
-#         workday_client = WorkdayClient()
-#     return workday_client
-
-
-# # ---------- MCP SERVER ----------
-# mcp = FastMCP("Workday RAG Router")
-# print("[MCP] Server initialized.", file=sys.stderr)
-
-
-# # ---------- TOOL ----------
-# @mcp.tool()
-# def ask_workday(natural_language_query: str) -> str:
-#     print(f"[MCP] Received Query: {natural_language_query}", file=sys.stderr)
-
-#     router = get_router()
-#     client = get_client()
-
-#     try:
-#         plan = router.get_routing_plan(natural_language_query)
-#         print("[MCP] Routing plan:", plan, file=sys.stderr)
-
-#         raw_data = client.execute(
-#             method=plan["method"],
-#             full_path=plan["path"],
-#             path_params=plan.get("path_params")
-#         )
-
-#         print("[MCP] Returning Workday data.", file=sys.stderr)
-#         return str(raw_data)
-
-#     except Exception as e:
-#         print("[MCP] ERROR:", e, file=sys.stderr)
-#         return f"Error gathering data from Workday: {str(e)}"
-
-
-# # ---------- RUN THE SERVER ----------
-# print("[MCP] Workday Router MCP Server STARTED.", file=sys.stderr)
-# mcp.run()
-
 import json
 import sys
 import os
@@ -101,45 +29,102 @@ client = WorkdayClient(
 # =====================================================================
 #   TOOL 1: ask_workday (equivalent to /ask endpoint in your FastAPI)
 # =====================================================================
-
 @mcp.tool()
 def ask_workday(natural_language_query: str):
     """
-    Finds the right Workday API and returns the ACTUAL data, not just the URL.
+    Routes a human query to the Workday semantic vector database.
+    
+    CRITICAL DIRECTIVE FOR THE AI AGENT:
+    You must extract the user's exact, raw natural language input word-for-word 
+    and pass it directly into the 'user_question' parameter. 
+    
+    DO NOT optimize, paraphrase, technicalize, expand, or rewrite the query. 
+    DO NOT inject guessed API paths, HTTP methods, or tokens like 'me'. 
+    Pass the raw string precisely as the human typed it.
     """
-    # 1. Ask the Router to find the API mapping and path
+
+    # 1. Route the query
     plan = router.get_routing_plan(natural_language_query)
-    
-    # 2. Heuristic Field Extraction (Advanced Token Optimization)
-    # If the user mentions specific fields, we filter for them
-    common_fields = ["email", "phone", "name", "title", "position", "manager", "supervisory", "status", "location"]
-    requested_fields = [f for f in common_fields if f in natural_language_query.lower()]
-    
-    # 3. Use the WorkdayClient to fetch the real data
+
+    # 2. Validate plan before doing anything
+    if not plan or not isinstance(plan, dict):
+        return {"status": "error", "message": "Router returned no plan."}
+
+    missing = [k for k in ["method", "path"] if k not in plan]
+    if missing:
+        return {"status": "error", "message": f"Routing plan missing keys: {missing}", "plan": plan}
+
+    # 3. Block writes from this tool
+    if plan.get("method", "").upper() != "GET":
+        return {
+            "status": "blocked",
+            "message": f"This query requires a {plan['method']} operation. Use execute_workday_action for writes.",
+            "routing_plan": plan
+        }
+
+    # 4. Validate path_params are present if path has {placeholders}
+    import re
+    placeholders = re.findall(r"\{(\w+)\}", plan["path"])
+    path_params = plan.get("path_params") or {}
+    missing_params = [p for p in placeholders if p not in path_params]
+    if missing_params:
+        return {
+            "status": "error",
+            "message": f"Cannot call API — missing path params: {missing_params}",
+            "path": plan["path"],
+            "routing_plan": plan
+        }
+
+    # 5. Log what was routed (visibility)
+    print(f"[Router] {plan['method']} {plan['path']} | params: {path_params}", file=sys.stderr)
+
+    # 6. Execute
     try:
         raw_data = client.execute(
             method=plan["method"],
             full_path=plan["path"],
-            path_params=plan.get("path_params")
+            path_params=path_params if path_params else None
         )
-        
-        # 4. Clean and Truncate the data (Token Optimization)
-        # Pass the extracted fields to only return what was asked
-        return clean_workday_response(raw_data, required_fields=requested_fields if requested_fields else None)
-        
+        return clean_workday_response(raw_data)
+
     except Exception as e:
-        # Fallback tracking if plan dict doesn't contain a path key on failure
-        attempted_path = plan.get("path", "Unknown Path") if isinstance(plan, dict) else "Unknown Path"
-        full_api_link = f"{os.getenv('WORKDAY_BASE_URL', '')}{attempted_path}"
-        
+        attempted_path = f"{os.getenv('WORKDAY_BASE_URL', '')}{plan['path']}"
         return {
             "status": "error",
-            "api_link_attempted": full_api_link,
+            "api_link_attempted": attempted_path,
             "message": str(e),
             "routing_plan": plan,
         }
 
 
+@mcp.tool()
+def execute_workday_action(natural_language_query: str, confirmed: bool = False):
+    """
+    For WRITE operations (POST) only — creates or updates Workday data.
+    Requires confirmed=True to actually execute.
+    """
+    plan = router.get_routing_plan(natural_language_query)
+
+    if not plan or plan.get("method", "").upper() == "GET":
+        return {"status": "error", "message": "This is not a write operation. Use ask_workday instead."}
+
+    if not confirmed:
+        return {
+            "status": "pending_confirmation",
+            "message": "Please confirm this action before it executes.",
+            "routing_plan": plan
+        }
+
+    try:
+        raw_data = client.execute(
+            method=plan["method"],
+            full_path=plan["path"],
+            path_params=plan.get("path_params"),
+            body=plan.get("body")
+        )
+        return clean_workday_response(raw_data)
+    except Exception as e:
+        return {"status": "error", "message": str(e), "routing_plan": plan}
 # ============================
 #   START THE MCP SERVER
 # ============================
