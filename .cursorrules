@@ -5,6 +5,7 @@
 - **Use the `ask_workday` tool** for any Workday-related queries. Do NOT try to manually figure out the API paths or parameters by reading the source code or data files.
 - The `ask_workday` tool handles routing and data fetching internally. You only need to provide the natural language query.
 
-## Tool Usage
-- When using `ask_workday`, provide a clear natural language query.
-- Expect the response to be cleaned and potentially truncated to save tokens.
+## Tool Usage & Strict Prompt Pass-Through
+- When invoking the `ask_workday` tool, provide a clear natural language query.
+- **CRITICAL DIRECTIVE:** You are strictly prohibited from modifying, optimizing, expanding, or technicalizing the user's prompt before passing it to the tool. Pass the human's conversational text **exactly word-for-word** as it was entered in the chat interface. Do NOT inject guessed REST paths, HTTP methods, or parameter values.
+- Expect the tool response to be cleaned and potentially truncated to save tokens.
