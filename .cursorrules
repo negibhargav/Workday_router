@@ -1,21 +1,29 @@
 # Cursor Rules for Workday Router
 
+## Context Isolation (Ignore Past Chats)
+- **CRITICAL DIRECTIVE:** Treat every single user prompt as an isolated request. Do NOT look into previous chat history or past conversations to infer missing context, IDs, or subjects. Only use the information provided in the current, immediate message.
+
 ## Performance & Token Optimization
 - **Do NOT index or read** files in `data/processed_intents/` or `swagger/` unless explicitly asked. These are large files used by the internal RAG system.
 - **Use the `ask_workday` tool** for any Workday-related queries. Do NOT try to manually figure out the API paths or parameters by reading the source code or data files.
-- The `ask_workday` tool handles routing and data fetching internally. You only need to provide the natural language query.
 
-## Pre-Execution Clarification (Ambiguity Guardrails)
-Before invoking the `ask_workday` tool, you MUST analyze the user's prompt. You are strictly forbidden from executing the tool if the prompt contains numbers or single names without explicit systemic mapping. You must STOP and ask the user to clarify.
-- **ALL Numbers:** If the user provides ANY numeric ID (e.g., "21008"), even if they say the word "employee", you must STOP and ask: "What do you mean by [number]? Should I map this as an Employee ID, a Worker ID, or another detail? Please specify."
-- **ALL Single Names:** If the user provides only a first name (e.g., "Benny"), you must STOP and ask: "Can you give the full name of [Name], a department, or do you want me to list everyone named [Name] in the organization?"
+## CRITICAL: The Two-Step Execution Protocol
+You MUST process every user prompt in two distinct steps. You are strictly forbidden from executing Step 2 if Step 1 triggers a clarification.
+
+**STEP 1: The Ambiguity Check (Pre-Flight)**
+Analyze the user's raw text using only the current message. Do NOT use any tools during this step.
+- **ALL Numbers:** If the prompt contains ANY standalone numbers (e.g., "21008"): STOP immediately. Output ONLY: *"What do you mean by [number]? Should I map this as an Employee ID, a Worker ID, or another detail?"*
+- **ALL Single Names:** If the prompt contains ONLY a first name (e.g., "Benny"): STOP immediately. Output ONLY: *"Can you give the full name of [Name], a department, or do you want me to list everyone named [Name]?"*
+- **Missing Subjects/Vague Prompts:** If the prompt lacks a specific subject or is an incomplete thought (e.g., "who reports?", "show tasks", "get details" without specifying WHO): STOP immediately. Output ONLY: *"Who are you asking about? Are you looking for your own details, or a specific worker's details?"*
+
+**STEP 2: Tool Execution (Only if Step 1 passes)**
+If the prompt contains no ambiguous elements, you may proceed to use the `ask_workday` tool.
 
 ## Tool Usage & Strict Prompt Pass-Through
 - When invoking the `ask_workday` tool, provide a clear natural language query.
-- **CRITICAL DIRECTIVE:** You are strictly prohibited from modifying, optimizing, expanding, or technicalizing the user's prompt before passing it to the tool. Pass the human's conversational text **exactly word-for-word** as it was entered in the chat interface. Do NOT inject guessed REST paths, HTTP methods, or parameter values.
-- Expect the tool response to be cleaned and potentially truncated to save tokens.
+- **CRITICAL DIRECTIVE:** Pass the human's conversational text **exactly word-for-word** as it was entered. Do NOT inject guessed paths, HTTP methods, or parameter values. Do NOT guess the user's intent.
 
 ## Post-Execution & Error Handling
-- **NO RETRIES:** If the `ask_workday` tool returns an error (e.g., 500 Internal Server Error, JSON parsing error, or missing keys), you must **STOP** immediately. 
-- **NO RECONFIGURATION:** Do NOT attempt to auto-debug, rewrite the tool's python code, guess alternative API paths, or re-run the tool.
-- **CONCISE REPORTING:** Simply output the exact error message returned by the tool to the user. You must limit your entire response to **50 words maximum**.
+- **NO RETRIES:** If the `ask_workday` tool returns an error, you must **STOP** immediately. 
+- **NO RECONFIGURATION:** Do NOT attempt to auto-debug or re-run the tool.
+- **CONCISE REPORTING:** Simply output the exact error message. Limit your response to **50 words maximum**.
