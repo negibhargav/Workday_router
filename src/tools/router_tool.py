@@ -88,7 +88,8 @@ class WorkdayRouterTool:
         # Check if we landed on the general directory collection
         if path_string == "/workers":
             # Look for specific name filter keywords
-            name_match = re.search(r'(?:name is|named|first name|last name|employee|worker)\s+([a-zA-Z]+)', user_question, re.IGNORECASE)
+            # Look for specific name filter keywords, handling the word "is" correctly
+            name_match = re.search(r'(?:name is|named|first name is|last name is|first name|last name|employee|worker)\s+([a-zA-Z]+)', user_question, re.IGNORECASE)
             
             if name_match:
                 query_params["search"] = name_match.group(1).strip()
