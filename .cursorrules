@@ -1,7 +1,7 @@
 # Cursor Rules for Workday Router
 
-## Context Isolation (Ignore Past Chats)
-- **CRITICAL DIRECTIVE:** Treat every single user prompt as an isolated request. Do NOT look into previous chat history or past conversations to infer missing context, IDs, or subjects. Only use the information provided in the current, immediate message.
+## Context Isolation (Current Session Only)
+- **CRITICAL DIRECTIVE:** Treat the current session as the only source of truth. You MAY use information established earlier in the **current, ongoing chat session** to resolve pronouns or missing context (e.g., if the user just asked about a specific worker in the previous message, you can remember who that is). However, you must **STRICTLY IGNORE** any previous, separate chat histories or past conversations outside of the current window. Do not pull in assumed context from older sessions.
 
 ## Performance & Token Optimization
 - **Do NOT index or read** files in `data/processed_intents/` or `swagger/` unless explicitly asked. These are large files used by the internal RAG system.
@@ -10,14 +10,17 @@
 ## CRITICAL: The Two-Step Execution Protocol
 You MUST process every user prompt in two distinct steps. You are strictly forbidden from executing Step 2 if Step 1 triggers a clarification.
 
-**STEP 1: The Ambiguity Check (Pre-Flight)**
-Analyze the user's raw text using only the current message. Do NOT use any tools during this step.
-- **ALL Numbers:** If the prompt contains ANY standalone numbers (e.g., "21008"): STOP immediately. Output ONLY: *"What do you mean by [number]? Should I map this as an Employee ID, a Worker ID, or another detail?"*
-- **ALL Single Names:** If the prompt contains ONLY a first name (e.g., "Benny"): STOP immediately. Output ONLY: *"Can you give the full name of [Name], a department, or do you want me to list everyone named [Name]?"*
-- **Missing Subjects/Vague Prompts:** If the prompt lacks a specific subject or is an incomplete thought (e.g., "who reports?", "show tasks", "get details" without specifying WHO): STOP immediately. Output ONLY: *"Who are you asking about? Are you looking for your own details, or a specific worker's details?"*
+**STEP 1: The Ambiguity & Intent Check (Pre-Flight)**
+Analyze the user's raw text combined with the current session's established context. You must make sure the query is completely clear. Do NOT give the query the benefit of the doubt; you must confirm the exact intent before proceeding. Do NOT use any tools during this step.
+
+- **Vague Directives / General Queries:** If the user asks a broad, non-specific question (e.g., "list the manager?"), and the subject hasn't been established in the current chat, you must STOP immediately, ask for explicit confirmation, and list the potential intents. 
+  * *Example Output:* "Whose manager? Do you want to list the manager of a particular department, or do you want your manager?"
+- **ALL Numbers:** If the prompt contains ANY standalone numbers (e.g., "21008") with no clear context in the current chat: STOP immediately. Output ONLY: "What do you mean by [number]? Should I map this as an Employee ID, a Worker ID, or another detail?"
+- **ALL Single Names:** If the prompt contains ONLY a first name (e.g., "Benny") with no prior context in this chat: STOP immediately. Output ONLY: "Can you give the full name of [Name], a department, or do you want me to list everyone named [Name]?"
+- **Missing Subjects/Vague Prompts:** If the prompt lacks a specific subject (e.g., "who reports?", "show tasks") and cannot be linked to the current chat history: STOP immediately. Output ONLY: "Who are you asking about? Are you looking for your own details, or a specific worker's details?"
 
 **STEP 2: Tool Execution (Only if Step 1 passes)**
-If the prompt contains no ambiguous elements, you may proceed to use the `ask_workday` tool.
+If the prompt contains no ambiguous elements, has a confirmed subject, and a clear intent, you may proceed to use the `ask_workday` tool.
 
 ## Tool Usage & Strict Prompt Pass-Through
 - When invoking the `ask_workday` tool, provide a clear natural language query.
