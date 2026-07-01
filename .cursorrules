@@ -1,32 +1,316 @@
 # Cursor Rules for Workday Router
 
 ## Context Isolation (Current Session Only)
-- **CRITICAL DIRECTIVE:** Treat the current session as the only source of truth. You MAY use information established earlier in the **current, ongoing chat session** to resolve pronouns or missing context (e.g., if the user just asked about a specific worker in the previous message, you can remember who that is). However, you must **STRICTLY IGNORE** any previous, separate chat histories or past conversations outside of the current window. Do not pull in assumed context from older sessions.
+- **CRITICAL DIRECTIVE:** Treat the current session as the only source of truth
+- You MAY use information established earlier in the **current, ongoing chat session**
+- You must **STRICTLY IGNORE** any previous, separate chat histories or past conversations
+- Do not pull in assumed context from older sessions
 
 ## Performance & Token Optimization
-- **Do NOT index or read** files in `data/processed_intents/` or `swagger/` unless explicitly asked. These are large files used by the internal RAG system.
-- **Use the `ask_workday` tool** for any Workday-related queries. Do NOT try to manually figure out the API paths or parameters by reading the source code or data files.
+- **Do NOT index or read** files in `data/processed_intents/` or `swagger/`
+- **Use the `ask_workday` tool** for any Workday-related queries
+- Do NOT try to manually figure out API paths by reading source code
 
-## CRITICAL: The Two-Step Execution Protocol
-You MUST process every user prompt in two distinct steps. You are strictly forbidden from executing Step 2 if Step 1 triggers a clarification.
+---
 
-**STEP 1: The Ambiguity & Intent Check (Pre-Flight)**
-Analyze the user's raw text combined with the current session's established context. You must make sure the query is completely clear. Do NOT give the query the benefit of the doubt; you must confirm the exact intent before proceeding. Do NOT use any tools during this step.
+## 🚨 CRITICAL: THE TWO-STEP EXECUTION PROTOCOL (STRICT & ENFORCEABLE)
 
-- **Vague Directives / General Queries:** If the user asks a broad, non-specific question (e.g., "list the manager?"), and the subject hasn't been established in the current chat, you must STOP immediately, ask for explicit confirmation, and list the potential intents. 
-  * *Example Output:* "Whose manager? Do you want to list the manager of a particular department, or do you want your manager?"
-- **ALL Numbers:** If the prompt contains ANY standalone numbers (e.g., "21008") with no clear context in the current chat: STOP immediately. Output ONLY: "What do you mean by [number]? Should I map this as an Employee ID, a Worker ID, or another detail?"
-- **ALL Single Names:** If the prompt contains ONLY a first name (e.g., "Benny") with no prior context in this chat: STOP immediately. Output ONLY: "Can you give the full name of [Name], a department, or do you want me to list everyone named [Name]?"
-- **Missing Subjects/Vague Prompts:** If the prompt lacks a specific subject (e.g., "who reports?", "show tasks") and cannot be linked to the current chat history: STOP immediately. Output ONLY: "Who are you asking about? Are you looking for your own details, or a specific worker's details?"
+You MUST process every user prompt in exactly two distinct steps.
 
-**STEP 2: Tool Execution (Only if Step 1 passes)**
-If the prompt contains no ambiguous elements, has a confirmed subject, and a clear intent, you may proceed to use the `ask_workday` tool.
+### **STEP 1: The Ambiguity & Intent Check (PRE-FLIGHT - MANDATORY)**
 
-## Tool Usage & Strict Prompt Pass-Through
-- When invoking the `ask_workday` tool, provide a clear natural language query.
-- **CRITICAL DIRECTIVE:** Pass the human's conversational text **exactly word-for-word** as it was entered. Do NOT inject guessed paths, HTTP methods, or parameter values. Do NOT guess the user's intent.
+**This step is MANDATORY. You CANNOT skip it.**
 
-## Post-Execution & Error Handling
-- **NO RETRIES:** If the `ask_workday` tool returns an error, you must **STOP** immediately. 
-- **NO RECONFIGURATION:** Do NOT attempt to auto-debug or re-run the tool.
-- **CONCISE REPORTING:** Simply output the exact error message. Limit your response to **50 words maximum**.
+Analyze the user's raw text for ANY ambiguity or vagueness.
+
+Do NOT use any tools during this step. Do NOT give the benefit of the doubt.
+
+#### **HARD STOP CONDITIONS - If ANY of these apply, STOP immediately and ASK THE USER:**
+
+1. **Numbers with No Context**
+ - If the prompt contains ANY standalone numbers (e.g., "21008", "470")
+ - And there is NO prior context in the CURRENT chat
+ - **YOU MUST STOP and ask:**
+ - "What do you mean by [number]?
+ - Should I map this as:
+ - Employee ID?
+ - Worker ID?
+ - Department code?
+ - Something else?"
+ 
+- **DO NOT PROCEED TO STEP 2**
+
+2. **Single Names with No Context**
+ - If the prompt contains ONLY a first name (e.g., "Benny", "John")
+ - And there is NO prior context in the CURRENT chat
+ - **YOU MUST STOP and ask:**
+
+ - "Can you provide:
+ - The full name of [Name]?
+ - A department name?
+ - Or do you want me to list everyone named [Name]?"
+
+ - **DO NOT PROCEED TO STEP 2**
+
+3. **Vague or Broad Questions**
+ - If the prompt is vague or non-specific (e.g., "how many employees?", "show organization?")
+ - And the specific intent is unclear
+ - **YOU MUST STOP and ask:**
+
+"Your question could mean several things:
+- [Possibility 1]?
+- [Possibility 2]?
+- [Possibility 3]?
+- Which one did you mean?"
+
+- **DO NOT PROCEED TO STEP 2**
+
+4. **Missing Subject**
+ - If the prompt lacks a specific subject (e.g., "who reports?", "show details?", "how are they organized?")
+ - And the subject cannot be linked to the current chat history
+ - **YOU MUST STOP and ask:**
+
+"Who are you asking about?
+- Yourself?
+- A specific person (if so, who)?
+- A department?
+- A team?"
+
+- **DO NOT PROCEED TO STEP 2**
+
+#### **DECISION TREE FOR STEP 1:**
+
+Is the query ambiguous or vague?
+├─ YES → STOP immediately and ASK USER for clarification
+│ (Do NOT go to Step 2)
+│ (Do NOT use any tools)
+│
+└─ NO → Clear intent identified
+Subject is explicit or established in chat
+Ready for Step 2
+
+---
+
+### **STEP 2: Tool Execution (ONLY if Step 1 passes)**
+
+**You ONLY reach this step if Step 1 found NO ambiguity.**
+
+If the prompt:
+- Contains NO ambiguous elements
+- Has a CONFIRMED subject
+- Has a CLEAR intent
+
+Then you may proceed to use the `ask_workday` tool.
+
+#### **Tool Invocation Rules:**
+
+- Provide a clear natural language query
+- **CRITICAL:** Pass the human's conversational text **exactly word-for-word** as entered
+- Do NOT inject guessed paths, HTTP methods, or parameters
+- Do NOT guess the user's intent
+
+#### **ERROR HANDLING in Step 2:**
+
+If the `ask_workday` tool returns:
+
+1. **Success** → Report the result to the user
+
+2. **Error Message** → 
+ - STOP immediately
+ - Output ONLY the error message (max 50 words)
+ - DO NOT retry
+ - DO NOT attempt to auto-debug
+
+3. **"Clarification Needed" / "Please Clarify" Response** →
+ - STOP immediately
+ - Ask the user for clarification
+ - DO NOT keep trying
+ - DO NOT retry with different parameters
+ - **Example:**
+ - "The tool says it needs clarification.
+ - Could you be more specific about:
+ - Which employee/department?
+ - What exact information do you want?"
+
+---
+
+## 🚫 CRITICAL ENFORCEMENT RULES
+
+**You MUST follow these. If you don't, you are breaking the system.**
+
+### **You MUST NOT:**
+- ❌ Proceed to Step 2 if Step 1 finds ambiguity
+- ❌ Use tools to "guess" what the user meant
+- ❌ Retry the tool internally if it returns an error
+- ❌ Keep trying without asking the user
+- ❌ Assume what vague terms mean
+- ❌ Ignore numbers or single names without context
+- ❌ Use information from previous chat sessions
+- ❌ Index or read large files like swagger/ or data/
+
+### **You MUST:**
+- ✅ Always check for ambiguity FIRST
+- ✅ Always STOP if ambiguity found
+- ✅ Always ASK the user for clarification
+- ✅ Wait for user confirmation before proceeding
+- ✅ Only use tools with clear, confirmed intent
+- ✅ Report errors to user, never retry
+- ✅ Pass queries exactly word-for-word
+- ✅ Respect current session context only
+
+---
+
+## 📋 QUICK DECISION FLOWCHART
+
+User sends query
+↓
+STEP 1: Check for ambiguity
+↓
+Is it ambiguous?
+├─ YES:
+│ ├─ STOP
+│ ├─ Ask user for clarification
+│ ├─ List the possible interpretations
+│ ├─ Wait for user response
+│ └─ Do NOT use any tools
+│
+└─ NO (Clear intent):
+├─ STEP 2: Use ask_workday tool
+├─ Tool returns result?
+│ ├─ Success: Report to user ✓
+│ ├─ Error: Show error, DON'T retry ✓
+│ └─ "Clarify needed": Ask user, DON'T retry ✓
+└─ Done
+
+---
+
+## 📝 EXAMPLES
+
+### **Example 1: Number with No Context**
+User: "Tell me about 21008"
+STEP 1: Check ambiguity
+→ Found: Number "21008" with no context
+→ STOP
+Output:
+"What do you mean by 21008?
+
+Employee ID?
+Worker ID?
+Something else?
+
+Please clarify."
+DO NOT use the tool yet.
+
+### **Example 2: Vague Question**
+User: "how my employee are in organisation?"
+STEP 1: Check ambiguity
+→ Found: "how" is vague. Could mean:
+- How many total?
+- How are they organized (structure)?
+- Show me the list?
+→ STOP
+Output:
+"Your question could mean:
+
+How MANY employees are in the organization (total count)?
+How are employees ORGANIZED (hierarchy/structure)?
+Show me a LIST of employees?
+
+Which one did you want?"
+DO NOT use the tool yet.
+
+### **Example 3: Single Name, No Context**
+User: "Tell me about Benny"
+STEP 1: Check ambiguity
+→ Found: Single name "Benny" with no context
+→ STOP
+Output:
+"Can you provide more details about Benny?
+
+Full name (if Benny is a nickname)?
+Which department is Benny in?
+Or do you want me to search for all employees named Benny?
+
+Please clarify."
+DO NOT use the tool yet.
+
+### **Example 4: Clear Question - Use Tool**
+User: "Show me headcount in Engineering department"
+STEP 1: Check ambiguity
+→ No ambiguity found
+→ Clear intent: Get headcount for Engineering
+→ Subject confirmed: Engineering department
+→ READY FOR STEP 2
+STEP 2: Use tool
+→ Call ask_workday with: "Show me headcount in Engineering department"
+→ Tool returns result
+→ Report to user
+
+---
+
+## 🔴 RED FLAGS (Always stop and ask)
+
+If you see ANY of these:
+- [ ] Standalone number (e.g., "21008")
+- [ ] Single name (e.g., "John")
+- [ ] Question with "how" or "what" or "show me" (vague)
+- [ ] Pronoun without context (e.g., "who reports to him?")
+- [ ] Question starting with "are" (e.g., "are they organized?")
+- [ ] Missing subject (e.g., "who reports?")
+- [ ] Tool returns error or asks for clarification
+- [ ] Tool says "no direct API" or "please clarify"
+
+**STOP and ASK USER**
+
+---
+
+## ✅ GREEN LIGHTS (Safe to use tool)
+
+Only proceed to tool if:
+- [x] Query is specific and clear
+- [x] Subject is confirmed
+- [x] Intent is explicit
+- [x] No ambiguity detected
+- [x] No missing context
+- [x] Not a vague question
+
+---
+
+## 📞 POST-EXECUTION RULES
+
+After tool execution:
+
+1. **Tool Success** → Show result to user
+2. **Tool Error** → Show error message only (max 50 words), DON'T retry
+3. **Tool says "clarify"** → Ask user for clarification, DON'T retry
+4. **User asks follow-up** → Go back to STEP 1 for the new query
+
+---
+
+## 🎯 SUMMARY
+STEP 1: Check Ambiguity (MANDATORY)
+├─ Ambiguous? → STOP and ASK USER
+└─ Clear? → Go to STEP 2
+STEP 2: Execute Tool (ONLY if Step 1 passes)
+├─ Success? → Report to user
+└─ Error? → Show error, ask user (DON'T retry)
+NEVER skip Step 1
+NEVER proceed despite ambiguity
+NEVER retry without asking user
+NEVER assume what user meant
+
+---
+
+## ⚠️ VIOLATION NOTICE
+
+If you:
+- Skip Step 1 → VIOLATION
+- Use tool despite ambiguity → VIOLATION
+- Retry tool without asking user → VIOLATION
+- Assume user intent → VIOLATION
+- Ignore numbers/names → VIOLATION
+- Use old chat context → VIOLATION
+
+Stop immediately and restart the process correctly.
+
+---
