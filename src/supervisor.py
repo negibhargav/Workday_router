@@ -4,99 +4,66 @@ from openai import OpenAI
 from pinecone import Pinecone
 from dotenv import load_dotenv
 
-# Import Zeep for SOAP operations
-from zeep import Client
-from zeep.wsse.username import UsernameToken
-
-# Keep your existing router for REST fallback operations
+# Import the existing router for REST execution
 from src.tools.router_tool import WorkdayRouterTool
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 
-# Connect to your Pinecone Index (Ensure this matches your actual index name)
+# Connect to your Pinecone Index
 index = pc.Index("workday-router") 
 router = WorkdayRouterTool()
 
 # =====================================================================
-# 1. THE INTERNAL TOOLS (The Brain's Hands)
+# 1. THE RETRIEVER (Finds the API schema)
 # =====================================================================
-
-def search_api_library(search_query: str) -> str:
-    """Queries Pinecone RAG to find the correct Workday API schema."""
-    print(f"\n[Supervisor] 📚 Searching Pinecone RAG for: '{search_query}'")
+def retrieve_api_schema(search_query: str) -> str:
+    """Queries Pinecone RAG to find the correct Workday REST API schema."""
+    print(f"\n[Retriever] Searching Pinecone RAG for: '{search_query}'")
     
     try:
-        # Generate vector for the Brain's search query
         response = client.embeddings.create(input=search_query, model="text-embedding-3-small")
         vector = response.data[0].embedding
         
-        # Query Pinecone
         results = index.query(vector=vector, top_k=2, include_metadata=True)
         
         if not results.matches:
-            return "No relevant Workday API found in the database. Ask the user for clarification."
+            return "No relevant Workday API found. Ask the user for clarification."
             
-        # Return the exact schema descriptions back to the OpenAI Brain
         schemas = [match.metadata['text'] for match in results.matches if 'text' in match.metadata]
         return "\n\n---\n\n".join(schemas)
     except Exception as e:
         return f"Error searching Pinecone: {str(e)}"
 
-def execute_workday_api(api_type: str, endpoint: str, parameters: dict) -> str:
-    """The Universal Executor. The Brain passes dynamic parameters here after reading Pinecone."""
-    print(f"\n[Supervisor] ⚙️ Executing {api_type} API: '{endpoint}' with params: {parameters}")
-    
-    if api_type.upper() == "SOAP":
-        return _handle_dynamic_soap(endpoint, parameters)
-    elif api_type.upper() == "REST":
-        # For now, we route REST back through your existing WorkdayRouterTool
-        query_string = json.dumps(parameters)
-        return router.execute_query(user_question=f"Execute {endpoint} with {query_string}")
-    else:
-        return json.dumps({"error": f"Unknown API type: {api_type}"})
-
-def _handle_dynamic_soap(endpoint: str, parameters: dict) -> str:
-    """Future-proof SOAP handler using Zeep."""
-    WD_USERNAME = os.getenv("WD_USERNAME")
-    WD_PASSWORD = os.getenv("WD_PASSWORD")
-    
-    # Update this to your exact Workday tenant WSDL URL
-    WSDL_URL = "https://wd2-impl-services1.workday.com/ccx/service/your_tenant/Human_Resources/v39.2?wsdl"
+# =====================================================================
+# 2. THE EXECUTOR (Runs the REST API)
+# =====================================================================
+def execute_rest_api(endpoint: str, parameters: dict) -> str:
+    """Executes the Workday REST API based on the retrieved schema."""
+    print(f"\n[Executor] Running REST API: '{endpoint}' with params: {parameters}")
     
     try:
-        zeep_client = Client(WSDL_URL, wsse=UsernameToken(WD_USERNAME, WD_PASSWORD))
-        
-        # DYNAMIC EXECUTION: Finds the method name on the fly
-        soap_method = getattr(zeep_client.service, endpoint)
-        
-        # Pass the Brain's dictionary directly into the Zeep method
-        response = soap_method(**parameters)
-        
-        return str(response) 
+        # Route REST back through your existing WorkdayRouterTool
+        # We convert the params to a string so your existing router can parse it
+        query_string = json.dumps(parameters)
+        return router.execute_query(user_question=f"Execute REST endpoint {endpoint} with {query_string}")
     except Exception as e:
-        return json.dumps({"error": f"SOAP Execution failed: {str(e)}"})
-
-
-available_functions = {
-    "search_api_library": search_api_library,
-    "execute_workday_api": execute_workday_api
-}
+        return json.dumps({"error": f"REST Execution failed: {str(e)}"})
 
 # =====================================================================
-# 2. OPENAI TOOL SCHEMAS
+# 3. OPENAI TOOL SCHEMAS (The Brain's interface)
 # =====================================================================
 tools = [
     {
         "type": "function",
         "function": {
-            "name": "search_api_library",
-            "description": "Always use this FIRST. Searches the Workday Pinecone database to find the correct API endpoint and its required parameters.",
+            "name": "retrieve_api_schema",
+            "description": "RETRIEVER STEP: Always use this FIRST after planning. Searches the Workday Pinecone database to find the correct REST API endpoint and required parameters.",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "search_query": {"type": "string", "description": "e.g., 'direct reports manager SOAP' or 'business title REST'"}
+                    "search_query": {"type": "string", "description": "e.g., 'business title REST' or 'worker location'"}
                 },
                 "required": ["search_query"]
             }
@@ -105,36 +72,48 @@ tools = [
     {
         "type": "function",
         "function": {
-            "name": "execute_workday_api",
-            "description": "Executes the Workday API. You must strictly follow the parameter schema returned by the search_api_library tool.",
+            "name": "execute_rest_api",
+            "description": "EXECUTOR STEP: Executes the Workday REST API. You must strictly follow the parameter schema returned by the retrieve_api_schema tool.",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "api_type": {"type": "string", "enum": ["REST", "SOAP"]},
-                    "endpoint": {"type": "string", "description": "e.g., 'Get_Workers'"},
+                    "endpoint": {"type": "string", "description": "e.g., 'workers' or 'organizations'"},
                     "parameters": {"type": "object", "description": "A JSON dictionary of the parameters required by the API."}
                 },
-                "required": ["api_type", "endpoint", "parameters"]
+                "required": ["endpoint", "parameters"]
             }
         }
     }
 ]
 
 # =====================================================================
-# 3. THE MASTER ORCHESTRATOR LOOP
+# 4. THE MASTER ORCHESTRATOR LOOP (Brain -> Planner -> Action -> Evaluate)
 # =====================================================================
 def run_intelligent_supervisor(user_prompt: str, model="gpt-4o") -> str:
     """
-    The orchestrator that handles dynamic RAG searching and API execution.
+    The main agentic loop that forces the LLM to Plan, Retrieve, Execute, and Re-evaluate.
     """
-    print(f"\n🚀 [Backend] Supervisor handling query: '{user_prompt}'")
+    print(f"\n [Brain] Initiated for query: '{user_prompt}'")
     
+    # System prompt strictly enforces the Cyclic Graph Architecture
+    system_instruction = """
+    You are the central Brain of a Workday Agentic Architecture. 
+    You must follow this exact execution cycle for every query:
+    1. PLANNER: First, output a numbered list of the execution steps required.
+    2. RETRIEVER: Call the 'retrieve_api_schema' tool to get the REST API details.
+    3. EXECUTOR: Call the 'execute_rest_api' tool using the exact schema parameters.
+    4. EVALUATOR (Planner): Look at the executor's data. Ask yourself: "Do I need more steps to answer the user?" 
+       - If YES: Repeat steps 2 and 3.
+       - If NO: Provide the final answer and format the data cleanly.
+       
+    NOTE: We are ONLY using REST APIs. Do not attempt to use SOAP.
+    """
+
     messages = [
-        {"role": "system", "content": "You are an autonomous Workday Agent. For every query: 1. Search the Pinecone API library. 2. Read the returned schema. 3. Execute the API with the exact parameters specified. 4. Filter the raw XML/JSON data yourself to answer the user's specific question."},
+        {"role": "system", "content": system_instruction},
         {"role": "user", "content": user_prompt}
     ]
 
-    # Added a loop counter safety mechanism to prevent infinite loops and token burn
     loop_count = 0
     max_loops = 5
 
@@ -150,6 +129,10 @@ def run_intelligent_supervisor(user_prompt: str, model="gpt-4o") -> str:
         
         response_message = response.choices[0].message
         
+        # Capture the Brain's "Planning" thoughts if it output text before calling a tool
+        if response_message.content:
+            print(f"\n[Planner] Brain's logic/steps:\n{response_message.content}")
+
         if response_message.tool_calls:
             messages.append(response_message)
             
@@ -157,15 +140,15 @@ def run_intelligent_supervisor(user_prompt: str, model="gpt-4o") -> str:
                 function_name = tool_call.function.name
                 function_args = json.loads(tool_call.function.arguments)
                 
-                if function_name == "search_api_library":
-                    function_response = search_api_library(function_args["search_query"])
-                elif function_name == "execute_workday_api":
-                    function_response = execute_workday_api(
-                        api_type=function_args["api_type"],
+                if function_name == "retrieve_api_schema":
+                    function_response = retrieve_api_schema(function_args["search_query"])
+                elif function_name == "execute_rest_api":
+                    function_response = execute_rest_api(
                         endpoint=function_args["endpoint"],
                         parameters=function_args.get("parameters", {})
                     )
                 
+                # Feed the tool data back into the loop for the Evaluator step
                 messages.append({
                     "tool_call_id": tool_call.id,
                     "role": "tool",
@@ -173,7 +156,8 @@ def run_intelligent_supervisor(user_prompt: str, model="gpt-4o") -> str:
                     "content": function_response,
                 })
         else:
-            print("\n✅ [Backend] Supervisor complete. Returning final answer to Cursor.")
+            # If no tools are called, the Evaluator decided "No more steps needed"
+            print("\n [Planner] Evaluation complete. No further steps required. Returning final answer.")
             return response_message.content
             
     return "The system reached the maximum number of reasoning steps without a final answer. Please refine your query."
