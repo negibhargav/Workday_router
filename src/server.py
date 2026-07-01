@@ -29,30 +29,38 @@ def ask_workday(natural_language_query: str) -> str:
     """
     Routes a human query to the Workday semantic vector database.
     
-    CRITICAL DIRECTIVE FOR THE AI AGENT:
-    You must extract the user's exact, raw natural language input word-for-word 
-    and pass it directly into the 'natural_language_query' parameter. 
-    
-    DO NOT optimize, paraphrase, technicalize, expand, or rewrite the query. 
-    DO NOT inject guessed API paths, HTTP methods, or tokens like 'me'. 
-    Pass the raw string precisely as the human typed it.
+    CRITICAL AI DIRECTIVE - HARD STOP CONDITIONS:
+    Do NOT look at previous chat history. Evaluate the query in isolation.
+    1. If the user's query contains ANY numbers (e.g., "21008") or single names (e.g., "Benny"), you MUST NOT execute this tool. Ask for clarification.
+    2. If the user's query is vague or missing a subject (e.g., "who reports?", "show history"), you MUST NOT execute this tool. Ask: "Who are you asking about?"
+    3. Do NOT attempt to guess the subject, map numbers, or fill in the blanks yourself.
+
+    If the query is clear and safe to proceed:
+    Pass the user's conversational text exactly word-for-word. Do NOT optimize or rewrite it.
     """
-    # 1. Peek at the plan routing metadata to enforce read-only safety
-    plan = router.get_routing_plan(natural_language_query)
+    try:
+        # 1. Peek at the plan routing metadata to enforce read-only safety
+        plan = router.get_routing_plan(natural_language_query)
 
-    if not plan or "method" not in plan:
-        return json.dumps({"status": "error", "message": "Router returned an invalid layout specification."})
+        if not plan or "method" not in plan:
+            return json.dumps({"status": "error", "message": "Router returned an invalid layout specification."})
 
-    # 2. Block writes from entering this tool
-    if plan.get("method", "").upper() != "GET":
+        # 2. Block writes from entering this tool
+        if plan.get("method", "").upper() != "GET":
+            return json.dumps({
+                "status": "blocked",
+                "message": f"This query requires a {plan['method']} operation. Use execute_workday_action for updates.",
+                "routing_plan": plan
+            })
+
+        # 3. Hand complete execution over to the tool's encapsulated engine
+        return router.execute_query(user_question=natural_language_query)
+        
+    except Exception as e:
         return json.dumps({
-            "status": "blocked",
-            "message": f"This query requires a {plan['method']} operation. Use execute_workday_action for updates.",
-            "routing_plan": plan
-        })
-
-    # 3. Hand complete execution over to the tool's encapsulated engine
-    return router.execute_query(user_question=natural_language_query)
+            "status": "error",
+            "message": f"Internal MCP Tool Intercept: {str(e)}"
+        }, indent=2)
 
 
 # =====================================================================
