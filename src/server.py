@@ -17,8 +17,15 @@ from src.tools.router_tool import WorkdayRouterTool
 # 1. Initialize the MCP Server
 mcp = FastMCP("Workday RAG Router")
 
-# 2. Boot up your custom routing tool
-router = WorkdayRouterTool()
+# 2. Lazy-load the router on first use — avoids loading the BGE embedding model
+#    at startup which causes the MCP Inspector to timeout during the handshake.
+_router: WorkdayRouterTool | None = None
+
+def get_router() -> WorkdayRouterTool:
+    global _router
+    if _router is None:
+        _router = WorkdayRouterTool()
+    return _router
 
 
 # =====================================================================
@@ -39,6 +46,7 @@ def ask_workday(natural_language_query: str) -> str:
     Pass the user's conversational text exactly word-for-word. Do NOT optimize or rewrite it.
     """
     try:
+        router = get_router()
         # 1. Peek at the plan routing metadata to enforce read-only safety
         plan = router.get_routing_plan(natural_language_query)
 
@@ -72,6 +80,7 @@ def execute_workday_action(natural_language_query: str, confirmed: bool = False)
     For WRITE operations (POST) only — creates or updates Workday data.
     Requires confirmed=True to actually execute.
     """
+    router = get_router()
     plan = router.get_routing_plan(natural_language_query)
 
     if not plan or plan.get("method", "").upper() == "GET":
