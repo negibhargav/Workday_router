@@ -126,13 +126,15 @@ class Executor:
         print(f"[Executor]   RAG matched: {method} {api_path}", file=sys.stderr)
 
         # 3. Inject resolved params + handle "me" / Worker_ID format
-        final_path, path_params = self._build_path(api_path, resolved_params, step)
+        # _build_path now returns 3 values: path, path_params, query_params
+        final_path, path_params, query_params = self._build_path(api_path, resolved_params, step)
 
         # 4. Call Workday API
         raw_data = self.client.execute(
             method=method,
             full_path=final_path,
             path_params=path_params,
+            query_params=query_params if query_params else None,
         )
 
         # 5. Clean + truncate the response
@@ -147,7 +149,7 @@ class Executor:
         return {
             "raw_response": response_str,
             "extracted": extracted,
-            "api_called": f"{method} {api_path}",
+            "api_called": f"{method} {final_path}",
         }
 
     def _resolve_params(self, param_map: dict | None, context: dict) -> dict:
@@ -221,16 +223,18 @@ class Executor:
                     return result
         return None
 
-    def _build_path(self, api_path: str, resolved_params: dict, step: dict) -> tuple[str, dict]:
+    def _build_path(self, api_path: str, resolved_params: dict, step: dict) -> tuple[str, dict, dict]:
         """
-        Determine the final API path and path_params dict for WorkdayClient.execute().
+        Determine the final API path, path_params, and query_params for WorkdayClient.execute().
 
         Handles:
         - "me" / current user shortcut
         - Worker_ID=<value> format that Workday expects
         - Generic {ID} / {subresourceID} template replacement
+        - Name-based search fallback: extracts a name from intent and appends ?search=
         """
         path_params = {}
+        query_params = {}
         final_path = api_path
 
         # Check if this step resolves to "current user"
@@ -241,31 +245,65 @@ class Executor:
 
         if "{ID}" in final_path:
             # Priority 1: resolved param provides an explicit ID
-            worker_id = (
+            raw_id = (
                 resolved_params.get("worker_id")
                 or resolved_params.get("ID")
                 or resolved_params.get("id")
             )
 
-            if worker_id:
-                # Workday expects "Worker_ID=<value>" format in paths
-                formatted_id = (
-                    worker_id
-                    if str(worker_id).startswith("Worker_ID=") or worker_id == "me"
-                    else f"Worker_ID={worker_id}"
-                )
+            if raw_id:
+                # Strip any existing Worker_ID= prefix to avoid double-prefixing
+                bare_id = str(raw_id).removeprefix("Worker_ID=")
+                formatted_id = "me" if bare_id == "me" else f"Worker_ID={bare_id}"
                 path_params["ID"] = formatted_id
             elif is_self_lookup:
                 path_params["ID"] = "me"
             else:
-                # No ID available — fall back to collection endpoint
+                # No ID — fall back to /workers collection.
+                # Try to extract a name from the step intent so we can search by name.
                 final_path = "/workers"
-                print(
-                    f"[Executor]   No ID resolved, falling back to /workers collection",
-                    file=sys.stderr,
+                name = self._extract_name_from_intent(
+                    step.get("intent", ""), step.get("api_hint", "")
                 )
+                if name:
+                    query_params["search"] = name
+                    print(
+                        f"[Executor]   No ID resolved — searching /workers?search={name}",
+                        file=sys.stderr,
+                    )
+                else:
+                    print(
+                        "[Executor]   No ID or name resolved, falling back to /workers collection",
+                        file=sys.stderr,
+                    )
 
-        return final_path, path_params
+        return final_path, path_params, query_params
+
+    # ---- name extraction helper ------------------------------------------------
+
+    _NAME_PATTERNS = [
+        r"for\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)",          # "for Joy Banks"
+        r"by\s+name\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)",    # "by name Joy Banks"
+        r"named\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)",        # "named Joy Banks"
+        r"worker\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)",       # "worker Joy Banks"
+        r"employee\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)",     # "employee Joy Banks"
+    ]
+
+    def _extract_name_from_intent(self, intent: str, api_hint: str) -> str | None:
+        """Try to pull a proper name (Title Case words) out of intent / api_hint text."""
+        import re as _re
+        combined = f"{intent} {api_hint}"
+        for pattern in self._NAME_PATTERNS:
+            m = _re.search(pattern, combined)
+            if m:
+                # Return only the first word (first name) as the search term
+                # — Workday's /workers?search is a prefix/substring match
+                return m.group(1).split()[0]
+        # Last resort: any two consecutive Title Case words
+        m = _re.search(r"([A-Z][a-z]+\s+[A-Z][a-z]+)", combined)
+        if m:
+            return m.group(1).split()[0]
+        return None
 
     def _extract_fields(self, response_str: str, fields: list[str]) -> dict:
         """
