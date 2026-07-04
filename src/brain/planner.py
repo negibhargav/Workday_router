@@ -42,6 +42,9 @@ Rules:
    Use an empty list [] if this is the final step.
 8. For "me" / "current user" / "myself" queries, step 1 should use api_hint
    "get current worker profile" with param_map null (the executor will resolve "me").
+9. `query_params` MUST contain any literal URL query string parameters explicitly mentioned
+   in the user prompt (e.g., {"search": "B"} for names starting with B, or {"status": "APPROVED"}). 
+   Extract ONLY the raw target value without relational verbs like 'starts with' or 'named'.
 
 ALWAYS return ONLY valid JSON in this exact schema. No markdown, no explanation:
 {
@@ -53,6 +56,10 @@ ALWAYS return ONLY valid JSON in this exact schema. No markdown, no explanation:
       "api_hint": "<short phrase for RAG search>",
       "depends_on": null,
       "param_map": null,
+      "query_params": {
+        "search": "value_here"
+      },
+      "path_params": {},
       "extract_fields": ["field1", "field2"]
     }
   ]
@@ -130,13 +137,15 @@ class Planner:
             step.setdefault("id", i + 1)
             step.setdefault("depends_on", None)
             step.setdefault("param_map", None)
+            step.setdefault("query_params", {})   # <-- ADDED
+            step.setdefault("path_params", {})    # <-- ADDED
             step.setdefault("extract_fields", [])
 
         n = len(plan["steps"])
         print(f"[Planner] Plan created: '{plan.get('goal')}' ({n} step{'s' if n != 1 else ''})", file=sys.stderr)
         for s in plan["steps"]:
             print(
-                f"  Step {s['id']}: {s['intent']} | api_hint='{s['api_hint']}'",
+                f"  Step {s['id']}: {s['intent']} | api_hint='{s['api_hint']}' | query_params={s.get('query_params')}",
                 file=sys.stderr,
             )
 
