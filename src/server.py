@@ -12,20 +12,11 @@ root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if root_dir not in sys.path:
     sys.path.append(root_dir)
 
-from src.tools.router_tool import WorkdayRouterTool
+# ── NEW: Import your multi-step brain instead of the old router tool ──
+from supervisor import run_intelligent_supervisor, _get_brain
 
 # 1. Initialize the MCP Server
 mcp = FastMCP("Workday RAG Router")
-
-# 2. Lazy-load the router on first use — avoids loading the BGE embedding model
-#    at startup which causes the MCP Inspector to timeout during the handshake.
-_router: WorkdayRouterTool | None = None
-
-def get_router() -> WorkdayRouterTool:
-    global _router
-    if _router is None:
-        _router = WorkdayRouterTool()
-    return _router
 
 
 # =====================================================================
@@ -46,23 +37,34 @@ def ask_workday(natural_language_query: str) -> str:
     Pass the user's conversational text exactly word-for-word. Do NOT optimize or rewrite it.
     """
     try:
-        router = get_router()
-        # 1. Peek at the plan routing metadata to enforce read-only safety
-        plan = router.get_routing_plan(natural_language_query)
+        # 1. Lazy-load the multi-step brain components
+        planner, executor, synthesizer = _get_brain()
 
-        if not plan or "method" not in plan:
-            return json.dumps({"status": "error", "message": "Router returned an invalid layout specification."})
+        # 2. Let the Planner LLM decompose the query to inspect safety
+        plan = planner.plan(natural_language_query)
 
-        # 2. Block writes from entering this tool
-        if plan.get("method", "").upper() != "GET":
+        if not plan or "steps" not in plan:
+            return json.dumps({"status": "error", "message": "Planner failed to generate a valid execution schema."})
+
+        # 3. Block any write operations (POST/PUT/DELETE) from running in this read-only tool
+        has_write = any(
+            step.get("method", "GET").upper() != "GET" 
+            for step in plan.get("steps", [])
+        )
+        if has_write:
             return json.dumps({
                 "status": "blocked",
-                "message": f"This query requires a {plan['method']} operation. Use execute_workday_action for updates.",
+                "message": "This query requires a write operation (POST/PUT/DELETE). Use execute_workday_action for updates.",
                 "routing_plan": plan
-            })
+            }, indent=2)
 
-        # 3. Hand complete execution over to the tool's encapsulated engine
-        return router.execute_query(user_question=natural_language_query)
+        # 4. If read-only, execute the multi-step chain and synthesize the answer!
+        context = executor.run(plan)
+        return synthesizer.synthesize(
+            user_query=natural_language_query, 
+            plan=plan, 
+            context=context
+        )
         
     except Exception as e:
         return json.dumps({
@@ -77,24 +79,42 @@ def ask_workday(natural_language_query: str) -> str:
 @mcp.tool()
 def execute_workday_action(natural_language_query: str, confirmed: bool = False) -> str:
     """
-    For WRITE operations (POST) only — creates or updates Workday data.
+    For WRITE operations (POST/PUT/DELETE) only — creates or updates Workday data.
     Requires confirmed=True to actually execute.
     """
-    router = get_router()
-    plan = router.get_routing_plan(natural_language_query)
+    try:
+        planner, _, _ = _get_brain()
+        
+        # 1. Inspect the plan first
+        plan = planner.plan(natural_language_query)
 
-    if not plan or plan.get("method", "").upper() == "GET":
-        return json.dumps({"status": "error", "message": "This is a read operation. Use ask_workday instead."})
+        # Verify it actually contains a write operation
+        has_write = any(
+            step.get("method", "GET").upper() != "GET" 
+            for step in plan.get("steps", [])
+        )
+        if not has_write:
+            return json.dumps({
+                "status": "error", 
+                "message": "This is a read-only GET operation. Use ask_workday instead."
+            }, indent=2)
 
-    if not confirmed:
+        # 2. Require confirmation before executing write actions
+        if not confirmed:
+            return json.dumps({
+                "status": "pending_confirmation",
+                "message": "Please confirm this operational write action before execution.",
+                "routing_plan": plan
+            }, indent=2)
+
+        # 3. Once confirmed, run the full intelligent supervisor pipeline!
+        return run_intelligent_supervisor(natural_language_query)
+
+    except Exception as e:
         return json.dumps({
-            "status": "pending_confirmation",
-            "message": "Please confirm this operational write action before execution.",
-            "routing_plan": plan
-        })
-
-    # Hand complete execution over to the tool's encapsulated engine
-    return router.execute_query(user_question=natural_language_query)
+            "status": "error",
+            "message": f"Write execution failed: {str(e)}"
+        }, indent=2)
 
 
 if __name__ == "__main__":

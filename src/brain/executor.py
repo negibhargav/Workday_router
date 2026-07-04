@@ -202,10 +202,10 @@ class Executor:
             path_params.pop("id", None)
             path_params.pop("worker_id", None)
 
-        # 4. Handle structural fallback if no identifier is bound to a details path
-        if "{ID}" in final_path and "ID" not in path_params:
-            print("[Executor] WARNING: Details path detected but no ID bound. Falling back to base directory.", file=sys.stderr)
-            final_path = "/workers"
+        # # 4. Handle structural fallback if no identifier is bound to a details path
+        # if "{ID}" in final_path and "ID" not in path_params:
+        #     print("[Executor] WARNING: Details path detected but no ID bound. Falling back to base directory.", file=sys.stderr)
+        #     final_path = "/workers"
 
         return final_path, path_params, query_params
 
