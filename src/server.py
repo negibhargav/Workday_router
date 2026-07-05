@@ -25,16 +25,11 @@ mcp = FastMCP("Workday RAG Router")
 @mcp.tool()
 def ask_workday(natural_language_query: str) -> str:
     """
-    Routes a human query to the Workday semantic vector database.
+    Routes a human query to the Workday semantic vector database to fetch data.
     
-    CRITICAL AI DIRECTIVE - HARD STOP CONDITIONS:
-    Do NOT look at previous chat history. Evaluate the query in isolation.
-    1. If the user's query contains ANY numbers (e.g., "21008") or single names (e.g., "Benny"), you MUST NOT execute this tool. Ask for clarification.
-    2. If the user's query is vague or missing a subject (e.g., "who reports?", "show history"), you MUST NOT execute this tool. Ask: "Who are you asking about?"
-    3. Do NOT attempt to guess the subject, map numbers, or fill in the blanks yourself.
-
-    If the query is clear and safe to proceed:
-    Pass the user's conversational text exactly word-for-word. Do NOT optimize or rewrite it.
+    You may execute this tool for general directory lookups, worker profiles, 
+    direct reports, history tracking, and title lookups. 
+    Accepts names, keywords, or numeric worker/employee IDs.
     """
     try:
         # 1. Lazy-load the multi-step brain components

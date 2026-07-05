@@ -40,8 +40,9 @@ Rules:
 7. `extract_fields` is a list of field names to pull out of THIS step's API response
    for use by later steps. Only include fields that future steps actually need.
    Use an empty list [] if this is the final step.
-8. For "me" / "current user" / "myself" queries, step 1 should use api_hint
-   "get current worker profile" with param_map null (the executor will resolve "me").
+8. For "me" / "current user" / "myself" queries, step 1 MUST explicitly set
+   "path_params": {"ID": "me"} (e.g., to query /workers/me or /workers/me/directReports).
+   Use param_map null for step 1.
 9. `query_params` MUST contain any literal URL query string parameters explicitly mentioned
    in the user prompt (e.g., {"search": "B"} for names starting with B, or {"status": "APPROVED"}). 
    Extract ONLY the raw target value without relational verbs like 'starts with' or 'named'.
