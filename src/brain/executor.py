@@ -1,15 +1,19 @@
 """
 executor.py — Sequential API step runner.
+
+Routes each plan step to the correct backend:
+  - api_type="rest"  → RAG (Pinecone) → WorkdayClient (HTTP REST)
+  - api_type="soap"  → WorkerSOAPService (Zeep SOAP, no RAG)
 """
 
 import json
 import os
 import sys
-from weakref import ref
 from openai import OpenAI
 
 from src.rag.dispatcher import WorkdayDispatcher
 from src.services.workday_client import WorkdayClient
+from src.services.Worker import WorkerSOAPService
 from src.utils.token_limiter import clean_workday_response
 
 _EXTRACT_PROMPT = """You are a JSON field extractor.
@@ -73,6 +77,11 @@ class Executor:
         return context
 
     def _run_step(self, step: dict, context: dict) -> dict:
+        # ── SOAP branch — bypass RAG entirely ──────────────────────────────
+        if step.get("api_type") == "soap" and step.get("service") == "get_workers":
+            return self._run_soap_step(step, context)
+
+        # ── REST branch — standard RAG → Workday REST path ─────────────────
         # 1. Resolve parameters from previous step results
         resolved_params = self._resolve_params(step.get("param_map"), context)
         print(f"[Executor] Resolved params: {resolved_params}", file=sys.stderr)
@@ -114,6 +123,60 @@ class Executor:
             "raw_response": response_str,
             "extracted": extracted,
             "api_called": f"{method} {final_path}",
+        }
+
+    def _run_soap_step(self, step: dict, context: dict) -> dict:
+        """
+        Executes a SOAP Get_Workers call directly via WorkerSOAPService.
+        No RAG / Pinecone involved.
+
+        Merges any inter-step resolved params (from param_map) into soap_args
+        before calling, so SOAP steps can chain off prior REST/SOAP results.
+        """
+        print(f"[Executor] SOAP branch — service={step.get('service')}", file=sys.stderr)
+
+        # Build the args dict: start with what the Planner put in soap_args
+        soap_args = dict(step.get("soap_args") or {})
+
+        # Merge any cross-step resolved parameters
+        resolved = self._resolve_params(step.get("param_map"), context)
+        if resolved:
+            # worker_ids should be a list; wrap a single id string if needed
+            if "worker_id" in resolved or "id" in resolved:
+                raw_id = resolved.pop("worker_id", None) or resolved.pop("id", None)
+                if raw_id:
+                    # Strip Workday prefix added by REST executor if present
+                    bare_id = str(raw_id).removeprefix("Worker_ID=")
+                    existing = soap_args.get("worker_ids", [])
+                    soap_args["worker_ids"] = existing + [bare_id]
+            # Merge remaining resolved params directly
+            soap_args.update(resolved)
+
+        print(f"[Executor] soap_args to be sent: {list(soap_args.keys())}", file=sys.stderr)
+
+        try:
+            service = WorkerSOAPService()
+            result = service.get_workers(soap_args)
+        except RuntimeError as exc:
+            return {
+                "error": str(exc),
+                "extracted": {},
+                "raw_response": "",
+                "api_called": "SOAP:Get_Workers",
+            }
+
+        response_str = json.dumps(result, default=str)
+
+        # Extract fields the plan needs for downstream steps
+        extract_fields = step.get("extract_fields", [])
+        extracted = {}
+        if extract_fields:
+            extracted = self._extract_fields(response_str, extract_fields)
+
+        return {
+            "raw_response": response_str,
+            "extracted": extracted,
+            "api_called": "SOAP:Get_Workers",
         }
 
     def _resolve_params(self, param_map: dict | None, context: dict) -> dict:

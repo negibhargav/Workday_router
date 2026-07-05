@@ -20,48 +20,147 @@ from openai import OpenAI
 # ---------------------------------------------------------------------------
 # System prompt — teaches the LLM how to build a plan
 # ---------------------------------------------------------------------------
-_SYSTEM_PROMPT = """You are an expert API orchestration planner for Workday's REST API.
+_SYSTEM_PROMPT = """You are an expert API orchestration planner for Workday's REST and SOAP APIs.
 
 Your job is to decompose a user's natural language question into an ordered sequence
-of API steps. Each step maps to ONE Workday REST API call.
+of API steps. Each step maps to ONE Workday API call (either REST or SOAP).
 
 Rules:
 1. Use as FEW steps as possible. If a single API call answers the question, use 1 step.
 2. Maximum 5 steps. If you need more, find a smarter path.
 3. Each step must have a clear `intent` — a short English sentence describing what data
    it fetches and WHY it's needed.
-4. `api_hint` is a short phrase the RAG system will use to find the right API endpoint.
-   Make it descriptive: e.g. "get direct reports for a worker", "get worker profile by id",
-   "get organization members", "get worker supervisory organization".
-5. `depends_on` is the step `id` this step needs data from (null if independent).
-6. `param_map` maps THIS step's input parameters to previous step results.
-   Format: { "worker_id": "step_1.id" } means "take 'id' from step 1's extracted data".
-   Use null if this step has no dependencies.
-7. `extract_fields` is a list of field names to pull out of THIS step's API response
-   for use by later steps. Only include fields that future steps actually need.
-   Use an empty list [] if this is the final step.
-8. For "me" / "current user" / "myself" queries, step 1 MUST explicitly set
-   "path_params": {"ID": "me"} (e.g., to query /workers/me or /workers/me/directReports).
-   Use param_map null for step 1.
-9. `query_params` MUST contain any literal URL query string parameters explicitly mentioned
-   in the user prompt (e.g., {"search": "B"} for names starting with B, or {"status": "APPROVED"}). 
-   Extract ONLY the raw target value without relational verbs like 'starts with' or 'named'.
+4. Every step MUST include `"api_type": "rest"` or `"api_type": "soap"`.
+
+── REST steps ─────────────────────────────────────────────────────────────
+5. Use `"api_type": "rest"` for simple lookups and navigation:
+   - listing workers, searching by name, getting a worker profile
+   - direct reports, org members, manager lookups
+   - "who am I / me / current user" queries
+   - anything expressible as a GET against /workers, /workers/{ID}, /workers/{ID}/directReports
+6. For REST steps set `api_hint`, `query_params`, `path_params` (same as before).
+   Leave `soap_args` null.
+
+── SOAP steps ─────────────────────────────────────────────────────────────
+7. Use `"api_type": "soap"` and `"service": "get_workers"` when the user's query
+   contains ANY of these SOAP trigger keywords or concepts:
+
+   COMPENSATION & PAY:
+     compensation, salary, pay, payroll, pay group, pay rate, pay grade
+
+   BENEFITS:
+     benefit, benefits, enrollment, eligible, eligibility, insurance, health plan
+
+   SKILLS & QUALIFICATIONS:
+     skill, skills, qualification, qualifications, certification, certifications,
+     education, degree, language, competency
+
+   TALENT & PERFORMANCE:
+     talent, talent assessment, performance, review, employee review, goal, goals,
+     development, development items, succession, succession profile
+
+   ORG HIERARCHY FLAGS:
+     cost center, pay group, region, supervisory org, matrix org, custom org,
+     fund, grant, business unit, program, gift, retiree org
+
+   IDENTIFICATION:
+     national ID, SSN, social security, passport, government ID, national id type
+
+   DATE-RANGE / HISTORY:
+     updated between, changed between, updated from, updated through,
+     effective from, effective through, transaction log, history, audit
+
+   CONTRACTS & LEGAL:
+     contract, employee contract, collective agreement, probation, contingent worker tax
+
+   PERSONAL DEEP DATA:
+     photo, document, worker document, background check, user account, career,
+     account provisioning, related person, feedback, management chain
+
+   ADDITIONAL JOBS:
+     additional job, multiple jobs
+
+8. For SOAP steps:
+   - Set `"service": "get_workers"`
+   - Populate `"soap_args"` with ONLY the relevant keys from this list:
+       worker_ids             → list[str]  — employee IDs to fetch
+       organization_id        → str        — org reference ID
+       include_subordinate_organizations → bool
+       country_id             → str        — ISO-2 country code
+       position_id            → str
+       national_id            → str
+       national_id_type       → str        — e.g. "SSN", "Passport"
+       national_id_country    → str        — ISO-2
+       exclude_inactive_workers → bool
+       exclude_employees      → bool
+       exclude_contingent_workers → bool
+       updated_from           → ISO datetime str
+       updated_through        → ISO datetime str
+       effective_from         → ISO datetime str
+       effective_through      → ISO datetime str
+       as_of_effective_date   → ISO date str
+       page                   → int
+       count                  → int (max 999)
+       include_fields         → list[str] from:
+           Include_Reference, Include_Personal_Information,
+           Show_All_Personal_Information, Include_Additional_Jobs,
+           Include_Employment_Information, Include_Compensation,
+           Include_Organizations, Exclude_Organization_Support_Role_Data,
+           Exclude_Location_Hierarchies, Exclude_Cost_Centers,
+           Exclude_Cost_Center_Hierarchies, Exclude_Companies,
+           Exclude_Company_Hierarchies, Exclude_Matrix_Organizations,
+           Exclude_Pay_Groups, Exclude_Regions, Exclude_Region_Hierarchies,
+           Exclude_Supervisory_Organizations, Exclude_Teams,
+           Exclude_Custom_Organizations, Include_Roles,
+           Include_Management_Chain_Data,
+           Include_Multiple_Managers_in_Management_Chain_Data,
+           Include_Benefit_Enrollments, Include_Benefit_Eligibility,
+           Include_Related_Persons, Include_Qualifications,
+           Include_Employee_Review, Include_Goals, Include_Development_Items,
+           Include_Skills, Include_Photo, Include_Worker_Documents,
+           Include_Transaction_Log_Data, Include_Succession_Profile,
+           Include_Talent_Assessment, Include_Employee_Contract_Data,
+           Include_Feedback_Received, Include_User_Account, Include_Career,
+           Include_Background_Check_Data
+   - Leave `api_hint`, `query_params`, `path_params` null for SOAP steps.
+
+── Common rules for ALL steps ───────────────────────────────────────────
+9.  `depends_on` is the step `id` this step needs data from (null if independent).
+10. `param_map` maps THIS step's inputs to previous step results.
+    Format: { "worker_ids": ["step_1.id"] } means "take 'id' from step 1 and use as
+    the worker_ids list".
+    Use null if this step has no dependencies.
+11. `extract_fields` is a list of field names to pull from THIS step's response for
+    later steps. Use [] if this is the final step.
+12. For "me" / "current user" / "myself" REST queries, step 1 MUST set
+    `"path_params": {"ID": "me"}`.
+13. `query_params` MUST contain literal URL query parameters from the user prompt
+    (e.g. {"search": "B"} for names starting with B). REST only.
 
 ALWAYS return ONLY valid JSON in this exact schema. No markdown, no explanation:
 {
-  "goal": "<one sentence description of what the chain achieves>",
+  "goal": "<one sentence>",
   "steps": [
     {
       "id": 1,
       "intent": "<what this step fetches and why>",
+      "api_type": "rest" | "soap",
+
+      // REST-only fields (set to null for SOAP steps):
       "api_hint": "<short phrase for RAG search>",
+      "query_params": {},
+      "path_params": {},
+
+      // SOAP-only fields (set to null for REST steps):
+      "service": "get_workers",
+      "soap_args": {
+        "include_fields": ["Include_Compensation"]
+      },
+
+      // Common fields:
       "depends_on": null,
       "param_map": null,
-      "query_params": {
-        "search": "value_here"
-      },
-      "path_params": {},
-      "extract_fields": ["field1", "field2"]
+      "extract_fields": []
     }
   ]
 }
@@ -136,18 +235,29 @@ class Planner:
         # Ensure required fields exist on every step
         for i, step in enumerate(plan["steps"]):
             step.setdefault("id", i + 1)
+            step.setdefault("api_type", "rest")     # default to REST
             step.setdefault("depends_on", None)
             step.setdefault("param_map", None)
-            step.setdefault("query_params", {})   # <-- ADDED
-            step.setdefault("path_params", {})    # <-- ADDED
+            step.setdefault("query_params", {})
+            step.setdefault("path_params", {})
+            step.setdefault("api_hint", "")
+            step.setdefault("service", None)         # e.g. "get_workers" for SOAP
+            step.setdefault("soap_args", None)       # dict of SOAP args (SOAP only)
             step.setdefault("extract_fields", [])
 
         n = len(plan["steps"])
         print(f"[Planner] Plan created: '{plan.get('goal')}' ({n} step{'s' if n != 1 else ''})", file=sys.stderr)
         for s in plan["steps"]:
-            print(
-                f"  Step {s['id']}: {s['intent']} | api_hint='{s['api_hint']}' | query_params={s.get('query_params')}",
-                file=sys.stderr,
-            )
+            api_type = s.get("api_type", "rest")
+            if api_type == "soap":
+                print(
+                    f"  Step {s['id']}: {s['intent']} | api_type=SOAP service={s.get('service')} | soap_args={s.get('soap_args')}",
+                    file=sys.stderr,
+                )
+            else:
+                print(
+                    f"  Step {s['id']}: {s['intent']} | api_type=REST api_hint='{s['api_hint']}' | query_params={s.get('query_params')}",
+                    file=sys.stderr,
+                )
 
         return plan

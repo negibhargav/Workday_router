@@ -1,158 +1,58 @@
 """
-Workday Hire_Employee exposed as an MCP tool.
+Workday Hire_Employee — SOAP service module.
+
+Provides HireSOAPService, a plain Python class called directly by the
+Executor pipeline. No MCP, no stdio server, no asyncio — just a clean
+wrapper around the Workday Staffing SOAP Hire_Employee API.
 
 DESIGN DIFFERENCE VS Get_Workers
 ----------------------------------
 Get_Workers filters were all genuinely optional (pure narrowing).
-Hire_Employee is a MUTATING business process -- it creates a real employee
-and kicks off an approval workflow. Most fields aren't "include if
-relevant," they're "required for the transaction to succeed at all."
+Hire_Employee is a MUTATING business process — it creates a real employee
+and kicks off an approval workflow. Fields are grouped into three tiers:
 
-So fields are grouped into three tiers:
-
-  TIER 1 - core (LLM must gather these from the conversation before
-            calling; the tool will reject the call without them)
-  TIER 2 - conditional (genuinely optional -- include only if the user
-            mentioned them: national ID, address, compensation, comments)
+  TIER 1 - core (must be provided; call is rejected without them)
+  TIER 2 - conditional (include only if mentioned: national ID, address,
+            compensation, comments)
   TIER 3 - long tail (military service, disability status, hukou data,
-            government IDs, cybersecurity area, etc.) -- NOT individually
-            modeled here. Exposed as a single `advanced_fields` passthrough
-            dict for power users who need to set them directly in WSDL
-            shape. Modeling hundreds of deeply nested exotic fields as flat
-            LLM parameters (the way we did the 60 Get_Workers booleans)
-            isn't practical here -- the nesting and Delete/Replace choice
-            flags make a flat schema error-prone.
+            government IDs, etc.) — exposed as `advanced_fields` passthrough
 
 SAFETY NOTE
 -----------
 This performs a REAL WRITE. Test against a Workday sandbox/preview tenant
-until the mapping is verified. Consider leaving Business_Process_Parameters
-Auto_Complete=False during testing so the transaction lands in Workday's
-inbox for manual review rather than auto-completing.
+until the mapping is verified. Keep auto_complete=False during testing so
+the transaction lands in Workday's inbox for manual review.
 
-INSTALL
--------
-    pip install mcp zeep requests
+CREDENTIALS
+-----------
+Set these three variables in your .env file:
+    WORKDAY_WSDL_URL      — Staffing WSDL URL for your tenant
+    WORKDAY_ISU_USERNAME  — ISU account (e.g. soap_user@tenant_name)
+    WORKDAY_ISU_PASSWORD  — ISU account password
 """
 
-import asyncio
 import json
+import os
+import sys
 from typing import Any
 
+from dotenv import load_dotenv
 from zeep import Client, Settings
 from zeep.wsse.username import UsernameToken
 from zeep.transports import Transport
 import requests
 
-from mcp.server import Server
-from mcp.server.stdio import stdio_server
-from mcp.types import Tool, TextContent
+load_dotenv()
 
 # ---------------------------------------------------------------------------
-# 1. CONFIG
+# 1. CONFIG — reads from .env; falls back to placeholder strings
 # ---------------------------------------------------------------------------
-WSDL_URL = "https://wd5-services1.myworkday.com/ccx/service/acme/Staffing/v43.0?wsdl"
-ISU_USERNAME = "integration_user1@acme"
-ISU_PASSWORD = "your_password_here"
-
-# ---------------------------------------------------------------------------
-# 2. TOOL SCHEMA
-# ---------------------------------------------------------------------------
-HIRE_EMPLOYEE_TOOL = Tool(
-    name="hire_employee",
-    description=(
-        "Hire a new employee in Workday. This CREATES A REAL RECORD and "
-        "starts an approval business process -- confirm details with the "
-        "user before calling. Required: either an existing pre-hire "
-        "reference (applicant_id/former_worker_id/student_id) OR new "
-        "applicant name fields; plus organization_id, hire_date, and "
-        "either position_id or job_requisition_id. Use advanced_fields "
-        "for anything not covered by the named parameters (military "
-        "service, disability data, government IDs, etc.) -- pass a dict "
-        "matching the WSDL's Hire_Employee_Data shape."
-    ),
-    inputSchema={
-        "type": "object",
-        "properties": {
-            # ---- TIER 1: identify the person (choice) ----
-            "existing_worker_type": {
-                "type": "string",
-                "enum": ["applicant", "former_worker", "student", "academic_affiliate"],
-                "description": "If hiring an existing pre-hire record, which type it is.",
-            },
-            "existing_worker_id": {
-                "type": "string",
-                "description": "ID of the existing applicant/former worker/student/academic affiliate.",
-            },
-            "first_name": {"type": "string", "description": "New hire's first name (if no existing_worker_id)."},
-            "middle_name": {"type": "string"},
-            "last_name": {"type": "string", "description": "New hire's last name (if no existing_worker_id)."},
-            "name_country_id": {
-                "type": "string",
-                "description": "Country code governing name format (required by WSDL when providing a new name).",
-            },
-
-            # ---- TIER 1: job assignment ----
-            "organization_id": {"type": "string", "description": "Supervisory organization ID for the hire."},
-            "position_id": {"type": "string", "description": "Specific position ID to hire into."},
-            "job_requisition_id": {"type": "string", "description": "Job requisition ID to hire against (alternative to position_id)."},
-            "hire_date": {"type": "string", "description": "ISO date. The hire's effective date."},
-            "employee_type_id": {"type": "string", "description": "Employee type (e.g. Regular, Fixed_Term)."},
-            "job_profile_id": {"type": "string", "description": "Job profile ID for the position."},
-            "position_title": {"type": "string"},
-            "business_title": {"type": "string"},
-            "location_id": {"type": "string"},
-            "time_type_id": {"type": "string", "description": "Full_Time or Part_Time reference ID."},
-            "scheduled_hours": {"type": "number"},
-            "hire_reason_id": {"type": "string"},
-            "first_day_of_work": {"type": "string", "description": "ISO date, if different from hire_date."},
-
-            # ---- TIER 2: conditional / optional ----
-            "national_id": {"type": "string"},
-            "national_id_type": {"type": "string"},
-            "national_id_country": {"type": "string"},
-            "email_address": {"type": "string"},
-            "phone_number": {"type": "string"},
-            "phone_country_iso_code": {"type": "string"},
-            "address_line_1": {"type": "string"},
-            "address_city": {"type": "string"},
-            "address_region_id": {"type": "string", "description": "State/province reference ID."},
-            "address_postal_code": {"type": "string"},
-            "address_country_id": {"type": "string"},
-
-            # Compensation sub-process (only if the user specified pay)
-            "compensation_package_id": {"type": "string"},
-            "compensation_grade_id": {"type": "string"},
-            "base_pay_amount": {"type": "number"},
-            "base_pay_currency_id": {"type": "string"},
-            "base_pay_frequency_id": {"type": "string"},
-
-            # Process control
-            "comment": {"type": "string", "description": "Comment attached to the business process event."},
-            "auto_complete": {
-                "type": "boolean",
-                "description": "If false (recommended while testing), the transaction routes to Workday's inbox instead of auto-completing.",
-            },
-            "run_now": {"type": "boolean"},
-
-            # ---- TIER 3: escape hatch ----
-            "advanced_fields": {
-                "type": "object",
-                "description": (
-                    "Raw passthrough for fields not otherwise modeled here "
-                    "(disability status, military service, hukou data, "
-                    "government/visa/passport IDs, cybersecurity area, "
-                    "etc.). Keys/shape must match the WSDL's "
-                    "Hire_Employee_Data structure exactly."
-                ),
-            },
-        },
-        "required": ["organization_id", "hire_date"],
-    },
-)
+WSDL_URL     = os.getenv("WORKDAY_WSDL_URL",    "https://wd5-services1.myworkday.com/ccx/service/acme/Staffing/v43.0?wsdl")
+ISU_USERNAME = os.getenv("WORKDAY_ISU_USERNAME", "integration_user1@acme")
+ISU_PASSWORD = os.getenv("WORKDAY_ISU_PASSWORD", "your_password_here")
 
 # ---------------------------------------------------------------------------
-# 3. ZEEP CLIENT
+# 2. ZEEP CLIENT SETUP — built once, reused across calls (singleton)
 # ---------------------------------------------------------------------------
 _zeep_client: Client | None = None
 
@@ -162,7 +62,7 @@ def get_zeep_client() -> Client:
     if _zeep_client is None:
         session = requests.Session()
         transport = Transport(session=session, timeout=30)
-        settings = Settings(strict=False, xml_huge_tree=True)
+        settings = Settings(xml_huge_tree=True)
         _zeep_client = Client(
             wsdl=WSDL_URL,
             wsse=UsernameToken(ISU_USERNAME, ISU_PASSWORD),
@@ -173,15 +73,18 @@ def get_zeep_client() -> Client:
 
 
 # ---------------------------------------------------------------------------
-# 4. DYNAMIC REQUEST BUILDER
+# 3. HELPER — builds a simple <X_Reference><ID type="...">value</ID></X_Reference>
 # ---------------------------------------------------------------------------
 def _ref(factory, obj_type_name, id_type_name, value, id_type):
-    """Build a simple <X_Reference><ID type="...">value</ID></X_Reference>."""
-    obj_type = getattr(factory, obj_type_name)
+    obj_type   = getattr(factory, obj_type_name)
     id_type_cls = getattr(factory, id_type_name)
     return obj_type(ID=[id_type_cls(_value_1=value, type=id_type)])
 
 
+# ---------------------------------------------------------------------------
+# 4. DYNAMIC REQUEST BUILDER
+#    Only sets fields that were actually provided in `args`.
+# ---------------------------------------------------------------------------
 def build_hire_employee_request(client: Client, args: dict[str, Any]) -> dict:
     factory = client.type_factory("urn:com.workday/bsvc")
 
@@ -200,19 +103,20 @@ def build_hire_employee_request(client: Client, args: dict[str, Any]) -> dict:
     # ---- Person identification (choice) ----
     hire_data_fields: dict[str, Any] = {}
     worker_type = args.get("existing_worker_type")
-    worker_id = args.get("existing_worker_id")
+    worker_id   = args.get("existing_worker_id")
 
     if worker_type and worker_id:
         ref_map = {
-            "applicant": ("ApplicantObjectType", "ApplicantObjectIDType", "Applicant_ID", "Applicant_Reference"),
-            "former_worker": ("Former_WorkerObjectType", "Former_WorkerObjectIDType", "Former_Worker_ID", "Former_Worker_Reference"),
-            "student": ("StudentObjectType", "StudentObjectIDType", "Student_ID", "Student_Reference"),
+            "applicant":          ("ApplicantObjectType",           "ApplicantObjectIDType",           "Applicant_ID",          "Applicant_Reference"),
+            "former_worker":      ("Former_WorkerObjectType",       "Former_WorkerObjectIDType",       "Former_Worker_ID",      "Former_Worker_Reference"),
+            "student":            ("StudentObjectType",             "StudentObjectIDType",             "Student_ID",            "Student_Reference"),
             "academic_affiliate": ("Academic_AffiliateObjectType", "Academic_AffiliateObjectIDType", "Academic_Affiliate_ID", "Academic_Affiliate_Reference"),
         }
         obj_type_name, id_type_name, id_type, field_name = ref_map[worker_type]
         hire_data_fields[field_name] = _ref(factory, obj_type_name, id_type_name, worker_id, id_type)
+
     elif args.get("first_name") or args.get("last_name"):
-        # Build a brand-new Applicant_Data with just a Name_Data (extend as needed)
+        # Build a brand-new Applicant_Data with Name_Data
         name_detail = factory.Name_Detail_DataType(
             Country_Reference=_ref(factory, "CountryObjectType", "CountryObjectIDType",
                                     args.get("name_country_id", "USA"), "ISO_3166-1_Alpha-3_Code"),
@@ -254,7 +158,7 @@ def build_hire_employee_request(client: Client, args: dict[str, Any]) -> dict:
 
         applicant_data_fields = {"Personal_Data": factory.Personal_DataType(**personal_data_fields)}
 
-        # Optional national ID (sibling of Personal_Data, not nested inside it)
+        # Optional national ID (sibling of Personal_Data)
         if args.get("national_id"):
             national_id_data = factory.National_ID_DataType(
                 ID=args["national_id"],
@@ -289,7 +193,7 @@ def build_hire_employee_request(client: Client, args: dict[str, Any]) -> dict:
     if args.get("hire_date"):
         hire_data_fields["Hire_Date"] = args["hire_date"]
 
-    # ---- Hire_Employee_Event_Data (Position_Details is required) ----
+    # ---- Hire_Employee_Event_Data ----
     position_details_fields = {}
     if args.get("job_profile_id"):
         position_details_fields["Job_Profile_Reference"] = _ref(
@@ -360,9 +264,9 @@ def build_hire_employee_request(client: Client, args: dict[str, Any]) -> dict:
             Propose_Compensation_for_Hire_Data=factory.Propose_Compensation_for_Hire_DataType(**comp_fields)
         )
 
-    # ---- Tier 3 escape hatch: merge raw advanced_fields on top ----
+    # ---- Tier 3: merge raw advanced_fields on top ----
     if args.get("advanced_fields"):
-        hire_data_fields.update(args["advanced_fields"])  # caller is responsible for correct zeep-compatible shape
+        hire_data_fields.update(args["advanced_fields"])
 
     hire_employee_data = factory.Hire_Employee_Business_Process_DataType(**hire_data_fields)
 
@@ -374,59 +278,88 @@ def build_hire_employee_request(client: Client, args: dict[str, Any]) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# 5. MCP SERVER WIRING
+# 5. HireSOAPService — the only public interface
+#    Called directly by src/brain/executor.py when api_type == "soap"
+#    and service == "hire_employee".
 # ---------------------------------------------------------------------------
-server = Server("workday-staffing")
+class HireSOAPService:
+    """
+    Executes Workday SOAP Hire_Employee calls and returns a clean dict.
 
+    Usage (from Executor):
+        service = HireSOAPService()
+        result  = service.hire_employee({
+            "first_name":      "Jane",
+            "last_name":       "Doe",
+            "organization_id": "ORG-100",
+            "hire_date":       "2025-08-01",
+            "position_id":     "POS-5500",
+            "auto_complete":   False,
+        })
 
-@server.list_tools()
-async def list_tools() -> list[Tool]:
-    return [HIRE_EMPLOYEE_TOOL]
+    TIER 1 — must provide one of:
+        (existing_worker_type + existing_worker_id)  OR  (first_name + last_name)
+    AND one of:
+        position_id  OR  job_requisition_id
+    AND always:
+        organization_id, hire_date
 
+    TIER 2 — optional: national_id, email_address, phone_number, address_*,
+              compensation_*, comment, auto_complete, run_now
 
-@server.call_tool()
-async def call_tool(name: str, arguments: dict[str, Any]) -> list[TextContent]:
-    if name != "hire_employee":
-        raise ValueError(f"Unknown tool: {name}")
+    TIER 3 — advanced_fields: raw dict merged directly into Hire_Employee_Data
+    """
 
-    args = arguments or {}
+    def hire_employee(self, args: dict) -> dict:
+        """
+        Execute a SOAP Hire_Employee call and return a result dict.
 
-    # Guard: enforce the real "choice" requirements before hitting Workday
-    has_existing = args.get("existing_worker_type") and args.get("existing_worker_id")
-    has_new_name = args.get("first_name") and args.get("last_name")
-    has_position = args.get("position_id") or args.get("job_requisition_id")
+        Returns:
+            {
+                "status":              "success" | "error",
+                "employee_reference":  str | None,
+                "message":             str          # error detail if status == "error"
+            }
 
-    missing = []
-    if not (has_existing or has_new_name):
-        missing.append("either existing_worker_type+existing_worker_id, or first_name+last_name")
-    if not has_position:
-        missing.append("position_id or job_requisition_id")
+        Raises:
+            ValueError: if required TIER 1 fields are missing (guard check)
+        """
+        print("[HireSOAPService] Executing Hire_Employee via SOAP...", file=sys.stderr)
+        print(f"[HireSOAPService] Args received: {list(args.keys())}", file=sys.stderr)
 
-    if missing:
-        return [TextContent(
-            type="text",
-            text="Cannot hire yet -- missing required info: " + "; ".join(missing),
-        )]
+        # ── Guard: validate TIER 1 requirements before touching Workday ──
+        has_existing = args.get("existing_worker_type") and args.get("existing_worker_id")
+        has_new_name = args.get("first_name") and args.get("last_name")
+        has_position = args.get("position_id") or args.get("job_requisition_id")
 
-    client = get_zeep_client()
-    request_kwargs = build_hire_employee_request(client, args)
+        missing = []
+        if not (has_existing or has_new_name):
+            missing.append("either (existing_worker_type + existing_worker_id) or (first_name + last_name)")
+        if not has_position:
+            missing.append("position_id or job_requisition_id")
+        if not args.get("organization_id"):
+            missing.append("organization_id")
+        if not args.get("hire_date"):
+            missing.append("hire_date")
 
-    try:
-        response = client.service.Hire_Employee(**request_kwargs)
-    except Exception as e:
-        return [TextContent(type="text", text=f"Hire_Employee call failed: {e}")]
+        if missing:
+            raise ValueError(
+                "Hire_Employee call rejected — missing required fields: "
+                + "; ".join(missing)
+            )
 
-    result = {
-        "employee_reference": str(getattr(response, "Employee_Reference", None)),
-        "raw_response_summary": str(response)[:2000],
-    }
-    return [TextContent(type="text", text=json.dumps(result, indent=2, default=str))]
+        client = get_zeep_client()
+        request_kwargs = build_hire_employee_request(client, args)
 
+        try:
+            response = client.service.Hire_Employee(**request_kwargs)
+        except Exception as exc:
+            raise RuntimeError(f"SOAP Hire_Employee call failed: {exc}") from exc
 
-async def main():
-    async with stdio_server() as (read_stream, write_stream):
-        await server.run(read_stream, write_stream, server.create_initialization_options())
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
+        result = {
+            "status": "success",
+            "employee_reference": str(getattr(response, "Employee_Reference", None)),
+            "raw_response_summary": str(response)[:2000],
+        }
+        print(f"[HireSOAPService] Hire completed. Employee ref: {result['employee_reference']}", file=sys.stderr)
+        return result
