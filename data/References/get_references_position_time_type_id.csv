@@ -1,0 +1,4 @@
+id_type,id,note,active
+Position_Time_Type_ID,Part_time,Part time,true
+Position_Time_Type_ID,Full_time,Full time,true
+Position_Time_Type_ID,Variable_time,Variable time (inactive),true

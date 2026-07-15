@@ -1,0 +1,5 @@
+id_type,id,note,active
+Phone_Device_Type_ID,Mobile,Mobile,true
+Phone_Device_Type_ID,Fax,Fax,true
+Phone_Device_Type_ID,Landline,Landline,true
+Phone_Device_Type_ID,Pager,Pager,true

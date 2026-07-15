@@ -1,0 +1,446 @@
+id_type,id,note,active
+Organization_Reference_ID,HRIS_matrix,HRIS,true
+Organization_Reference_ID,MATRIX_ORGANIZATION-4-2,Customer Support Center,true
+Organization_Reference_ID,MATRIX_ORGANIZATION-16-3,Customer Support Center - EMEA,true
+Organization_Reference_ID,Executive_Monthly,USA Monthly,true
+Organization_Reference_ID,Professional_Corporate_Semi-monthly,USA Semi-monthly Professional Corporate,true
+Organization_Reference_ID,Administrative_Regional_Bi-weekly,USA Bi-weekly,true
+Organization_Reference_ID,Administrative_Corporate_Weekly,USA Weekly,true
+Organization_Reference_ID,Professional_Regional_Semi-monthly,USA Semi-monthly Professional Regional,true
+Organization_Reference_ID,3rd_Party_Green_Planet_Acquisition,WCC Third Party - Green Planet Acquisition,true
+Organization_Reference_ID,3rd_Party_China,WCC Third Party - China,true
+Organization_Reference_ID,Canada_Semi-monthly,CAN Semi-monthly,true
+Organization_Reference_ID,Canada_Bi_weekly,CAN Bi-weekly,true
+Organization_Reference_ID,3rd_Party_Singapore,WCC Third Party - Singapore,true
+Organization_Reference_ID,3rd_Party_Netherlands,WCC Third Party - Netherlands,true
+Organization_Reference_ID,3rd_Party_UK,WCC Third Party - U.K.,true
+Organization_Reference_ID,3rd_Party_Australia,WCC Third Party - Australia,true
+Organization_Reference_ID,3rd_Party_France,WCC Third Party - France,true
+Organization_Reference_ID,Administrative_Regional_Semi-monthly,USA Semi-monthly Admin Regional,true
+Organization_Reference_ID,Canada_Weekly,CAN Weekly,true
+Organization_Reference_ID,3rd_Party_Nordics,WCC Third Party - Nordics,true
+Organization_Reference_ID,3rd_Party_Japan,WCC Third Party - Japan,true
+Organization_Reference_ID,3rd_Party_Germany,WCC Third Party - Germany,true
+Organization_Reference_ID,GBR_Salary,GBR Monthly,true
+Organization_Reference_ID,GBR_Hourly,GBR Weekly,true
+Organization_Reference_ID,3rd_Party_Austria,WCC Third Party - Austria,true
+Organization_Reference_ID,3rd_Party_Switzerland,WCC Third Party - Switzerland,true
+Organization_Reference_ID,FRA_Monthly,FRA Monthly,true
+Organization_Reference_ID,3rd_Party_Spain,WCC Third Party - Spain,true
+Organization_Reference_ID,3rd_Party_GV_Singapore,ADP GV Singapore,true
+Organization_Reference_ID,3rd_Party_GV_Germany,ADP GV Germany,true
+Organization_Reference_ID,3rd_Party_GV_China,ADP GV China,true
+Organization_Reference_ID,3rd_Party_GV_Australia,ADP GV Australia,true
+Organization_Reference_ID,PAY_GROUP-16-32,WCC Third Party - South Africa,true
+Organization_Reference_ID,3rd_Party_Korea,WCC Third Party - Korea,true
+Organization_Reference_ID,Unallocated_GMS1_supervisory,Unallocated - Not In Use (inactive),true
+Organization_Reference_ID,Unallocated_GMS2_supervisory,Unallocated - GMS (inactive),true
+Organization_Reference_ID,Human_Resources_supervisory,Human Resources,true
+Organization_Reference_ID,Finance_Administration_supervisory,Finance & Administration,true
+Organization_Reference_ID,Information_Technology_supervisory,Information Technology,true
+Organization_Reference_ID,Operations_supervisory,Operations,true
+Organization_Reference_ID,Risk_Management_supervisory,Risk Management,true
+Organization_Reference_ID,Accounting_Operations_supervisory,Accounting Operations,true
+Organization_Reference_ID,Financial_Planning_supervisory,Financial Planning & Analysis,true
+Organization_Reference_ID,SEC_Reporting_supervisory,SEC Reporting Department,true
+Organization_Reference_ID,Planning_Analysis_supervisory,Planning & Analysis Department,true
+Organization_Reference_ID,Accounts_Receivable_supervisory_old,Accounts Receivable Department (inactive),true
+Organization_Reference_ID,Accounts_Payable_supervisory_old,Accounts Payable Department (inactive),true
+Organization_Reference_ID,Tax_supervisory_old,Tax Department (inactive),true
+Organization_Reference_ID,Payroll_supervisory_old,Payroll Department (inactive),true
+Organization_Reference_ID,Workforce_Planning_supervisory_old,Workforce Planning Department (inactive),true
+Organization_Reference_ID,Recruiting_supervisory_old,Recruiting Department (inactive),true
+Organization_Reference_ID,Benefits_supervisory_old,Benefits Department (inactive),true
+Organization_Reference_ID,IT_Operations_supervisory,IT Operations Group,true
+Organization_Reference_ID,IT_HelpDesk_supervisory,IT HelpDesk Department,true
+Organization_Reference_ID,IT_Services_supervisory,IT Services Group,true
+Organization_Reference_ID,Network_Telecom_supervisory_old,Network & Telecom Department (inactive),true
+Organization_Reference_ID,Internal_Systems_supervisory_old,Internal Systems Department (inactive),true
+Organization_Reference_ID,Workstation_Support_supervisory,Workstation Support Department,true
+Organization_Reference_ID,Sales_supervisory,Sales,true
+Organization_Reference_ID,Marketing_supervisory,Marketing,true
+Organization_Reference_ID,Sales_Operations_supervisory,Sales Operations Group,true
+Organization_Reference_ID,Inside_Sales_supervisory_old,Inside Sales Group (inactive),true
+Organization_Reference_ID,Field_Sales_NA_supervisory,Field Sales - North America Group,true
+Organization_Reference_ID,Legal_supervisory,Legal,true
+Organization_Reference_ID,Global_Modern_Services_supervisory,Global Modern Services,true
+Organization_Reference_ID,Executive_Management_supervisory,Executive Management Group,true
+Organization_Reference_ID,Research_Development_supervisory,Research & Development,true
+Organization_Reference_ID,Product_Strategy_supervisory,Product Strategy Group,true
+Organization_Reference_ID,Product_Management_supervisory,Product Management Group,true
+Organization_Reference_ID,Product_Development_supervisory,Product Development Group,true
+Organization_Reference_ID,Sales_Marketing_supervisory,Sales & Marketing,true
+Organization_Reference_ID,Facilities_supervisory,Facilities Group,true
+Organization_Reference_ID,Global_Support_Center_supervisory,Global Support Center,true
+Organization_Reference_ID,Global_Support_NA_supervisory,Global Support - North America Group,true
+Organization_Reference_ID,Global_Support_AP__supervisory,Global Support - JAPAC Group,true
+Organization_Reference_ID,Global_Support_Western_and_Northern_Europe_supervisory,Global Support - Western & Northern Europe Group,true
+Organization_Reference_ID,Global_Support_LATAM_supervisory,Global Support - LATAM Group,true
+Organization_Reference_ID,Information_Analysis_supervisory,Information Analysis Department,true
+Organization_Reference_ID,Marketing_Services_supervisory,Marketing Services Group,true
+Organization_Reference_ID,Field_Marketing_supervisory,Field Marketing Group,true
+Organization_Reference_ID,Marketing_Communications_supervisory,Marketing Communications Group,true
+Organization_Reference_ID,Purchasing_supervisory,Purchasing Department,true
+Organization_Reference_ID,Program_Management_supervisory,Program Management,true
+Organization_Reference_ID,Green_Planet_Solutions_supervisory,Green Planet Solutions (inactive),true
+Organization_Reference_ID,GPS_Operations_supervisory,GPS Operations (inactive),true
+Organization_Reference_ID,GPS_Sales_Marketing_supervisory,GPS Sales & Marketing (inactive),true
+Organization_Reference_ID,GPS_Administration_supervisory,GPS Administration (inactive),true
+Organization_Reference_ID,HR_Operations_supervisory,HR Operations Department,true
+Organization_Reference_ID,Field_Sales_EMEA_supervisory,Field Sales - EMEA Group,true
+Organization_Reference_ID,Field_Sales_AP_supervisory,Field Sales - Asia/Pac Group,true
+Organization_Reference_ID,Field_Sales_LATAM_supervisory,Field Sales - LATAM Group,true
+Organization_Reference_ID,Property_Management_NA_supervisory,Property Management - NA Department,true
+Organization_Reference_ID,Office_Management_supervisory,Office Management Department,true
+Organization_Reference_ID,Consulting_Services,Consulting Services,true
+Organization_Reference_ID,Consulting_Services_Asia/Pac_Group,Consulting Services - Asia/Pac Group,true
+Organization_Reference_ID,Consulting_Services_EMEA_Group,Consulting Services - EMEA Group,true
+Organization_Reference_ID,Consulting_Services_LATAM_Group,Consulting Services - LATAM Group,true
+Organization_Reference_ID,Consulting_Services_North_America_Group,Consulting Services - North America Group,true
+Organization_Reference_ID,Global_Support_Canada_Group,Global Support - Canada Group,true
+Organization_Reference_ID,Global_Support_USA_Group,Global Support - USA Group,true
+Organization_Reference_ID,Office_of_the_Controller,Office of the Controller,true
+Organization_Reference_ID,Global_Support_Benelux_Group,Global Support - Benelux Group,true
+Organization_Reference_ID,Global_Support_DACH_Group,Global Support - DACH Group,true
+Organization_Reference_ID,Global_Support_Middle_East_Group,Global Support - Middle East Group,true
+Organization_Reference_ID,Global_Support_Nordic_Group,Global Support - Nordics Group,true
+Organization_Reference_ID,Global_Support_Uk_Ireland_Group,Global Support - UK & Ireland Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-4-212,Global Support - ANZ Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-4-213,Global Support - Greater China Group,true
+Organization_Reference_ID,Global_Support_JP_supervisory,Global Support - Japan Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-4-215,Global Support - Greater India Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-4-216,Global Support - Southeast Asia Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-4-217,Global Support - Eastern Europe Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-4-218,Regional Operations,true
+Organization_Reference_ID,Property_Management_EMEA_supervisory,Property Management - EMEA Department,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-4-220,Global Support - France Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-10-221,Global Support - Australia Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-10-222,Global Support - New Zealand Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-10-223,Global Support - Indonesia Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-224,HR Operations EMEA Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-225,HR Operations APAC Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-226,HR Operations Americas Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-227,Consulting Services - UK Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-228,Consulting Services - FRA Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-229,Financial Services Consulting - UK,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-230,Business Services Consulting - UK,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-231,Business Services Consulting - FRA,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-232,Financial Services Consulting - FRA,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-233,Credit & Collections Department,true
+Organization_Reference_ID,Accounts_Payable_supervisory,Accounts Payable Department,true
+Organization_Reference_ID,Accounts_Receivable_supervisory,Accounts Receivable Department,true
+Organization_Reference_ID,Tax_supervisory,Tax Department,true
+Organization_Reference_ID,Benefits_supervisory,Benefits Department,true
+Organization_Reference_ID,Payroll_supervisory,Payroll Department,true
+Organization_Reference_ID,Recruiting_supervisory,Recruiting Department,true
+Organization_Reference_ID,Workforce_Planning_supervisory,Workforce Planning Department,true
+Organization_Reference_ID,Inside_Sales_supervisory,Inside Sales Group,true
+Organization_Reference_ID,Internal_Systems_supervisory,Internal Systems Department,true
+Organization_Reference_ID,Network_Telecom_supervisory,Network & Telecom Department,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-244,Financial Services Consulting - NA,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-245,Technology Consulting - NA,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-246,CPG Consulting - NA,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-247,Business Services Consulting - NA,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-248,Call Center - France Group,true
+Organization_Reference_ID,Property_Management _APAC_supervisory,Property Management - APAC Department,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-250,Corporate Accounting,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-251,HR Services Department,true
+Organization_Reference_ID,EMEA_Planning_Analysis_supervisory,EMEA Planning & Analysis Department,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-253,Property Management - CAN Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-254,Property Management - USA Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-255,Call Center - Nordics Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-256,Support Operations,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-257,Field Sales - Emerging Markets Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-258,Global Support - Central & Southern Europe Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-259,Global Support - Southern Europe Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-260,Global Support - Africa & Middle East Group,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-16-261,Global Support - South Africa Group,true
+Organization_Reference_ID,Global_Support_Korea_Group,Global Support - Korea Group,true
+Organization_Reference_ID,Call_Center_Korea_Group,Call Center - Korea Group,true
+Organization_Reference_ID,Global_Support_JP_E_supervisory,Support – East Japan Group,true
+Organization_Reference_ID,Global_Support_JP_W_supervisory,Support – West Japan Group,true
+Organization_Reference_ID,APJ_Planning_Analysis_supervisory,APJ Planning & Analysis Department,true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-17-267,TSTSO22 TestSupOrg22 Department (),true
+Organization_Reference_ID,SUPERVISORY_ORGANIZATION-17-268,TSTSOB22 TestSupOrg22Sub Department,true
+Organization_Reference_ID,GMS_USA_company,"Global Modern Services, Inc. (USA)",true
+Organization_Reference_ID,GMS_Sweden_company,Global Modern Services AB (Sweden),true
+Organization_Reference_ID,GMS_Singapore_company,Global Modern Services Ltd (Singapore),true
+Organization_Reference_ID,GMS_Canada_company,"Global Modern Services, Ltd (Canada)",true
+Organization_Reference_ID,GMS_Mexico_company,Global Modern Services S.A. de C.V. (Mexico),true
+Organization_Reference_ID,GMS_UK_company,"Global Modern Services, PLC (U.K.)",true
+Organization_Reference_ID,GMS_France_company,Global Modern Services SA (France),true
+Organization_Reference_ID,GMS_Japan_company,Global Modern Services K.K. (Japan),true
+Organization_Reference_ID,GMS_Australia_company,Global Modern Services Pty. Ltd. (Australia),true
+Organization_Reference_ID,GPS_USA_company,"Green Planet Solutions, Inc. (USA)",true
+Organization_Reference_ID,GMS_Brazil_company,Global Modern Services SA (Brazil),true
+Organization_Reference_ID,GMS_China_company,Global Modern Services Ltd. (China),true
+Organization_Reference_ID,GMS_Germany_company,Global Modern Services GmbH (Germany),true
+Organization_Reference_ID,GMS_Italy_company,Global Modern Services S.p.A (Italy),true
+Organization_Reference_ID,GMS_India_company,Global Modern Services Ltd. (India),true
+Organization_Reference_ID,GMS_Philippines_company,Global Modern Services Ltd. Co. (Philippines),true
+Organization_Reference_ID,GMS_Hong_Kong_company,Global Modern Services LTD (Hong Kong),true
+Organization_Reference_ID,GMS_Norway_company,Global Modern Services AS (Norway),true
+Organization_Reference_ID,GMS_Finland_company,Global Modern Services Oy (Finland),true
+Organization_Reference_ID,GMS_Ireland_company,Global Modern Services Ltd. (Ireland),true
+Organization_Reference_ID,GMS_Denmark_company,Global Modern Services ApS (Denmark),true
+Organization_Reference_ID,GMS_Belgium_company,Global Modern Services NV/SA (Belgium),true
+Organization_Reference_ID,GMS_Netherlands_company,Global Modern Services BV (Netherlands),true
+Organization_Reference_ID,GMS_UAE_company,Global Modern Services LLC (U.A.E.),true
+Organization_Reference_ID,GMS_New_Zealand_company,Global Modern Services LTD (New Zealand),true
+Organization_Reference_ID,GMS_Malaysia_company,Global Modern Services Sdn Bhd (Malaysia),true
+Organization_Reference_ID,GMS_Russia_company,Global Modern Services LLC (Russia),true
+Organization_Reference_ID,GMS_Czech_Republic_company,Global Modern Services s.r.o. (Czech Republic),true
+Organization_Reference_ID,GMS_Poland_Company,Global Modern Services Sp. z.o.o. (Poland),true
+Organization_Reference_ID,GMS_Indonesia_company,"PT Global Modern Services, Inc (Indonesia)",true
+Organization_Reference_ID,GMS_Thailand_company,"Global Modern Services Co., Ltd. (Thailand)",true
+Organization_Reference_ID,GMS_Switzerland_company,Global Modern Services AG (Switzerland),true
+Organization_Reference_ID,GMS_Austria_company,Global Modern Services GmbH (Austria),true
+Organization_Reference_ID,GMS_Mulhouse_company,Global Modern Services SA (Mulhouse),true
+Organization_Reference_ID,PRESTIGE_WORLDWIDE,"Prestige Worldwide, Ltd. (Canada)",true
+Organization_Reference_ID,Warbucks_Industries,Warbucks Industries,true
+Organization_Reference_ID,Warbucks_Properties,Warbucks Properties,true
+Organization_Reference_ID,GMS_Spain_company,Global Modern Services Iberia (Spain),true
+Organization_Reference_ID,Spectre_Inc,"Spectre, Inc.",true
+Organization_Reference_ID,GMS_South_Africa_company,Global Modern Services (Pty.) Ltd (South Africa),true
+Organization_Reference_ID,COMPANY-16-220,Global Modern Services LLC (Vietnam),true
+Organization_Reference_ID,COMPANY-16-221,Global Modern Services Ltd. (Korea),true
+Organization_Reference_ID,COMPANY-16-222,Green Planet Solutions K.K. (Japan),true
+Organization_Reference_ID,COMPANY-16-223,Global Modern Services Sàrl (Luxembourg),true
+Organization_Reference_ID,COMPANY-17-224,TSTCOMP22 TestComp22,true
+Organization_Reference_ID,10000,10000 Office of CEO,true
+Organization_Reference_ID,20000,20000 Office of CRMO,true
+Organization_Reference_ID,52000,52000 Risk Management,true
+Organization_Reference_ID,30000,30000 Office of COO,true
+Organization_Reference_ID,31000,31000 Operations Management,true
+Organization_Reference_ID,40000,40000 Office of CHRO,true
+Organization_Reference_ID,41100,41100 Benefits,true
+Organization_Reference_ID,41200,41200 Payroll,true
+Organization_Reference_ID,41300,41300 Recruiting,true
+Organization_Reference_ID,41400,41400 Workforce Planning,true
+Organization_Reference_ID,50000,50000 Office of CFO,true
+Organization_Reference_ID,51100,51100 Finance Mgmt - Corp Acctg,true
+Organization_Reference_ID,51110,51110 Tax Accounting,true
+Organization_Reference_ID,51120,51120 Accounts Payable,true
+Organization_Reference_ID,51130,51130 Accounts Receivable,true
+Organization_Reference_ID,51200,51200 Finance Mgmt - FP&A,true
+Organization_Reference_ID,51210,51210 SEC Reporting,true
+Organization_Reference_ID,51220,51220 Financial Planning & Analysis,true
+Organization_Reference_ID,60000,60000 Office of CIO,true
+Organization_Reference_ID,61100,61100 IT Services Mgmt,true
+Organization_Reference_ID,61200,61200 IT Operations Mgmt,true
+Organization_Reference_ID,61110,61110 Workstation Support,true
+Organization_Reference_ID,61120,61120 IT HelpDesk,true
+Organization_Reference_ID,61210,61210 Internal Systems,true
+Organization_Reference_ID,61220,61220 Network & Telecom,true
+Organization_Reference_ID,70000,70000 Sales Executive Mgmt,true
+Organization_Reference_ID,71000,71000 Sales Operations,true
+Organization_Reference_ID,71100,71100 Inside Sales,true
+Organization_Reference_ID,71200,71200 Field Sales - North America,true
+Organization_Reference_ID,53000,53000 Legal,true
+Organization_Reference_ID,72000,72000 Marketing Management,true
+Organization_Reference_ID,32100,32100 R&D - Product Strategy,true
+Organization_Reference_ID,32200,32200 R&D - Product Management,true
+Organization_Reference_ID,32300,32300 R&D - Product Development,true
+Organization_Reference_ID,32000,32000 Research & Development,true
+Organization_Reference_ID,71300,71300 Field Sales - EMEA,true
+Organization_Reference_ID,70100,70100 Sales Management,true
+Organization_Reference_ID,33000,33000 Global Support Center,true
+Organization_Reference_ID,33100,33100 Global Support - North America,true
+Organization_Reference_ID,33200,33200 Global Support - Asia/Pac,true
+Organization_Reference_ID,33300,33300 Global Support - EMEA,true
+Organization_Reference_ID,33400,33400 Global Support - LATAM,true
+Organization_Reference_ID,61130,61130 Information Analysis,true
+Organization_Reference_ID,51140,51140 Purchasing,true
+Organization_Reference_ID,34000,34000 Facilities,true
+Organization_Reference_ID,35000,35000 Program Management,true
+Organization_Reference_ID,72100,72100 Field Marketing,true
+Organization_Reference_ID,72200,72200 Marketing Communications,true
+Organization_Reference_ID,72300,72300 Marketing Services,true
+Organization_Reference_ID,41500,41500 HR Operations,true
+Organization_Reference_ID,71400,71400 Field Sales - Asia/Pac,true
+Organization_Reference_ID,71500,71500 Field Sales - LATAM,true
+Organization_Reference_ID,36000,36000 Consulting Services,true
+Organization_Reference_ID,36100,36100 Consulting Services - North America,true
+Organization_Reference_ID,36200,36200 Consulting Services - Asia/Pac,true
+Organization_Reference_ID,36300,36300 Consulting Services - EMEA,true
+Organization_Reference_ID,36400,36400 Consulting Services - LATAM,true
+Organization_Reference_ID,51150,51150 Credit & Collections,true
+Organization_Reference_ID,41600,41600 HR Services,true
+Organization_Reference_ID,COST_CENTER-17-206,TestCost22,true
+Organization_Reference_ID,USA_NE_Region,US - Northeast,true
+Organization_Reference_ID,USA_SE_Region,US - Southeast,true
+Organization_Reference_ID,USA_Central_Region,US - Central,true
+Organization_Reference_ID,USA_West_Region,US - West,true
+Organization_Reference_ID,CAN_West_Region,CAN - Western,true
+Organization_Reference_ID,CAN_East_Region,CAN - Eastern,true
+Organization_Reference_ID,CAN_Central_Region,CAN - Central,true
+Organization_Reference_ID,EMEA_CentralEurope_Region,EU - Western,true
+Organization_Reference_ID,EMEA_NorthEurope_Region,EU - Northern,true
+Organization_Reference_ID,EMEA_SouthEurope_Region,EU - Southern,true
+Organization_Reference_ID,EMEA_EastEurope_Region,EU - Eastern,true
+Organization_Reference_ID,EMEA_MiddleEast_Region,ME - Middle East,true
+Organization_Reference_ID,EMEA_NorthAfrica_Region,AA - Northern Africa,true
+Organization_Reference_ID,EMEA_SouthAfrica_Region,AA - Southern Africa,true
+Organization_Reference_ID,EMEA_CentralAfrica_Region,AA - Central Africa,true
+Organization_Reference_ID,Headquarters_Region,Headquarters - Corporate,true
+Organization_Reference_ID,LATAM_Mexico_Region,MEX - Mexico,true
+Organization_Reference_ID,LATAM_Brazil_Region,BRA - Brazil,true
+Organization_Reference_ID,AP_NorthEast_Region,APN - NorthEast Asia,true
+Organization_Reference_ID,AP_SouthEast_Region,APS - SouthEast Asia,true
+Organization_Reference_ID,AP_Australia_Region,APA - Australia,true
+Organization_Reference_ID,AP_NewZealand_Region,APA - New Zealand,true
+Organization_Reference_ID,Location_Hierarchy,Location Hierarchy,true
+Organization_Reference_ID,2505.112,North America,true
+Organization_Reference_ID,2505.113,EMEA,true
+Organization_Reference_ID,2505.114,Japan & Asia/Pacific,true
+Organization_Reference_ID,2505.115,Latin America,true
+Organization_Reference_ID,2505.116,United States,true
+Organization_Reference_ID,2505.117,Canada,true
+Organization_Reference_ID,2505.118,CAN - Central Canada,true
+Organization_Reference_ID,2505.119,CAN - Eastern Canada,true
+Organization_Reference_ID,2505.120,CAN - Western Canada,true
+Organization_Reference_ID,2505.121,USA - Western US,true
+Organization_Reference_ID,2505.122,USA - Central US,true
+Organization_Reference_ID,2505.123,USA - Southeast US,true
+Organization_Reference_ID,2505.124,USA - Northeast US,true
+Organization_Reference_ID,2505.125,Europe,true
+Organization_Reference_ID,2505.126,Middle East,true
+Organization_Reference_ID,2505.127,Africa,true
+Organization_Reference_ID,2505.128,AA - Central Africa,true
+Organization_Reference_ID,2505.129,AA - Southern Africa,true
+Organization_Reference_ID,2505.130,AA - Northern Africa,true
+Organization_Reference_ID,2505.131,EU - Eastern Europe,true
+Organization_Reference_ID,2505.132,EU - Southern Europe,true
+Organization_Reference_ID,2505.133,EU - Northern Europe,true
+Organization_Reference_ID,2505.134,EU - Central Europe,true
+Organization_Reference_ID,2505.135,ME - Middle East,true
+Organization_Reference_ID,2505.202,Northern & NorthEast Asia,true
+Organization_Reference_ID,2505.203,Southern & SouthEast Asia,true
+Organization_Reference_ID,2505.204,Australasia,true
+Organization_Reference_ID,2505.205,Caribbean,true
+Organization_Reference_ID,2505.206,Central America,true
+Organization_Reference_ID,2505.207,Mexico,true
+Organization_Reference_ID,2505.208,South America,true
+Organization_Reference_ID,BUSINESS_SITE_HIERARCHY-4-209,EU - Germany,true
+Organization_Reference_ID,BUSINESS_SITE_HIERARCHY-4-210,Storage Location Hierarchy,true
+Organization_Reference_ID,BUSINESS_SITE_HIERARCHY-4-211,Storage AsiaPac,true
+Organization_Reference_ID,BUSINESS_SITE_HIERARCHY-4-212,Storage Europe,true
+Organization_Reference_ID,BUSINESS_SITE_HIERARCHY-4-213,Storage LATAM,true
+Organization_Reference_ID,BUSINESS_SITE_HIERARCHY-4-214,Storage North America,true
+Organization_Reference_ID,LOCATION_HIERARCHY-16-215,EU - France,true
+Organization_Reference_ID,LOCATION_HIERARCHY-16-216,EU - Switzerland,true
+Organization_Reference_ID,LOCATION_HIERARCHY-16-217,EU - Denmark,true
+Organization_Reference_ID,LOCATION_HIERARCHY-16-218,EU - Sweden,true
+Organization_Reference_ID,LOCATION_HIERARCHY-16-219,EU - United Kingdom,true
+Organization_Reference_ID,LOCATION_HIERARCHY-16-220,EU - Spain,true
+Organization_Reference_ID,LOCATION_HIERARCHY-16-221,EU - Italy,true
+Organization_Reference_ID,LOCATION_HIERARCHY-16-222,ANZ - Australia,true
+Organization_Reference_ID,LOCATION_HIERARCHY-16-223,ANZ - New Zealand,true
+Organization_Reference_ID,LOCATION_HIERARCHY-16-224,NE Asia - Japan,true
+Organization_Reference_ID,LOCATION_HIERARCHY-16-225,"EMEA (Europe, Middle East, and Africa)",true
+Organization_Reference_ID,LOCATION_HIERARCHY-16-226,APAC (Asia and Pacific),true
+Organization_Reference_ID,LOCATION_HIERARCHY-16-227,North America,true
+Organization_Reference_ID,LOCATION_HIERARCHY-16-228,Latin America,true
+Organization_Reference_ID,LOCATION_HIERARCHY-16-229,EU - Austria,true
+Organization_Reference_ID,LOCATION_HIERARCHY-16-230,EU - DACH,true
+Organization_Reference_ID,Region_Hierarchy,Region Hierarchy,true
+Organization_Reference_ID,2506.58,EMEA,true
+Organization_Reference_ID,2506.59,Europe,true
+Organization_Reference_ID,2506.60,Middle East,true
+Organization_Reference_ID,2506.61,Africa,true
+Organization_Reference_ID,2506.62,North America,true
+Organization_Reference_ID,2506.63,United States,true
+Organization_Reference_ID,2506.64,Canada,true
+Organization_Reference_ID,Cost_Center_Hierarchy,Cost Center Hierarchy,true
+Organization_Reference_ID,2506.66,Executive Management (inactive),true
+Organization_Reference_ID,2506.67,Finance,true
+Organization_Reference_ID,2506.68,Human Resources,true
+Organization_Reference_ID,2506.69,Risk Management,true
+Organization_Reference_ID,2506.70,Information Technology,true
+Organization_Reference_ID,2506.71,Operations,true
+Organization_Reference_ID,2506.72,Finance Mgmt - Corp Acctg,true
+Organization_Reference_ID,2506.73,Finance Mgmt - FP & A,true
+Organization_Reference_ID,2506.74,"Financial Planning & Analysis, Reporting",true
+Organization_Reference_ID,2506.75,Corporate Accounting,true
+Organization_Reference_ID,2506.76,Recruiting,true
+Organization_Reference_ID,2506.77,Benefits,true
+Organization_Reference_ID,2506.87,IT Mgmt - Services,true
+Organization_Reference_ID,2506.88,IT Mgmt - Operations,true
+Organization_Reference_ID,2506.89,IT Operations,true
+Organization_Reference_ID,2506.90,IT Services,true
+Organization_Reference_ID,2506.144,Sales & Marketing,true
+Organization_Reference_ID,2506.145,Sales,true
+Organization_Reference_ID,2506.146,Marketing,true
+Organization_Reference_ID,2506.147,Corporate Sales,true
+Organization_Reference_ID,2506.148,Field Sales,true
+Organization_Reference_ID,2506.150,Legal,true
+Organization_Reference_ID,2506.151,Research & Development Mgmt,true
+Organization_Reference_ID,2506.152,Product Strategy,true
+Organization_Reference_ID,2506.153,Product Management,true
+Organization_Reference_ID,2506.154,Product Development,true
+Organization_Reference_ID,2506.164,Global Support Center,true
+Organization_Reference_ID,2506.167,Japan Asia/Pacific,true
+Organization_Reference_ID,2506.168,Latin America,true
+Organization_Reference_ID,2506.169,North & NorthEast Asia,true
+Organization_Reference_ID,2506.170,South & SouthEast Asia,true
+Organization_Reference_ID,2506.171,Australasia,true
+Organization_Reference_ID,Company_Hierarchy,Company Hierarchy,true
+Organization_Reference_ID,2506.191,Facilities,true
+Organization_Reference_ID,2506.192,Program Management,true
+Organization_Reference_ID,2506.196,Field Marketing,true
+Organization_Reference_ID,2506.197,Corporate Marketing,true
+Organization_Reference_ID,2506.198,Caribbean,true
+Organization_Reference_ID,2506.199,Central America,true
+Organization_Reference_ID,2506.200,Mexico,true
+Organization_Reference_ID,2506.201,South America,true
+Organization_Reference_ID,2506.202,HR Operations,true
+Organization_Reference_ID,2506.203,Consolidation - US Tax,true
+Organization_Reference_ID,2506.204,Consolidation - Corporate,true
+Organization_Reference_ID,2506.205,Office & Professional Employees International Union (OPEIU),true
+Organization_Reference_ID,GPS,External Pay Entity - GPS,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-4-207,Workforce Planning,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-4-208,Payroll,true
+Organization_Reference_ID,Financial Services,Financial Services,true
+Organization_Reference_ID,Other Services,Other Services,true
+Organization_Reference_ID,Technology,Technology,true
+Organization_Reference_ID,CPG,CPG,true
+Organization_Reference_ID,Division_Hierarchy,Division Hierarchy,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-4-214,Services,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-4-215,Products,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-4-216,Consulting Services,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-4-217,External Pay Entity - Asia/Pac,true
+Organization_Reference_ID,North_America,North America,true
+Organization_Reference_ID,EMEA,EMEA,true
+Organization_Reference_ID,Asia_Pacific,Asia Pacific,true
+Organization_Reference_ID,Latin_America,Latin America,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-4-222,Consolidation - US,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-4-223,Consolidation - AsiaPac,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-4-224,Consolidation - North America,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-4-225,Consolidation - EMEA,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-10-226,Growth/Share Category,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-10-227,Sustaining,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-10-228,Growing,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-10-229,Emerging,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-10-230,Declining,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-4-231,Europe,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-4-232,Middle East and Africa,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-4-233,External Pay Entity - EMEA,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-234,Consolidation - Canada,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-235,Business Services Group,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-236,Warbucks Consolidated,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-237,Consolidation - Nordic,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-238,Consolidation - Western Europe,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-239,Consolidation - France,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-240,HR Services,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-241,Accounting Operations,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-242,Spectre Europe,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-243,Spectre Consol,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-244,Acquisitions,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-245,Product Acquisitions,true
+Organization_Reference_ID,Services_acquisition,Services Acquisitions,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-247,Green Planet Solutions,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-248,Innovative Solutions,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-249,Global Consulting Services,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-250,Modern Technology Services,true
+Organization_Reference_ID,CUSTOM_ORGANIZATION-16-251,Consolidation - Benelux,true
+Organization_Reference_ID,RETIREE_ORGANIZATION-4-1,Global Modern Services Retirees,true

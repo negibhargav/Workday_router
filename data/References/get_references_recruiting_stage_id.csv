@@ -1,0 +1,12 @@
+id_type,id,note,active
+Recruiting_Stage_ID,REVIEW,Review,true
+Recruiting_Stage_ID,SCREEN,Screen,true
+Recruiting_Stage_ID,INTERVIEW,Interview,true
+Recruiting_Stage_ID,REFERENCE,Reference Check,true
+Recruiting_Stage_ID,BACKGROUND,Background Check,true
+Recruiting_Stage_ID,OFFER,Offer,true
+Recruiting_Stage_ID,HIRED,Hire,true
+Recruiting_Stage_ID,DECLINED,Declined by Candidate,true
+Recruiting_Stage_ID,REJECTED,Rejected,true
+Recruiting_Stage_ID,ASSESSMENT,Assessment,true
+Recruiting_Stage_ID,EMPLOYMENT_AGREEMENT,Employment Agreement,true

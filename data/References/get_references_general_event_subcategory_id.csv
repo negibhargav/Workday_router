@@ -1,0 +1,192 @@
+id_type,id,note,active
+General_Event_Subcategory_ID,Additional_Headcount_Request_Headcount_Request_New_Project,Additional Headcount Request > Headcount Request > New Project,true
+General_Event_Subcategory_ID,Additional_Headcount_Request_Headcount_Request_Understaffed,Additional Headcount Request > Headcount Request > Understaffed,true
+General_Event_Subcategory_ID,Request_Compensation_Change_Incentive_Assign_Bonus,Request Compensation Change > Incentive > Assign Bonus,true
+General_Event_Subcategory_ID,Request_Compensation_Change_Incentive_One_Time_Payment,Request Compensation Change > Incentive > One Time Payment,true
+General_Event_Subcategory_ID,Request_Compensation_Change_Adjustment_Ad-hoc,Request Compensation Change > Adjustment > Ad-hoc,true
+General_Event_Subcategory_ID,Request_Compensation_Change_Adjustment_Job_Change,Request Compensation Change > Adjustment > Job Change,true
+General_Event_Subcategory_ID,Request_Compensation_Change_Adjustment_Responsibility_Change,Request Compensation Change > Adjustment > Responsibility Change,true
+General_Event_Subcategory_ID,Request_Compensation_Change_Adjustment_Corrective_Adjustment,Request Compensation Change > Adjustment > Corrective Adjustment,true
+General_Event_Subcategory_ID,Request_Compensation_Change_Adjustment_Market_Adjustment,Request Compensation Change > Adjustment > Market Adjustment,true
+General_Event_Subcategory_ID,Contract_Contingent_Worker_New_Contingent_Worker_New_Position,Contract Contingent Worker > New Contingent Worker > New Position,true
+General_Event_Subcategory_ID,Contract_Contingent_Worker_New_Contingent_Worker_Vacant_Position,Contract Contingent Worker > New Contingent Worker > Vacant Position,true
+General_Event_Subcategory_ID,Contract_Contingent_Worker_Existing_Contingent_Worker_New_Contract,Contract Contingent Worker > Existing Contingent Worker > New Contract,true
+General_Event_Subcategory_ID,Contract_Contingent_Worker_Existing_Contingent_Worker_New_Position,Contract Contingent Worker > Existing Contingent Worker > New Position,true
+General_Event_Subcategory_ID,Contract_Contingent_Worker_Existing_Contingent_Worker_Vacant_Position,Contract Contingent Worker > Existing Contingent Worker > Vacant Position,true
+General_Event_Subcategory_ID,Contract_Contingent_Worker_Existing_Contingent_Worker_Renegotiated_Contract,Contract Contingent Worker > Existing Contingent Worker > Renegotiated Contract,true
+General_Event_Subcategory_ID,Contract_Contingent_Worker_Existing_Contingent_Worker_ReContract_to_New_Organization,Contract Contingent Worker > Existing Contingent Worker > Re-Contract to New Organization,true
+General_Event_Subcategory_ID,Demote_Employee_Demotion_Reason_Decrease_in_Responsibility,Demote Employee > Demotion Reason > Decrease in Responsibility,true
+General_Event_Subcategory_ID,Demote_Employee_Demotion_Reason_Attendance_Issues,Demote Employee > Demotion Reason > Attendance Issues,true
+General_Event_Subcategory_ID,Demote_Employee_Demotion_Reason_Misconduct,Demote Employee > Demotion Reason > Misconduct,true
+General_Event_Subcategory_ID,Demote_Employee_Demotion_Reason_Performance,Demote Employee > Demotion Reason > Performance,true
+General_Event_Subcategory_ID,Demote_Employee_Demotion_Reason_Job_Classification,Demote Employee > Demotion Reason > Job Reclassification,true
+General_Event_Subcategory_ID,Edit_Headcount _Headcount_Allocation_Reorganization,Edit Headcount > Headcount Allocation > Reorganization,true
+General_Event_Subcategory_ID,Edit_Headcount _Headcount_Allocation_New_Project,Edit Headcount > Headcount Allocation > New Project,true
+General_Event_Subcategory_ID,Edit_Headcount _Headcount_Allocation_Project_Scope_Change,Edit Headcount > Headcount Allocation > Project Scope Change,true
+General_Event_Subcategory_ID,Edit_Headcount _Headcount_Allocation_Budget_Cut,Edit Headcount > Headcount Allocation > Budget Cut,true
+General_Event_Subcategory_ID,Edit_Headcount _Change_In_Restrictions_Restrictions_Added,Edit Headcount > Change In Restrictions > Restrictions Added,true
+General_Event_Subcategory_ID,Edit_Headcount _Change_In_Restrictions_Restrictions_Removed,Edit Headcount > Change In Restrictions > Restrictions Removed,true
+General_Event_Subcategory_ID,Create_Headcount_Headcount_Request_Staff_New_Project,Create Headcount > Headcount Request > Staff New Project,true
+General_Event_Subcategory_ID,Create_Headcount_Headcount_Request_Understaffed,Create Headcount > Headcount Request > Understaffed,true
+General_Event_Subcategory_ID,Hire_Employee_New_Hire_Fill_Vacancy,Hire Employee > New Hire > Fill Vacancy,true
+General_Event_Subcategory_ID,Hire_Employee_New_Hire_New_Position,Hire Employee > New Hire > New Position,true
+General_Event_Subcategory_ID,Fill_Vacancy,Fill Vacancy,true
+General_Event_Subcategory_ID,New_Position,New Position,true
+General_Event_Subcategory_ID,Edit_Job_Group_Change_In_Restrictions_Restrictions_Added,Edit Job Group > Change In Restrictions > Restrictions Added,true
+General_Event_Subcategory_ID,Edit_Job_Group_Change_In_Restrictions_Restrictions_Removed,Edit Job Group > Change In Restrictions > Restrictions Removed,true
+General_Event_Subcategory_ID,Create_Job_Group_Job_Group_Request_New_Organization,Create Job Group > Job Group Request > New Organization,true
+General_Event_Subcategory_ID,Edit_Position_Position_Time Type_Worker_Change_to_Full_Time,Edit Position > Position Time Type > Worker Change to Full Time,true
+General_Event_Subcategory_ID,Edit_Position_Position_Time_Type_Worker_Change_to_Part_Time,Edit Position > Position Time Type > Worker Change to Part Time,true
+General_Event_Subcategory_ID,Edit_Position_Location_Worker_Moved,Edit Position > Location > Worker Moved,true
+General_Event_Subcategory_ID,Edit_Position_Location_Office_Moved,Edit Position > Location > Office Moved,true
+General_Event_Subcategory_ID,Edit_Position_Change_In_Restrictions_Restrictions_Added,Edit Position > Change In Restrictions > Restrictions Added,true
+General_Event_Subcategory_ID,Edit_Position_Change_In_Restrictions_Restrictions_Removed,Edit Position > Change In Restrictions > Restrictions Removed,true
+General_Event_Subcategory_ID,Close_Position_or_Headcount_Financial_Budget_Cut,Close Position or Headcount > Financial > Budget Cut,true
+General_Event_Subcategory_ID,Close_Position_or_Headcount_Position_Group_No_Longer_Needed,Close Position or Headcount > Position Group > No Longer Needed,true
+General_Event_Subcategory_ID,Freeze_Position_Headcount_or_Job_Group_Unfreeze_Organization_Structure_Review_Complete,"Freeze Position, Headcount, or Job Group > Unfreeze > Organization Structure Review Complete",true
+General_Event_Subcategory_ID,Create_Position_Position_Request_Staff_New_Project,Create Position > Position Request > Staff New Project,true
+General_Event_Subcategory_ID,Create_Position_Position_Request_Understaffed,Create Position > Position Request > Understaffed,true
+General_Event_Subcategory_ID,Promote_Employee_Standard_Increase_in_Responsibility,Promote Employee > Standard > Increase in Responsibility,true
+General_Event_Subcategory_ID,Promote_Employee_Standard_Job_Reclassification,Promote Employee > Standard > Job Reclassification,true
+General_Event_Subcategory_ID,Promote_Employee_Standard_Performance,Promote Employee > Standard > Performance,true
+General_Event_Subcategory_ID,Promote_Employee_Standard_Reorganization,Promote Employee > Standard > Reorganization,true
+General_Event_Subcategory_ID,Promote_Employee_Step_Length_of_Service,Promote Employee > Step > Length of Service,true
+General_Event_Subcategory_ID,Promote_Employee_Step_Time_in_Job,Promote Employee > Step > Time in Job,true
+General_Event_Subcategory_ID,Transfer_Contingent_Worker_Transfer_Reason_Contract_Extension,Transfer Contingent Worker > Transfer Reason > Contract Extension,true
+General_Event_Subcategory_ID,Transfer_Contingent_Worker_Transfer Reason_Renegotiated_Contract,Transfer Contingent Worker > Transfer Reason > Renegotiated Contract,true
+General_Event_Subcategory_ID,Transfer_Contingent_Worker_Transfer_Reason_Organization_Change,Transfer Contingent Worker > Transfer Reason > Organization Change,true
+General_Event_Subcategory_ID,Transfer_Contingent_Worker_Transfer_Reason_Assignment_Completion,Transfer Contingent Worker > Transfer Reason > Assignment Completion,true
+General_Event_Subcategory_ID,Transfer_Employee_Temporary_Job_Rotation,Transfer Employee > Temporary > Job Rotation,true
+General_Event_Subcategory_ID,Transfer_Employee_Temporary_On_Assignment,Transfer Employee > Temporary > On Assignment,true
+General_Event_Subcategory_ID,Transfer_Employee_Permanent_Manager_Request,Transfer Employee > Permanent > Manager Request,true
+General_Event_Subcategory_ID,Transfer_Employee_Permanent_Relocation,Transfer Employee > Permanent > Relocation,true
+General_Event_Subcategory_ID,Transfer_Employee_Permanent_Promotion,Transfer Employee > Permanent > Promotion,true
+General_Event_Subcategory_ID,Transfer_Employee_Permanent_Demotion,Transfer Employee > Permanent > Demotion,true
+General_Event_Subcategory_ID,Transfer_Employee_Permanent_Reorganization,Transfer Employee > Permanent > Reorganization,true
+General_Event_Subcategory_ID,Transfer_Employee_Permanent_Employee_Request,Transfer Employee > Permanent > Employee Request,true
+General_Event_Subcategory_ID,Freeze_Position_Headcount_or_Job_Group_Freeze_Budget_Freeze,"Freeze Position, Headcount, or Job Group > Freeze > Budget Freeze",true
+General_Event_Subcategory_ID,Freeze_Position_Headcount_or_Job_Group_Freeze_Hold_for_Organization_Structure_Review,"Freeze Position, Headcount, or Job Group > Freeze > Hold for Organization Structure Review",true
+General_Event_Subcategory_ID,Freeze_Position_Headcount_or_Job_Group_Unfreeze_Budget_Unfrozen,"Freeze Position, Headcount, or Job Group > Unfreeze > Budget Unfrozen",true
+General_Event_Subcategory_ID,Request_Compensation_Change_Conversion_Conversion,Request Compensation Change > Conversion > Conversion,true
+General_Event_Subcategory_ID,Request_Compensation_Change_Base_Salary_Change_Currency_Change,Request Compensation Change > Base Salary Change > Currency Change,true
+General_Event_Subcategory_ID,Request_Compensation_Change_Automatic_Step_Progression_Time_in_Job,Request Compensation Change > Automatic Step Progression > Time in Step,true
+General_Event_Subcategory_ID,Request_Compensation_Change_Adjustment_Plan_Restructuring,Request Compensation Change > Adjustment > Plan Restructuring,true
+General_Event_Subcategory_ID,Stock_Grant_Incentive_Performance,Stock Grant > Incentive > Performance,true
+General_Event_Subcategory_ID,Stock_Grant_Incentive_Outstanding_Contributor,Stock Grant > Incentive > Outstanding Contributor,true
+General_Event_Subcategory_ID,Request_Compensation_Change_Incentive_Assign_Stock_Plan,Request Compensation Change > Incentive > Assign Stock Plan,true
+General_Event_Subcategory_ID,Add_Additional_Contingent_Worker_Contract_New_Assignment_Vacant_Position,Add Additional Contingent Worker Contract > New Assignment > Vacant Position,true
+General_Event_Subcategory_ID,Add_Additional_Contingent_Worker_Contract_New_Assignment_New_Position,Add Additional Contingent Worker Contract > New Assignment > New Position,true
+General_Event_Subcategory_ID,Add_Additional_Employee_Job_New_Assignment_Vacant_Position,Add Additional Employee Job > New Assignment > Vacant Position,true
+General_Event_Subcategory_ID,Add_Additional_Employee_Job_New_Assignment_New_Position,Add Additional Employee Job > New Assignment > New Position,true
+General_Event_Subcategory_ID,Future_Payment_Incentive_Signing_Bonus,Future Payment > Incentive > Signing Bonus,true
+General_Event_Subcategory_ID,Future_Payment_Incentive_Referral,Future Payment > Incentive > Referral,true
+General_Event_Subcategory_ID,Future_Payment_Incentive_Award,Future Payment > Incentive > Award,true
+General_Event_Subcategory_ID,One-Time_Payment_Incentive_Signing_Bonus,One-Time Payment > Incentive > Signing Bonus,true
+General_Event_Subcategory_ID,One-Time_Payment_Incentive_Referral,One-Time Payment > Incentive > Referral,true
+General_Event_Subcategory_ID,One-Time_Payment_Incentive_Award,One-Time Payment > Incentive > Award,true
+General_Event_Subcategory_ID,Add_Retiree_Status_Involuntary_Illness,Add Retiree Status > Involuntary > Illness,true
+General_Event_Subcategory_ID,Add_Retiree_Status_Voluntary_Reached_retirement_age,Add Retiree Status > Voluntary > Reached retirement age,true
+General_Event_Subcategory_ID,Remove_Retiree_Status_Involuntary_No_longer_meets_retiree_requirements,Remove Retiree Status > Involuntary > No longer meets retiree requirements,true
+General_Event_Subcategory_ID,Remove_Retiree_Status_Involuntary_Rehired,Remove Retiree Status > Involuntary > Rehired,true
+General_Event_Subcategory_ID,Remove_Retiree_Status_Voluntary_Illness,Remove Retiree Status > Voluntary > Illness,true
+General_Event_Subcategory_ID,Remove_Retiree_Status_Voluntary_Death,Remove Retiree Status > Voluntary > Death,true
+General_Event_Subcategory_ID,Merit _Increase_in_Responsibilities_Acquisition_of_New_Skills,Merit > Increase in Responsibilities > Acquisition of New Skills,true
+General_Event_Subcategory_ID,Merit _Increase_in_Responsibilities_Change_in_Duties,Merit > Increase in Responsibilities > Change in Duties,true
+General_Event_Subcategory_ID,Merit _Increase_in_Responsibilities_High_Performer,Merit > Increase in Responsibilities > High Performer,true
+General_Event_Subcategory_ID,Merit _Performance_Annual_Focal_Review,Merit > Performance > Annual Performance Appraisal,true
+General_Event_Subcategory_ID,Merit _Performance_Adhoc_Review,Merit > Performance > Adhoc Review,true
+General_Event_Subcategory_ID,Merit _Performance_Completion_of_Goals,Merit > Performance > Completion of Goal(s),true
+General_Event_Subcategory_ID,Start_International_Assignment_Employee_Factors_Development_Assignment,Start International Assignment > Employee Factors > Development Assignment,true
+General_Event_Subcategory_ID,Start_International_Assignment_Host_Country_Factors_Local_Resource_Unavailable,Start International Assignment > Host Country Factors > Local Resource Unavailable,true
+General_Event_Subcategory_ID,Start_International_Assignment_Skills_Factors_Skills_Transfer,Start International Assignment > Skills Factors > Skills Transfer,true
+General_Event_Subcategory_ID,One-Time_Payment_Incentive_Performance,One-Time Payment > Incentive > Performance,true
+General_Event_Subcategory_ID,One-Time_Payment_Incentive_Lump_Sum,One-Time Payment > Incentive > Lump Sum,true
+General_Event_Subcategory_ID,Request_Compensation_Change_Adjustment_Performance,Request Compensation Change > Adjustment > Performance,true
+General_Event_Subcategory_ID,Add_Retiree_Status_Involuntary_Other,Add Retiree Status > Involuntary > Other,true
+General_Event_Subcategory_ID,Add_Retiree_Status_Voluntary_Early retirement,Add Retiree Status > Voluntary > Early retirement,true
+General_Event_Subcategory_ID,One-Time_Payment_Incentive_Bonus,One-Time Payment > Incentive > Bonus,true
+General_Event_Subcategory_ID,One-Time_Payment_Incentive_Merit,One-Time Payment > Incentive > Merit,true
+General_Event_Subcategory_ID,Edit_Position_Change_in_Contract_Contract_Extended,Edit Position > Change in Contract > Contract Extended,true
+General_Event_Subcategory_ID,Create_Job_Requisition_Recruiting_Post_for_competitive_fill,Create Job Requisition > Replacement > Employee has resigned or transferred,true
+General_Event_Subcategory_ID,Create_Job_Requisition_Recruiting_Post_internally_only,Create Job Requisition > Replacement > Employee terminated,true
+General_Event_Subcategory_ID,Create_Job_Requisition_Administrative_Non-competitive_fill_no_recruiting_required,Create Job Requisition > Administrative > Non-competitive fill; no recruiting required,true
+General_Event_Subcategory_ID,Edit_Job_Requisition_Administrative_Update_Hiring_Requirements,Edit Job Requisition > Administrative > Update Hiring Requirements,true
+General_Event_Subcategory_ID,Edit_Job_Requisition_Administrative_Update_Qualifications,Edit Job Requisition > Administrative > Update Qualifications,true
+General_Event_Subcategory_ID,Edit_Job_Requisition_Administrative_Update_Target_Hire_Date,Edit Job Requisition > Administrative > Update Target Hire Date,true
+General_Event_Subcategory_ID,Edit_Job_Requisition_Administrative_Update_Recruiting_Start_Date,Edit Job Requisition > Administrative > Update Recruiting Start Date,true
+General_Event_Subcategory_ID,Edit_Job_Requisition_Administrative_Update_Job_Title_Description_or_Justification,"Edit Job Requisition > Administrative > Update Job Title, Description or Justification",true
+General_Event_Subcategory_ID,Close_Job_Requisition_Recruiting_No_longer_recruiting_position_no_longer_needed,Close Job Requisition > Recruiting > No longer recruiting; position no longer needed,true
+General_Event_Subcategory_ID,Close_Job_Requisition_Administrative_Position_closed,Close Job Requisition > Administrative > Position closed,true
+General_Event_Subcategory_ID,Close_Job_Requisition_Administrative_Opened_in_error,Close Job Requisition > Administrative > Opened in error,true
+General_Event_Subcategory_ID,One-Time_Payment_Incentive_Stock,One-Time Payment > Incentive > Stock,true
+General_Event_Subcategory_ID,Stock_Grant_Incentive_Stock,Stock Grant > Incentive > Stock,true
+General_Event_Subcategory_ID,Hire_Employee_Recall_Recall,Hire Employee > Recall > Recall,true
+General_Event_Subcategory_ID,Hire_Employee_Rehire_Fill_Vacancy,Hire Employee > Rehire > Fill Vacancy,true
+General_Event_Subcategory_ID,Hire_Employee_Rehire_New_Position,Hire Employee > Rehire > New Position,true
+General_Event_Subcategory_ID,Request_Compensation_Change_Adjustment_Plan_Assignment,Request Compensation Change > Adjustment > Plan Assignment,true
+General_Event_Subcategory_ID,Request_Compensation_Change_Adjustment_Pay Increase,Request Compensation Change > Adjustment > Pay Increase,true
+General_Event_Subcategory_ID,Hire_Employee_New_Hire_Convert Contingent,Hire Employee > New Hire > Convert Contingent,true
+General_Event_Subcategory_ID,Edit_Position_Change_In_Restrictions_Exclude_from_Headcount_International_Assignment,Edit Position > Change In Restrictions > Exclude from Headcount - International Assignment,true
+General_Event_Subcategory_ID,Statutory_Compensation_Statement_Job_Change_Transfer,Statutory Compensation Statement > Job Change > Transfer,true
+General_Event_Subcategory_ID,Statutory_Compensation_Statement_Job_Change_Ad_hoc,Statutory Compensation Statement > Job Change > Ad-hoc,true
+General_Event_Subcategory_ID,Statutory_Compensation_Statement_Job_Change_Demotion,Statutory Compensation Statement > Job Change > Demotion,true
+General_Event_Subcategory_ID,Statutory_Compensation_Statement_Job_Change_Promotion,Statutory Compensation Statement > Job Change > Promotion,true
+General_Event_Subcategory_ID,Statutory_Compensation_Statement_Recurring_Yearly_pay_notice,Statutory Compensation Statement > Recurring > Yearly pay notice,true
+General_Event_Subcategory_ID,Statutory_Compensation_Statement_Hire_Acknowledgement_of_compensation_package,Statutory Compensation Statement > Hire > Acknowledgement of compensation package,true
+General_Event_Subcategory_ID,Switch_Primary_Job_Primary_Job_Change_New_job_is_primary,Switch Primary Job > Primary Job Change > New job is primary,true
+General_Event_Subcategory_ID,Switch_Primary_Job_Primary_Job_Change_Change_in_job_responsibilities,Switch Primary Job > Primary Job Change > Change in job responsibilities,true
+General_Event_Subcategory_ID,Switch_Primary_Job_Primary_Job_Change_Primary_job_is_ending,Switch Primary Job > Primary Job Change > Primary job is ending,true
+General_Event_Subcategory_ID,Switch_Primary_Job_Primary_Job_Change_Change_in_hours,Switch Primary Job > Primary Job Change > Change in hours,true
+General_Event_Subcategory_ID,Merit_Adjustment_Statutory_Adjustment,Merit > Adjustment > Statutory Adjustment,true
+General_Event_Subcategory_ID,Merit_Adjustment_Cost_of_Living_Adjustment,Merit > Adjustment > Cost of Living Adjustment,true
+General_Event_Subcategory_ID,Request_Compensation_Change_Adjustment_Cost_of_Living,Request Compensation Change > Adjustment > Cost of Living,true
+General_Event_Subcategory_ID,Request_Compensation_Change_Adjustment_Statutory,Request Compensation Change > Adjustment > Statutory,true
+General_Event_Subcategory_ID,Severance_Assignment_Severance_Reasons_Layoff,Severance Assignment > Severance Reasons > Layoff,true
+General_Event_Subcategory_ID,Severance_Assignment_Severance_Reasons_Site_Closure,Severance Assignment > Severance Reasons > Site Closure,true
+General_Event_Subcategory_ID,Severance_Assignment_Severance_Reasons_Early_Retirement,Severance Assignment > Severance Reasons > Early Retirement,true
+General_Event_Subcategory_ID,Severance_Assignment_Severance_Reasons_Job_Elimination,Severance Assignment > Severance Reasons > Job Elimination,true
+General_Event_Subcategory_ID,Severance_Assignment_Severance_Reasons_Ad_Hoc_Severance,Severance Assignment > Severance Reasons > Ad Hoc Severance,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-148,Create Job Requisition > New position > Previously approved staff addition,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-149,Create Job Requisition > New position > Requesting additional staff,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-150,Create Job Requisition > New position > Temporary hire - project based need,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-151,Freeze Job Requisition > Unfreeze > Budget Unfrozen,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-152,Freeze Job Requisition > Unfreeze > Hold for Organization Structure Review,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-153,Freeze Job Requisition > Freeze > Budget Freeze,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-154,Freeze Job Requisition > Freeze > Hold for Organization Structure Review,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-155,Committee Member Service > Loss of Membership > Election,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-156,Committee Member Service > Loss of Membership > Employment,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-157,Committee Member Service > Loss of Membership > Term Expiration,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-158,Committee Member Service > New Membership > Election,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-159,Committee Member Service > New Membership > Member Replacement,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-160,Committee Member Service > New Membership > New Committee,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-161,Hire Employee > New Hire > Acquisition,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-162,Move to New Manager > Move to new manager > Move to another manager,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-163,Move to New Manager > Move to new manager > Promotion,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-165,Add Retiree Status > Voluntary > Elected to retire,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-166,Worker Resignation > Voluntary > Commute Time,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-167,Worker Resignation > Voluntary > Confidential,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-168,Worker Resignation > Voluntary > Dissatisfied with Job,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-169,Worker Resignation > Voluntary > Dissatisfied with Management,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-170,Worker Resignation > Voluntary > Dissatisfied with Pay,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-171,Worker Resignation > Voluntary > Family Reasons,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-172,Worker Resignation > Voluntary > Hired by Competitor,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-173,Worker Resignation > Voluntary > Moved,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-174,Worker Resignation > Voluntary > Other,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-175,Worker Resignation > Voluntary > Other Employment,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-176,Worker Resignation > Voluntary > Retirement,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-177,Manage Medicare Information > Update Exisiting Medicare Information > Employee,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-178,Manage Medicare Information > Update Exisiting Medicare Information > Dependent,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-179,Manage Medicare Information > Add New Medicare Information > Employee,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-180,Manage Medicare Information > Add New Medicare Information > Dependent,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-181,Edit Job Requisition > Administrative > Minor Edit - No Reposting Needed,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-182,Committee Member Service > New Membership > New Committee Member,true
+General_Event_Subcategory_ID,Acquisition,Create Position > Acquisition > Acquisition,true
+General_Event_Subcategory_ID,Acquisition_Job_Requisition,Create Job Requisition > Acquisition > Acquisition,true
+General_Event_Subcategory_ID,Acquisition_Hire,Hire Employee > Acquisition > Acquisition Hire,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-190,Post Termination Compensation > Post Termination Compensation > Post Termination Compensation,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-191,Wage Theft Prevention Notice > Wage Theft Prevention Notice > Wage Theft Prevention Notice,true
+General_Event_Subcategory_ID,Start_International_Assignment,Request Compensation Change > International Assignment > Start International Assignment,true
+General_Event_Subcategory_ID,End_International_Assignment,Request Compensation Change > International Assignment > End International Assignment,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-194,Hire Employee > New Hire > New Graduate,true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-195,Start International Assignment > Skills Factors > Domestic Secondment (Shukko),true
+General_Event_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-17-196,Hire Employee > New Hire > Conversion,true

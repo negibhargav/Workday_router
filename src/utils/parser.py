@@ -27,8 +27,6 @@ def parse_workday_swagger(file_path, output_name="workers_apis.json"):
     for path, methods in paths.items():
         for method, details in methods.items():
             tags = details.get("tags", [])
-            
-            # 3. Filter for 'workers' tag
             if "workers" in tags:
                 summary = details.get("summary", "")
                 description = details.get("description", "")
@@ -47,8 +45,12 @@ def parse_workday_swagger(file_path, output_name="workers_apis.json"):
                     })
 
                 # 5. Build the Router Payload
+                import hashlib
+                path_method_str = f"{method.upper()}:{path}"
+                unique_id = hashlib.md5(path_method_str.encode('utf-8')).hexdigest()
+
                 api_entry = {
-                    "id": details.get("x-workday-operation-id", path.replace("/", "_")),
+                    "id": unique_id,
                     "api_name": summary.lower().replace(" ", "_").strip("."),
                     "method": method.upper(),
                     "full_path": f"{base_path}{path}",
@@ -75,14 +77,39 @@ def generate_initial_intents(summary):
     if not summary:
         return []
     
-    # Basic transformation: "Retrieves a worker" -> "How do I retrieve a worker?"
     clean_summary = summary.strip(".")
-    return [
+    base_intents = [
         clean_summary,
         f"How do I {clean_summary.lower()}?",
         f"I need to {clean_summary.lower()}",
         f"Can you {clean_summary.lower()}?"
     ]
+    
+    lower_summary = clean_summary.lower()
+    if "retrieves a worker instance" in lower_summary:
+        base_intents.extend([
+            "what is my name",
+            "who am I",
+            "show my profile",
+            "get worker profile",
+            "retrieve my worker details",
+            "who is employee",
+            "get employee profile",
+            "information about me",
+            "my user details",
+            "show my employee details"
+        ])
+    elif "retrieves a collection of workers" in lower_summary:
+        base_intents.extend([
+            "list all employees",
+            "get all workers",
+            "search for workers",
+            "show me all workers",
+            "find workers",
+            "list of workers"
+        ])
+        
+    return base_intents
 
 if __name__ == "__main__":
     # Point this to your swagger file location

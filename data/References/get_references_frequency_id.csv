@@ -1,0 +1,11 @@
+id_type,id,note,active
+Frequency_ID,Annual,Annual,true
+Frequency_ID,Weekly,Weekly,true
+Frequency_ID,Quarterly,Quarterly,true
+Frequency_ID,Semi_monthly,Semi-monthly,true
+Frequency_ID,Monthly,Monthly,true
+Frequency_ID,Hourly,Hourly,true
+Frequency_ID,Bi_weekly,Bi-weekly,true
+Frequency_ID,Daily,Daily,true
+Frequency_ID,FREQUENCY-16-9,260,true
+Frequency_ID,FREQUENCY-16-10,230,true

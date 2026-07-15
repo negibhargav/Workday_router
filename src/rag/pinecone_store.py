@@ -7,7 +7,8 @@ from pinecone import Pinecone, ServerlessSpec
 from dotenv import load_dotenv
 from openai import OpenAI  # Used for generating schema vectors
 
-load_dotenv()
+_pc_root = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+load_dotenv(os.path.join(_pc_root, ".env"))
 
 class PineconeStore:
     def __init__(self, force_reset=False):

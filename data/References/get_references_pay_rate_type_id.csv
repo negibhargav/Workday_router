@@ -1,0 +1,6 @@
+id_type,id,note,active
+Pay_Rate_Type_ID,Hourly,Hourly,true
+Pay_Rate_Type_ID,Salary,Salaried,true
+Pay_Rate_Type_ID,Daily,Daily,true
+Pay_Rate_Type_ID,None,None,true
+Pay_Rate_Type_ID,Exception_Hourly,Exception Hourly,true

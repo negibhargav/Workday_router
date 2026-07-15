@@ -1,0 +1,168 @@
+[
+  {
+    "id": "soap_get_workers",
+    "api_name": "get_workers",
+    "type": "service",
+    "parameters": [
+      { "name": "worker_ids", "in": "body", "required": false, "type": "array" },
+      { "name": "organization_id", "in": "body", "required": false, "type": "string" },
+      { "name": "include_subordinate_organizations", "in": "body", "required": false, "type": "boolean" },
+      { "name": "country_id", "in": "body", "required": false, "type": "string" },
+      { "name": "position_id", "in": "body", "required": false, "type": "string" },
+      { "name": "national_id", "in": "body", "required": false, "type": "string" },
+      { "name": "national_id_type", "in": "body", "required": false, "type": "string" },
+      { "name": "national_id_country", "in": "body", "required": false, "type": "string" },
+      { "name": "exclude_inactive_workers", "in": "body", "required": false, "type": "boolean" },
+      { "name": "exclude_employees", "in": "body", "required": false, "type": "boolean" },
+      { "name": "exclude_contingent_workers", "in": "body", "required": false, "type": "boolean" },
+      { "name": "updated_from", "in": "body", "required": false, "type": "string" },
+      { "name": "updated_through", "in": "body", "required": false, "type": "string" },
+      { "name": "effective_from", "in": "body", "required": false, "type": "string" },
+      { "name": "effective_through", "in": "body", "required": false, "type": "string" },
+      { "name": "as_of_effective_date", "in": "body", "required": false, "type": "string" },
+      { "name": "page", "in": "body", "required": false, "type": "integer" },
+      { "name": "count", "in": "body", "required": false, "type": "integer" }
+    ],
+    "intent_triggers": [
+      "get workers list",
+      "search worker profiles",
+      "query employee data",
+      "fetch worker details",
+      "retrieve employee profile summary"
+    ]
+  },
+  {
+    "id": "soap_hire_employee",
+    "api_name": "hire_employee",
+    "type": "service",
+    "parameters": [
+      { "name": "first_name", "in": "body", "required": true, "type": "string" },
+      { "name": "last_name", "in": "body", "required": true, "type": "string" },
+      { "name": "middle_name", "in": "body", "required": false, "type": "string" },
+      { "name": "organization_id", "in": "body", "required": true, "type": "string" },
+      { "name": "position_id", "in": "body", "required": false, "type": "string" },
+      { "name": "job_requisition_id", "in": "body", "required": false, "type": "string" },
+      { "name": "hire_date", "in": "body", "required": true, "type": "string" },
+      { "name": "existing_worker_type", "in": "body", "required": false, "type": "string" },
+      { "name": "existing_worker_id", "in": "body", "required": false, "type": "string" },
+      { "name": "email_address", "in": "body", "required": false, "type": "string" },
+      { "name": "phone_number", "in": "body", "required": false, "type": "string" },
+      { "name": "address_line_1", "in": "body", "required": false, "type": "string" },
+      { "name": "address_city", "in": "body", "required": false, "type": "string" },
+      { "name": "address_postal_code", "in": "body", "required": false, "type": "string" },
+      { "name": "comment", "in": "body", "required": false, "type": "string" },
+      { "name": "auto_complete", "in": "body", "required": false, "type": "boolean" },
+      { "name": "base_pay_amount", "in": "body", "required": false, "type": "number" },
+      { "name": "base_pay_currency_id", "in": "body", "required": false, "type": "string" },
+      { "name": "base_pay_frequency_id", "in": "body", "required": false, "type": "string" }
+    ],
+    "intent_triggers": [
+      "hire a new employee",
+      "add a new worker to the organization",
+      "onboard a candidate into a position",
+      "create worker profile",
+      "propose compensation for hire",
+      "hire employee to supervisory organization"
+    ]
+  },
+  {
+    "id": "soap_get_workers-Include_Compensation",
+    "api_name": "get_workers",
+    "type": "response_group",
+    "field": "Include_Compensation",
+    "intent_triggers": [
+      "get worker compensation details",
+      "check salary and pay rate",
+      "fetch worker wage, payroll, or grade info",
+      "compensation plan, base pay, frequency"
+    ]
+  },
+  {
+    "id": "soap_get_workers-Include_Qualifications",
+    "api_name": "get_workers",
+    "type": "response_group",
+    "field": "Include_Qualifications",
+    "intent_triggers": [
+      "fetch employee certifications and education",
+      "get worker skills and competencies",
+      "check languages or degrees",
+      "qualifications, license details"
+    ]
+  },
+  {
+    "id": "soap_get_workers-Include_Benefit_Enrollments",
+    "api_name": "get_workers",
+    "type": "response_group",
+    "field": "Include_Benefit_Enrollments",
+    "intent_triggers": [
+      "check employee health insurance plans",
+      "get worker benefit enrollments and eligibility",
+      "dental vision health plan coverages"
+    ]
+  },
+  {
+    "id": "soap_get_workers-Include_Employee_Review",
+    "api_name": "get_workers",
+    "type": "response_group",
+    "field": "Include_Employee_Review",
+    "intent_triggers": [
+      "check employee performance reviews",
+      "get talent assessment and reviews",
+      "manager feedback, review history"
+    ]
+  },
+  {
+    "id": "soap_get_workers-Include_Personal_Information",
+    "api_name": "get_workers",
+    "type": "response_group",
+    "field": "Include_Personal_Information",
+    "intent_triggers": [
+      "get worker legal name and birth date",
+      "fetch worker contact details like phone or email",
+      "home address, contact information"
+    ]
+  },
+  {
+    "id": "soap_get_workers-Include_Worker_Documents",
+    "api_name": "get_workers",
+    "type": "response_group",
+    "field": "Include_Worker_Documents",
+    "intent_triggers": [
+      "retrieve worker documents and attachments",
+      "get employee uploaded files",
+      "background check details"
+    ]
+  },
+  {
+    "id": "soap_get_workers-Include_Photo",
+    "api_name": "get_workers",
+    "type": "response_group",
+    "field": "Include_Photo",
+    "intent_triggers": [
+      "get worker photo",
+      "retrieve profile picture of employee"
+    ]
+  },
+  {
+    "id": "soap_get_workers-Include_User_Account",
+    "api_name": "get_workers",
+    "type": "response_group",
+    "field": "Include_User_Account",
+    "intent_triggers": [
+      "check worker user account credentials",
+      "get login or account provisioning information",
+      "username, system account"
+    ]
+  },
+  {
+    "id": "soap_get_workers-Include_Career",
+    "api_name": "get_workers",
+    "type": "response_group",
+    "field": "Include_Career",
+    "intent_triggers": [
+      "check employee career history",
+      "get additional jobs or employee contract data",
+      "work history, previous roles"
+    ]
+  }
+]

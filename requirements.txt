@@ -1,0 +1,11 @@
+mcp>=1.27.1
+pinecone>=9.0.0
+pydantic>=2.13.4
+python-dotenv>=1.2.2
+requests>=2.33.1
+sentence-transformers>=5.4.1
+fastapi>=0.115.0
+uvicorn>=0.30.0
+openai>=2.44.0
+zeep>=4.3.1
+lxml>=6.1.0

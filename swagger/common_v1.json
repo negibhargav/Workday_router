@@ -10,7 +10,7 @@
     "x-workday-internal-service-container-id": "27d54c0f796e10000b3b7fd383f2002b"
   },
   "host": "<tenantHostname>",
-  "basePath": "",
+  "basePath": "/api/common/v1",
   "tags": [
     {
       "name": "businessTitleChanges"
@@ -53,7 +53,7 @@
           "workers"
         ],
         "summary": "Retrieves a particular time off plan for a specific worker.",
-        "description": "Retrieves a time off plan for a worker with the specified ID.\n\n<b>Secured by:</b> Self-Service: Time Off Balances, Worker Data: Time Off (Time Off Balances Manager View), Worker Data: Time Off (Time Off Balances)\n\n<b>Scope:</b> Time Off and Leave",
+        "description": "Retrieves a time off plan for a worker with the specified ID.\n\n<b>Secured By Domain:</b> Self-Service: Time Off Balances, Worker Data: Time Off (Time Off Balances Manager View), Worker Data: Time Off (Time Off Balances)\n\n<b>Scope:</b> Time Off and Leave",
         "produces": [
           "application/json"
         ],
@@ -116,7 +116,12 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "581c389cce1410000ff399298ba10006"
+        "x-workday-operation-id": "581c389cce1410000ff399298ba10006",
+        "x-workday-secured-by-domains": [
+          "Self-Service: Time Off Balances",
+          "Worker Data: Time Off (Time Off Balances Manager View)",
+          "Worker Data: Time Off (Time Off Balances)"
+        ]
       }
     },
     "/organizations": {
@@ -125,7 +130,7 @@
           "organizations"
         ],
         "summary": "Retrieves a collection of organizations.",
-        "description": "\n\n<b>Secured by:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "description": "\n\n<b>Secured By Domain:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
         "produces": [
           "application/json"
         ],
@@ -160,15 +165,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/organizationSummary_a03132f19b911000119b05cfd7cf0032"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -205,7 +210,10 @@
           }
         },
         "x-workday-internal-try-enabled": "false",
-        "x-workday-operation-id": "a03132f19b91100011bb405bfeb70034"
+        "x-workday-operation-id": "a03132f19b91100011bb405bfeb70034",
+        "x-workday-secured-by-domains": [
+          "Reports: Organization"
+        ]
       }
     },
     "/jobChangeReasons": {
@@ -214,7 +222,7 @@
           "jobChangeReasons"
         ],
         "summary": "Retrieves a collection of job change reasons.",
-        "description": "Retrieves all job change reasons.\n\n<b>Secured by:</b> Staffing Actions: Change Job Date and Reason\n\n<b>Scope:</b> Staffing",
+        "description": "Retrieves all job change reasons.\n\n<b>Secured By Domain:</b> Staffing Actions: Change Job Date and Reason\n\n<b>Scope:</b> Staffing",
         "produces": [
           "application/json"
         ],
@@ -242,15 +250,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/jobChangeReasonSummary_69b1f5fbb40c4cd6b9c55b226ca2424c"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -287,7 +295,10 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "0edf6078b26046bb988499f0b7f92dee"
+        "x-workday-operation-id": "0edf6078b26046bb988499f0b7f92dee",
+        "x-workday-secured-by-domains": [
+          "Staffing Actions: Change Job Date and Reason"
+        ]
       }
     },
     "/workers/{ID}/businessTitleChanges/{subresourceID}": {
@@ -296,7 +307,7 @@
           "workers"
         ],
         "summary": "Retrieves a business title change instance for a specific worker.",
-        "description": "Retrieves a business title change event with the specified ID.\n\n<b>Secured by:</b> Staffing Actions: Business Title\n\n<b>Scope:</b> Staffing",
+        "description": "Retrieves a business title change event with the specified ID.\n\n<b>Secured By Domain:</b> Staffing Actions: Business Title\n\n<b>Scope:</b> Staffing",
         "produces": [
           "application/json"
         ],
@@ -359,7 +370,10 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "a865e2c38bd74c80a6f289390d3e619f"
+        "x-workday-operation-id": "a865e2c38bd74c80a6f289390d3e619f",
+        "x-workday-secured-by-domains": [
+          "Staffing Actions: Business Title"
+        ]
       }
     },
     "/businessTitleChanges/{ID}": {
@@ -368,7 +382,7 @@
           "businessTitleChanges"
         ],
         "summary": "Retrieves a business title change instance.",
-        "description": "\n\n<b>Secured by:</b> Staffing Actions: Business Title\n\n<b>Scope:</b> Staffing",
+        "description": "\n\n<b>Secured By Domain:</b> Staffing Actions: Business Title\n\n<b>Scope:</b> Staffing",
         "produces": [
           "application/json"
         ],
@@ -420,7 +434,10 @@
           }
         },
         "x-workday-internal-try-enabled": "false",
-        "x-workday-operation-id": "45a9c799b3fd4e70a0b53d07c20c867f"
+        "x-workday-operation-id": "45a9c799b3fd4e70a0b53d07c20c867f",
+        "x-workday-secured-by-domains": [
+          "Staffing Actions: Business Title"
+        ]
       }
     },
     "/workers/{ID}/businessTitleChanges?type=me": {
@@ -428,7 +445,7 @@
         "tags": [
           "workers"
         ],
-        "description": "\n\n<b>Secured by:</b> Change My Business Title\n\n<b>Scope:</b> Staffing",
+        "description": "\n\n<b>Secured By Business Process Type:</b> Title Change\n\n<b>Scope:</b> Staffing",
         "produces": [
           "application/json"
         ],
@@ -492,7 +509,10 @@
           }
         },
         "x-workday-internal-try-enabled": "false",
-        "x-workday-operation-id": "9c0a3c288a2c1000017eb88849a30002"
+        "x-workday-operation-id": "9c0a3c288a2c1000017eb88849a30002",
+        "x-workday-secured-by-business-process-types": [
+          "Title Change"
+        ]
       }
     },
     "/currencies/{ID}": {
@@ -501,7 +521,7 @@
           "currencies"
         ],
         "summary": "Retrieves a currency instance.",
-        "description": "Retrieves a currency with the specified ID\n\n<b>Secured by:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Benefits, Tenant Non-Configurable",
+        "description": "Retrieves a currency with the specified ID\n\n<b>Secured By Domain:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Benefits, Tenant Non-Configurable",
         "produces": [
           "application/json"
         ],
@@ -553,7 +573,10 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "4b1c5da0cff34a3c88438ffebbfbd970"
+        "x-workday-operation-id": "4b1c5da0cff34a3c88438ffebbfbd970",
+        "x-workday-secured-by-domains": [
+          "Core Navigation"
+        ]
       }
     },
     "/workers/{ID}/inboxTasks": {
@@ -562,7 +585,7 @@
           "workers"
         ],
         "summary": "Retrieves a collection of inbox tasks for a specific worker.",
-        "description": "\n\n<b>Secured by:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Benefits, Tenant Non-Configurable",
+        "description": "\n\n<b>Secured By Domain:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Benefits, Tenant Non-Configurable",
         "produces": [
           "application/json"
         ],
@@ -601,15 +624,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/inboxTaskSummary_1bbb07a8ab4349dd934ca72301974204"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -646,7 +669,10 @@
           }
         },
         "x-workday-internal-try-enabled": "false",
-        "x-workday-operation-id": "d02ccd56f7894dabb8e0dd66e42e94b9"
+        "x-workday-operation-id": "d02ccd56f7894dabb8e0dd66e42e94b9",
+        "x-workday-secured-by-domains": [
+          "Core Navigation"
+        ]
       }
     },
     "/currencies": {
@@ -655,7 +681,7 @@
           "currencies"
         ],
         "summary": "Retrieves a collection of currencies.",
-        "description": "Retrieves all currencies.\n\n<b>Secured by:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Benefits, Tenant Non-Configurable",
+        "description": "Retrieves all currencies.\n\n<b>Secured By Domain:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Benefits, Tenant Non-Configurable",
         "produces": [
           "application/json"
         ],
@@ -683,15 +709,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/currencySummary_7ceb0e9ce857100019c6099ce1ad00fa"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -728,7 +754,10 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "4b1c5da0cff34a3c88438ffebbfbd970"
+        "x-workday-operation-id": "4b1c5da0cff34a3c88438ffebbfbd970",
+        "x-workday-secured-by-domains": [
+          "Core Navigation"
+        ]
       }
     },
     "/customers/{ID}": {
@@ -737,7 +766,7 @@
           "customers"
         ],
         "summary": "Retrieves a customer instance.",
-        "description": "\n\n<b>Secured by:</b> View: Customer\n\n<b>Scope:</b> Customers",
+        "description": "\n\n<b>Secured By Domain:</b> View: Customer\n\n<b>Scope:</b> Customers",
         "produces": [
           "application/json"
         ],
@@ -789,7 +818,10 @@
           }
         },
         "x-workday-internal-try-enabled": "false",
-        "x-workday-operation-id": "b7ecfe5ec60c10000ac57590b2650034"
+        "x-workday-operation-id": "b7ecfe5ec60c10000ac57590b2650034",
+        "x-workday-secured-by-domains": [
+          "View: Customer"
+        ]
       }
     },
     "/workers/{ID}/organizations/{subresourceID}": {
@@ -798,7 +830,7 @@
           "workers"
         ],
         "summary": "Retrieves an organization instance for a specific worker.",
-        "description": "Retrieves an organization with the specified ID for a specific worker.\n\n<b>Secured by:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "description": "Retrieves an organization with the specified ID for a specific worker.\n\n<b>Secured By Domain:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
         "produces": [
           "application/json"
         ],
@@ -861,7 +893,10 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "b09201ecbe6f10000c612f777e670015"
+        "x-workday-operation-id": "b09201ecbe6f10000c612f777e670015",
+        "x-workday-secured-by-domains": [
+          "Reports: Organization"
+        ]
       }
     },
     "/workers/{ID}/history": {
@@ -870,7 +905,7 @@
           "workers"
         ],
         "summary": "Retrieves a collection of history items for a specific worker.",
-        "description": "Retrieves all history items for the worker.\n\n<b>Secured by:</b> Worker Data: Historical Staffing Information\n\n<b>Scope:</b> Staffing",
+        "description": "Retrieves all history items for the worker.\n\n<b>Secured By Domain:</b> Worker Data: Historical Staffing Information\n\n<b>Scope:</b> Staffing",
         "produces": [
           "application/json"
         ],
@@ -909,15 +944,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/businessProcessSummary_5a3be01347ed4c30b2ab02b28d97b655"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -954,7 +989,10 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "0d02120b4f9f4494adf71d47d6621668"
+        "x-workday-operation-id": "0d02120b4f9f4494adf71d47d6621668",
+        "x-workday-secured-by-domains": [
+          "Worker Data: Historical Staffing Information"
+        ]
       }
     },
     "/organizationTypes": {
@@ -963,7 +1001,7 @@
           "organizationTypes"
         ],
         "summary": "Retrieves a collection of organization types.",
-        "description": "Retrieves all organization types.\n\n<b>Secured by:</b> Set Up: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "description": "Retrieves all organization types.\n\n<b>Secured By Domain:</b> Set Up: Organization\n\n<b>Scope:</b> Organizations and Roles",
         "produces": [
           "application/json"
         ],
@@ -991,15 +1029,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/organizationTypeSummary_e91ac1399cd410000481d84f988f0ec7"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -1036,7 +1074,10 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "e91ac1399cd410000486288a174f0ec9"
+        "x-workday-operation-id": "e91ac1399cd410000486288a174f0ec9",
+        "x-workday-secured-by-domains": [
+          "Set Up: Organization"
+        ]
       }
     },
     "/workers": {
@@ -1045,7 +1086,7 @@
           "workers"
         ],
         "summary": "Retrieves a collection of workers.",
-        "description": "Retrieves all workers. Use the search parameter to search for workers by name. The search is case-insensitive.\n\n<b>Secured by:</b> FLW Service, Self-Service: Current Staffing Information, Worker Data: Public Worker Reports\n\n<b>Scope:</b> Staffing",
+        "description": "Retrieves all workers. Use the search parameter to search for workers by name. The search is case-insensitive.\n\n<b>Secured By Domain:</b> FLW Service, Self-Service: Current Staffing Information, Worker Data: Public Worker Reports\n\n<b>Scope:</b> Staffing",
         "produces": [
           "application/json"
         ],
@@ -1086,15 +1127,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/workerSummary_a489aef739484c13a59e6d502a9e7b68"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -1131,7 +1172,12 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "94a39e71541b468fa895955508287acd"
+        "x-workday-operation-id": "94a39e71541b468fa895955508287acd",
+        "x-workday-secured-by-domains": [
+          "FLW Service",
+          "Self-Service: Current Staffing Information",
+          "Worker Data: Public Worker Reports"
+        ]
       }
     },
     "/workers/{ID}/history/{subresourceID}": {
@@ -1140,7 +1186,7 @@
           "workers"
         ],
         "summary": "Retrieves a history instance for a specific worker.",
-        "description": "Retrieves a collection of history items for a specific worker with the specified ID.\n\n<b>Secured by:</b> Worker Data: Historical Staffing Information\n\n<b>Scope:</b> Staffing",
+        "description": "Retrieves a collection of history items for a specific worker with the specified ID.\n\n<b>Secured By Domain:</b> Worker Data: Historical Staffing Information\n\n<b>Scope:</b> Staffing",
         "produces": [
           "application/json"
         ],
@@ -1203,7 +1249,10 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "0d02120b4f9f4494adf71d47d6621668"
+        "x-workday-operation-id": "0d02120b4f9f4494adf71d47d6621668",
+        "x-workday-secured-by-domains": [
+          "Worker Data: Historical Staffing Information"
+        ]
       }
     },
     "/workers/{ID}/organizations": {
@@ -1212,7 +1261,7 @@
           "workers"
         ],
         "summary": "Retrieves a collection of organizations for a specific worker.",
-        "description": "Retrieves all organizations for a specific worker.\n\n<b>Secured by:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "description": "Retrieves all organizations for a specific worker.\n\n<b>Secured By Domain:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
         "produces": [
           "application/json"
         ],
@@ -1251,15 +1300,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/workerOrganizationSummary_b09201ecbe6f10000c600196a3f70012"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -1296,7 +1345,10 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "b09201ecbe6f10000c612f777e670015"
+        "x-workday-operation-id": "b09201ecbe6f10000c612f777e670015",
+        "x-workday-secured-by-domains": [
+          "Reports: Organization"
+        ]
       }
     },
     "/workers/{ID}/supervisoryOrganizationsManaged": {
@@ -1305,7 +1357,7 @@
           "workers"
         ],
         "summary": "Retrieves a collection of supervisory organizations managed by a specific worker.",
-        "description": "Retrieves all managed supervisory organizations for a worker with the specified ID.\n\n<b>Secured by:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "description": "Retrieves all managed supervisory organizations for a worker with the specified ID.\n\n<b>Secured By Domain:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
         "produces": [
           "application/json"
         ],
@@ -1344,15 +1396,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/supervisoryOrganizationSummary_3a94b57f042a4ebb95027e09d6192992"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -1389,7 +1441,10 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "b6044838fb1f100001fe0872896b0002"
+        "x-workday-operation-id": "b6044838fb1f100001fe0872896b0002",
+        "x-workday-secured-by-domains": [
+          "Reports: Organization"
+        ]
       }
     },
     "/workers/{ID}/timeOffEntries/{subresourceID}": {
@@ -1398,7 +1453,7 @@
           "workers"
         ],
         "summary": "Retrieves a time off entry for a specific worker.",
-        "description": "\n\n<b>Secured by:</b> Self-Service: Time Off Balances, Worker Data: Time Off (Time Off Balances Manager View), Worker Data: Time Off (Time Off Balances)\n\n<b>Scope:</b> Time Off and Leave",
+        "description": "\n\n<b>Secured By Domain:</b> Self-Service: Time Off Balances, Worker Data: Time Off (Time Off Balances Manager View), Worker Data: Time Off (Time Off Balances)\n\n<b>Scope:</b> Time Off and Leave",
         "produces": [
           "application/json"
         ],
@@ -1461,7 +1516,12 @@
           }
         },
         "x-workday-internal-try-enabled": "false",
-        "x-workday-operation-id": "436f2afb755f1000125443cdc76e0017"
+        "x-workday-operation-id": "436f2afb755f1000125443cdc76e0017",
+        "x-workday-secured-by-domains": [
+          "Self-Service: Time Off Balances",
+          "Worker Data: Time Off (Time Off Balances Manager View)",
+          "Worker Data: Time Off (Time Off Balances)"
+        ]
       }
     },
     "/workers/{ID}/jobChanges": {
@@ -1470,7 +1530,7 @@
           "workers"
         ],
         "summary": "Creates a job change instance with the specified data.",
-        "description": "Creates a job change instance with the specified data.\n\n<b>Secured by:</b> Change Job\n\n<b>Scope:</b> Staffing",
+        "description": "Creates a job change instance with the specified data.\n\n<b>Secured By Business Process Type:</b> Change Job\n\n<b>Scope:</b> Staffing",
         "produces": [
           "application/json"
         ],
@@ -1534,7 +1594,10 @@
           }
         },
         "x-workday-internal-try-enabled": "false",
-        "x-workday-operation-id": "b4f1492ac4c741378c8d71305f9553f5"
+        "x-workday-operation-id": "b4f1492ac4c741378c8d71305f9553f5",
+        "x-workday-secured-by-business-process-types": [
+          "Change Job"
+        ]
       }
     },
     "/workers/{ID}/paySlips": {
@@ -1543,7 +1606,7 @@
           "workers"
         ],
         "summary": "Retrieves a collection of pay slips for a specific worker.",
-        "description": "Retrieves all pay slips for a worker with the specified ID.\n\n<b>Secured by:</b> Self-Service: Payroll (My Payslips), Worker Data: Payroll (Payslips)\n\n<b>Scope:</b> Core Payroll",
+        "description": "Retrieves all pay slips for a worker with the specified ID.\n\n<b>Secured By Domain:</b> Self-Service: Payroll (My Payslips), Worker Data: Payroll (Payslips)\n\n<b>Scope:</b> Core Payroll",
         "produces": [
           "application/json"
         ],
@@ -1582,15 +1645,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/paySlipSummary_056982a2aa04100005cc479e6e5a0022"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -1627,7 +1690,11 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "056982a2aa04100005cd56c3da4a0028"
+        "x-workday-operation-id": "056982a2aa04100005cd56c3da4a0028",
+        "x-workday-secured-by-domains": [
+          "Self-Service: Payroll (My Payslips)",
+          "Worker Data: Payroll (Payslips)"
+        ]
       }
     },
     "/workers/{ID}/directReports": {
@@ -1636,7 +1703,7 @@
           "workers"
         ],
         "summary": "Retrieves a collection of direct reports for a specific worker.",
-        "description": "Retrieves all direct reports.\n\n<b>Secured by:</b> Reports: Manager, Reports: Matrix Manager, Self-Service: My Team\n\n<b>Scope:</b> Staffing",
+        "description": "Retrieves all direct reports.\n\n<b>Secured By Domain:</b> Reports: Manager, Reports: Matrix Manager, Self-Service: My Team\n\n<b>Scope:</b> Staffing",
         "produces": [
           "application/json"
         ],
@@ -1675,15 +1742,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/workerSummary_a489aef739484c13a59e6d502a9e7b68"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -1720,7 +1787,12 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "3dad5f33d6974b2691f53037644f40be"
+        "x-workday-operation-id": "3dad5f33d6974b2691f53037644f40be",
+        "x-workday-secured-by-domains": [
+          "Reports: Manager",
+          "Reports: Matrix Manager",
+          "Self-Service: My Team"
+        ]
       }
     },
     "/validateWorktags": {
@@ -1729,7 +1801,7 @@
           "validateWorktags"
         ],
         "summary": "(End of Life Date: 2025-08-03 ) Validates allowed and required worktag types and worktag combinations so that you can correct errors before you submit transactions.",
-        "description": "Validate the allowed and required worktag types and worktag combinations based on the configuration in the 'Maintain Related Worktag Usage' and 'Maintain Worktag Usage' tasks and related worktags so that you can correct errors before you submit transactions using web services. This method is a read-only POST that doesn't add data to Workday.\n\n<b>Secured by:</b> Manage: Related Worktags, Worktag REST API\n\n<b>Scope:</b> Common Financial Management, Worktags",
+        "description": "Validate the allowed and required worktag types and worktag combinations based on the configuration in the 'Maintain Related Worktag Usage' and 'Maintain Worktag Usage' tasks and related worktags so that you can correct errors before you submit transactions using web services. This method is a read-only POST that doesn't add data to Workday.\n\n<b>Secured By Domain:</b> Manage: Related Worktags, Worktag REST API\n\n<b>Scope:</b> Common Financial Management, Worktags",
         "produces": [
           "application/json"
         ],
@@ -1783,7 +1855,11 @@
         },
         "deprecated": true,
         "x-workday-internal-try-enabled": "false",
-        "x-workday-operation-id": "aa8aaaaeca3910002f9fbcab1262036e"
+        "x-workday-operation-id": "aa8aaaaeca3910002f9fbcab1262036e",
+        "x-workday-secured-by-domains": [
+          "Manage: Related Worktags",
+          "Worktag REST API"
+        ]
       }
     },
     "/jobChangeReasons/{ID}": {
@@ -1792,7 +1868,7 @@
           "jobChangeReasons"
         ],
         "summary": "Retrieves a job change reason instance.",
-        "description": "Retrieves a job change reason with the specified ID.\n\n<b>Secured by:</b> Staffing Actions: Change Job Date and Reason\n\n<b>Scope:</b> Staffing",
+        "description": "Retrieves a job change reason with the specified ID.\n\n<b>Secured By Domain:</b> Staffing Actions: Change Job Date and Reason\n\n<b>Scope:</b> Staffing",
         "produces": [
           "application/json"
         ],
@@ -1844,7 +1920,10 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "0edf6078b26046bb988499f0b7f92dee"
+        "x-workday-operation-id": "0edf6078b26046bb988499f0b7f92dee",
+        "x-workday-secured-by-domains": [
+          "Staffing Actions: Change Job Date and Reason"
+        ]
       }
     },
     "/supervisoryOrganizations": {
@@ -1853,7 +1932,7 @@
           "supervisoryOrganizations"
         ],
         "summary": "Retrieves a collection of supervisory organizations.",
-        "description": "Retrieves all supervisory organizations.\n\n<b>Secured by:</b> FLW Service, Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "description": "Retrieves all supervisory organizations.\n\n<b>Secured By Domain:</b> FLW Service, Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
         "produces": [
           "application/json"
         ],
@@ -1881,15 +1960,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/supervisoryOrganizationSummary_3a94b57f042a4ebb95027e09d6192992"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -1926,7 +2005,11 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "22c69260c8784717a6a7bdec9efbca32"
+        "x-workday-operation-id": "22c69260c8784717a6a7bdec9efbca32",
+        "x-workday-secured-by-domains": [
+          "FLW Service",
+          "Reports: Organization"
+        ]
       }
     },
     "/workers/{ID}/paySlips/{subresourceID}": {
@@ -1935,7 +2018,7 @@
           "workers"
         ],
         "summary": "Retrieves a pay slip instance for a specific worker.",
-        "description": "Retrieves a pay slip for a worker with the specified ID.\n\n<b>Secured by:</b> Self-Service: Payroll (My Payslips), Worker Data: Payroll (Payslips)\n\n<b>Scope:</b> Core Payroll",
+        "description": "Retrieves a pay slip for a worker with the specified ID.\n\n<b>Secured By Domain:</b> Self-Service: Payroll (My Payslips), Worker Data: Payroll (Payslips)\n\n<b>Scope:</b> Core Payroll",
         "produces": [
           "application/json"
         ],
@@ -1998,7 +2081,11 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "056982a2aa04100005cd56c3da4a0028"
+        "x-workday-operation-id": "056982a2aa04100005cd56c3da4a0028",
+        "x-workday-secured-by-domains": [
+          "Self-Service: Payroll (My Payslips)",
+          "Worker Data: Payroll (Payslips)"
+        ]
       }
     },
     "/supervisoryOrganizations/{ID}": {
@@ -2007,7 +2094,7 @@
           "supervisoryOrganizations"
         ],
         "summary": "Retrieves a supervisory organization instance.",
-        "description": "Retrieves a supervisory organization instance.\n\n<b>Secured by:</b> FLW Service, Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "description": "Retrieves a supervisory organization instance.\n\n<b>Secured By Domain:</b> FLW Service, Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
         "produces": [
           "application/json"
         ],
@@ -2059,7 +2146,11 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "22c69260c8784717a6a7bdec9efbca32"
+        "x-workday-operation-id": "22c69260c8784717a6a7bdec9efbca32",
+        "x-workday-secured-by-domains": [
+          "FLW Service",
+          "Reports: Organization"
+        ]
       }
     },
     "/customers/{ID}/activities/{subresourceID}": {
@@ -2068,7 +2159,7 @@
           "customers"
         ],
         "summary": "Retrieves an activity instance for a specific customer.",
-        "description": "\n\n<b>Secured by:</b> Reports: Customer Accounts\n\n<b>Scope:</b> Customer Accounts",
+        "description": "\n\n<b>Secured By Domain:</b> Reports: Customer Accounts\n\n<b>Scope:</b> Customer Accounts",
         "produces": [
           "application/json"
         ],
@@ -2127,7 +2218,10 @@
           }
         },
         "x-workday-internal-try-enabled": "false",
-        "x-workday-operation-id": "c29dedec19201000115c769e98610014"
+        "x-workday-operation-id": "c29dedec19201000115c769e98610014",
+        "x-workday-secured-by-domains": [
+          "Reports: Customer Accounts"
+        ]
       }
     },
     "/workers/{ID}/inboxTasks/{subresourceID}": {
@@ -2136,7 +2230,7 @@
           "workers"
         ],
         "summary": "Retrieves an inbox task instance for a specific worker.",
-        "description": "\n\n<b>Secured by:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Benefits, Tenant Non-Configurable",
+        "description": "\n\n<b>Secured By Domain:</b> Core Navigation\n\n<b>Scope:</b> Adaptive Planning for Financial Plans, Adaptive Planning for the Workforce, Benefits, Tenant Non-Configurable",
         "produces": [
           "application/json"
         ],
@@ -2199,7 +2293,10 @@
           }
         },
         "x-workday-internal-try-enabled": "false",
-        "x-workday-operation-id": "d02ccd56f7894dabb8e0dd66e42e94b9"
+        "x-workday-operation-id": "d02ccd56f7894dabb8e0dd66e42e94b9",
+        "x-workday-secured-by-domains": [
+          "Core Navigation"
+        ]
       }
     },
     "/supervisoryOrganizations/{ID}/workers/{subresourceID}": {
@@ -2208,7 +2305,7 @@
           "supervisoryOrganizations"
         ],
         "summary": "Retrieves a worker instance for a specific supervisory organization.",
-        "description": "Retrieves a supervisory organization for a worker with the specified ID.\n\n<b>Secured by:</b> Worker Data: Public Worker Reports\n\n<b>Scope:</b> Staffing",
+        "description": "Retrieves a supervisory organization for a worker with the specified ID.\n\n<b>Secured By Domain:</b> Worker Data: Public Worker Reports\n\n<b>Scope:</b> Staffing",
         "produces": [
           "application/json"
         ],
@@ -2267,7 +2364,10 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "5c954a75094a4f6183f8602897afd7ff"
+        "x-workday-operation-id": "5c954a75094a4f6183f8602897afd7ff",
+        "x-workday-secured-by-domains": [
+          "Worker Data: Public Worker Reports"
+        ]
       }
     },
     "/workers/{ID}/directReports/{subresourceID}": {
@@ -2276,7 +2376,7 @@
           "workers"
         ],
         "summary": "Retrieves a direct report instance for a specific worker.",
-        "description": "Retrieves a direct report with the specified ID\n\n<b>Secured by:</b> Reports: Manager, Reports: Matrix Manager, Self-Service: My Team\n\n<b>Scope:</b> Staffing",
+        "description": "Retrieves a direct report with the specified ID\n\n<b>Secured By Domain:</b> Reports: Manager, Reports: Matrix Manager, Self-Service: My Team\n\n<b>Scope:</b> Staffing",
         "produces": [
           "application/json"
         ],
@@ -2339,7 +2439,12 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "3dad5f33d6974b2691f53037644f40be"
+        "x-workday-operation-id": "3dad5f33d6974b2691f53037644f40be",
+        "x-workday-secured-by-domains": [
+          "Reports: Manager",
+          "Reports: Matrix Manager",
+          "Self-Service: My Team"
+        ]
       }
     },
     "/workers/{ID}/timeOffPlans": {
@@ -2348,7 +2453,7 @@
           "workers"
         ],
         "summary": "Retrieves a collection of time off plans for a specific worker.",
-        "description": "Retrieves all time off plans for a worker with the specified ID.\n\n<b>Secured by:</b> Self-Service: Time Off Balances, Worker Data: Time Off (Time Off Balances Manager View), Worker Data: Time Off (Time Off Balances)\n\n<b>Scope:</b> Time Off and Leave",
+        "description": "Retrieves all time off plans for a worker with the specified ID.\n\n<b>Secured By Domain:</b> Self-Service: Time Off Balances, Worker Data: Time Off (Time Off Balances Manager View), Worker Data: Time Off (Time Off Balances)\n\n<b>Scope:</b> Time Off and Leave",
         "produces": [
           "application/json"
         ],
@@ -2387,15 +2492,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/timeOffPlans_581c389cce1410000feacaebd2e40002"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -2432,7 +2537,12 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "581c389cce1410000ff399298ba10006"
+        "x-workday-operation-id": "581c389cce1410000ff399298ba10006",
+        "x-workday-secured-by-domains": [
+          "Self-Service: Time Off Balances",
+          "Worker Data: Time Off (Time Off Balances Manager View)",
+          "Worker Data: Time Off (Time Off Balances)"
+        ]
       }
     },
     "/supervisoryOrganizations/{ID}/workers": {
@@ -2441,7 +2551,7 @@
           "supervisoryOrganizations"
         ],
         "summary": "Retrieves a collection of workers for a specific supervisory organization.",
-        "description": "Retrieves all supervisory organizations for a worker with the specified ID.\n\n<b>Secured by:</b> Worker Data: Public Worker Reports\n\n<b>Scope:</b> Staffing",
+        "description": "Retrieves all supervisory organizations for a worker with the specified ID.\n\n<b>Secured By Domain:</b> Worker Data: Public Worker Reports\n\n<b>Scope:</b> Staffing",
         "produces": [
           "application/json"
         ],
@@ -2476,15 +2586,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/workerSummary_a489aef739484c13a59e6d502a9e7b68"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -2521,7 +2631,10 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "5c954a75094a4f6183f8602897afd7ff"
+        "x-workday-operation-id": "5c954a75094a4f6183f8602897afd7ff",
+        "x-workday-secured-by-domains": [
+          "Worker Data: Public Worker Reports"
+        ]
       }
     },
     "/workers/{ID}/businessTitleChanges": {
@@ -2530,7 +2643,7 @@
           "workers"
         ],
         "summary": "Retrieves a collection of business title changes for a specific worker.",
-        "description": "Retrieves all business title change events.\n\n<b>Secured by:</b> Staffing Actions: Business Title\n\n<b>Scope:</b> Staffing",
+        "description": "Retrieves all business title change events.\n\n<b>Secured By Domain:</b> Staffing Actions: Business Title\n\n<b>Scope:</b> Staffing",
         "produces": [
           "application/json"
         ],
@@ -2569,15 +2682,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/businessTitleChangeDetail_f3169dd3470046378f404ac21e864ab4"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -2614,14 +2727,17 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "a865e2c38bd74c80a6f289390d3e619f"
+        "x-workday-operation-id": "a865e2c38bd74c80a6f289390d3e619f",
+        "x-workday-secured-by-domains": [
+          "Staffing Actions: Business Title"
+        ]
       },
       "post": {
         "tags": [
           "workers"
         ],
         "summary": "Creates a business title change instance with the specified data.",
-        "description": "Create a new business title change for the specified worker\n\n<b>Secured by:</b> Change Business Title\n\n<b>Scope:</b> Staffing",
+        "description": "Create a new business title change for the specified worker\n\n<b>Secured By Business Process Type:</b> Title Change\n\n<b>Scope:</b> Staffing",
         "produces": [
           "application/json"
         ],
@@ -2685,7 +2801,10 @@
           }
         },
         "x-workday-internal-try-enabled": "false",
-        "x-workday-operation-id": "c2ffb30053964fbfa7a46dcfa577adb1"
+        "x-workday-operation-id": "c2ffb30053964fbfa7a46dcfa577adb1",
+        "x-workday-secured-by-business-process-types": [
+          "Title Change"
+        ]
       }
     },
     "/workers/{ID}": {
@@ -2694,7 +2813,7 @@
           "workers"
         ],
         "summary": "Retrieves a worker instance.",
-        "description": "Retrieves a worker instance with the specific ID.\n\n<b>Secured by:</b> FLW Service, Self-Service: Current Staffing Information, Worker Data: Public Worker Reports\n\n<b>Scope:</b> Staffing",
+        "description": "Retrieves a worker instance with the specific ID.\n\n<b>Secured By Domain:</b> FLW Service, Self-Service: Current Staffing Information, Worker Data: Public Worker Reports\n\n<b>Scope:</b> Staffing",
         "produces": [
           "application/json"
         ],
@@ -2750,7 +2869,12 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "94a39e71541b468fa895955508287acd"
+        "x-workday-operation-id": "94a39e71541b468fa895955508287acd",
+        "x-workday-secured-by-domains": [
+          "FLW Service",
+          "Self-Service: Current Staffing Information",
+          "Worker Data: Public Worker Reports"
+        ]
       }
     },
     "/organizations/{ID}": {
@@ -2759,7 +2883,7 @@
           "organizations"
         ],
         "summary": "Retrieves an organization instance.",
-        "description": "\n\n<b>Secured by:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "description": "\n\n<b>Secured By Domain:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
         "produces": [
           "application/json"
         ],
@@ -2811,7 +2935,10 @@
           }
         },
         "x-workday-internal-try-enabled": "false",
-        "x-workday-operation-id": "a03132f19b91100011bb405bfeb70034"
+        "x-workday-operation-id": "a03132f19b91100011bb405bfeb70034",
+        "x-workday-secured-by-domains": [
+          "Reports: Organization"
+        ]
       }
     },
     "/customers/{ID}/activities": {
@@ -2820,7 +2947,7 @@
           "customers"
         ],
         "summary": "Retrieves a collection of activities for a specific customer.",
-        "description": "\n\n<b>Secured by:</b> Reports: Customer Accounts\n\n<b>Scope:</b> Customer Accounts",
+        "description": "\n\n<b>Secured By Domain:</b> Reports: Customer Accounts\n\n<b>Scope:</b> Customer Accounts",
         "produces": [
           "application/json"
         ],
@@ -2869,15 +2996,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/activity_bb1fcf6de05b100009ce64e02ac43c08"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -2914,7 +3041,10 @@
           }
         },
         "x-workday-internal-try-enabled": "false",
-        "x-workday-operation-id": "c29dedec19201000115c769e98610014"
+        "x-workday-operation-id": "c29dedec19201000115c769e98610014",
+        "x-workday-secured-by-domains": [
+          "Reports: Customer Accounts"
+        ]
       }
     },
     "/workers/{ID}/supervisoryOrganizationsManaged/{subresourceID}": {
@@ -2923,7 +3053,7 @@
           "workers"
         ],
         "summary": "Retrieves a supervisory organization managed by a specific worker.",
-        "description": "Retrieves a managed supervisory organization for a worker with the specified ID.\n\n<b>Secured by:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "description": "Retrieves a managed supervisory organization for a worker with the specified ID.\n\n<b>Secured By Domain:</b> Reports: Organization\n\n<b>Scope:</b> Organizations and Roles",
         "produces": [
           "application/json"
         ],
@@ -2986,7 +3116,10 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "b6044838fb1f100001fe0872896b0002"
+        "x-workday-operation-id": "b6044838fb1f100001fe0872896b0002",
+        "x-workday-secured-by-domains": [
+          "Reports: Organization"
+        ]
       }
     },
     "/workers/{ID}/timeOffEntries": {
@@ -2995,7 +3128,7 @@
           "workers"
         ],
         "summary": "Retrieves a collection of time off entries for a specific worker.",
-        "description": "\n\n<b>Secured by:</b> Self-Service: Time Off Balances, Worker Data: Time Off (Time Off Balances Manager View), Worker Data: Time Off (Time Off Balances)\n\n<b>Scope:</b> Time Off and Leave",
+        "description": "\n\n<b>Secured By Domain:</b> Self-Service: Time Off Balances, Worker Data: Time Off (Time Off Balances Manager View), Worker Data: Time Off (Time Off Balances)\n\n<b>Scope:</b> Time Off and Leave",
         "produces": [
           "application/json"
         ],
@@ -3034,15 +3167,15 @@
             "schema": {
               "type": "object",
               "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
                 "data": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/timeOffEntries_436f2afb755f100012528fa3260e000f"
                   }
-                },
-                "total": {
-                  "type": "integer",
-                  "format": "int64"
                 }
               }
             }
@@ -3079,7 +3212,12 @@
           }
         },
         "x-workday-internal-try-enabled": "false",
-        "x-workday-operation-id": "436f2afb755f1000125443cdc76e0017"
+        "x-workday-operation-id": "436f2afb755f1000125443cdc76e0017",
+        "x-workday-secured-by-domains": [
+          "Self-Service: Time Off Balances",
+          "Worker Data: Time Off (Time Off Balances Manager View)",
+          "Worker Data: Time Off (Time Off Balances)"
+        ]
       }
     },
     "/organizationTypes/{ID}": {
@@ -3088,7 +3226,7 @@
           "organizationTypes"
         ],
         "summary": "Retrieves an organization type instance.",
-        "description": "Retrieves an organization type with the specified ID.\n\n<b>Secured by:</b> Set Up: Organization\n\n<b>Scope:</b> Organizations and Roles",
+        "description": "Retrieves an organization type with the specified ID.\n\n<b>Secured By Domain:</b> Set Up: Organization\n\n<b>Scope:</b> Organizations and Roles",
         "produces": [
           "application/json"
         ],
@@ -3140,7 +3278,10 @@
           }
         },
         "x-workday-internal-try-enabled": "true",
-        "x-workday-operation-id": "e91ac1399cd410000486288a174f0ec9"
+        "x-workday-operation-id": "e91ac1399cd410000486288a174f0ec9",
+        "x-workday-secured-by-domains": [
+          "Set Up: Organization"
+        ]
       }
     }
   },
@@ -3316,19 +3457,19 @@
         {
           "type": "object",
           "properties": {
+            "dateOfBirth": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-07-04T07:00:00.000Z",
+              "description": "The birth date of the \\~worker\\~.",
+              "x-workday-type": "Date"
+            },
             "supervisoryOrganizationsManaged": {
               "type": "string",
               "format": "url",
               "description": "All \\~supervisory organizations\\~, excluding inherited organizations, in which the \\~worker\\~ has a leadership role.",
               "readOnly": true,
               "x-workday-type": "Multi-instance"
-            },
-            "dateOfBirth": {
-              "type": "string",
-              "format": "date",
-              "example": "2026-05-02T07:00:00.000Z",
-              "description": "The birth date of the \\~worker\\~.",
-              "x-workday-type": "Date"
             },
             "businessTitle": {
               "type": "string",
@@ -3447,108 +3588,28 @@
         }
       ]
     },
-    "subject_0cb6354752a84103b396a3d00b503568": {
+    "unitOfTime_581c389cce1410000feacb26b51c0003": {
       "allOf": [
         {
           "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
         },
         {}
       ],
-      "description": "The subject of this business process."
+      "description": "Identifies the unit of time for which time off and accruals are tracked for the Time Off plan."
     },
-    "initiator_f3b51f13346543ba83122960f6c8a9c2": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
-        },
-        {}
-      ],
-      "description": "The \\~worker\\~ that initiated the business process.  Does not return \\~workers\\~ who are hired in the future. Please do not use this field in a condition rule for the initiation step of a process, as it will not return results. This is because there is no initiator designated until the process has started. The Initiator field only gets a value after the event is initiated (after the process is submitted). Use the Current \\~Worker\\~ field instead"
-    },
-    "businessProcessSummary_5a3be01347ed4c30b2ab02b28d97b655": {
+    "timeOffPlans_581c389cce1410000feacaebd2e40002": {
       "allOf": [
         {
           "type": "object",
           "properties": {
-            "initiated": {
-              "type": "string",
-              "format": "date",
-              "example": "2026-05-02T07:00:00.000Z",
-              "description": "The date and time this business process was initiated.",
-              "x-workday-type": "Date"
-            },
-            "subject": {
-              "$ref": "#/definitions/subject_0cb6354752a84103b396a3d00b503568"
-            },
-            "initiator": {
-              "$ref": "#/definitions/initiator_f3b51f13346543ba83122960f6c8a9c2"
-            },
-            "due": {
-              "type": "string",
-              "format": "date",
-              "example": "2026-05-02T07:00:00.000Z",
-              "description": "The date the business process needs to be completed.",
-              "x-workday-type": "Date"
-            },
-            "effective": {
-              "type": "string",
-              "format": "date",
-              "example": "2026-05-02T07:00:00.000Z",
-              "description": "The date this business process takes effect.",
-              "x-workday-type": "Date"
-            },
-            "descriptor": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit ame",
-              "description": "The display name of the instance"
-            },
-            "href": {
-              "type": "string",
-              "description": "A link to the instance"
-            },
-            "id": {
-              "type": "string",
-              "description": "The id for Action Event"
-            }
-          }
-        }
-      ]
-    },
-    "status_056982a2aa04100005cc4858775a0026": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
-        },
-        {}
-      ],
-      "description": "Status"
-    },
-    "paySlipSummary_056982a2aa04100005cc479e6e5a0022": {
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "status": {
-              "$ref": "#/definitions/status_056982a2aa04100005cc4858775a0026"
-            },
-            "gross": {
+            "timeOffBalance": {
               "type": "number",
               "example": 100000000000,
-              "description": "Gross Pay for a Payslip",
+              "description": "Returns the time off balance including pending events for the \\~worker\\~ and time off plan.  This report field should be used within Calculated Fields.",
               "x-workday-type": "Numeric"
             },
-            "date": {
-              "type": "string",
-              "format": "date",
-              "example": "2026-05-02T07:00:00.000Z",
-              "description": "Payment Date",
-              "x-workday-type": "Date"
-            },
-            "net": {
-              "type": "number",
-              "example": 100000000000,
-              "description": "Net Pay for a Payslip",
-              "x-workday-type": "Numeric"
+            "unitOfTime": {
+              "$ref": "#/definitions/unitOfTime_581c389cce1410000feacb26b51c0003"
             },
             "descriptor": {
               "type": "string",
@@ -3561,35 +3622,7 @@
             },
             "id": {
               "type": "string",
-              "description": "The id for Payroll Result"
-            }
-          }
-        }
-      ]
-    },
-    "businessTitleChangeInput_0123d0c7e84e4263a53f5d74968690af": {
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "proposedBusinessTitle": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
-              "description": "The new business title for the \\~worker\\~ as of the effective date.  If there is no business title override, this field defaults to the job title or job profile name.",
-              "x-workday-type": "Text"
-            },
-            "descriptor": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit ame",
-              "description": "The display name of the instance"
-            },
-            "href": {
-              "type": "string",
-              "description": "A link to the instance"
-            },
-            "id": {
-              "type": "string",
-              "description": "Workday Id or Reference Id of the instance."
+              "description": "The id for Absence Plan (All)"
             }
           }
         }
@@ -3636,14 +3669,14 @@
             "due": {
               "type": "string",
               "format": "date",
-              "example": "2026-05-02T07:00:00.000Z",
+              "example": "2026-07-04T07:00:00.000Z",
               "description": "The date the business process needs to be completed.",
               "x-workday-type": "Date"
             },
             "effective": {
               "type": "string",
               "format": "date",
-              "example": "2026-05-02T07:00:00.000Z",
+              "example": "2026-07-04T07:00:00.000Z",
               "description": "The date this business process takes effect.",
               "x-workday-type": "Date"
             },
@@ -3653,7 +3686,7 @@
             "initiated": {
               "type": "string",
               "format": "date",
-              "example": "2026-05-02T07:00:00.000Z",
+              "example": "2026-07-04T07:00:00.000Z",
               "description": "The date and time this business process was initiated.",
               "x-workday-type": "Date"
             },
@@ -3669,6 +3702,34 @@
             "id": {
               "type": "string",
               "description": "The id for Business Title Change Event"
+            }
+          }
+        }
+      ]
+    },
+    "businessTitleChangeInput_0123d0c7e84e4263a53f5d74968690af": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "proposedBusinessTitle": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The new business title for the \\~worker\\~ as of the effective date.  If there is no business title override, this field defaults to the job title or job profile name.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
             }
           }
         }
@@ -3730,7 +3791,7 @@
             "date": {
               "type": "string",
               "format": "date",
-              "example": "2026-05-02T07:00:00.000Z",
+              "example": "2026-07-04T07:00:00.000Z",
               "description": "The date requested to be taken for a paid time off request line item.",
               "x-workday-type": "Date"
             },
@@ -3752,142 +3813,6 @@
             "id": {
               "type": "string",
               "description": "Workday Id or Reference Id of the instance."
-            }
-          }
-        }
-      ]
-    },
-    "initiator_7f6d98c3e99344df800de3b5defa4549": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
-        },
-        {}
-      ],
-      "description": "The person that initiated the event for this event record."
-    },
-    "status_e00f98895a7b48e7a681a308f8b8ad71": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
-        },
-        {}
-      ],
-      "description": "The status of this business process step."
-    },
-    "stepType_e351106ef7c14ce19def3e2a50eeb806": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
-        },
-        {}
-      ],
-      "description": "Returns the type of step being performed by the event record."
-    },
-    "subject_9d3d194b5fe340cba946593757de5d10": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
-        },
-        {}
-      ],
-      "description": "Returns the subject of the business process this event record is part of."
-    },
-    "overallProcess_f06a97ddf4794a5c8ff063bd51bfc2e4": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
-        },
-        {}
-      ],
-      "description": "Returns the overall process for this event record. The overall process is the outermost process in a business process."
-    },
-    "inboxTaskSummary_1bbb07a8ab4349dd934ca72301974204": {
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "assigned": {
-              "type": "string",
-              "format": "date",
-              "example": "2026-05-02T07:00:00.000Z",
-              "description": "Returns the date when the event record was last updated on.",
-              "x-workday-type": "Date"
-            },
-            "due": {
-              "type": "string",
-              "format": "date",
-              "example": "2026-05-02T07:00:00.000Z",
-              "description": "Returns the due date for this step.",
-              "x-workday-type": "Date"
-            },
-            "initiator": {
-              "$ref": "#/definitions/initiator_7f6d98c3e99344df800de3b5defa4549"
-            },
-            "status": {
-              "$ref": "#/definitions/status_e00f98895a7b48e7a681a308f8b8ad71"
-            },
-            "stepType": {
-              "$ref": "#/definitions/stepType_e351106ef7c14ce19def3e2a50eeb806"
-            },
-            "subject": {
-              "$ref": "#/definitions/subject_9d3d194b5fe340cba946593757de5d10"
-            },
-            "overallProcess": {
-              "$ref": "#/definitions/overallProcess_f06a97ddf4794a5c8ff063bd51bfc2e4"
-            },
-            "descriptor": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit ame",
-              "description": "The display name of the instance"
-            },
-            "href": {
-              "type": "string",
-              "description": "A link to the instance"
-            },
-            "id": {
-              "type": "string",
-              "description": "The id for Event Record"
-            }
-          }
-        }
-      ]
-    },
-    "unitOfTime_581c389cce1410000feacb26b51c0003": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
-        },
-        {}
-      ],
-      "description": "Identifies the unit of time for which time off and accruals are tracked for the Time Off plan."
-    },
-    "timeOffPlans_581c389cce1410000feacaebd2e40002": {
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "timeOffBalance": {
-              "type": "number",
-              "example": 100000000000,
-              "description": "Returns the time off balance including pending events for the \\~worker\\~ and time off plan.  This report field should be used within Calculated Fields.",
-              "x-workday-type": "Numeric"
-            },
-            "unitOfTime": {
-              "$ref": "#/definitions/unitOfTime_581c389cce1410000feacb26b51c0003"
-            },
-            "descriptor": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit ame",
-              "description": "The display name of the instance"
-            },
-            "href": {
-              "type": "string",
-              "description": "A link to the instance"
-            },
-            "id": {
-              "type": "string",
-              "description": "The id for Absence Plan (All)"
             }
           }
         }
@@ -3941,6 +3866,93 @@
             "id": {
               "type": "string",
               "description": "The id for Supervisory Organization"
+            }
+          }
+        }
+      ]
+    },
+    "organizationType_7f3b2f7a5a8910001a137fb9ae22001f": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Organization Type"
+    },
+    "workerOrganizationSummary_b09201ecbe6f10000c600196a3f70012": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "organizationType": {
+              "$ref": "#/definitions/organizationType_7f3b2f7a5a8910001a137fb9ae22001f"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Position Set"
+            }
+          }
+        }
+      ]
+    },
+    "status_056982a2aa04100005cc4858775a0026": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Status"
+    },
+    "paySlipSummary_056982a2aa04100005cc479e6e5a0022": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "$ref": "#/definitions/status_056982a2aa04100005cc4858775a0026"
+            },
+            "gross": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "Gross Pay for a Payslip",
+              "x-workday-type": "Numeric"
+            },
+            "date": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-07-04T07:00:00.000Z",
+              "description": "Payment Date",
+              "x-workday-type": "Date"
+            },
+            "net": {
+              "type": "number",
+              "example": 100000000000,
+              "description": "Net Pay for a Payslip",
+              "x-workday-type": "Numeric"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Payroll Result"
             }
           }
         }
@@ -4004,7 +4016,7 @@
             "effective": {
               "type": "string",
               "format": "date",
-              "example": "2026-05-02T07:00:00.000Z",
+              "example": "2026-07-04T07:00:00.000Z",
               "description": "The date this business process takes effect.",
               "x-workday-type": "Date"
             },
@@ -4028,22 +4040,84 @@
         }
       ]
     },
-    "organizationType_7f3b2f7a5a8910001a137fb9ae22001f": {
+    "initiator_7f6d98c3e99344df800de3b5defa4549": {
       "allOf": [
         {
           "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
         },
         {}
       ],
-      "description": "Organization Type"
+      "description": "The person that initiated the event for this event record."
     },
-    "workerOrganizationSummary_b09201ecbe6f10000c600196a3f70012": {
+    "status_e00f98895a7b48e7a681a308f8b8ad71": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The status of this business process step."
+    },
+    "stepType_e351106ef7c14ce19def3e2a50eeb806": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the type of step being performed by the event record."
+    },
+    "subject_9d3d194b5fe340cba946593757de5d10": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the subject of the business process this event record is part of."
+    },
+    "overallProcess_f06a97ddf4794a5c8ff063bd51bfc2e4": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "Returns the overall process for this event record. The overall process is the outermost process in a business process."
+    },
+    "inboxTaskSummary_1bbb07a8ab4349dd934ca72301974204": {
       "allOf": [
         {
           "type": "object",
           "properties": {
-            "organizationType": {
-              "$ref": "#/definitions/organizationType_7f3b2f7a5a8910001a137fb9ae22001f"
+            "assigned": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-07-04T07:00:00.000Z",
+              "description": "Returns the date when the event record was last updated on.",
+              "x-workday-type": "Date"
+            },
+            "due": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-07-04T07:00:00.000Z",
+              "description": "Returns the due date for this step.",
+              "x-workday-type": "Date"
+            },
+            "initiator": {
+              "$ref": "#/definitions/initiator_7f6d98c3e99344df800de3b5defa4549"
+            },
+            "status": {
+              "$ref": "#/definitions/status_e00f98895a7b48e7a681a308f8b8ad71"
+            },
+            "stepType": {
+              "$ref": "#/definitions/stepType_e351106ef7c14ce19def3e2a50eeb806"
+            },
+            "subject": {
+              "$ref": "#/definitions/subject_9d3d194b5fe340cba946593757de5d10"
+            },
+            "overallProcess": {
+              "$ref": "#/definitions/overallProcess_f06a97ddf4794a5c8ff063bd51bfc2e4"
             },
             "descriptor": {
               "type": "string",
@@ -4056,7 +4130,192 @@
             },
             "id": {
               "type": "string",
-              "description": "The id for Position Set"
+              "description": "The id for Event Record"
+            }
+          }
+        }
+      ]
+    },
+    "subject_0cb6354752a84103b396a3d00b503568": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The subject of this business process."
+    },
+    "initiator_f3b51f13346543ba83122960f6c8a9c2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "The \\~worker\\~ that initiated the business process.  Does not return \\~workers\\~ who are hired in the future. Please do not use this field in a condition rule for the initiation step of a process, as it will not return results. This is because there is no initiator designated until the process has started. The Initiator field only gets a value after the event is initiated (after the process is submitted). Use the Current \\~Worker\\~ field instead"
+    },
+    "businessProcessSummary_5a3be01347ed4c30b2ab02b28d97b655": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "initiated": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-07-04T07:00:00.000Z",
+              "description": "The date and time this business process was initiated.",
+              "x-workday-type": "Date"
+            },
+            "subject": {
+              "$ref": "#/definitions/subject_0cb6354752a84103b396a3d00b503568"
+            },
+            "initiator": {
+              "$ref": "#/definitions/initiator_f3b51f13346543ba83122960f6c8a9c2"
+            },
+            "due": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-07-04T07:00:00.000Z",
+              "description": "The date the business process needs to be completed.",
+              "x-workday-type": "Date"
+            },
+            "effective": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-07-04T07:00:00.000Z",
+              "description": "The date this business process takes effect.",
+              "x-workday-type": "Date"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for Action Event"
+            }
+          }
+        }
+      ]
+    },
+    "currencySummary_7ceb0e9ce857100019c6099ce1ad00fa": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "Currency ID - 3 character currency code identified by ISO 4217",
+              "x-workday-type": "Text"
+            },
+            "precision": {
+              "type": "integer",
+              "example": "9",
+              "description": "Decimal precision for currency amounts",
+              "x-workday-type": "Numeric"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "organizationTypeSummary_e91ac1399cd410000481d84f988f0ec7": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "organizationSummary_a03132f19b911000119b05cfd7cf0032": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "jobChangeReasonSummary_69b1f5fbb40c4cd6b9c55b226ca2424c": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "isForContingentWorker": {
+              "type": "boolean",
+              "example": true,
+              "description": "Identifies whether the reason is allowed to be entered for \\~contingent workers\\~.",
+              "x-workday-type": "Boolean"
+            },
+            "managerReason": {
+              "type": "boolean",
+              "example": true,
+              "description": "Identifies whether the reason is allowed to be entered by \\~managers\\~.",
+              "x-workday-type": "Boolean"
+            },
+            "isForEmployee": {
+              "type": "boolean",
+              "example": true,
+              "description": "Identifies whether the reason is allowed to be entered for \\~employees\\~.",
+              "x-workday-type": "Boolean"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
             }
           }
         }
@@ -4331,124 +4590,6 @@
         }
       ]
     },
-    "organizationTypeSummary_e91ac1399cd410000481d84f988f0ec7": {
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "descriptor": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit ame",
-              "description": "The display name of the instance"
-            },
-            "href": {
-              "type": "string",
-              "description": "A link to the instance"
-            },
-            "id": {
-              "type": "string",
-              "description": "Workday Id or Reference Id of the instance."
-            }
-          }
-        }
-      ]
-    },
-    "organizationSummary_a03132f19b911000119b05cfd7cf0032": {
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "descriptor": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit ame",
-              "description": "The display name of the instance"
-            },
-            "href": {
-              "type": "string",
-              "description": "A link to the instance"
-            },
-            "id": {
-              "type": "string",
-              "description": "Workday Id or Reference Id of the instance."
-            }
-          }
-        }
-      ]
-    },
-    "jobChangeReasonSummary_69b1f5fbb40c4cd6b9c55b226ca2424c": {
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "isForContingentWorker": {
-              "type": "boolean",
-              "example": true,
-              "description": "Identifies whether the reason is allowed to be entered for \\~contingent workers\\~.",
-              "x-workday-type": "Boolean"
-            },
-            "managerReason": {
-              "type": "boolean",
-              "example": true,
-              "description": "Identifies whether the reason is allowed to be entered by \\~managers\\~.",
-              "x-workday-type": "Boolean"
-            },
-            "isForEmployee": {
-              "type": "boolean",
-              "example": true,
-              "description": "Identifies whether the reason is allowed to be entered for \\~employees\\~.",
-              "x-workday-type": "Boolean"
-            },
-            "descriptor": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit ame",
-              "description": "The display name of the instance"
-            },
-            "href": {
-              "type": "string",
-              "description": "A link to the instance"
-            },
-            "id": {
-              "type": "string",
-              "description": "Workday Id or Reference Id of the instance."
-            }
-          }
-        }
-      ]
-    },
-    "currencySummary_7ceb0e9ce857100019c6099ce1ad00fa": {
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "code": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
-              "description": "Currency ID - 3 character currency code identified by ISO 4217",
-              "x-workday-type": "Text"
-            },
-            "precision": {
-              "type": "integer",
-              "example": "9",
-              "description": "Decimal precision for currency amounts",
-              "x-workday-type": "Numeric"
-            },
-            "descriptor": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit ame",
-              "description": "The display name of the instance"
-            },
-            "href": {
-              "type": "string",
-              "description": "A link to the instance"
-            },
-            "id": {
-              "type": "string",
-              "description": "Workday Id or Reference Id of the instance."
-            }
-          }
-        }
-      ]
-    },
     "customer_b7ecfe5ec60c10000aa161405fa5002c": {
       "allOf": [
         {
@@ -4487,16 +4628,16 @@
         {
           "type": "object",
           "properties": {
-            "transactionStatus": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
-              "description": "The current status of the transaction. Applicable for all transaction types. This is for internal use only on a REST API.",
-              "x-workday-type": "Text"
-            },
             "transactionNumber": {
               "type": "string",
               "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
               "description": "The transaction number for the reporting transaction. This is for internal use only on a REST API.",
+              "x-workday-type": "Text"
+            },
+            "transactionStatus": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The current status of the transaction. Applicable for all transaction types. This is for internal use only on a REST API.",
               "x-workday-type": "Text"
             },
             "transactionType": {
@@ -4521,7 +4662,7 @@
             "invoiceDueDate": {
               "type": "string",
               "format": "date",
-              "example": "2026-05-02T07:00:00.000Z",
+              "example": "2026-07-04T07:00:00.000Z",
               "description": "The due date of the customer invoice or invoice adjustment as of the defined reporting date.",
               "x-workday-type": "Date"
             },
@@ -4537,7 +4678,7 @@
             "transactionDate": {
               "type": "string",
               "format": "date",
-              "example": "2026-05-02T07:00:00.000Z",
+              "example": "2026-07-04T07:00:00.000Z",
               "description": "The date of the customer transaction. This field is for internal use only on a REST API.",
               "x-workday-type": "Date"
             },
@@ -4546,6 +4687,78 @@
               "example": "99999999999.999999",
               "description": "The positive or negative sign of the transaction amount for this customer transaction. This is for internal use only on a REST API.",
               "x-workday-type": "Currency"
+            }
+          }
+        }
+      ]
+    },
+    "restrictionInput_4b3cd975feb010000567e14324830071": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "timeOffEntryStatus_436f2afb755f1000125176952ea6000c": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The current status of the business process.  For example: Successfully Completed, Denied, Terminated.",
+              "x-workday-type": "Text"
+            },
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "The id for \\~Time Off\\~ Event"
+            }
+          }
+        }
+      ]
+    },
+    "worktagValidationTypeInput_7ccdf8f26ee910000b6a70bc5fd600c2": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
             }
           }
         }
@@ -4580,6 +4793,100 @@
             "id": {
               "type": "string",
               "description": "The id for Time Off"
+            }
+          }
+        }
+      ]
+    },
+    "worktagWithAllowedValues_f08fabab3cae10000bd8f5a584f100c1": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+        },
+        {}
+      ],
+      "description": "For REST API responses only. Worktags that are configured with allowed values."
+    },
+    "invalidWorktagValues_f08fabab3cae10000bed7987306400c3": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/worktagInput_aa8aaaaeca39100034443e493aef03ce"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The id for Worktag Representation (Derived)"
+            }
+          }
+        }
+      ]
+    },
+    "worktagsComboInput_f08fabab3cae10000b041ae3234b009d": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "worktagWithAllowedValues": {
+              "$ref": "#/definitions/worktagWithAllowedValues_f08fabab3cae10000bd8f5a584f100c1"
+            },
+            "invalidWorktagValues": {
+              "type": "array",
+              "description": "For REST API responses only. Worktags from the REST request that are invalid for the worktag with allowed values.",
+              "items": {
+                "$ref": "#/definitions/invalidWorktagValues_f08fabab3cae10000bed7987306400c3"
+              },
+              "x-workday-type": "Multi-instance"
+            }
+          }
+        }
+      ]
+    },
+    "worktagInput_aa8aaaaeca39100034443e493aef03ce": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "descriptor": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit ame",
+              "description": "The display name of the instance"
+            },
+            "href": {
+              "type": "string",
+              "description": "A link to the instance"
+            },
+            "id": {
+              "type": "string",
+              "description": "Workday Id or Reference Id of the instance."
+            }
+          }
+        }
+      ]
+    },
+    "opportunityDisplay_c29dedec19201000119fd1d13ca40019": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The non-unique name of the Opportunity. This is for internal use only.",
+              "x-workday-type": "Text"
+            },
+            "opportunityReferenceID": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The Reference ID to use for lookups within our Workday Web Services. For \\~supervisory organizations\\~, this is also the 'Organization ID'",
+              "x-workday-type": "Text"
+            },
+            "id": {
+              "type": "string",
+              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+              "description": "The id for Opportunity",
+              "maxLength": 36,
+              "x-workday-type": "Text"
             }
           }
         }
@@ -4629,79 +4936,7 @@
         }
       ]
     },
-    "worktagInput_aa8aaaaeca39100034443e493aef03ce": {
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "descriptor": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit ame",
-              "description": "The display name of the instance"
-            },
-            "href": {
-              "type": "string",
-              "description": "A link to the instance"
-            },
-            "id": {
-              "type": "string",
-              "description": "Workday Id or Reference Id of the instance."
-            }
-          }
-        }
-      ]
-    },
-    "timeOffEntryStatus_436f2afb755f1000125176952ea6000c": {
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "status": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
-              "description": "The current status of the business process.  For example: Successfully Completed, Denied, Terminated.",
-              "x-workday-type": "Text"
-            },
-            "descriptor": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit ame",
-              "description": "The display name of the instance"
-            },
-            "href": {
-              "type": "string",
-              "description": "A link to the instance"
-            },
-            "id": {
-              "type": "string",
-              "description": "Workday Id or Reference Id of the instance."
-            }
-          }
-        }
-      ]
-    },
-    "restrictionInput_4b3cd975feb010000567e14324830071": {
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "descriptor": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit ame",
-              "description": "The display name of the instance"
-            },
-            "href": {
-              "type": "string",
-              "description": "A link to the instance"
-            },
-            "id": {
-              "type": "string",
-              "description": "Workday Id or Reference Id of the instance."
-            }
-          }
-        }
-      ]
-    },
-    "worktagTypeInput_3f71b007c34610000e0bb926bf370056": {
+    "proposedStaffsInput_caa87cab145210000473a5695c1c0011": {
       "allOf": [
         {
           "type": "object",
@@ -4767,101 +5002,7 @@
         }
       ]
     },
-    "worktagValidationTypeInput_7ccdf8f26ee910000b6a70bc5fd600c2": {
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "descriptor": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit ame",
-              "description": "The display name of the instance"
-            },
-            "href": {
-              "type": "string",
-              "description": "A link to the instance"
-            },
-            "id": {
-              "type": "string",
-              "description": "Workday Id or Reference Id of the instance."
-            }
-          }
-        }
-      ]
-    },
-    "worktagWithAllowedValues_f08fabab3cae10000bd8f5a584f100c1": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
-        },
-        {}
-      ],
-      "description": "For REST API responses only. Worktags that are configured with allowed values."
-    },
-    "invalidWorktagValues_f08fabab3cae10000bed7987306400c3": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/worktagInput_aa8aaaaeca39100034443e493aef03ce"
-        },
-        {
-          "properties": {
-            "id": {
-              "type": "string",
-              "description": "The id for Worktag Representation (Derived)"
-            }
-          }
-        }
-      ]
-    },
-    "worktagsComboInput_f08fabab3cae10000b041ae3234b009d": {
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "worktagWithAllowedValues": {
-              "$ref": "#/definitions/worktagWithAllowedValues_f08fabab3cae10000bd8f5a584f100c1"
-            },
-            "invalidWorktagValues": {
-              "type": "array",
-              "description": "For REST API responses only. Worktags from the REST request that are invalid for the worktag with allowed values.",
-              "items": {
-                "$ref": "#/definitions/invalidWorktagValues_f08fabab3cae10000bed7987306400c3"
-              },
-              "x-workday-type": "Multi-instance"
-            }
-          }
-        }
-      ]
-    },
-    "opportunityDisplay_c29dedec19201000119fd1d13ca40019": {
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
-              "description": "The non-unique name of the Opportunity. This is for internal use only.",
-              "x-workday-type": "Text"
-            },
-            "opportunityReferenceID": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
-              "description": "The Reference ID to use for lookups within our Workday Web Services. For \\~supervisory organizations\\~, this is also the 'Organization ID'",
-              "x-workday-type": "Text"
-            },
-            "id": {
-              "type": "string",
-              "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
-              "description": "Returns the Workday ID for a given object.",
-              "maxLength": 36,
-              "x-workday-type": "Text"
-            }
-          }
-        }
-      ]
-    },
-    "proposedStaffsInput_caa87cab145210000473a5695c1c0011": {
+    "worktagTypeInput_3f71b007c34610000e0bb926bf370056": {
       "allOf": [
         {
           "type": "object",

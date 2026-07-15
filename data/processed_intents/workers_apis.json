@@ -1,9 +1,9 @@
 [
     {
-        "id": "581c389cce1410000ff399298ba10006",
+        "id": "05bf6d92da3b1d11af1b4d0ffd6f38e5",
         "api_name": "retrieves_a_particular_time_off_plan_for_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/timeOffPlans/{subresourceID}",
+        "full_path": "/api/common/v1/workers/{ID}/timeOffPlans/{subresourceID}",
         "parameters": [
             {
                 "name": "ID",
@@ -27,10 +27,10 @@
         ]
     },
     {
-        "id": "a865e2c38bd74c80a6f289390d3e619f",
+        "id": "46377ef96876069dea175f12c29550bc",
         "api_name": "retrieves_a_business_title_change_instance_for_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/businessTitleChanges/{subresourceID}",
+        "full_path": "/api/common/v1/workers/{ID}/businessTitleChanges/{subresourceID}",
         "parameters": [
             {
                 "name": "ID",
@@ -54,10 +54,10 @@
         ]
     },
     {
-        "id": "9c0a3c288a2c1000017eb88849a30002",
+        "id": "0f7aaf3293a65ec25c88a57774651154",
         "api_name": "",
         "method": "POST",
-        "full_path": "/workers/{ID}/businessTitleChanges?type=me",
+        "full_path": "/api/common/v1/workers/{ID}/businessTitleChanges?type=me",
         "parameters": [
             {
                 "name": "ID",
@@ -76,10 +76,10 @@
         "intent_triggers": []
     },
     {
-        "id": "d02ccd56f7894dabb8e0dd66e42e94b9",
+        "id": "d358db75dc018c9eb5959fff1327f6c5",
         "api_name": "retrieves_a_collection_of_inbox_tasks_for_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/inboxTasks",
+        "full_path": "/api/common/v1/workers/{ID}/inboxTasks",
         "parameters": [
             {
                 "name": "ID",
@@ -109,10 +109,10 @@
         ]
     },
     {
-        "id": "b09201ecbe6f10000c612f777e670015",
+        "id": "e17b83195ff2f5e34eae8ae74595e2ca",
         "api_name": "retrieves_an_organization_instance_for_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/organizations/{subresourceID}",
+        "full_path": "/api/common/v1/workers/{ID}/organizations/{subresourceID}",
         "parameters": [
             {
                 "name": "ID",
@@ -136,10 +136,10 @@
         ]
     },
     {
-        "id": "0d02120b4f9f4494adf71d47d6621668",
+        "id": "e0c53426b151dcce3ef01271d0fa64b2",
         "api_name": "retrieves_a_collection_of_history_items_for_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/history",
+        "full_path": "/api/common/v1/workers/{ID}/history",
         "parameters": [
             {
                 "name": "ID",
@@ -169,10 +169,10 @@
         ]
     },
     {
-        "id": "94a39e71541b468fa895955508287acd",
+        "id": "3a1323660b4d77e8b0b9c124c17518d1",
         "api_name": "retrieves_a_collection_of_workers",
         "method": "GET",
-        "full_path": "/workers",
+        "full_path": "/api/common/v1/workers",
         "parameters": [
             {
                 "name": "includeTerminatedWorkers",
@@ -204,14 +204,20 @@
             "Retrieves a collection of workers",
             "How do I retrieves a collection of workers?",
             "I need to retrieves a collection of workers",
-            "Can you retrieves a collection of workers?"
+            "Can you retrieves a collection of workers?",
+            "list all employees",
+            "get all workers",
+            "search for workers",
+            "show me all workers",
+            "find workers",
+            "list of workers"
         ]
     },
     {
-        "id": "0d02120b4f9f4494adf71d47d6621668",
+        "id": "2da8858cdd2028eeff423eb1d0e57453",
         "api_name": "retrieves_a_history_instance_for_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/history/{subresourceID}",
+        "full_path": "/api/common/v1/workers/{ID}/history/{subresourceID}",
         "parameters": [
             {
                 "name": "ID",
@@ -235,10 +241,10 @@
         ]
     },
     {
-        "id": "b09201ecbe6f10000c612f777e670015",
+        "id": "38b344c632de2248ee932631c9ae6209",
         "api_name": "retrieves_a_collection_of_organizations_for_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/organizations",
+        "full_path": "/api/common/v1/workers/{ID}/organizations",
         "parameters": [
             {
                 "name": "ID",
@@ -268,10 +274,10 @@
         ]
     },
     {
-        "id": "b6044838fb1f100001fe0872896b0002",
+        "id": "d323773d0afd1f44c966b46c41ef1bb5",
         "api_name": "retrieves_a_collection_of_supervisory_organizations_managed_by_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/supervisoryOrganizationsManaged",
+        "full_path": "/api/common/v1/workers/{ID}/supervisoryOrganizationsManaged",
         "parameters": [
             {
                 "name": "ID",
@@ -301,10 +307,10 @@
         ]
     },
     {
-        "id": "436f2afb755f1000125443cdc76e0017",
+        "id": "241f7bad58dbac7e6a6d90fa1710725f",
         "api_name": "retrieves_a_time_off_entry_for_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/timeOffEntries/{subresourceID}",
+        "full_path": "/api/common/v1/workers/{ID}/timeOffEntries/{subresourceID}",
         "parameters": [
             {
                 "name": "ID",
@@ -328,10 +334,10 @@
         ]
     },
     {
-        "id": "b4f1492ac4c741378c8d71305f9553f5",
+        "id": "eda78d1a56b43ece82071f2bc08bc5d8",
         "api_name": "creates_a_job_change_instance_with_the_specified_data",
         "method": "POST",
-        "full_path": "/workers/{ID}/jobChanges",
+        "full_path": "/api/common/v1/workers/{ID}/jobChanges",
         "parameters": [
             {
                 "name": "ID",
@@ -355,10 +361,10 @@
         ]
     },
     {
-        "id": "056982a2aa04100005cd56c3da4a0028",
+        "id": "5ba4ce462a246f739834cccca69030a6",
         "api_name": "retrieves_a_collection_of_pay_slips_for_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/paySlips",
+        "full_path": "/api/common/v1/workers/{ID}/paySlips",
         "parameters": [
             {
                 "name": "ID",
@@ -388,10 +394,10 @@
         ]
     },
     {
-        "id": "3dad5f33d6974b2691f53037644f40be",
+        "id": "ee2008a405d7912a8750db822eb61802",
         "api_name": "retrieves_a_collection_of_direct_reports_for_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/directReports",
+        "full_path": "/api/common/v1/workers/{ID}/directReports",
         "parameters": [
             {
                 "name": "ID",
@@ -421,10 +427,10 @@
         ]
     },
     {
-        "id": "056982a2aa04100005cd56c3da4a0028",
+        "id": "1275072dc2ad5c080056aeb1b37788f5",
         "api_name": "retrieves_a_pay_slip_instance_for_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/paySlips/{subresourceID}",
+        "full_path": "/api/common/v1/workers/{ID}/paySlips/{subresourceID}",
         "parameters": [
             {
                 "name": "ID",
@@ -448,10 +454,10 @@
         ]
     },
     {
-        "id": "d02ccd56f7894dabb8e0dd66e42e94b9",
+        "id": "4966cbdafb764fb20a75eba6337c78cf",
         "api_name": "retrieves_an_inbox_task_instance_for_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/inboxTasks/{subresourceID}",
+        "full_path": "/api/common/v1/workers/{ID}/inboxTasks/{subresourceID}",
         "parameters": [
             {
                 "name": "ID",
@@ -475,10 +481,10 @@
         ]
     },
     {
-        "id": "3dad5f33d6974b2691f53037644f40be",
+        "id": "99d218a712c15ed8d7fc5c452ccd0e56",
         "api_name": "retrieves_a_direct_report_instance_for_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/directReports/{subresourceID}",
+        "full_path": "/api/common/v1/workers/{ID}/directReports/{subresourceID}",
         "parameters": [
             {
                 "name": "ID",
@@ -502,10 +508,10 @@
         ]
     },
     {
-        "id": "581c389cce1410000ff399298ba10006",
+        "id": "31a935ac6f66cc81672d511cad6ad840",
         "api_name": "retrieves_a_collection_of_time_off_plans_for_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/timeOffPlans",
+        "full_path": "/api/common/v1/workers/{ID}/timeOffPlans",
         "parameters": [
             {
                 "name": "ID",
@@ -535,10 +541,10 @@
         ]
     },
     {
-        "id": "a865e2c38bd74c80a6f289390d3e619f",
+        "id": "0ab2b492b30b6aaa55110c83927cc322",
         "api_name": "retrieves_a_collection_of_business_title_changes_for_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/businessTitleChanges",
+        "full_path": "/api/common/v1/workers/{ID}/businessTitleChanges",
         "parameters": [
             {
                 "name": "ID",
@@ -568,10 +574,10 @@
         ]
     },
     {
-        "id": "c2ffb30053964fbfa7a46dcfa577adb1",
+        "id": "9a71fef82100185a4309bd0e2d5af7de",
         "api_name": "creates_a_business_title_change_instance_with_the_specified_data",
         "method": "POST",
-        "full_path": "/workers/{ID}/businessTitleChanges",
+        "full_path": "/api/common/v1/workers/{ID}/businessTitleChanges",
         "parameters": [
             {
                 "name": "ID",
@@ -595,10 +601,10 @@
         ]
     },
     {
-        "id": "94a39e71541b468fa895955508287acd",
+        "id": "d261d93b7b78ef4195bb27be39cb95be",
         "api_name": "retrieves_a_worker_instance",
         "method": "GET",
-        "full_path": "/workers/{ID}",
+        "full_path": "/api/common/v1/workers/{ID}",
         "parameters": [
             {
                 "name": "ID",
@@ -612,14 +618,24 @@
             "Retrieves a worker instance",
             "How do I retrieves a worker instance?",
             "I need to retrieves a worker instance",
-            "Can you retrieves a worker instance?"
+            "Can you retrieves a worker instance?",
+            "what is my name",
+            "who am I",
+            "show my profile",
+            "get worker profile",
+            "retrieve my worker details",
+            "who is employee",
+            "get employee profile",
+            "information about me",
+            "my user details",
+            "show my employee details"
         ]
     },
     {
-        "id": "b6044838fb1f100001fe0872896b0002",
+        "id": "a797cda64ba15589b70fcfef880db04c",
         "api_name": "retrieves_a_supervisory_organization_managed_by_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/supervisoryOrganizationsManaged/{subresourceID}",
+        "full_path": "/api/common/v1/workers/{ID}/supervisoryOrganizationsManaged/{subresourceID}",
         "parameters": [
             {
                 "name": "ID",
@@ -643,10 +659,10 @@
         ]
     },
     {
-        "id": "436f2afb755f1000125443cdc76e0017",
+        "id": "c61fbba3551d12b636c6e5401feb438b",
         "api_name": "retrieves_a_collection_of_time_off_entries_for_a_specific_worker",
         "method": "GET",
-        "full_path": "/workers/{ID}/timeOffEntries",
+        "full_path": "/api/common/v1/workers/{ID}/timeOffEntries",
         "parameters": [
             {
                 "name": "ID",

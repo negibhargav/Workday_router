@@ -17,7 +17,8 @@ import os
 import sys
 from dotenv import load_dotenv
 
-load_dotenv()
+_sup_root = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+load_dotenv(os.path.join(_sup_root, ".env"))
 
 from src.brain.planner import Planner
 from src.brain.executor import Executor

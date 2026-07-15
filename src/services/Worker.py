@@ -36,14 +36,49 @@ from zeep.wsse.username import UsernameToken
 from zeep.transports import Transport
 import requests
 
-load_dotenv()
+_worker_root = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+load_dotenv(os.path.join(_worker_root, ".env"))
 
 # ---------------------------------------------------------------------------
 # 1. CONFIG — reads from .env; falls back to placeholder strings
 # ---------------------------------------------------------------------------
-WSDL_URL     = os.getenv("WORKDAY_WSDL_URL",     "https://wd5-services1.myworkday.com/ccx/service/acme/Staffing/v43.0?wsdl")
-ISU_USERNAME = os.getenv("WORKDAY_ISU_USERNAME",  "integration_user1@acme")
-ISU_PASSWORD = os.getenv("WORKDAY_ISU_PASSWORD",  "your_password_here")
+raw_wsdl_url = os.getenv("WORKDAY_WSDL_URL")
+base_url = os.getenv("WORKDAY_BASE_URL")
+
+if not raw_wsdl_url or "/acme/" in raw_wsdl_url:
+    if base_url:
+        from urllib.parse import urlparse
+        parsed = urlparse(base_url)
+        host = parsed.netloc
+        path_parts = [p for p in parsed.path.split("/") if p]
+        if path_parts:
+            tenant = path_parts[-1]
+            WSDL_URL = f"https://{host}/ccx/service/{tenant}/Staffing/v43.0?wsdl"
+            print(f"[WorkerSOAPService] Dynamically resolved WSDL_URL: {WSDL_URL}", file=sys.stderr)
+        else:
+            WSDL_URL = "https://wcpdev-services1.wd101.myworkday.com/ccx/service/jll_wcpdev1/Staffing/v43.0?wsdl"
+    else:
+        WSDL_URL = "https://wcpdev-services1.wd101.myworkday.com/ccx/service/jll_wcpdev1/Staffing/v43.0?wsdl"
+else:
+    WSDL_URL = raw_wsdl_url
+
+raw_isu_username = os.getenv("WORKDAY_ISU_USERNAME")
+if not raw_isu_username or "@acme" in raw_isu_username:
+    if base_url:
+        from urllib.parse import urlparse
+        parsed = urlparse(base_url)
+        path_parts = [p for p in parsed.path.split("/") if p]
+        if path_parts:
+            tenant = path_parts[-1]
+            ISU_USERNAME = f"integration_user1@{tenant}"
+        else:
+            ISU_USERNAME = "integration_user1@jll_wcpdev1"
+    else:
+        ISU_USERNAME = "integration_user1@jll_wcpdev1"
+else:
+    ISU_USERNAME = raw_isu_username
+
+ISU_PASSWORD = os.getenv("WORKDAY_ISU_PASSWORD", "your_password_here")
 
 # ---------------------------------------------------------------------------
 # 2. ALL 60 RESPONSE_GROUP FLAGS (from the Workday Staffing WSDL)
@@ -118,7 +153,7 @@ def build_get_workers_request(client: Client, args: dict[str, Any]) -> dict:
             )
             for wid in worker_ids
         ]
-        request_kwargs["Request_References"] = factory.WorkersRequestReferencesType(
+        request_kwargs["Request_References"] = factory.Worker_Request_ReferencesType(
             Worker_Reference=refs
         )
 

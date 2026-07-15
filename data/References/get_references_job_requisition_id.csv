@@ -1,0 +1,387 @@
+id_type,id,note,active
+Job_Requisition_ID,R-00001,R-00001 Operations Business Analyst (Filled),true
+Job_Requisition_ID,R-00002,R-00002 Executive Assistant (Filled),true
+Job_Requisition_ID,R-00003,R-00003 Administrative Assistant (Filled),true
+Job_Requisition_ID,R-00004,R-00004 Senior Consultant (Filled),true
+Job_Requisition_ID,R-00005,R-00005 Consultant (Filled),true
+Job_Requisition_ID,R-00006,R-00006 Consultant (Open),true
+Job_Requisition_ID,R-00007,R-00007 Senior Consultant (Open),true
+Job_Requisition_ID,R-00008,R-00008 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00009,R-00009 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00010,R-00010 Consultant (Filled),true
+Job_Requisition_ID,R-00011,R-00011 Senior Customer Services Representative (Open),true
+Job_Requisition_ID,R-00012,R-00012 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00013,"R-00013 Senior Manager, Field Marketing (Open)",true
+Job_Requisition_ID,R-00014,R-00014 Marketing Coordinator (Open),true
+Job_Requisition_ID,R-00015,R-00015 Web Content Manager (Open),true
+Job_Requisition_ID,R-00016,R-00016 Senior Workstation Engineer (Open),true
+Job_Requisition_ID,R-00017,R-00017 Senior Workstation Engineer (Open),true
+Job_Requisition_ID,R-00018,R-00018 Senior IT Analyst (Open),true
+Job_Requisition_ID,R-00019,R-00019 Senior IT Analyst (Open),true
+Job_Requisition_ID,R-00020,R-00020 IT HelpDesk Specialist (Open),true
+Job_Requisition_ID,R-00021,R-00021 IT HelpDesk Specialist (Open),true
+Job_Requisition_ID,R-00022,R-00022 Corporate Counsel (Open),true
+Job_Requisition_ID,R-00023,R-00023 Consultant (Open),true
+Job_Requisition_ID,R-00024,R-00024 UI/UX Design Associate (Open),true
+Job_Requisition_ID,R-00025,R-00025 Senior Consultant (Open),true
+Job_Requisition_ID,R-00026,R-00026 Senior Customer Services Representative (Open),true
+Job_Requisition_ID,R-00027,R-00027 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00028,R-00028 Senior Data Analyst (Filled),true
+Job_Requisition_ID,R-00029,R-00029 Executive Assistant (Open),true
+Job_Requisition_ID,R-00030,R-00030 Sales Contracts Manager (Open),true
+Job_Requisition_ID,R-00031,R-00031 Product Management (Open),true
+Job_Requisition_ID,R-00032,"R-00032 Professional, Data Engineering (Open)",true
+Job_Requisition_ID,R-00033,R-00033 Senior Consultant (Filled),true
+Job_Requisition_ID,R-00034,R-00034 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00035,R-00035 Senior HR Representative (Open),true
+Job_Requisition_ID,R-00036,R-00036 Senior Workday Integration Engineer (Open),true
+Job_Requisition_ID,R-00037,R-00037 Senior Customer Services Representative (Closed),true
+Job_Requisition_ID,R-00038,R-00038 Customer Service Representative (Closed),true
+Job_Requisition_ID,R-00039,R-00039 Product Strategy (Open),true
+Job_Requisition_ID,R-00040,R-00040 Chief Risk Management Officer (Filled),true
+Job_Requisition_ID,R-00041,R-00041 Senior Risk Analyst (Open),true
+Job_Requisition_ID,R-00042,R-00042 HR Manager (Filled),true
+Job_Requisition_ID,R-00044,R-00044 HR Manager-EMEA (Open),true
+Job_Requisition_ID,R-00045,R-00045 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00046,R-00046 Senior Customer Service Representative (Open),true
+Job_Requisition_ID,R-00047,R-00047 Product Developer (Filled),true
+Job_Requisition_ID,R-00048,R-00048 Product Developer (Filled),true
+Job_Requisition_ID,R-00049,R-00049 Consultant - UK (Filled),true
+Job_Requisition_ID,R-00050,R-00050 Consultant - UK (Filled),true
+Job_Requisition_ID,R-00051,R-00051 Resource Manager (Filled),true
+Job_Requisition_ID,R-00052,R-00052 Resource Manager (Filled),true
+Job_Requisition_ID,R-00053,R-00053 Project Manager (Filled),true
+Job_Requisition_ID,R-00054,R-00054 Associate Consultant (Filled),true
+Job_Requisition_ID,R-00055,R-00055 Associate Consultant (Filled),true
+Job_Requisition_ID,R-00056,R-00056 Executive Assistant (Filled),true
+Job_Requisition_ID,R-00057,R-00057 Consultant Manager-1 (Filled),true
+Job_Requisition_ID,R-00058,R-00058 Consultant Manager-1 (Filled),true
+Job_Requisition_ID,R-00059,R-00059 Practice Manager (Filled),true
+Job_Requisition_ID,R-00060,R-00060 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00061,R-00061 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00062,R-00062 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00063,"R-00063 Manager, Collections (Filled)",true
+Job_Requisition_ID,R-00064,R-00064 Collection Specialist (Filled),true
+Job_Requisition_ID,R-00065,R-00065 Business Analyst (Filled),true
+Job_Requisition_ID,R-00066,R-00066 Product Developer (Filled),true
+Job_Requisition_ID,R-00067,"R-00067 Manager, Workstation Support (Open)",true
+Job_Requisition_ID,R-00068,R-00068 Senior Consultant (Filled),true
+Job_Requisition_ID,R-00069,R-00069 Consultant (Filled),true
+Job_Requisition_ID,R-00070,R-00070 Consultant (Filled),true
+Job_Requisition_ID,R-00071,R-00071 Associate Consultant (Filled),true
+Job_Requisition_ID,R-00072,R-00072 Accounting Specialist - AP (Filled),true
+Job_Requisition_ID,R-00073,R-00073 Senior Accountant (Filled),true
+Job_Requisition_ID,R-00074,R-00074 Accounting Specialist - AP (Filled),true
+Job_Requisition_ID,R-00075,R-00075 Senior Accountant (Filled),true
+Job_Requisition_ID,R-00076,R-00076 Accounting Specialist - AR (Filled),true
+Job_Requisition_ID,R-00077,R-00077 Accounting Specialist - AR (Filled),true
+Job_Requisition_ID,R-00078,R-00078 Tax Specialist (Filled),true
+Job_Requisition_ID,R-00079,R-00079 Tax Accountant (Filled),true
+Job_Requisition_ID,R-00080,R-00080 Senior Benefits Analyst (Filled),true
+Job_Requisition_ID,R-00081,R-00081 Senior Benefits Analyst (Filled),true
+Job_Requisition_ID,R-00082,R-00082 Shipping & Receiving Associate-1 (Closed),true
+Job_Requisition_ID,R-00083,R-00083 Shipping & Receiving Associate-2 (Closed),true
+Job_Requisition_ID,R-00084,R-00084 Shipping & Receiving Associate-3 (Closed),true
+Job_Requisition_ID,R-00085,R-00085 Tax Analyst (Filled),true
+Job_Requisition_ID,R-00086,R-00086 Staff Payroll Specialist (Filled),true
+Job_Requisition_ID,R-00087,R-00087 Staff Payroll Specialist (Filled),true
+Job_Requisition_ID,R-00088,"R-00088 Director, Payroll Operations (Filled)",true
+Job_Requisition_ID,R-00089,R-00089 Payroll Coordinator (Filled),true
+Job_Requisition_ID,R-00090,R-00090 Senior Payroll Specialist (Filled),true
+Job_Requisition_ID,R-00091,R-00091 Staff Payroll Specialist (Filled),true
+Job_Requisition_ID,R-00092,R-00092 Senior Recruiter (Filled),true
+Job_Requisition_ID,R-00093,R-00093 Staff Recruiter (Filled),true
+Job_Requisition_ID,R-00094,R-00094 Senior Recruiter (Filled),true
+Job_Requisition_ID,R-00095,R-00095 Senior Workforce Analyst (Filled),true
+Job_Requisition_ID,R-00096,R-00096 Staff Workforce Analyst (Filled),true
+Job_Requisition_ID,R-00097,R-00097 Organization Development Specialist (Filled),true
+Job_Requisition_ID,R-00098,R-00098 Inside Sales Representative (Filled),true
+Job_Requisition_ID,R-00099,R-00099 Inside Sales Representative (Filled),true
+Job_Requisition_ID,R-00100,R-00100 Inside Sales Representative (Filled),true
+Job_Requisition_ID,R-00101,R-00101 Inside Sales Representative (Filled),true
+Job_Requisition_ID,R-00102,R-00102 Senior Network Engineer (Filled),true
+Job_Requisition_ID,R-00103,R-00103 Senior Network Engineer (Filled),true
+Job_Requisition_ID,R-00104,R-00104 System Administrator (Filled),true
+Job_Requisition_ID,R-00105,R-00105 Senior Network Engineer (Filled),true
+Job_Requisition_ID,R-00106,R-00106 Project Manager (Filled),true
+Job_Requisition_ID,R-00107,R-00107 Systems Analyst (Filled),true
+Job_Requisition_ID,R-00108,R-00108 Integration Engineer (Filled),true
+Job_Requisition_ID,R-00109,R-00109 Business Analyst (Filled),true
+Job_Requisition_ID,R-00110,R-00110 Business Analyst (Filled),true
+Job_Requisition_ID,R-00111,R-00111 Business Analyst (Filled),true
+Job_Requisition_ID,R-00112,R-00112 Project Manager (Filled),true
+Job_Requisition_ID,R-00113,R-00113 Systems Analyst (Filled),true
+Job_Requisition_ID,R-00114,R-00114 Business Analyst (Filled),true
+Job_Requisition_ID,R-00115,R-00115 Integration Engineer (Filled),true
+Job_Requisition_ID,R-00116,R-00116 Business Analyst (Filled),true
+Job_Requisition_ID,R-00117,R-00117 Systems Analyst (Filled),true
+Job_Requisition_ID,R-00118,R-00118 Integration Engineer (Filled),true
+Job_Requisition_ID,R-00119,R-00119 Project Manager (Filled),true
+Job_Requisition_ID,R-00120,R-00120 Systems Analyst (Filled),true
+Job_Requisition_ID,R-00121,R-00121 Chief Data Officer (Filled),true
+Job_Requisition_ID,R-00122,"R-00122 Manager, IT HelpDesk (Filled)",true
+Job_Requisition_ID,R-00123,R-00123 Senior Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00124,R-00124 Senior Customer Service Representative-2 (Filled),true
+Job_Requisition_ID,R-00125,R-00125 Project Manager (Open),true
+Job_Requisition_ID,R-00126,R-00126 Product Developer-1 (Filled),true
+Job_Requisition_ID,R-00127,R-00127 Product Developer-2 (Filled),true
+Job_Requisition_ID,R-00128,R-00128 Administrative Assistant (Filled),true
+Job_Requisition_ID,R-00129,R-00129 Consultant Manager (Filled),true
+Job_Requisition_ID,R-00130,R-00130 Consulting Manager (Filled),true
+Job_Requisition_ID,R-00131,R-00131 Resource Manager (Filled),true
+Job_Requisition_ID,R-00132,R-00132 Project Manager (Filled),true
+Job_Requisition_ID,R-00133,R-00133 Associate Consultant (Filled),true
+Job_Requisition_ID,R-00134,R-00134 Senior Consultant (Filled),true
+Job_Requisition_ID,R-00135,R-00135 Associate Call Center Operator (Open),true
+Job_Requisition_ID,R-00136,R-00136 Call Center Operator (Open),true
+Job_Requisition_ID,R-00137,R-00137 Sr. Call Center Operator (Filled),true
+Job_Requisition_ID,R-00138,R-00138 Call Center Manager (Filled),true
+Job_Requisition_ID,R-00139,R-00139 Practice Manager (Open),true
+Job_Requisition_ID,R-00140,R-00140 Customer Service Associate (Open),true
+Job_Requisition_ID,R-00141,R-00141 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00142,R-00142 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00143,R-00143 Maintenance Technician (Filled),true
+Job_Requisition_ID,R-00144,R-00144 Senior Consultant - Japan (Filled),true
+Job_Requisition_ID,R-00145,R-00145 Senior Customer Services Representative - JAPAC-3 (Filled),true
+Job_Requisition_ID,R-00146,"R-00146 Director, Facilities Operations (Filled)",true
+Job_Requisition_ID,R-00147,R-00147 Facilities Administrator (Open),true
+Job_Requisition_ID,R-00148,R-00148 Facilities Administrator (Filled),true
+Job_Requisition_ID,R-00149,R-00149 Facilities Administrator (Filled),true
+Job_Requisition_ID,R-00150,R-00150 Facilities Administrator (Filled),true
+Job_Requisition_ID,R-00151,R-00151 Shipping & Receiving Associate (Open),true
+Job_Requisition_ID,R-00152,R-00152 Associate Product Development (Filled),true
+Job_Requisition_ID,R-00153,R-00153 Business Analyst-1 (Filled),true
+Job_Requisition_ID,R-00154,R-00154 Business Analyst-2 (Filled),true
+Job_Requisition_ID,R-00155,R-00155 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00156,R-00156 Senior Financial Analyst (Filled),true
+Job_Requisition_ID,R-00157,R-00157 Senior Consultant (Filled),true
+Job_Requisition_ID,R-00158,R-00158 Systems Analyst (Filled),true
+Job_Requisition_ID,R-00159,R-00159 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00160,R-00160 Senior Recruiter (Open),true
+Job_Requisition_ID,R-00161,R-00161 Staff Recruiter (Open),true
+Job_Requisition_ID,R-00162,R-00162 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00163,R-00163 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00164,R-00164 Senior Consultant (Filled),true
+Job_Requisition_ID,R-00165,R-00165 Customer Service Associate (Filled),true
+Job_Requisition_ID,R-00166,R-00166 Customer Service Associate (Filled),true
+Job_Requisition_ID,R-00167,R-00167 Customer Service Associate (Filled),true
+Job_Requisition_ID,R-00168,R-00168 Customer Service Associate (Filled),true
+Job_Requisition_ID,R-00169,R-00169 Practice Manager (Open),true
+Job_Requisition_ID,R-00170,R-00170 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00171,R-00171 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00172,R-00172 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00173,R-00173 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00174,R-00174 Project Manager (Filled),true
+Job_Requisition_ID,R-00175,R-00175 Project Manager (Filled),true
+Job_Requisition_ID,R-00176,R-00176 Senior Consultant (Open),true
+Job_Requisition_ID,R-00177,R-00177 Resource Manager (Filled),true
+Job_Requisition_ID,R-00178,R-00178 Senior Consultant (Filled),true
+Job_Requisition_ID,R-00179,R-00179 Consultant (Filled),true
+Job_Requisition_ID,R-00180,R-00180 Associate Consultant (Filled),true
+Job_Requisition_ID,R-00181,R-00181 Consultant (Filled),true
+Job_Requisition_ID,R-00182,R-00182 Resource Manager (Filled),true
+Job_Requisition_ID,R-00183,R-00183 Senior Consultant (Filled),true
+Job_Requisition_ID,R-00184,R-00184 Consultant Manager (Filled),true
+Job_Requisition_ID,R-00185,R-00185 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00186,R-00186 Office Manager (Filled),true
+Job_Requisition_ID,R-00187,R-00187 Consultant (Filled),true
+Job_Requisition_ID,R-00188,R-00188 Consultant (Filled),true
+Job_Requisition_ID,R-00189,R-00189 Senior HR Representative (Filled),true
+Job_Requisition_ID,R-00190,"R-00190 Director, Payroll Operations (Filled)",true
+Job_Requisition_ID,R-00191,R-00191 IT HelpDesk Specialist (Open),true
+Job_Requisition_ID,R-00192,R-00192 Senior Applications Development Engineer (Open),true
+Job_Requisition_ID,R-00193,R-00193 Data Scientist (Closed),true
+Job_Requisition_ID,R-00194,R-00194 Cloud Engineer (Open),true
+Job_Requisition_ID,R-00195,R-00195 Director of Cloud Delivery (Open),true
+Job_Requisition_ID,R-00196,R-00196 Senior Customer Services Representative - JAPAC (Open),true
+Job_Requisition_ID,R-00197,R-00197 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00198,R-00198 Senior Information Systems Engineer (Open),true
+Job_Requisition_ID,R-00199,R-00199 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00200,R-00200 Senior Customer Services Representative (Open),true
+Job_Requisition_ID,R-00201,R-00201 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00202,R-00202 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00203,R-00203 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00204,R-00204 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00205,R-00205 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00206,R-00206 Senior Customer Service Representative (Open),true
+Job_Requisition_ID,R-00207,R-00207 Senior Customer Service Representative (Open),true
+Job_Requisition_ID,R-00208,R-00208 Senior Customer Service Representative (Open),true
+Job_Requisition_ID,R-00209,R-00209 Senior Customer Service Representative (Open),true
+Job_Requisition_ID,R-00210,R-00210 Senior Customer Services Representative (Open),true
+Job_Requisition_ID,R-00211,"R-00211 Manager, Global Support Greater China (Open)",true
+Job_Requisition_ID,R-00212,R-00212 Senior Customer Service Representative (Open),true
+Job_Requisition_ID,R-00213,R-00213 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00214,R-00214 Shipping & Receiving Associate (Open),true
+Job_Requisition_ID,R-00215,R-00215 Senior Customer Services Representative (Open),true
+Job_Requisition_ID,R-00216,R-00216 Senior Customer Services Representative (Open),true
+Job_Requisition_ID,R-00217,R-00217 Administrative Assistant (Open),true
+Job_Requisition_ID,R-00218,R-00218 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00219,R-00219 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00220,R-00220 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00221,R-00221 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00222,R-00222 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00223,R-00223 Custom Service Representative (Open),true
+Job_Requisition_ID,R-00224,R-00224 Senior Customer Service Representative (Open),true
+Job_Requisition_ID,R-00225,"R-00225 Director, Technical Operations (Open)",true
+Job_Requisition_ID,R-00226,R-00226 Shipping & Receiving Associate (Open),true
+Job_Requisition_ID,R-00227,R-00227 Shipping & Receiving Associate (Open),true
+Job_Requisition_ID,R-00228,R-00228 Shipping & Receiving Associate (Open),true
+Job_Requisition_ID,R-00229,R-00229 Call Center Operator (Open),true
+Job_Requisition_ID,R-00230,R-00230 Regional Sales Manager (Open),true
+Job_Requisition_ID,R-00231,R-00231 Regional Sales Manager (Open),true
+Job_Requisition_ID,R-00232,R-00232 Regional Sales Manager (Open),true
+Job_Requisition_ID,R-00233,R-00233 Regional Sales Manager (Open),true
+Job_Requisition_ID,R-00234,R-00234 Regional Sales Manager (Open),true
+Job_Requisition_ID,R-00235,R-00235 Regional Sales Manager (Open),true
+Job_Requisition_ID,R-00236,R-00236 Regional Sales Manager (Open),true
+Job_Requisition_ID,R-00237,R-00237 HR Manager-LATAM (Open),true
+Job_Requisition_ID,R-00238,R-00238 Staff HR Representative (Filled),true
+Job_Requisition_ID,R-00239,R-00239 Senior Recruiter (Filled),true
+Job_Requisition_ID,R-00240,R-00240 Senior Consultant (Filled),true
+Job_Requisition_ID,R-00241,R-00241 Consultant (Filled),true
+Job_Requisition_ID,R-00242,R-00242 Associate Call Center Operator-2 (Open),true
+Job_Requisition_ID,R-00243,R-00243 Call Center Operator-4 (Open),true
+Job_Requisition_ID,R-00244,R-00244 Consultant (Closed),true
+Job_Requisition_ID,R-00245,R-00245 Consultant (Open),true
+Job_Requisition_ID,R-00246,R-00246 Associate Consultant (Open),true
+Job_Requisition_ID,R-00247,R-00247 Business Analyst (Filled),true
+Job_Requisition_ID,R-00248,R-00248 Business Analyst (Filled),true
+Job_Requisition_ID,R-00249,R-00249 Systems Analyst (Filled),true
+Job_Requisition_ID,R-00250,R-00250 Product Developer (Filled),true
+Job_Requisition_ID,R-00251,R-00251 Integration Engineer (Filled),true
+Job_Requisition_ID,R-00252,R-00252 IT HelpDesk Specialist (Filled),true
+Job_Requisition_ID,R-00253,R-00253 IT HelpDesk Specialist (Filled),true
+Job_Requisition_ID,R-00254,R-00254 Business Analyst (Filled),true
+Job_Requisition_ID,R-00255,R-00255 Product Developer (Filled),true
+Job_Requisition_ID,R-00256,R-00256 Shipping & Receiving Associate (Filled),true
+Job_Requisition_ID,R-00257,R-00257 Consultant (Filled),true
+Job_Requisition_ID,R-00258,R-00258 Consultant (Filled),true
+Job_Requisition_ID,R-00259,R-00259 Consultant (Filled),true
+Job_Requisition_ID,R-00260,R-00260 Consultant (Filled),true
+Job_Requisition_ID,R-00261,R-00261 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00262,R-00262 Sales Proposal Specialist (Filled),true
+Job_Requisition_ID,R-00263,R-00263 Associate Consultant (Filled),true
+Job_Requisition_ID,R-00264,R-00264 Inside Sales Representative (Filled),true
+Job_Requisition_ID,R-00265,R-00265 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00266,R-00266 Marketing Specialist (Filled),true
+Job_Requisition_ID,R-00267,R-00267 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00268,R-00268 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00269,R-00269 Consultant (Filled),true
+Job_Requisition_ID,R-00270,R-00270 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00271,R-00271 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00272,R-00272 Regional Sales Manager (Open),true
+Job_Requisition_ID,R-00273,R-00273 Regional Sales Manager (Open),true
+Job_Requisition_ID,R-00274,R-00274 Regional Sales Manager (Open),true
+Job_Requisition_ID,R-00275,R-00275 Regional Sales Manager (Open),true
+Job_Requisition_ID,R-00276,R-00276 Call Center Manager (Open),true
+Job_Requisition_ID,R-00277,R-00277 Training Specialist (Filled),true
+Job_Requisition_ID,R-00278,R-00278 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00279,R-00279 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00280,R-00280 Associate Call Center Operator (Filled),true
+Job_Requisition_ID,R-00281,R-00281 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00282,R-00282 Call Center Operator (Filled),true
+Job_Requisition_ID,R-00283,R-00283 Customer Service Associate (Filled),true
+Job_Requisition_ID,R-00284,R-00284 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00285,R-00285 Accounting Specialist - AR (Filled),true
+Job_Requisition_ID,X-00292,X-00292 Chief Marketing Officer (Confidential),true
+Job_Requisition_ID,R-00293,R-00293 Chief Technology Officer (CTO) (Open),true
+Job_Requisition_ID,R-00294,R-00294 Chief of Staff (Open),true
+Job_Requisition_ID,R-00291,R-00291 Chief Financial Officer (Filled),true
+Job_Requisition_ID,R-00295,R-00295 Chief Human Resources Officer (Filled),true
+Job_Requisition_ID,R-00299,R-00299 EMEA Controller (Filled),true
+Job_Requisition_ID,R-00300,R-00300 Regional Finance Manager (Filled),true
+Job_Requisition_ID,R-00301,R-00301 General Manager (Filled),true
+Job_Requisition_ID,R-00303,R-00303 HR Manager-APAC (Filled),true
+Job_Requisition_ID,R-00306,R-00306 Chief Risk Management Officer (Open),true
+Job_Requisition_ID,R-00307,R-00307 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00308,R-00308 Product Strategy (Open),true
+Job_Requisition_ID,R-00309,"R-00309 Regional Sales Manager, Japan (Open)",true
+Job_Requisition_ID,R-00292,R-00292 Chief Marketing Officer (CMO) (Confidential)(Open),true
+Job_Requisition_ID,R-00312,R-00312 Shipping & Receiving Associate (Open),true
+Job_Requisition_ID,R-00313,"R-00313 Director, Field Sales (Open)",true
+Job_Requisition_ID,R-00314,"R-00314 Vice President, Support Operations (Open)",true
+Job_Requisition_ID,R-00315,R-00315 Data Scientist (Open),true
+Job_Requisition_ID,R-00316,"R-00316 Facilities Manager, USA (Open)",true
+Job_Requisition_ID,R-00317,"R-00317 Facilities Manager, CAN (Open)",true
+Job_Requisition_ID,R-00318,R-00318 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00324,R-00324 Call Center Manager (Filled),true
+Job_Requisition_ID,R-00323,R-00323 Call Center Operator (Filled),true
+Job_Requisition_ID,R-00322,R-00322 Call Center Operator (Filled),true
+Job_Requisition_ID,R-00321,R-00321 Call Center Operator (Filled),true
+Job_Requisition_ID,R-00320,R-00320 Call Center Operator (Filled),true
+Job_Requisition_ID,R-00325,"R-00325 Senior Manager, Marketing Communications (Filled)",true
+Job_Requisition_ID,R-00332,R-00332 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00330,R-00330 Controller (Filled),true
+Job_Requisition_ID,R-00334,R-00334 HR Manager (Filled),true
+Job_Requisition_ID,R-00335,"R-00335 Director, Field Sales (Filled)",true
+Job_Requisition_ID,R-00331,R-00331 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00336,R-00336 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00340,R-00340 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00341,R-00341 Sales Assistant (Filled),true
+Job_Requisition_ID,R-00343,R-00343 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00344,"R-00344 Director, Sales Operations (Open)",true
+Job_Requisition_ID,R-00345,R-00345 Consultant (Filled),true
+Job_Requisition_ID,R-00346,R-00346 Business Analyst (Filled),true
+Job_Requisition_ID,R-00347,"R-00347 Director, Global Support (Filled)",true
+Job_Requisition_ID,R-00348,"R-00348 Manager, Global Support DACH (Filled)",true
+Job_Requisition_ID,R-00349,R-00349 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00350,R-00350 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00351,R-00351 Senior Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00352,R-00352 Senior Recruiter (Filled),true
+Job_Requisition_ID,R-00353,R-00353 Staff HR Representative (Filled),true
+Job_Requisition_ID,R-00354,R-00354 Senior Customer Service Representative (Open),true
+Job_Requisition_ID,R-00356,R-00356 Apprentice Office Management (Open),true
+Job_Requisition_ID,R-00358,"R-00358 Director, Global Support (Filled)",true
+Job_Requisition_ID,R-00359,"R-00359 Manager, Global Support (Filled)",true
+Job_Requisition_ID,R-00360,R-00360 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00361,R-00361 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00363,R-00363 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00364,R-00364 Office Manager (Filled),true
+Job_Requisition_ID,R-00366,R-00366 Regional Sales Manager (Open),true
+Job_Requisition_ID,R-00365,R-00365 Regional Sales Manager (Open),true
+Job_Requisition_ID,R-00367,R-00367 Manager. Global Support (Open),true
+Job_Requisition_ID,R-00368,R-00368 Program Manager (Filled),true
+Job_Requisition_ID,R-00372,R-00372 Customer Service Associate (Filled),true
+Job_Requisition_ID,R-00373,R-00373 Customer Service Associate (Filled),true
+Job_Requisition_ID,R-00374,R-00374 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00375,R-00375 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00376,R-00376 Senior Customer Services Representative (Filled),true
+Job_Requisition_ID,R-00377,R-00377 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00378,R-00378 Senior Customer Services Representative (Filled),true
+Job_Requisition_ID,R-00379,"R-00379 Manager, Global Support (Filled)",true
+Job_Requisition_ID,R-00381,R-00381 Call Center Operator (Filled),true
+Job_Requisition_ID,R-00382,R-00382 Call Center Operator (Filled),true
+Job_Requisition_ID,R-00383,R-00383 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00384,R-00384 Call Center Operator (Open),true
+Job_Requisition_ID,R-00385,R-00385 Call Center Manager (Open),true
+Job_Requisition_ID,R-00386,R-00386 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00387,R-00387 Consulting Manager (Filled),true
+Job_Requisition_ID,R-00388,R-00388 Consultant (Filled),true
+Job_Requisition_ID,R-00389,R-00389 Consultant (Filled),true
+Job_Requisition_ID,R-00390,R-00390 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00391,"R-00391 Senior Manager, Field Marketing (Filled)",true
+Job_Requisition_ID,R-00393,"R-00393 Manager, Support West Japan (Filled)",true
+Job_Requisition_ID,R-00394,R-00394 Customer Service Representative (Filled),true
+Job_Requisition_ID,R-00395,R-00395 Consultant (Filled),true
+Job_Requisition_ID,R-00396,R-00396 Global Support Manager - East Japan (Open),true
+Job_Requisition_ID,R-00397,R-00397 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00399,R-00399 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00398,R-00398 Regional Sales Manager (Filled),true
+Job_Requisition_ID,R-00401,R-00401 Customer Service Representative (Open),true
+Job_Requisition_ID,R-00400,R-00400 Customer Service Associate (Open),true
+Job_Requisition_ID,R-00402,R-00402 IT HelpDesk Specialist (Filled),true
+Job_Requisition_ID,R-00403,R-00403 IT HelpDesk Specialist (Filled),true
+Job_Requisition_ID,R-00404,R-00404 Consultant (Filled),true
+Job_Requisition_ID,R-00405,R-00405 Senior Financial Analyst (Filled),true
+Job_Requisition_ID,R-00406,R-00406 Business Analyst (Filled),true
+Job_Requisition_ID,R-00407,R-00407 Product Developer (Filled),true
+Job_Requisition_ID,R-00408,R-00408 Systems Analyst (Filled),true
+Job_Requisition_ID,R-00409,R-00409 Operations Business Analyst (Filled),true
+Job_Requisition_ID,R-00410,R-00410 Business Analyst (Filled),true
+Job_Requisition_ID,R-00411,R-00411 Business Analyst (Filled),true
+Job_Requisition_ID,R-00412,R-00412 Regional Finance Manager (Filled),true
+Job_Requisition_ID,R-00413,R-00413 Consultant (Filled),true
+Job_Requisition_ID,R-00414,"R-00414 Senior Manager, Marketing Communications-3 (Filled)",true
+Job_Requisition_ID,E-00001,E-00001 Multiple Customer Service Career Opportunities! (Evergreen) (Open),true
+Job_Requisition_ID,E-00002,E-00002 Intern - Multiple openings (Evergreen) (Open),true
+Job_Requisition_ID,R-00357,R-00357 Apprentice Office Management - Multiple Openings (Evergreen) (Open),true

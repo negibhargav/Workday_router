@@ -4,8 +4,12 @@ import os
 from dotenv import load_dotenv
 from mcp.server.fastmcp import FastMCP
 
-# Load environment variables from the root .env file
-load_dotenv()
+# Load environment variables from the root .env file (absolute path so it works from any CWD)
+_server_root = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+load_dotenv(os.path.join(_server_root, ".env"))
+
+# Prevent automatic browser popups when running as a background service
+os.environ["WORKDAY_NON_INTERACTIVE"] = "true"
 
 # Add the root directory to sys.path so internal imports resolve cleanly
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -112,5 +116,37 @@ def execute_workday_action(natural_language_query: str, confirmed: bool = False)
         }, indent=2)
 
 
+def start_token_refresh_timer():
+    import threading
+    import time
+    from src.tools.Refresh_token import force_refresh
+
+    def run_timer():
+        # Sleep for 30 minutes (1800 seconds) repeatedly
+        while True:
+            time.sleep(1800)
+            print("[MCP Server] 30 minutes timer triggered. Refreshing token...", file=sys.stderr)
+            try:
+                force_refresh()
+                print("[MCP Server] Token refreshed via timer.", file=sys.stderr)
+            except Exception as e:
+                print(f"[MCP Server] Token refresh via timer failed: {e}", file=sys.stderr)
+
+    timer_thread = threading.Thread(target=run_timer, daemon=True)
+    timer_thread.start()
+
+
 if __name__ == "__main__":
+    # Condition 1: when new session is started with MCP
+    print("[MCP Server] Session starting. Refreshing token...", file=sys.stderr)
+    try:
+        from src.tools.Refresh_token import force_refresh
+        force_refresh()
+        print("[MCP Server] Initial token refresh successful.", file=sys.stderr)
+    except Exception as e:
+        print(f"[MCP Server] Initial token refresh failed: {e}", file=sys.stderr)
+
+    # Condition 2: 30 mins timer for refresh
+    start_token_refresh_timer()
+
     mcp.run()

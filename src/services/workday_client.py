@@ -1,10 +1,13 @@
 import os
 import sys
-import requests
 import json
+import requests
 from dotenv import load_dotenv
 
-load_dotenv()
+# Anchor .env loading to the project root regardless of CWD
+_HERE         = os.path.dirname(os.path.abspath(__file__))        # src/services/
+_PROJECT_ROOT = os.path.abspath(os.path.join(_HERE, "..", ".."))  # project root
+load_dotenv(os.path.join(_PROJECT_ROOT, ".env"))
 
 class WorkdayClient:
     def __init__(self, api_token=None, base_url=None):
@@ -12,22 +15,33 @@ class WorkdayClient:
 
         # Load from .env unless explicitly overridden via arguments
         self.base_url = base_url or os.getenv("WORKDAY_BASE_URL")
-        self.token = api_token or os.getenv("WORKDAY_API_TOKEN")
+        self._api_token = api_token
         self.cache = {}  # Simple in-memory cache
         
         if not self.base_url:
             print("WARNING: WORKDAY_BASE_URL is missing from configuration environment!", file=sys.stderr)
 
-        if not self.token:
+        if not (self._api_token or os.getenv("WORKDAY_API_TOKEN")):
             print("WARNING: WORKDAY_API_TOKEN is missing from configuration environment!", file=sys.stderr)
 
+    @property
+    def token(self):
+        if self._api_token:
+            return self._api_token
+        # Dynamically resolve using get_valid_token to ensure it's always valid and read after refresh
+        from src.tools.Refresh_token import get_valid_token
+        return get_valid_token()
+
     def execute(self, method, full_path, path_params=None, query_params=None):
+        # Resolve token ONCE — prevents double-refresh and 429 rate-limit errors
+        token = self.token
+
         # Fail early if executed without endpoints or tokens configured
-        if not self.base_url or not self.token:
+        if not self.base_url or not token:
             raise ValueError(
                 f"Cannot execute API request. Configuration missing! "
                 f"Base URL configured: {'Yes' if self.base_url else 'No'}, "
-                f"Token configured: {'Yes' if self.token else 'No'}"
+                f"Token configured: {'Yes' if token else 'No'}"
             )
 
         # 1. Fix double-path structures gracefully
@@ -55,7 +69,7 @@ class WorkdayClient:
         
         # 4. Setup Authorization Headers
         headers = {
-            "Authorization": f"Bearer {self.token}",
+            "Authorization": f"Bearer {token}",
             "Accept": "application/json",
         }
 

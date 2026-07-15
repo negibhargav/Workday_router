@@ -1,0 +1,101 @@
+id_type,id,note,active
+Custom_Organization_Reference_ID,Region_Hierarchy,Region Hierarchy,true
+Custom_Organization_Reference_ID,2506.58,EMEA,true
+Custom_Organization_Reference_ID,2506.59,Europe,true
+Custom_Organization_Reference_ID,2506.60,Middle East,true
+Custom_Organization_Reference_ID,2506.61,Africa,true
+Custom_Organization_Reference_ID,2506.62,North America,true
+Custom_Organization_Reference_ID,2506.63,United States,true
+Custom_Organization_Reference_ID,2506.64,Canada,true
+Custom_Organization_Reference_ID,Cost_Center_Hierarchy,Cost Center Hierarchy,true
+Custom_Organization_Reference_ID,2506.66,Executive Management (inactive),true
+Custom_Organization_Reference_ID,2506.67,Finance,true
+Custom_Organization_Reference_ID,2506.68,Human Resources,true
+Custom_Organization_Reference_ID,2506.69,Risk Management,true
+Custom_Organization_Reference_ID,2506.70,Information Technology,true
+Custom_Organization_Reference_ID,2506.71,Operations,true
+Custom_Organization_Reference_ID,2506.72,Finance Mgmt - Corp Acctg,true
+Custom_Organization_Reference_ID,2506.73,Finance Mgmt - FP & A,true
+Custom_Organization_Reference_ID,2506.74,"Financial Planning & Analysis, Reporting",true
+Custom_Organization_Reference_ID,2506.75,Corporate Accounting,true
+Custom_Organization_Reference_ID,2506.76,Recruiting,true
+Custom_Organization_Reference_ID,2506.77,Benefits,true
+Custom_Organization_Reference_ID,2506.87,IT Mgmt - Services,true
+Custom_Organization_Reference_ID,2506.88,IT Mgmt - Operations,true
+Custom_Organization_Reference_ID,2506.89,IT Operations,true
+Custom_Organization_Reference_ID,2506.90,IT Services,true
+Custom_Organization_Reference_ID,2506.144,Sales & Marketing,true
+Custom_Organization_Reference_ID,2506.145,Sales,true
+Custom_Organization_Reference_ID,2506.146,Marketing,true
+Custom_Organization_Reference_ID,2506.147,Corporate Sales,true
+Custom_Organization_Reference_ID,2506.148,Field Sales,true
+Custom_Organization_Reference_ID,2506.150,Legal,true
+Custom_Organization_Reference_ID,2506.151,Research & Development Mgmt,true
+Custom_Organization_Reference_ID,2506.152,Product Strategy,true
+Custom_Organization_Reference_ID,2506.153,Product Management,true
+Custom_Organization_Reference_ID,2506.154,Product Development,true
+Custom_Organization_Reference_ID,2506.164,Global Support Center,true
+Custom_Organization_Reference_ID,2506.167,Japan Asia/Pacific,true
+Custom_Organization_Reference_ID,2506.168,Latin America,true
+Custom_Organization_Reference_ID,2506.169,North & NorthEast Asia,true
+Custom_Organization_Reference_ID,2506.170,South & SouthEast Asia,true
+Custom_Organization_Reference_ID,2506.171,Australasia,true
+Custom_Organization_Reference_ID,Company_Hierarchy,Company Hierarchy,true
+Custom_Organization_Reference_ID,2506.191,Facilities,true
+Custom_Organization_Reference_ID,2506.192,Program Management,true
+Custom_Organization_Reference_ID,2506.196,Field Marketing,true
+Custom_Organization_Reference_ID,2506.197,Corporate Marketing,true
+Custom_Organization_Reference_ID,2506.198,Caribbean,true
+Custom_Organization_Reference_ID,2506.199,Central America,true
+Custom_Organization_Reference_ID,2506.200,Mexico,true
+Custom_Organization_Reference_ID,2506.201,South America,true
+Custom_Organization_Reference_ID,2506.202,HR Operations,true
+Custom_Organization_Reference_ID,2506.203,Consolidation - US Tax,true
+Custom_Organization_Reference_ID,2506.204,Consolidation - Corporate,true
+Custom_Organization_Reference_ID,2506.205,Office & Professional Employees International Union (OPEIU),true
+Custom_Organization_Reference_ID,GPS,External Pay Entity - GPS,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-4-207,Workforce Planning,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-4-208,Payroll,true
+Custom_Organization_Reference_ID,Financial Services,Financial Services,true
+Custom_Organization_Reference_ID,Other Services,Other Services,true
+Custom_Organization_Reference_ID,Technology,Technology,true
+Custom_Organization_Reference_ID,CPG,CPG,true
+Custom_Organization_Reference_ID,Division_Hierarchy,Division Hierarchy,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-4-214,Services,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-4-215,Products,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-4-216,Consulting Services,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-4-217,External Pay Entity - Asia/Pac,true
+Custom_Organization_Reference_ID,North_America,North America,true
+Custom_Organization_Reference_ID,EMEA,EMEA,true
+Custom_Organization_Reference_ID,Asia_Pacific,Asia Pacific,true
+Custom_Organization_Reference_ID,Latin_America,Latin America,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-4-222,Consolidation - US,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-4-223,Consolidation - AsiaPac,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-4-224,Consolidation - North America,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-4-225,Consolidation - EMEA,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-10-226,Growth/Share Category,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-10-227,Sustaining,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-10-228,Growing,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-10-229,Emerging,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-10-230,Declining,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-4-231,Europe,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-4-232,Middle East and Africa,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-4-233,External Pay Entity - EMEA,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-234,Consolidation - Canada,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-235,Business Services Group,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-236,Warbucks Consolidated,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-237,Consolidation - Nordic,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-238,Consolidation - Western Europe,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-239,Consolidation - France,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-240,HR Services,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-241,Accounting Operations,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-242,Spectre Europe,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-243,Spectre Consol,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-244,Acquisitions,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-245,Product Acquisitions,true
+Custom_Organization_Reference_ID,Services_acquisition,Services Acquisitions,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-247,Green Planet Solutions,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-248,Innovative Solutions,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-249,Global Consulting Services,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-250,Modern Technology Services,true
+Custom_Organization_Reference_ID,CUSTOM_ORGANIZATION-16-251,Consolidation - Benelux,true

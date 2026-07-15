@@ -1,0 +1,384 @@
+id_type,id,note,active
+Event_Classification_Subcategory_ID,Additional_Headcount_Request_Headcount_Request_New_Project,Additional Headcount Request > Headcount Request > New Project,true
+Event_Classification_Subcategory_ID,Additional_Headcount_Request_Headcount_Request_Understaffed,Additional Headcount Request > Headcount Request > Understaffed,true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Incentive_Assign_Bonus,Request Compensation Change > Incentive > Assign Bonus,true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Incentive_One_Time_Payment,Request Compensation Change > Incentive > One Time Payment,true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Adjustment_Ad-hoc,Request Compensation Change > Adjustment > Ad-hoc,true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Adjustment_Job_Change,Request Compensation Change > Adjustment > Job Change,true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Adjustment_Responsibility_Change,Request Compensation Change > Adjustment > Responsibility Change,true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Adjustment_Corrective_Adjustment,Request Compensation Change > Adjustment > Corrective Adjustment,true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Adjustment_Market_Adjustment,Request Compensation Change > Adjustment > Market Adjustment,true
+Event_Classification_Subcategory_ID,Contract_Contingent_Worker_New_Contingent_Worker_New_Position,Contract Contingent Worker > New Contingent Worker > New Position,true
+Event_Classification_Subcategory_ID,Contract_Contingent_Worker_New_Contingent_Worker_Vacant_Position,Contract Contingent Worker > New Contingent Worker > Vacant Position,true
+Event_Classification_Subcategory_ID,Contract_Contingent_Worker_Existing_Contingent_Worker_New_Contract,Contract Contingent Worker > Existing Contingent Worker > New Contract,true
+Event_Classification_Subcategory_ID,Contract_Contingent_Worker_Existing_Contingent_Worker_New_Position,Contract Contingent Worker > Existing Contingent Worker > New Position,true
+Event_Classification_Subcategory_ID,Contract_Contingent_Worker_Existing_Contingent_Worker_Vacant_Position,Contract Contingent Worker > Existing Contingent Worker > Vacant Position,true
+Event_Classification_Subcategory_ID,Contract_Contingent_Worker_Existing_Contingent_Worker_Renegotiated_Contract,Contract Contingent Worker > Existing Contingent Worker > Renegotiated Contract,true
+Event_Classification_Subcategory_ID,Contract_Contingent_Worker_Existing_Contingent_Worker_ReContract_to_New_Organization,Contract Contingent Worker > Existing Contingent Worker > Re-Contract to New Organization,true
+Event_Classification_Subcategory_ID,Demote_Employee_Demotion_Reason_Decrease_in_Responsibility,Demote Employee > Demotion Reason > Decrease in Responsibility,true
+Event_Classification_Subcategory_ID,Demote_Employee_Demotion_Reason_Attendance_Issues,Demote Employee > Demotion Reason > Attendance Issues,true
+Event_Classification_Subcategory_ID,Demote_Employee_Demotion_Reason_Misconduct,Demote Employee > Demotion Reason > Misconduct,true
+Event_Classification_Subcategory_ID,Demote_Employee_Demotion_Reason_Performance,Demote Employee > Demotion Reason > Performance,true
+Event_Classification_Subcategory_ID,Demote_Employee_Demotion_Reason_Job_Classification,Demote Employee > Demotion Reason > Job Reclassification,true
+Event_Classification_Subcategory_ID,Edit_Headcount _Headcount_Allocation_Reorganization,Edit Headcount > Headcount Allocation > Reorganization,true
+Event_Classification_Subcategory_ID,Edit_Headcount _Headcount_Allocation_New_Project,Edit Headcount > Headcount Allocation > New Project,true
+Event_Classification_Subcategory_ID,Edit_Headcount _Headcount_Allocation_Project_Scope_Change,Edit Headcount > Headcount Allocation > Project Scope Change,true
+Event_Classification_Subcategory_ID,Edit_Headcount _Headcount_Allocation_Budget_Cut,Edit Headcount > Headcount Allocation > Budget Cut,true
+Event_Classification_Subcategory_ID,Edit_Headcount _Change_In_Restrictions_Restrictions_Added,Edit Headcount > Change In Restrictions > Restrictions Added,true
+Event_Classification_Subcategory_ID,Edit_Headcount _Change_In_Restrictions_Restrictions_Removed,Edit Headcount > Change In Restrictions > Restrictions Removed,true
+Event_Classification_Subcategory_ID,Create_Headcount_Headcount_Request_Staff_New_Project,Create Headcount > Headcount Request > Staff New Project,true
+Event_Classification_Subcategory_ID,Create_Headcount_Headcount_Request_Understaffed,Create Headcount > Headcount Request > Understaffed,true
+Event_Classification_Subcategory_ID,Hire_Employee_New_Hire_Fill_Vacancy,Hire Employee > New Hire > Fill Vacancy,true
+Event_Classification_Subcategory_ID,Hire_Employee_New_Hire_New_Position,Hire Employee > New Hire > New Position,true
+Event_Classification_Subcategory_ID,Fill_Vacancy,Fill Vacancy,true
+Event_Classification_Subcategory_ID,New_Position,New Position,true
+Event_Classification_Subcategory_ID,Edit_Job_Group_Change_In_Restrictions_Restrictions_Added,Edit Job Group > Change In Restrictions > Restrictions Added,true
+Event_Classification_Subcategory_ID,Edit_Job_Group_Change_In_Restrictions_Restrictions_Removed,Edit Job Group > Change In Restrictions > Restrictions Removed,true
+Event_Classification_Subcategory_ID,Create_Job_Group_Job_Group_Request_New_Organization,Create Job Group > Job Group Request > New Organization,true
+Event_Classification_Subcategory_ID,Edit_Position_Position_Time Type_Worker_Change_to_Full_Time,Edit Position > Position Time Type > Worker Change to Full Time,true
+Event_Classification_Subcategory_ID,Edit_Position_Position_Time_Type_Worker_Change_to_Part_Time,Edit Position > Position Time Type > Worker Change to Part Time,true
+Event_Classification_Subcategory_ID,Edit_Position_Location_Worker_Moved,Edit Position > Location > Worker Moved,true
+Event_Classification_Subcategory_ID,Edit_Position_Location_Office_Moved,Edit Position > Location > Office Moved,true
+Event_Classification_Subcategory_ID,Edit_Position_Change_In_Restrictions_Restrictions_Added,Edit Position > Change In Restrictions > Restrictions Added,true
+Event_Classification_Subcategory_ID,Edit_Position_Change_In_Restrictions_Restrictions_Removed,Edit Position > Change In Restrictions > Restrictions Removed,true
+Event_Classification_Subcategory_ID,Close_Position_or_Headcount_Financial_Budget_Cut,Close Position or Headcount > Financial > Budget Cut,true
+Event_Classification_Subcategory_ID,Close_Position_or_Headcount_Position_Group_No_Longer_Needed,Close Position or Headcount > Position Group > No Longer Needed,true
+Event_Classification_Subcategory_ID,Freeze_Position_Headcount_or_Job_Group_Unfreeze_Organization_Structure_Review_Complete,"Freeze Position, Headcount, or Job Group > Unfreeze > Organization Structure Review Complete",true
+Event_Classification_Subcategory_ID,Create_Position_Position_Request_Staff_New_Project,Create Position > Position Request > Staff New Project,true
+Event_Classification_Subcategory_ID,Create_Position_Position_Request_Understaffed,Create Position > Position Request > Understaffed,true
+Event_Classification_Subcategory_ID,Promote_Employee_Standard_Increase_in_Responsibility,Promote Employee > Standard > Increase in Responsibility,true
+Event_Classification_Subcategory_ID,Promote_Employee_Standard_Job_Reclassification,Promote Employee > Standard > Job Reclassification,true
+Event_Classification_Subcategory_ID,Promote_Employee_Standard_Performance,Promote Employee > Standard > Performance,true
+Event_Classification_Subcategory_ID,Promote_Employee_Standard_Reorganization,Promote Employee > Standard > Reorganization,true
+Event_Classification_Subcategory_ID,Promote_Employee_Step_Length_of_Service,Promote Employee > Step > Length of Service,true
+Event_Classification_Subcategory_ID,Promote_Employee_Step_Time_in_Job,Promote Employee > Step > Time in Job,true
+Event_Classification_Subcategory_ID,Transfer_Contingent_Worker_Transfer_Reason_Contract_Extension,Transfer Contingent Worker > Transfer Reason > Contract Extension,true
+Event_Classification_Subcategory_ID,Transfer_Contingent_Worker_Transfer Reason_Renegotiated_Contract,Transfer Contingent Worker > Transfer Reason > Renegotiated Contract,true
+Event_Classification_Subcategory_ID,Transfer_Contingent_Worker_Transfer_Reason_Organization_Change,Transfer Contingent Worker > Transfer Reason > Organization Change,true
+Event_Classification_Subcategory_ID,Transfer_Contingent_Worker_Transfer_Reason_Assignment_Completion,Transfer Contingent Worker > Transfer Reason > Assignment Completion,true
+Event_Classification_Subcategory_ID,Transfer_Employee_Temporary_Job_Rotation,Transfer Employee > Temporary > Job Rotation,true
+Event_Classification_Subcategory_ID,Transfer_Employee_Temporary_On_Assignment,Transfer Employee > Temporary > On Assignment,true
+Event_Classification_Subcategory_ID,Transfer_Employee_Permanent_Manager_Request,Transfer Employee > Permanent > Manager Request,true
+Event_Classification_Subcategory_ID,Transfer_Employee_Permanent_Relocation,Transfer Employee > Permanent > Relocation,true
+Event_Classification_Subcategory_ID,Transfer_Employee_Permanent_Promotion,Transfer Employee > Permanent > Promotion,true
+Event_Classification_Subcategory_ID,Transfer_Employee_Permanent_Demotion,Transfer Employee > Permanent > Demotion,true
+Event_Classification_Subcategory_ID,Transfer_Employee_Permanent_Reorganization,Transfer Employee > Permanent > Reorganization,true
+Event_Classification_Subcategory_ID,Transfer_Employee_Permanent_Employee_Request,Transfer Employee > Permanent > Employee Request,true
+Event_Classification_Subcategory_ID,Freeze_Position_Headcount_or_Job_Group_Freeze_Budget_Freeze,"Freeze Position, Headcount, or Job Group > Freeze > Budget Freeze",true
+Event_Classification_Subcategory_ID,Freeze_Position_Headcount_or_Job_Group_Freeze_Hold_for_Organization_Structure_Review,"Freeze Position, Headcount, or Job Group > Freeze > Hold for Organization Structure Review",true
+Event_Classification_Subcategory_ID,Freeze_Position_Headcount_or_Job_Group_Unfreeze_Budget_Unfrozen,"Freeze Position, Headcount, or Job Group > Unfreeze > Budget Unfrozen",true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Conversion_Conversion,Request Compensation Change > Conversion > Conversion,true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Base_Salary_Change_Currency_Change,Request Compensation Change > Base Salary Change > Currency Change,true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Automatic_Step_Progression_Time_in_Job,Request Compensation Change > Automatic Step Progression > Time in Step,true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Adjustment_Plan_Restructuring,Request Compensation Change > Adjustment > Plan Restructuring,true
+Event_Classification_Subcategory_ID,Stock_Grant_Incentive_Performance,Stock Grant > Incentive > Performance,true
+Event_Classification_Subcategory_ID,Stock_Grant_Incentive_Outstanding_Contributor,Stock Grant > Incentive > Outstanding Contributor,true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Incentive_Assign_Stock_Plan,Request Compensation Change > Incentive > Assign Stock Plan,true
+Event_Classification_Subcategory_ID,Add_Additional_Contingent_Worker_Contract_New_Assignment_Vacant_Position,Add Additional Contingent Worker Contract > New Assignment > Vacant Position,true
+Event_Classification_Subcategory_ID,Add_Additional_Contingent_Worker_Contract_New_Assignment_New_Position,Add Additional Contingent Worker Contract > New Assignment > New Position,true
+Event_Classification_Subcategory_ID,Add_Additional_Employee_Job_New_Assignment_Vacant_Position,Add Additional Employee Job > New Assignment > Vacant Position,true
+Event_Classification_Subcategory_ID,Add_Additional_Employee_Job_New_Assignment_New_Position,Add Additional Employee Job > New Assignment > New Position,true
+Event_Classification_Subcategory_ID,Future_Payment_Incentive_Signing_Bonus,Future Payment > Incentive > Signing Bonus,true
+Event_Classification_Subcategory_ID,Future_Payment_Incentive_Referral,Future Payment > Incentive > Referral,true
+Event_Classification_Subcategory_ID,Future_Payment_Incentive_Award,Future Payment > Incentive > Award,true
+Event_Classification_Subcategory_ID,One-Time_Payment_Incentive_Signing_Bonus,One-Time Payment > Incentive > Signing Bonus,true
+Event_Classification_Subcategory_ID,One-Time_Payment_Incentive_Referral,One-Time Payment > Incentive > Referral,true
+Event_Classification_Subcategory_ID,One-Time_Payment_Incentive_Award,One-Time Payment > Incentive > Award,true
+Event_Classification_Subcategory_ID,Add_Retiree_Status_Involuntary_Illness,Add Retiree Status > Involuntary > Illness,true
+Event_Classification_Subcategory_ID,Add_Retiree_Status_Voluntary_Reached_retirement_age,Add Retiree Status > Voluntary > Reached retirement age,true
+Event_Classification_Subcategory_ID,Remove_Retiree_Status_Involuntary_No_longer_meets_retiree_requirements,Remove Retiree Status > Involuntary > No longer meets retiree requirements,true
+Event_Classification_Subcategory_ID,Remove_Retiree_Status_Involuntary_Rehired,Remove Retiree Status > Involuntary > Rehired,true
+Event_Classification_Subcategory_ID,Remove_Retiree_Status_Voluntary_Illness,Remove Retiree Status > Voluntary > Illness,true
+Event_Classification_Subcategory_ID,Remove_Retiree_Status_Voluntary_Death,Remove Retiree Status > Voluntary > Death,true
+Event_Classification_Subcategory_ID,Merit _Increase_in_Responsibilities_Acquisition_of_New_Skills,Merit > Increase in Responsibilities > Acquisition of New Skills,true
+Event_Classification_Subcategory_ID,Merit _Increase_in_Responsibilities_Change_in_Duties,Merit > Increase in Responsibilities > Change in Duties,true
+Event_Classification_Subcategory_ID,Merit _Increase_in_Responsibilities_High_Performer,Merit > Increase in Responsibilities > High Performer,true
+Event_Classification_Subcategory_ID,Merit _Performance_Annual_Focal_Review,Merit > Performance > Annual Performance Appraisal,true
+Event_Classification_Subcategory_ID,Merit _Performance_Adhoc_Review,Merit > Performance > Adhoc Review,true
+Event_Classification_Subcategory_ID,Merit _Performance_Completion_of_Goals,Merit > Performance > Completion of Goal(s),true
+Event_Classification_Subcategory_ID,Start_International_Assignment_Employee_Factors_Development_Assignment,Start International Assignment > Employee Factors > Development Assignment,true
+Event_Classification_Subcategory_ID,Start_International_Assignment_Host_Country_Factors_Local_Resource_Unavailable,Start International Assignment > Host Country Factors > Local Resource Unavailable,true
+Event_Classification_Subcategory_ID,Start_International_Assignment_Skills_Factors_Skills_Transfer,Start International Assignment > Skills Factors > Skills Transfer,true
+Event_Classification_Subcategory_ID,One-Time_Payment_Incentive_Performance,One-Time Payment > Incentive > Performance,true
+Event_Classification_Subcategory_ID,One-Time_Payment_Incentive_Lump_Sum,One-Time Payment > Incentive > Lump Sum,true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Adjustment_Performance,Request Compensation Change > Adjustment > Performance,true
+Event_Classification_Subcategory_ID,Add_Retiree_Status_Involuntary_Other,Add Retiree Status > Involuntary > Other,true
+Event_Classification_Subcategory_ID,Add_Retiree_Status_Voluntary_Early retirement,Add Retiree Status > Voluntary > Early retirement,true
+Event_Classification_Subcategory_ID,One-Time_Payment_Incentive_Bonus,One-Time Payment > Incentive > Bonus,true
+Event_Classification_Subcategory_ID,One-Time_Payment_Incentive_Merit,One-Time Payment > Incentive > Merit,true
+Event_Classification_Subcategory_ID,Edit_Position_Change_in_Contract_Contract_Extended,Edit Position > Change in Contract > Contract Extended,true
+Event_Classification_Subcategory_ID,Create_Job_Requisition_Recruiting_Post_for_competitive_fill,Create Job Requisition > Replacement > Employee has resigned or transferred,true
+Event_Classification_Subcategory_ID,Create_Job_Requisition_Recruiting_Post_internally_only,Create Job Requisition > Replacement > Employee terminated,true
+Event_Classification_Subcategory_ID,Create_Job_Requisition_Administrative_Non-competitive_fill_no_recruiting_required,Create Job Requisition > Administrative > Non-competitive fill; no recruiting required,true
+Event_Classification_Subcategory_ID,Edit_Job_Requisition_Administrative_Update_Hiring_Requirements,Edit Job Requisition > Administrative > Update Hiring Requirements,true
+Event_Classification_Subcategory_ID,Edit_Job_Requisition_Administrative_Update_Qualifications,Edit Job Requisition > Administrative > Update Qualifications,true
+Event_Classification_Subcategory_ID,Edit_Job_Requisition_Administrative_Update_Target_Hire_Date,Edit Job Requisition > Administrative > Update Target Hire Date,true
+Event_Classification_Subcategory_ID,Edit_Job_Requisition_Administrative_Update_Recruiting_Start_Date,Edit Job Requisition > Administrative > Update Recruiting Start Date,true
+Event_Classification_Subcategory_ID,Edit_Job_Requisition_Administrative_Update_Job_Title_Description_or_Justification,"Edit Job Requisition > Administrative > Update Job Title, Description or Justification",true
+Event_Classification_Subcategory_ID,Close_Job_Requisition_Recruiting_No_longer_recruiting_position_no_longer_needed,Close Job Requisition > Recruiting > No longer recruiting; position no longer needed,true
+Event_Classification_Subcategory_ID,Close_Job_Requisition_Administrative_Position_closed,Close Job Requisition > Administrative > Position closed,true
+Event_Classification_Subcategory_ID,Close_Job_Requisition_Administrative_Opened_in_error,Close Job Requisition > Administrative > Opened in error,true
+Event_Classification_Subcategory_ID,One-Time_Payment_Incentive_Stock,One-Time Payment > Incentive > Stock,true
+Event_Classification_Subcategory_ID,Stock_Grant_Incentive_Stock,Stock Grant > Incentive > Stock,true
+Event_Classification_Subcategory_ID,Hire_Employee_Recall_Recall,Hire Employee > Recall > Recall,true
+Event_Classification_Subcategory_ID,Hire_Employee_Rehire_Fill_Vacancy,Hire Employee > Rehire > Fill Vacancy,true
+Event_Classification_Subcategory_ID,Hire_Employee_Rehire_New_Position,Hire Employee > Rehire > New Position,true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Adjustment_Plan_Assignment,Request Compensation Change > Adjustment > Plan Assignment,true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Adjustment_Pay Increase,Request Compensation Change > Adjustment > Pay Increase,true
+Event_Classification_Subcategory_ID,Hire_Employee_New_Hire_Convert Contingent,Hire Employee > New Hire > Convert Contingent,true
+Event_Classification_Subcategory_ID,Edit_Position_Change_In_Restrictions_Exclude_from_Headcount_International_Assignment,Edit Position > Change In Restrictions > Exclude from Headcount - International Assignment,true
+Event_Classification_Subcategory_ID,Statutory_Compensation_Statement_Job_Change_Transfer,Statutory Compensation Statement > Job Change > Transfer,true
+Event_Classification_Subcategory_ID,Statutory_Compensation_Statement_Job_Change_Ad_hoc,Statutory Compensation Statement > Job Change > Ad-hoc,true
+Event_Classification_Subcategory_ID,Statutory_Compensation_Statement_Job_Change_Demotion,Statutory Compensation Statement > Job Change > Demotion,true
+Event_Classification_Subcategory_ID,Statutory_Compensation_Statement_Job_Change_Promotion,Statutory Compensation Statement > Job Change > Promotion,true
+Event_Classification_Subcategory_ID,Statutory_Compensation_Statement_Recurring_Yearly_pay_notice,Statutory Compensation Statement > Recurring > Yearly pay notice,true
+Event_Classification_Subcategory_ID,Statutory_Compensation_Statement_Hire_Acknowledgement_of_compensation_package,Statutory Compensation Statement > Hire > Acknowledgement of compensation package,true
+Event_Classification_Subcategory_ID,Switch_Primary_Job_Primary_Job_Change_New_job_is_primary,Switch Primary Job > Primary Job Change > New job is primary,true
+Event_Classification_Subcategory_ID,Switch_Primary_Job_Primary_Job_Change_Change_in_job_responsibilities,Switch Primary Job > Primary Job Change > Change in job responsibilities,true
+Event_Classification_Subcategory_ID,Switch_Primary_Job_Primary_Job_Change_Primary_job_is_ending,Switch Primary Job > Primary Job Change > Primary job is ending,true
+Event_Classification_Subcategory_ID,Switch_Primary_Job_Primary_Job_Change_Change_in_hours,Switch Primary Job > Primary Job Change > Change in hours,true
+Event_Classification_Subcategory_ID,Merit_Adjustment_Statutory_Adjustment,Merit > Adjustment > Statutory Adjustment,true
+Event_Classification_Subcategory_ID,Merit_Adjustment_Cost_of_Living_Adjustment,Merit > Adjustment > Cost of Living Adjustment,true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Adjustment_Cost_of_Living,Request Compensation Change > Adjustment > Cost of Living,true
+Event_Classification_Subcategory_ID,Request_Compensation_Change_Adjustment_Statutory,Request Compensation Change > Adjustment > Statutory,true
+Event_Classification_Subcategory_ID,Severance_Assignment_Severance_Reasons_Layoff,Severance Assignment > Severance Reasons > Layoff,true
+Event_Classification_Subcategory_ID,Severance_Assignment_Severance_Reasons_Site_Closure,Severance Assignment > Severance Reasons > Site Closure,true
+Event_Classification_Subcategory_ID,Severance_Assignment_Severance_Reasons_Early_Retirement,Severance Assignment > Severance Reasons > Early Retirement,true
+Event_Classification_Subcategory_ID,Severance_Assignment_Severance_Reasons_Job_Elimination,Severance Assignment > Severance Reasons > Job Elimination,true
+Event_Classification_Subcategory_ID,Severance_Assignment_Severance_Reasons_Ad_Hoc_Severance,Severance Assignment > Severance Reasons > Ad Hoc Severance,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-148,Create Job Requisition > New position > Previously approved staff addition,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-149,Create Job Requisition > New position > Requesting additional staff,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-150,Create Job Requisition > New position > Temporary hire - project based need,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-151,Freeze Job Requisition > Unfreeze > Budget Unfrozen,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-152,Freeze Job Requisition > Unfreeze > Hold for Organization Structure Review,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-153,Freeze Job Requisition > Freeze > Budget Freeze,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-154,Freeze Job Requisition > Freeze > Hold for Organization Structure Review,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-155,Committee Member Service > Loss of Membership > Election,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-156,Committee Member Service > Loss of Membership > Employment,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-157,Committee Member Service > Loss of Membership > Term Expiration,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-158,Committee Member Service > New Membership > Election,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-159,Committee Member Service > New Membership > Member Replacement,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-160,Committee Member Service > New Membership > New Committee,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-161,Hire Employee > New Hire > Acquisition,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-162,Move to New Manager > Move to new manager > Move to another manager,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-163,Move to New Manager > Move to new manager > Promotion,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-165,Add Retiree Status > Voluntary > Elected to retire,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-166,Worker Resignation > Voluntary > Commute Time,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-167,Worker Resignation > Voluntary > Confidential,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-168,Worker Resignation > Voluntary > Dissatisfied with Job,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-169,Worker Resignation > Voluntary > Dissatisfied with Management,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-170,Worker Resignation > Voluntary > Dissatisfied with Pay,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-171,Worker Resignation > Voluntary > Family Reasons,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-172,Worker Resignation > Voluntary > Hired by Competitor,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-173,Worker Resignation > Voluntary > Moved,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-174,Worker Resignation > Voluntary > Other,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-175,Worker Resignation > Voluntary > Other Employment,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-176,Worker Resignation > Voluntary > Retirement,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-177,Manage Medicare Information > Update Exisiting Medicare Information > Employee,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-178,Manage Medicare Information > Update Exisiting Medicare Information > Dependent,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-179,Manage Medicare Information > Add New Medicare Information > Employee,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-180,Manage Medicare Information > Add New Medicare Information > Dependent,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-181,Edit Job Requisition > Administrative > Minor Edit - No Reposting Needed,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-182,Committee Member Service > New Membership > New Committee Member,true
+Event_Classification_Subcategory_ID,Acquisition,Create Position > Acquisition > Acquisition,true
+Event_Classification_Subcategory_ID,Acquisition_Job_Requisition,Create Job Requisition > Acquisition > Acquisition,true
+Event_Classification_Subcategory_ID,Acquisition_Hire,Hire Employee > Acquisition > Acquisition Hire,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-190,Post Termination Compensation > Post Termination Compensation > Post Termination Compensation,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-191,Wage Theft Prevention Notice > Wage Theft Prevention Notice > Wage Theft Prevention Notice,true
+Event_Classification_Subcategory_ID,Start_International_Assignment,Request Compensation Change > International Assignment > Start International Assignment,true
+Event_Classification_Subcategory_ID,End_International_Assignment,Request Compensation Change > International Assignment > End International Assignment,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-194,Hire Employee > New Hire > New Graduate,true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-16-195,Start International Assignment > Skills Factors > Domestic Secondment (Shukko),true
+Event_Classification_Subcategory_ID,GENERAL_EVENT_SUBCATEGORY-17-196,Hire Employee > New Hire > Conversion,true
+Event_Classification_Subcategory_ID,PERSONAL_LEAVE_LT_3_MONTHS,Personal > Personal Leave-Less Than 3 Months,true
+Event_Classification_Subcategory_ID,PERSONAL_LEAVE_MT_3_MONTHS,Personal > Personal Leave-More Than 3 Months,true
+Event_Classification_Subcategory_ID,WORKERS_COMPENSATION_USA,Worker's Compensation > Workers Compensation,true
+Event_Classification_Subcategory_ID,FMLA_GENERAL_USA,Family Medical Leave (FMLA) > Qualifying Health Condition (Self/Family),true
+Event_Classification_Subcategory_ID,MILITARY,Personal > Military Service,true
+Event_Classification_Subcategory_ID,COMPANY_JURY_USA,Company > Jury Duty,true
+Event_Classification_Subcategory_ID,COMPANY_LTD_USA,Disability > USA Long Term Disability,true
+Event_Classification_Subcategory_ID,COMPANY_STD_USA,Disability > USA Short Term Disability,true
+Event_Classification_Subcategory_ID,COMPANY_BEREAVEMENT_USA_CAN,Company > Bereavement Leave,true
+Event_Classification_Subcategory_ID,REGULATORY_FORCE_MAJEURE_EU,Regulatory > Force Majeure,true
+Event_Classification_Subcategory_ID,PERSONAL_SABBATICAL_CAN,Personal > Sabbatical,true
+Event_Classification_Subcategory_ID,PERSONAL_CAREER_BREAK_CAN,Personal > Career Break,true
+Event_Classification_Subcategory_ID,PERSONAL_APPRENTICE_TRAINING_CAN,Personal > Apprentice Training,true
+Event_Classification_Subcategory_ID,PERSONAL_EMERGENCY_LEAVE_USA,Personal > Emergency Leave,true
+Event_Classification_Subcategory_ID,PERSONAL_EXTENDED_BEREAVEMENT_LEAVE_USA,Personal > Extended Bereavement Leave,true
+Event_Classification_Subcategory_ID,PERSONAL_EXTENDED_JURY_USA,Personal > Extended Jury Duty / Court Subpoena,true
+Event_Classification_Subcategory_ID,PERSONAL_EDUCATION_USA_CAN,Personal > Education,true
+Event_Classification_Subcategory_ID,PERSONAL_TRAVEL_CAN,Personal > Travel,true
+Event_Classification_Subcategory_ID,FMLA_VOLUNTEER_USA_CA,Family Medical Leave (FMLA) > California Volunteer Firefighter / EMC Leave,true
+Event_Classification_Subcategory_ID,FMLA_MIL_CAREGIVER_USA,Family Medical Leave (FMLA) > Military: Caregiver for Family Veteran,true
+Event_Classification_Subcategory_ID,PERSONAL_HEALTH_USA,Personal > Health Condition / Third Party Sick Pay,true
+Event_Classification_Subcategory_ID,MEDICAL_LEAVE_WORKERS_COMP_CAN,Medical Leave > Worker's Compensation,true
+Event_Classification_Subcategory_ID,MEDICAL_LEAVE_ACCIDENT_CAN,Medical Leave > Accident,true
+Event_Classification_Subcategory_ID,MEDICAL_LEAVE_HOSPITALIZATION_CAN,Medical Leave > Hospitalization,true
+Event_Classification_Subcategory_ID,MEDICAL_LEAVE_ILLNESS_OR_INJURY_CAN,Medical Leave > Illness or Injury,true
+Event_Classification_Subcategory_ID,WORKERS_COMP_INJURY_AT_WORK_USA,Worker's Compensation > Injury at Work,true
+Event_Classification_Subcategory_ID,FAMILIY_LEAVE_COMPASSIONATE_CARE_CAN,Family Leave > Compassionate Care,true
+Event_Classification_Subcategory_ID,FMLA_MIL_ACTIVE_USA,Family Medical Leave (FMLA) > Military: Family on Active Duty,true
+Event_Classification_Subcategory_ID,PERSONAL_PLANNED_LEAVE_USA,Personal > Planned Leave,true
+Event_Classification_Subcategory_ID,FAMILY_LEAVE_MATERNITY_LEAVE_CAN,Family Leave > Maternity Leave,true
+Event_Classification_Subcategory_ID,FAMILY_LEAVE_PARENTAL_LEAVE_CAN,Family Leave > Parental Leave,true
+Event_Classification_Subcategory_ID,DISABILITY_STD_CAN,Disability > CAN Short Term Disability,true
+Event_Classification_Subcategory_ID,DISABILITY_LTD_CAN,Disability > CAN Long Term Disability,true
+Event_Classification_Subcategory_ID,Regulatory_GBR_Maternity_Leave,Regulatory > GBR Maternity Leave,true
+Event_Classification_Subcategory_ID,Regulatory_GBR_Paternity_Leave,Regulatory > GBR Paternity Leave,true
+Event_Classification_Subcategory_ID,Regulatory_GBR_Adoption_Leave,Regulatory > GBR Adoption Leave,true
+Event_Classification_Subcategory_ID,GBR_STAT_APL,Regulatory > ZZ DNU - GBR Additional Paternity Leave,true
+Event_Classification_Subcategory_ID,NLD_STAT_ADP,Regulatory > NLD Adoption Leave,true
+Event_Classification_Subcategory_ID,NLD_STAT_LTC,Regulatory > NLD Long Term Care Leave,true
+Event_Classification_Subcategory_ID,NLD_STAT_PAT,Regulatory > NLD Paternity Leave,true
+Event_Classification_Subcategory_ID,NLD_STAT_MAT,Regulatory > NLD Pregnancy & Maternity Leave,true
+Event_Classification_Subcategory_ID,NLD_STAT_STC,Regulatory > NLD Short Term Care Leave,true
+Event_Classification_Subcategory_ID,SWE_STAT_MAT,Regulatory > SWE Parental Leave - Maternity,true
+Event_Classification_Subcategory_ID,SWE_STAT_ADP,Regulatory > SWE Adoption Leave,true
+Event_Classification_Subcategory_ID,SWE_STAT_PAT,Regulatory > SWE Paternity Leave,true
+Event_Classification_Subcategory_ID,DNK_STAT_ADP,Regulatory > DNK Adoption Leave,true
+Event_Classification_Subcategory_ID,DNK_STAT_MAT,Regulatory > DNK Maternity Leave,true
+Event_Classification_Subcategory_ID,DNK_STAT_PAT,Regulatory > DNK Paternity Leave,true
+Event_Classification_Subcategory_ID,FRA_STAT_MAT,Regulatory > FRA Maternity Leave,true
+Event_Classification_Subcategory_ID,FRA_STAT_PAT,Regulatory > FRA Paternity & Additional Paternity Leave,true
+Event_Classification_Subcategory_ID,FRA_STAT_ADP,Regulatory > FRA Adoption Leave,true
+Event_Classification_Subcategory_ID,AUS_STAT_SMAT,Regulatory > AUS Special Maternity Leave,true
+Event_Classification_Subcategory_ID,AUS_STAT_PAR,Regulatory > AUS Parental Leave,true
+Event_Classification_Subcategory_ID,SWE_STAT_PRE,Regulatory > SWE Pregnancy Leave,true
+Event_Classification_Subcategory_ID,SWE_STAT_PAR,Regulatory > SWE Parental Leave,true
+Event_Classification_Subcategory_ID,LEAVE_OF_ABSENCE_TYPE-4-69,Regulatory > SGP Maternity Leave,true
+Event_Classification_Subcategory_ID,Regulatory_BEL_Maternity Leave,Regulatory > BEL Maternity Leave,true
+Event_Classification_Subcategory_ID,Regulatory_BEL_Adoption_Leave,Regulatory > BEL Adoption Leave,true
+Event_Classification_Subcategory_ID,NOR_STAT_PAR,Regulatory > NOR Parental Leave,true
+Event_Classification_Subcategory_ID,NOR_STAT_PAT,Regulatory > NOR Paternity Leave,true
+Event_Classification_Subcategory_ID,NLD_ACCIDENT_TP,Regulatory > NLD Accident - Third Party,true
+Event_Classification_Subcategory_ID,NLD_ORGAN_DONATION,Regulatory > NLD Organ Donation,true
+Event_Classification_Subcategory_ID,NLD_SICKNESS,Regulatory > NLD Sickness Leave,true
+Event_Classification_Subcategory_ID,SWE_SIC_LEAVE,Regulatory > SWE Sickness Leave,true
+Event_Classification_Subcategory_ID,Regulatory_GBR_Shared_Parental_Leave,Regulatory > GBR Shared Parental Leave,true
+Event_Classification_Subcategory_ID,JPN_Childcare_Leave,Regulatory > JPN Childcare Leave,true
+Event_Classification_Subcategory_ID,JPN_Family_Care_Leave,Regulatory > JPN Family Care Leave,true
+Event_Classification_Subcategory_ID,Regulatory_GBR_Sickness_Leave,Regulatory > ZZ DNU - GBR Sickness Leave,true
+Event_Classification_Subcategory_ID,JPN_Maternity_Leave,Regulatory > JPN Maternity Leave,true
+Event_Classification_Subcategory_ID,JPN_Short_Term_Family_Care_Leave,Regulatory > JPN Short Term Family Care Leave,true
+Event_Classification_Subcategory_ID,Regulatory_DEU_Care_Time_Leave,Regulatory > DEU Care Time Leave,true
+Event_Classification_Subcategory_ID,Regulatory_DEU_Education_Leave,Regulatory > DEU Education Leave,true
+Event_Classification_Subcategory_ID,Regulatory_DEU_Extended_Unpaid_Leave,Regulatory > DEU Extended Unpaid Leave,true
+Event_Classification_Subcategory_ID,Regulatory_DEU_Maternity_Leave,Regulatory > DEU Maternity Leave,true
+Event_Classification_Subcategory_ID,Regulatory_DEU_Parental_Leave,Regulatory > DEU Parental Leave,true
+Event_Classification_Subcategory_ID,Regulatory_DEU_Sick_Child_Leave,Regulatory > DEU Sick Child Leave,true
+Event_Classification_Subcategory_ID,Regulatory_DEU_Sick_Leave,Regulatory > DEU Sick Leave,true
+Event_Classification_Subcategory_ID,Regulatory_GBR_Unpaid_Parental_Leave,Regulatory > GBR Unpaid Parental Leave,true
+Event_Classification_Subcategory_ID,Regulatory_JPN_Long_Service_Leave,Regulatory > JPN Long Service Leave,true
+Event_Classification_Subcategory_ID,Regulatory_JPN_Sick_Child_Leave,Regulatory > JPN Sick Child Leave,true
+Event_Classification_Subcategory_ID,Regulatory_JPN_Workers_Compensation_Leave,Regulatory > JPN Workers Compensation Leave,true
+Event_Classification_Subcategory_ID,FRA_Sabbatical_Leave,Regulatory > FRA Sabbatical Leave,true
+Event_Classification_Subcategory_ID,FRA_Parental_Leave,Regulatory > FRA Parental Leave,true
+Event_Classification_Subcategory_ID,FRA_Therapeutic_PartTime,Medical Leave > FRA Therapeutic Part Time (date range when applied),true
+Event_Classification_Subcategory_ID,Regulatory_CHN_Maternity_Leave,Regulatory > CHN Maternity Leave,true
+Event_Classification_Subcategory_ID,Regulatory_CHN_Paternity_Leave,Regulatory > CHN Paternity Leave,true
+Event_Classification_Subcategory_ID,Regulatory_CHN_Marriage_Leave,Regulatory > CHN Marriage Leave,true
+Event_Classification_Subcategory_ID,Regulatory_CHN_Miscarriage_Leave,Regulatory > CHN Miscarriage Leave,true
+Event_Classification_Subcategory_ID,Regulatory_CHN_Short-Term_Sick_Leave,Regulatory > CHN Short Term Sick Leave,true
+Event_Classification_Subcategory_ID,Regulatory_CHN_Long_Term_Sick_Leave,Regulatory > CHN Long Term Sick Leave,true
+Event_Classification_Subcategory_ID,Regulatory_SWE_Family_Care_Leave,Regulatory > SWE Family Care Leave,true
+Event_Classification_Subcategory_ID,Regulatory_SWE_Leave_to_Conduct_Business,Regulatory > SWE Leave to Conduct Business,true
+Event_Classification_Subcategory_ID,Regulatory_SWE_Study_Leave,Regulatory > SWE Study Leave,true
+Event_Classification_Subcategory_ID,DNK_LongTermSicknessLeave,Regulatory > DNK Long Term Sickness Leave,true
+Event_Classification_Subcategory_ID,Regulatory_NLD_Parental_Leave,Regulatory > NLD Parental Leave,true
+Event_Classification_Subcategory_ID,Regulatory_IRL_AdoptionLeave_Standard,Regulatory > IRL Adoption Leave (Standard),true
+Event_Classification_Subcategory_ID,Regulatory_IRL_MaternityLeave_Standard,Regulatory > IRL Maternity Leave (Standard),true
+Event_Classification_Subcategory_ID,Regulatory_IRL_Parental_Leave,Regulatory > IRL Parental Leave,true
+Event_Classification_Subcategory_ID,Regulatory_IRL_PaternityLeave,Regulatory > IRL Paternity Leave,true
+Event_Classification_Subcategory_ID,Regulatory_IRL_CarersLeave,Regulatory > IRL Carer's Leave,true
+Event_Classification_Subcategory_ID,Regulatory_IRL_ForceMajeure,Regulatory > IRL Force Majeure,true
+Event_Classification_Subcategory_ID,Regulatory_BEL_Additional_Maternity_Leave,Regulatory > BEL Additional Maternity Leave,true
+Event_Classification_Subcategory_ID,Regulatory_BEL_Paternity_Leave,Regulatory > BEL Paternity Leave,true
+Event_Classification_Subcategory_ID,Regulatory_BEL_Parental_Leave,Regulatory > BEL Parental Leave,true
+Event_Classification_Subcategory_ID,Regulatory_BEL_Additional_Parental_Leave,Regulatory > BEL Additional Parental Leave,true
+Event_Classification_Subcategory_ID,Regulatory_BEL_Paid_Education_Leave,Regulatory > BEL Paid Education Leave,true
+Event_Classification_Subcategory_ID,Regulatory_MYS_MaternityLeave,Regulatory > MYS Maternity Leave,true
+Event_Classification_Subcategory_ID,Regulatory_MYS_SickLeave_Hospitalization,Regulatory > MYS Sick Leave / Hospitalization,true
+Event_Classification_Subcategory_ID,Regulatory_FIN_MaternityLeave,Regulatory > FIN Maternity Leave,true
+Event_Classification_Subcategory_ID,Regulatory_NOR_SicknessLeaveDoctorCertified,Regulatory > NOR Sickness Leave - Doctor Certified,true
+Event_Classification_Subcategory_ID,KOR_Maternity_Leave,Regulatory > KOR Maternity Leave,true
+Event_Classification_Subcategory_ID,KOR_Childcare_Leave,Regulatory > KOR Childcare Leave,true
+Event_Classification_Subcategory_ID,AUS_WORKERS_COMPENSATION,Worker's Compensation > AUS Workers Compensation,true
+Event_Classification_Subcategory_ID,ZAF_MATERNITY_LEAVE,Regulatory > ZAF Maternity Leave,true
+Event_Classification_Subcategory_ID,ZAF_PATERNITY_LEAVE,Regulatory > ZAF Paternity Leave,true
+Event_Classification_Subcategory_ID,Terminate_Employee_Involuntary_RIF,Terminate Employee > Involuntary > Workforce Reduction,true
+Event_Classification_Subcategory_ID,Terminate_Employee_Involuntary_PoorJob,Terminate Employee > Involuntary > Poor Job Performance,true
+Event_Classification_Subcategory_ID,Terminate_Employee_Voluntary_Unknown,Terminate Employee > Voluntary > Unknown,true
+Event_Classification_Subcategory_ID,Terminate_Employee_Voluntary_Family,Terminate Employee > Voluntary > Family Reasons,true
+Event_Classification_Subcategory_ID,Schedule,Schedule,true
+Event_Classification_Subcategory_ID,Terminate_Employee_Voluntary_Moved,Terminate Employee > Voluntary > Moved,true
+Event_Classification_Subcategory_ID,Terminate_Employee_Voluntary_Commute,Terminate Employee > Voluntary > Commute Time,true
+Event_Classification_Subcategory_ID,Terminate_Employee_Voluntary_DissatisfiedPay,Terminate Employee > Voluntary > Dissatisfied with Pay,true
+Event_Classification_Subcategory_ID,Terminate_Employee_Voluntary_DissatisfiedMgmt,Terminate Employee > Voluntary > Dissatisfied with Management,true
+Event_Classification_Subcategory_ID,Terminate_Employee_Voluntary_OtherEmp,Terminate Employee > Voluntary > Other Employment,true
+Event_Classification_Subcategory_ID,Terminate_Employee_Voluntary_DissatisfiedJob,Terminate Employee > Voluntary > Dissatisfied with Job,true
+Event_Classification_Subcategory_ID,Terminate_Employee_Involuntary_NotAuthorized,Terminate Employee > Involuntary > Not Authorized to Work,true
+Event_Classification_Subcategory_ID,Terminate_Employee_Involuntary_Death,Terminate Employee > Involuntary > Death,true
+Event_Classification_Subcategory_ID,Terminate_Employee_Involuntary_Harassment,Terminate Employee > Involuntary > Harassment,true
+Event_Classification_Subcategory_ID,End_Contingent_Worker_Contract _Voluntary_Unknown,End Contingent Worker Contract > Voluntary > Unknown,true
+Event_Classification_Subcategory_ID,End_Contingent_Worker_Contract_Voluntary_Dissatisfaction_with_Management,End Contingent Worker Contract > Voluntary > Dissatisfaction with Management,true
+Event_Classification_Subcategory_ID,End_Contingent_Worker_Contract_Voluntary_Commute_Time,End Contingent Worker Contract > Voluntary > Commute Time,true
+Event_Classification_Subcategory_ID,End_Contingent_Worker_Contract_Voluntary_Dissatisfaction_with_Job,End Contingent Worker Contract > Voluntary > Dissatisfaction with Job,true
+Event_Classification_Subcategory_ID,End_Contingent_Worker_Contract_Voluntary_Contract_Ended,End Contingent Worker Contract > Voluntary > Contract Ended,true
+Event_Classification_Subcategory_ID,End_Contingent_Worker_Contract_Voluntary_Project_Completed,End Contingent Worker Contract > Voluntary > Project Completed,true
+Event_Classification_Subcategory_ID,End_Contingent_Worker_Contract_Involuntary_Reorganization,End Contingent Worker Contract > Involuntary > Reorganization,true
+Event_Classification_Subcategory_ID,End_Contingent_Worker_Contract_Involuntary_Death,End Contingent Worker Contract > Involuntary > Death,true
+Event_Classification_Subcategory_ID,End_Contingent_Worker_Contract_Involuntary_Performance,End Contingent Worker Contract > Involuntary > Performance,true
+Event_Classification_Subcategory_ID,End_Contingent_Worker_Contract_Involuntary_Harassment,End Contingent Worker Contract > Involuntary > Harassment,true
+Event_Classification_Subcategory_ID,End_Contingent_Worker_Contract_Involuntary_Not_Authorized_to_Work,End Contingent Worker Contract > Involuntary > Not Authorized to Work,true
+Event_Classification_Subcategory_ID,End_Contingent_Worker_Contract_Involuntary_Breach_of_Contract,End Contingent Worker Contract > Involuntary > Breach of Contract,true
+Event_Classification_Subcategory_ID,Terminate_Employee_Voluntary_Retirement,Terminate Employee > Voluntary > Retirement,true
+Event_Classification_Subcategory_ID,Terminate_Employee_Voluntary_Hired_by_Competitor,Terminate Employee > Voluntary > Hired by Competitor,true
+Event_Classification_Subcategory_ID,TERMINATION_SUBCATEGORY-16-29,Terminate Employee > Voluntary > End of Fixed Term Contract,true
+Event_Classification_Subcategory_ID,TERMINATION_SUBCATEGORY-16-30,Terminate Employee > Involuntary > Unsatisfactory probation period,true
+Event_Classification_Subcategory_ID,End_Additional_Contract_Involuntary_Breach_of_Contract,End Additional Contract > Involuntary > Breach of Contract,true
+Event_Classification_Subcategory_ID,End_Additional_Contract_Involuntary_Death,End Additional Contract > Involuntary > Death,true
+Event_Classification_Subcategory_ID,End_Additional_Contract_Involuntary_Harassment,End Additional Contract > Involuntary > Harassment,true
+Event_Classification_Subcategory_ID,End_Additional_Contract_Involuntary_Poor_Job_Performance,End Additional Contract > Involuntary > Poor Job Performance,true
+Event_Classification_Subcategory_ID,End_Additional_Contract_Voluntary_Dissatisfied_with_Management,End Additional Contract > Voluntary > Dissatisfied with Management,true
+Event_Classification_Subcategory_ID,End_Additional_Contract_Voluntary_Dissatisfied_with_Job,End Additional Contract > Voluntary > Dissatisfied with Job,true
+Event_Classification_Subcategory_ID,End_Additional_Contract_Voluntary_Contract_Ended,End Additional Contract > Voluntary > Contract Ended,true
+Event_Classification_Subcategory_ID,End_Additional_Contract_Voluntary_Project_Complete,End Additional Contract > Voluntary > Project Complete,true
+Event_Classification_Subcategory_ID,End_Additional_Contract_Voluntary_Unknown,End Additional Contract > Voluntary > Unknown,true
+Event_Classification_Subcategory_ID,End_Additional_Employee_Job_Involuntary_Workforce_Reduction,End Additional Employee Job > Involuntary > Workforce Reduction,true
+Event_Classification_Subcategory_ID,End_Additional_Employee_Job_Involuntary_Harassment,End Additional Employee Job > Involuntary > Harassment,true
+Event_Classification_Subcategory_ID,End_Additional_Employee_Job_Involuntary_Poor_Job_Performance,End Additional Employee Job > Involuntary > Poor Job Performance,true
+Event_Classification_Subcategory_ID,End_Additional_Employee_Job_Involuntary_Not_Authorized_to_Work,End Additional Employee Job > Involuntary > Not Authorized to Work,true
+Event_Classification_Subcategory_ID,End_Additional_Employee_Job_Death,End Additional Employee Job > Involuntary > Death,true
+Event_Classification_Subcategory_ID,End_Additional_Employee_Job_Voluntary_Moved,End Additional Employee Job > Voluntary > Moved,true
+Event_Classification_Subcategory_ID,End_Additional_Employee_Job_Voluntary_Unknown,End Additional Employee Job > Voluntary > Unknown,true
+Event_Classification_Subcategory_ID,End_Additional_Employee_Job_Voluntary_Family_Reasons,End Additional Employee Job > Voluntary > Family Reasons,true
+Event_Classification_Subcategory_ID,End_Additional_Employee_Job_Voluntary_Dissatisfied_with_Job,End Additional Employee Job > Voluntary > Dissatisfied with Job,true
+Event_Classification_Subcategory_ID,End_Additional_Employee_Job_Other_Employment,End Additional Employee Job > Voluntary > Other Employment,true
+Event_Classification_Subcategory_ID,End_Additional_Employee_Job_Voluntary_Dissatisfied_with_Management,End Additional Employee Job > Voluntary > Dissatisfied with Management,true
+Event_Classification_Subcategory_ID,End_Additional_Contract_Involuntary_Not_Authorized_to_Work,End Additional Contract > Involuntary > Not Authorized to Work,true
+Event_Classification_Subcategory_ID,End_International_Assignment_Employee_Factors_Employee_Separation,End International Assignment > Employee Factors > Employee Separation,true
+Event_Classification_Subcategory_ID,End_International_Assignment_Assignment_Factors_Assignment_Complete,End International Assignment > Assignment Factors > Assignment Complete,true
+Event_Classification_Subcategory_ID,End_Additional_Employee_Job_Involuntary_Job_Reclassification,End Additional Employee Job > Involuntary > Job Reclassification,true
+Event_Classification_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-4-1,Demotion > Demotion > Decrease in Responsibility,true
+Event_Classification_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-4-2,Data Change > Data Change > Change Contractor Details,true
+Event_Classification_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-4-3,Data Change > Data Change > Change Job Details,true
+Event_Classification_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-4-4,Data Change > Data Change > Change Location,true
+Event_Classification_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-4-5,Lateral Move > Lateral Move > Move to Another Position on My Team,true
+Event_Classification_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-4-6,Transfer > Transfer > Move to Another Manager,true
+Event_Classification_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-4-7,Promotion > Promotion > Promotion,true
+Event_Classification_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-16-8,Swap Positions > Data Change > Change Contractor Details,true
+Event_Classification_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-16-10,Swap Positions > Demotion > Decrease in Responsibility,true
+Event_Classification_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-16-11,Swap Positions > Lateral Move > Move to Other Positions on Same Team,true
+Event_Classification_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-16-12,Swap Positions > Transfer > Switch Managers,true
+Event_Classification_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-16-14,Swap Positions > Data Change > Change Job Details,true
+Event_Classification_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-16-15,Swap Positions > Data Change > Change Location(s),true
+Event_Classification_Subcategory_ID,BENEFITS_EVENT_SUBCATEGORY-4-1,Dependent Event > Change Dependent > Identification Information,true
+Event_Classification_Subcategory_ID,BENEFITS_EVENT_SUBCATEGORY-4-2,Dependent Event > Change Dependent > Personal Information,true
+Event_Classification_Subcategory_ID,BENEFITS_EVENT_SUBCATEGORY-4-3,Dependent Event > Change Dependent > Contact Information,true
+Event_Classification_Subcategory_ID,BENEFITS_EVENT_SUBCATEGORY-4-4,Dependent Event > Add Dependent > Other,true
+Event_Classification_Subcategory_ID,BENEFITS_EVENT_SUBCATEGORY-4-5,Dependent Event > Add Dependent > Marriage,true
+Event_Classification_Subcategory_ID,BENEFITS_EVENT_SUBCATEGORY-4-6,Dependent Event > Add Dependent > Birth/Adoption,true
+Event_Classification_Subcategory_ID,UNDO_MOVE_SUBCATEGORY-16-1,Undo Move > Error > Moved Prematurely,true
+Event_Classification_Subcategory_ID,UNDO_MOVE_SUBCATEGORY-16-2,Undo Move > Offer > Change Offer Compensation,true
+Event_Classification_Subcategory_ID,UNDO_MOVE_SUBCATEGORY-16-3,Undo Move > No Show > Communication Received,true
+Event_Classification_Subcategory_ID,UNDO_MOVE_SUBCATEGORY-16-4,Undo Move > No Show > No Communication,true

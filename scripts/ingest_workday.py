@@ -6,7 +6,7 @@ from pathlib import Path
 from src.rag.embedder import IntentEmbedder
 from src.rag.pinecone_store import PineconeStore
 
-def ingest_data(input_file="data/processed_intents/workers_apis.json", namespace="common"):
+def ingest_data(input_file="data/processed_intents/workers_apis.json", namespace="workday_specs"):
     print("Initializing Ingestion Pipeline...")
     
     # 1. Boot up the brain and the database
@@ -47,6 +47,7 @@ def ingest_data(input_file="data/processed_intents/workers_apis.json", namespace
             metadata = {
                 "api_name": api_name,
                 "method": api.get("method", "GET"),
+                "path": api.get("full_path", ""),
                 "full_path": api.get("full_path", ""),
                 "parameters": params_str,
                 "trigger_text": intent  # Helpful for debugging later

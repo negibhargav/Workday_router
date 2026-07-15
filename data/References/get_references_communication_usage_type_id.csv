@@ -1,0 +1,7 @@
+id_type,id,note,active
+Communication_Usage_Type_ID,WORK,Work,true
+Communication_Usage_Type_ID,BUSINESS,Business,true
+Communication_Usage_Type_ID,HOME,Home,true
+Communication_Usage_Type_ID,LOCKBOX,Lockbox,true
+Communication_Usage_Type_ID,ACADEMIC_CONTACT,Academic Contact,true
+Communication_Usage_Type_ID,INSTITUTIONAL,Institutional,true

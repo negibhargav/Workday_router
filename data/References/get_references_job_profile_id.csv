@@ -1,0 +1,162 @@
+id_type,id,note,active
+Job_Profile_ID,25000,Chief Executive Officer,true
+Job_Profile_ID,26000,Chief Information Officer,true
+Job_Profile_ID,27000,Chief Financial Officer,true
+Job_Profile_ID,28000,Chief Operating Officer,true
+Job_Profile_ID,24000,General Counsel,true
+Job_Profile_ID,23000,Chief Human Resources Officer,true
+Job_Profile_ID,30100,"Director, Employee Benefits",true
+Job_Profile_ID,30200,"Director, Payroll Operations",true
+Job_Profile_ID,30300,"Director, Recruiting Services",true
+Job_Profile_ID,30400,"Director, Workforce Planning",true
+Job_Profile_ID,30150,Senior Benefits Analyst,true
+Job_Profile_ID,30250,Senior Payroll Specialist,true
+Job_Profile_ID,30350,Senior Recruiter,true
+Job_Profile_ID,30450,Senior Workforce Analyst,true
+Job_Profile_ID,30110,Staff Benefits Analyst,true
+Job_Profile_ID,30500,"Director, HR Operations",true
+Job_Profile_ID,30310,Staff Recruiter,true
+Job_Profile_ID,30210,Staff Payroll Specialist,true
+Job_Profile_ID,30410,Staff Workforce Analyst,true
+Job_Profile_ID,30550,Senior HR Representative,true
+Job_Profile_ID,30510,Staff HR Representative,true
+Job_Profile_ID,34100,Associate General Counsel,true
+Job_Profile_ID,34110,Corporate Counsel,true
+Job_Profile_ID,34120,Senior Counsel,true
+Job_Profile_ID,34130,Corporate Paralegal,true
+Job_Profile_ID,37110,Staff Financial Analyst,true
+Job_Profile_ID,35100,"Director, Accounting",true
+Job_Profile_ID,36100,"Director, Tax",true
+Job_Profile_ID,37100,"Director, Financial Planning & Analysis",true
+Job_Profile_ID,38100,"Director, SEC Reporting",true
+Job_Profile_ID,37120,Senior Financial Analyst,true
+Job_Profile_ID,29000,Chief Risk Management Officer,true
+Job_Profile_ID,35000,Controller,true
+Job_Profile_ID,39100,Senior Network Engineer,true
+Job_Profile_ID,39200,System Administrator,true
+Job_Profile_ID,39300,Senior IT Analyst,true
+Job_Profile_ID,36120,Tax Accountant,true
+Job_Profile_ID,36110,Tax Specialist,true
+Job_Profile_ID,35110,"Manager, Accounts Payable",true
+Job_Profile_ID,35120,"Manager, Accounts Receivable",true
+Job_Profile_ID,35121,Accounting Specialist - AP,true
+Job_Profile_ID,35111,Accounting Specialist - AR,true
+Job_Profile_ID,35122,Senior Accountant,true
+Job_Profile_ID,39050,"Director, Information Technology",true
+Job_Profile_ID,39150,"Manager, IT HelpDesk",true
+Job_Profile_ID,39115,"Manager, Workstation Support",true
+Job_Profile_ID,39145,Senior Workstation Engineer,true
+Job_Profile_ID,39125,IT HelpDesk Specialist,true
+Job_Profile_ID,39180,"Manager, IT Operations",true
+Job_Profile_ID,38500,"Vice President, Sales",true
+Job_Profile_ID,39500,"Vice President, Marketing",true
+Job_Profile_ID,39510,"Director, Marketing Communications",true
+Job_Profile_ID,39560,"Director, Marketing Services",true
+Job_Profile_ID,39610,"Senior Manager, Marketing Communications",true
+Job_Profile_ID,35750,Office Manager,true
+Job_Profile_ID,37650,Receptionist,true
+Job_Profile_ID,37780,Executive Assistant,true
+Job_Profile_ID,38600,Regional Sales Manager,true
+Job_Profile_ID,38700,Inside Sales Representative,true
+Job_Profile_ID,38550,Sales Solution Consultant,true
+Job_Profile_ID,38850,"Director, Inside Sales",true
+Job_Profile_ID,38950,"Director, Field Sales",true
+Job_Profile_ID,39875,Sales Compensation Analyst,true
+Job_Profile_ID,38955,Sales Contracts Manager,true
+Job_Profile_ID,38520,"Director, Sales Operations",true
+Job_Profile_ID,39250,Internal Auditor,true
+Job_Profile_ID,39260,Senior Risk Analyst,true
+Job_Profile_ID,40000,Product Strategy,true
+Job_Profile_ID,40100,Product Management,true
+Job_Profile_ID,40200,Product Development,true
+Job_Profile_ID,39855,"Vice President, Research & Development",true
+Job_Profile_ID,39885,"Director, Research & Development",true
+Job_Profile_ID,21000,"Executive VP, Sales & Marketing",true
+Job_Profile_ID,39255,Sales Proposal Specialist,true
+Job_Profile_ID,39045,"Vice President, Global Support",true
+Job_Profile_ID,39025,"Director, Global Support",true
+Job_Profile_ID,37525,"Manager, Information Analysis",true
+Job_Profile_ID,38405,Senior Data Analyst,true
+Job_Profile_ID,37980,"Vice President, Real Estate & Facilities",true
+Job_Profile_ID,39160,"Manager, Workstation Operations",true
+Job_Profile_ID,39895,"Vice President, Program Management",true
+Job_Profile_ID,39905,Program Manager,true
+Job_Profile_ID,35225,Buyer,true
+Job_Profile_ID,35113,"Manager, Purchasing",true
+Job_Profile_ID,37950,"Director, Field Marketing",true
+Job_Profile_ID,39620,"Senior Manager, Field Marketing",true
+Job_Profile_ID,35140,Web Content Manager,true
+Job_Profile_ID,35180,Marketing Coordinator,true
+Job_Profile_ID,39035,Senior Customer Services Representative,true
+Job_Profile_ID,38420,Shipping & Receiving Associate,true
+Job_Profile_ID,38410,Facilities Administrator,true
+Job_Profile_ID,37485,Customer Service Representative,true
+Job_Profile_ID,33200,"Director, Facilities Operations",true
+Job_Profile_ID,35850,Senior Office Manager,true
+Job_Profile_ID,45100,Consultant,true
+Job_Profile_ID,40300,Travel Coordinator,true
+Job_Profile_ID,45300,Project Manager,true
+Job_Profile_ID,45500,"Director, Consulting Services",true
+Job_Profile_ID,45700,"Vice President, Consulting Services",true
+Job_Profile_ID,45200,Senior Consultant,true
+Job_Profile_ID,45400,Associate Consultant,true
+Job_Profile_ID,FS001,Tax Analyst,true
+Job_Profile_ID,37900,Customer Service Operations Support,true
+Job_Profile_ID,30460,Organization Development Specialist,true
+Job_Profile_ID,37600,Administrative Assistant,true
+Job_Profile_ID,37130,Business Analyst,true
+Job_Profile_ID,9120,Senior Site Engineer I,true
+Job_Profile_ID,9130,Senior Site Engineer II,true
+Job_Profile_ID,9100,Site Engineer I,true
+Job_Profile_ID,9110,Site Engineer II,true
+Job_Profile_ID,30260,Payroll Coordinator,true
+Job_Profile_ID,50100,Curriculum Developer,true
+Job_Profile_ID,50200,Training Director,true
+Job_Profile_ID,50300,Instructor,true
+Job_Profile_ID,50400,Senior Instructor,true
+Job_Profile_ID,50500,Course Developer,true
+Job_Profile_ID,39054,"Manager, Global Support",true
+Job_Profile_ID,37140,Regional Finance Manager,true
+Job_Profile_ID,38415,Systems Analyst,true
+Job_Profile_ID,38419,Integration Engineer,true
+Job_Profile_ID,40210,Associate Product Development,true
+Job_Profile_ID,38450,Server,true
+Job_Profile_ID,38430,Maintenance Technician,true
+Job_Profile_ID,37486,Customer Service Associate,true
+Job_Profile_ID,39190,Data Analyst,true
+Job_Profile_ID,38411,Property Administrator,true
+Job_Profile_ID,38451,"Supervisor, Employee Services",true
+Job_Profile_ID,30600,HR Manager,true
+Job_Profile_ID,38900,Clerk,true
+Job_Profile_ID,38910,Dock Worker,true
+Job_Profile_ID,38920,Delivery Operations Assistant,true
+Job_Profile_ID,34930,Dispatcher,true
+Job_Profile_ID,45600,Resource Manager,true
+Job_Profile_ID,45800,Practice Manager,true
+Job_Profile_ID,45900,Consultant Manager,true
+Job_Profile_ID,35125,Collection Manager,true
+Job_Profile_ID,35126,Collection Specialist,true
+Job_Profile_ID,39026,"Director, Technical Operations",true
+Job_Profile_ID,37500,Senior Call Center Operator,true
+Job_Profile_ID,26100,Chief Data Officer,true
+Job_Profile_ID,37501,Call Center Operator,true
+Job_Profile_ID,37502,Associate Call Center Operator,true
+Job_Profile_ID,37520,Call Center Manager,true
+Job_Profile_ID,35145,Intern,true
+Job_Profile_ID,35190,Marketing Specialist,true
+Job_Profile_ID,37300,Training Specialist,true
+Job_Profile_ID,37845,Chief Technology Officer,true
+Job_Profile_ID,31852,Chief Marketing Officer,true
+Job_Profile_ID,79485,Chief of Staff,true
+Job_Profile_ID,35757,General Manager,true
+Job_Profile_ID,35001,Assistant Controller,true
+Job_Profile_ID,22000,"Vice President, Human Resources",true
+Job_Profile_ID,35002,EMEA Assistant Controller,true
+Job_Profile_ID,35003,EMEA Controller,true
+Job_Profile_ID,37601,Administrative Coordinator,true
+Job_Profile_ID,35755,"Vice President, Support Operations",true
+Job_Profile_ID,39400,Data Scientist,true
+Job_Profile_ID,39405,Senior Data Scientist,true
+Job_Profile_ID,33205,Facilities Manager,true
+Job_Profile_ID,37602,Apprentice Office Management,true
+Job_Profile_ID,37603,Learning Program Manager,true

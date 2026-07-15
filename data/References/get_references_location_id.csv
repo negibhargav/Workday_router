@@ -1,0 +1,269 @@
+id_type,id,note,active
+Location_ID,San_Francisco_site,San Francisco,true
+Location_ID,New_York_site,New York,true
+Location_ID,Chicago_site,Chicago,true
+Location_ID,Atlanta_site,Atlanta,true
+Location_ID,Boston_site,Boston,true
+Location_ID,Dallas_site,Dallas,true
+Location_ID,Geneva_site,Geneva,true
+Location_ID,Munich_site,Munich,true
+Location_ID,Stockholm_site,Stockholm,true
+Location_ID,Barcelona_site,Barcelona,true
+Location_ID,Singapore_site,Singapore,true
+Location_ID,Vancouver_site,Vancouver,true
+Location_ID,Mexico_City_site,Mexico City,true
+Location_ID,London_site,London,true
+Location_ID,Sydney_site,Sydney,true
+Location_ID,Montreal_site,Montreal,true
+Location_ID,Tokyo_site,Tokyo,true
+Location_ID,Amsterdam_site,Amsterdam,true
+Location_ID,Nice_site,Nice,true
+Location_ID,Paris_site,Paris,true
+Location_ID,Shanghai_site,Shanghai,true
+Location_ID,Sao_Paulo_site,São Paulo,true
+Location_ID,Milan_site,Milan,true
+Location_ID,Manila_site,Manila,true
+Location_ID,Mumbai_site,Mumbai,true
+Location_ID,Home_Office_USA_site,Home Office (USA),true
+Location_ID,Hong_Kong_site,Hong Kong,true
+Location_ID,Toronto_site,Toronto,true
+Location_ID,Kuala_Lumpur_site,Kuala Lumpur,true
+Location_ID,LOCATION-4-32,Embarcadero Tower 1,true
+Location_ID,LOCATION-4-33,Embarcadero Tower 2,true
+Location_ID,LOCATION-4-34,Suite 100,true
+Location_ID,LOCATION-4-35,Suite 200,true
+Location_ID,LOCATION-4-36,Suite 300,true
+Location_ID,LOCATION-4-37,Suite 100,true
+Location_ID,LOCATION-4-38,Suite 200,true
+Location_ID,LOCATION-4-39,Suite 300 - Under Construction,true
+Location_ID,LOCATION-4-40,Cubicle 1001,true
+Location_ID,LOCATION-4-41,Cubicle 1002,true
+Location_ID,LOCATION-4-42,Cubicle 1003,true
+Location_ID,LOCATION-4-43,Cubicle 1004,true
+Location_ID,LOCATION-4-44,Cubicle 1005,true
+Location_ID,LOCATION-4-45,Cubicle 1006,true
+Location_ID,LOCATION-4-46,Cubicle 1007,true
+Location_ID,LOCATION-4-47,Cubicle 1008,true
+Location_ID,LOCATION-4-48,Cubicle 1009,true
+Location_ID,LOCATION-4-49,Cubicle 1010,true
+Location_ID,LOCATION-4-50,Cubicle 2001,true
+Location_ID,LOCATION-4-51,Cubicle 2002,true
+Location_ID,LOCATION-4-52,Cubicle 2003,true
+Location_ID,LOCATION-4-53,Cubicle 2004,true
+Location_ID,LOCATION-4-54,Cubicle 2005,true
+Location_ID,LOCATION-4-55,Cubicle 2006,true
+Location_ID,LOCATION-4-56,Cubicle 2007,true
+Location_ID,LOCATION-4-57,Cubicle 2008,true
+Location_ID,LOCATION-4-58,Cubicle 2009,true
+Location_ID,LOCATION-4-59,Cubicle 2010,true
+Location_ID,LOCATION-4-60,Cubicle 3001,true
+Location_ID,LOCATION-4-61,Cubicle 3002,true
+Location_ID,LOCATION-4-62,Cubicle 3003,true
+Location_ID,LOCATION-4-63,Cubicle 3004,true
+Location_ID,LOCATION-4-64,Cubicle 3005,true
+Location_ID,LOCATION-4-65,Cubicle 3006,true
+Location_ID,LOCATION-4-66,Cubicle 3008,true
+Location_ID,LOCATION-4-67,Cubicle 3007,true
+Location_ID,LOCATION-4-68,Cubicle 3009,true
+Location_ID,LOCATION-4-69,Cubicle 3010,true
+Location_ID,LOCATION-4-70,1155 Building,true
+Location_ID,LOCATION-4-71,Suite 1500,true
+Location_ID,LOCATION-4-72,Cubicle 1501,true
+Location_ID,LOCATION-4-73,Cubicle 1502,true
+Location_ID,LOCATION-4-74,Cubicle 1503,true
+Location_ID,LOCATION-4-75,Cubicle 1504,true
+Location_ID,LOCATION-4-76,Cubicle 1505,true
+Location_ID,LOCATION-4-77,Cubicle 1506,true
+Location_ID,LOCATION-4-78,Cubicle 1507,true
+Location_ID,LOCATION-4-79,Cubicle 1508,true
+Location_ID,LOCATION-4-80,Cubicle 1509,true
+Location_ID,LOCATION-4-81,Cubicle 1510,true
+Location_ID,LOCATION-4-82,Cubicle 1511,true
+Location_ID,LOCATION-4-83,Cubicle 1512,true
+Location_ID,LOCATION-4-84,Cubicle 1513,true
+Location_ID,LOCATION-4-85,Cubicle 1514,true
+Location_ID,LOCATION-4-86,Cubicle 1515,true
+Location_ID,LOCATION-4-87,Cubicle 1516,true
+Location_ID,LOCATION-4-88,Cubicle 1517,true
+Location_ID,LOCATION-4-89,Cubicle 1518,true
+Location_ID,LOCATION-4-90,Cubicle 1519,true
+Location_ID,LOCATION-4-91,Cubicle 1520,true
+Location_ID,LOCATION-4-92,Cubicle 1521,true
+Location_ID,LOCATION-4-93,Cubicle 1522,true
+Location_ID,LOCATION-4-94,Cubicle 1523,true
+Location_ID,LOCATION-4-95,Cubicle 1524,true
+Location_ID,LOCATION-4-96,Cubicle 1525,true
+Location_ID,LOCATION-4-97,Suntec Tower,true
+Location_ID,LOCATION-4-98,Suite 500B,true
+Location_ID,LOCATION-4-99,Cubicle 511,true
+Location_ID,LOCATION-4-100,Cubicle 512,true
+Location_ID,LOCATION-4-101,Cubicle 513,true
+Location_ID,LOCATION-4-102,Cubicle 515,true
+Location_ID,LOCATION-4-103,Cubicle 514,true
+Location_ID,LOCATION-4-104,Cubicle 516,true
+Location_ID,LOCATION-4-105,Cubicle 517,true
+Location_ID,LOCATION-4-106,Cubicle 518,true
+Location_ID,LOCATION-4-107,Cubicle 519,true
+Location_ID,LOCATION-4-108,Office of the CFO,true
+Location_ID,LOCATION-4-109,Office of the CEO,true
+Location_ID,LOCATION-4-110,Cubicle 520,true
+Location_ID,LOCATION-4-111,Cubicle 1001,true
+Location_ID,LOCATION-4-112,Cubicle 1002,true
+Location_ID,LOCATION-4-113,Cubicle 1003,true
+Location_ID,LOCATION-4-114,Cubicle 1004,true
+Location_ID,LOCATION-4-115,Cubicle 1005,true
+Location_ID,LOCATION-4-116,Cubicle 1006,true
+Location_ID,LOCATION-4-117,Cubicle 1007,true
+Location_ID,LOCATION-4-118,Cubicle 1008,true
+Location_ID,LOCATION-4-119,Cubicle 1009,true
+Location_ID,LOCATION-4-120,Cubicle 1010,true
+Location_ID,LOCATION-4-121,Cubicle 2001,true
+Location_ID,LOCATION-4-122,Cubicle 2002,true
+Location_ID,LOCATION-4-123,Cubicle 2003,true
+Location_ID,LOCATION-4-124,Cubicle 2004,true
+Location_ID,LOCATION-4-125,Cubicle 2005,true
+Location_ID,LOCATION-4-126,Cubicle 2006,true
+Location_ID,LOCATION-4-127,Office of the CHRO,true
+Location_ID,LOCATION-4-128,Cubicle 1011,true
+Location_ID,LOCATION-4-129,Cubicle 1012,true
+Location_ID,LOCATION-4-130,Cubicle 1013,true
+Location_ID,LOCATION-4-131,Cubicle 1014,true
+Location_ID,LOCATION-4-132,Cubicle 1015,true
+Location_ID,LOCATION-4-133,Cubicle 2011,true
+Location_ID,LOCATION-4-134,Cubicle 2012,true
+Location_ID,LOCATION-4-135,Cubicle 2013,true
+Location_ID,LOCATION-4-136,Cubicle 2014,true
+Location_ID,LOCATION-4-137,Cubicle 2015,true
+Location_ID,LOCATION-4-138,Cubicle 3011,true
+Location_ID,LOCATION-4-139,Cubicle 3012,true
+Location_ID,LOCATION-4-140,Cubicle 3013,true
+Location_ID,LOCATION-4-141,Cubicle 3014,true
+Location_ID,LOCATION-4-142,Cubicle 3015,true
+Location_ID,LOCATION-4-143,Cubicle 1011,true
+Location_ID,LOCATION-4-144,Cubicle 1012,true
+Location_ID,LOCATION-4-145,Cubicle 1013,true
+Location_ID,LOCATION-4-146,Cubicle 1014,true
+Location_ID,LOCATION-4-147,Cubicle 1015,true
+Location_ID,LOCATION-4-148,Cubicle 2007,true
+Location_ID,LOCATION-4-149,Cubicle 2008,true
+Location_ID,LOCATION-4-150,Cubicle 2009,true
+Location_ID,LOCATION-4-151,Cubicle 2010,true
+Location_ID,LOCATION-4-152,Cubicle 2011,true
+Location_ID,LOCATION-4-153,Cubicle 2012,true
+Location_ID,LOCATION-4-154,Cubicle 2013,true
+Location_ID,LOCATION-4-155,Cubicle 2014,true
+Location_ID,LOCATION-4-156,Cubicle 2015,true
+Location_ID,LOCATION-4-157,Legal Office A,true
+Location_ID,LOCATION-4-158,Legal Office B,true
+Location_ID,LOCATION-4-159,Office of the CIO,true
+Location_ID,LOCATION-4-160,Shipping & Receiving,true
+Location_ID,LOCATION-4-161,Office of Global Support,true
+Location_ID,LOCATION-4-162,Global Support Office,true
+Location_ID,Brussels_site,Brussels,true
+Location_ID,Dubai_site,Dubai,true
+Location_ID,Dublin_site,Dublin,true
+Location_ID,Oslo_site,Oslo,true
+Location_ID,Auckland_site,Auckland,true
+Location_ID,Melbourne_site,Melbourne,true
+Location_ID,Kuala_Lumpur_site2,Kuala Lumpur (inactive),true
+Location_ID,Warsaw_site,Warsaw,true
+Location_ID,Moscow_site,Moscow,true
+Location_ID,Prague_site,Prague,true
+Location_ID,Calgary_site,Calgary,true
+Location_ID,Jakarta_site,Jakarta,true
+Location_ID,Wellington_site,Wellington,true
+Location_ID,Helsinki_site,Helsinki,true
+Location_ID,Copenhagen_site,Copenhagen,true
+Location_ID,Berlin_site,Berlin,true
+Location_ID,Vienna_site,Vienna,true
+Location_ID,Budapest_site,Budapest,true
+Location_ID,Bucharest_site,Bucharest,true
+Location_ID,Sofia_site,Sofia,true
+Location_ID,Rome_site,Rome,true
+Location_ID,Madrid_site,Madrid,true
+Location_ID,Lisbon_site,Lisbon,true
+Location_ID,Athens_site,Athens,true
+Location_ID,Zurich_site,Zurich,true
+Location_ID,Berwyn_site,Berwyn,true
+Location_ID,Luxembourg_site,Luxembourg,true
+Location_ID,Lyon_site,Lyon,true
+Location_ID,Las_Vegas_site,Las Vegas,true
+Location_ID,LOCATION-16-192,Bangkok,true
+Location_ID,LOCATION-16-193,Brisbane,true
+Location_ID,LOCATION-16-194,Home Office (UK),true
+Location_ID,LOCATION-16-195,Home Office (Wales),true
+Location_ID,LOCATION-16-196,Home Office (N. Ireland),true
+Location_ID,LOCATION-16-197,Home Office (Scotland),true
+Location_ID,LOCATION-16-198,Perth,true
+Location_ID,LOCATION-16-199,Mulhouse,true
+Location_ID,LOCATION-16-200,Osaka,true
+Location_ID,LOCATION-16-201,Gothenburg,true
+Location_ID,LOCATION-16-202,Odense,true
+Location_ID,AUXILIARY_WAREHOUSE_WEST,Auxiliary Warehouse - West,true
+Location_ID,AUXILIARY_WAREHOUSE_EAST,Auxiliary Warehouse - East,true
+Location_ID,MAIN_WAREHOUSE,Main Warehouse,true
+Location_ID,MAIN_AISLE_1,Aisle 1,true
+Location_ID,MAIN_AISLE2,Aisle 2,true
+Location_ID,MAIN_AISLE1_BINA,Bin A,true
+Location_ID,MAIN_AISLE1_BINB,Bin B,true
+Location_ID,MAIN_AISLE1_BINC,Bin C,true
+Location_ID,LOCATION-16-211,San Juan,true
+Location_ID,SUPPLY_ROOM_1ST_FLOOR,Supply room - 1st floor,true
+Location_ID,SUPPLY_ROOM_2ND_FLOOR,Supply Room - 2nd Floor,true
+Location_ID,FIRST_AID_STORAGE,First Aid Storage,true
+Location_ID,FIRST_AID_1ST_FLOOR,First Aid - 1st Floor,true
+Location_ID,LOCATION-16-216,Recalled Items Aisle,true
+Location_ID,LOCATION-16-217,Raleigh,true
+Location_ID,LOCATION-16-218,Columbus,true
+Location_ID,LOCATION-16-219,EMEA Warehouse - London,true
+Location_ID,LOCATION-16-220,Aisle 1,true
+Location_ID,LOCATION-16-221,Bin A,true
+Location_ID,LOCATION-16-222,Bin B,true
+Location_ID,LOCATION-16-223,Aisle 2,true
+Location_ID,LOCATION-16-224,EMEA Auxiliary Warehouse - Manchester,true
+Location_ID,LOCATION-16-225,Aisle 1,true
+Location_ID,LOCATION-16-226,EMEA Supply Room - 1st Floor,true
+Location_ID,LOCATION-16-227,Aisle 3,true
+Location_ID,LOCATION-16-228,Auxiliary Warehouse - Southeast,true
+Location_ID,LOCATION-16-229,Aisle 1,true
+Location_ID,LOCATION-16-230,Bin A,true
+Location_ID,LOCATION-16-231,Bin B,true
+Location_ID,LOCATION-16-232,Bin C,true
+Location_ID,LOCATION-16-233,Aisle 2,true
+Location_ID,LOCATION-16-234,Aisle 3,true
+Location_ID,LOCATION-16-235,Johannesburg,true
+Location_ID,LOCATION-16-236,Aisle 3,true
+Location_ID,LOCATION-16-237,EMEA Auxiliary Warehouse - Belfast,true
+Location_ID,LOCATION-16-238,Aisle 1,true
+Location_ID,LOCATION-16-239,Bin A,true
+Location_ID,LOCATION-16-240,Bin B,true
+Location_ID,LOCATION-16-241,Aisle 2,true
+Location_ID,LOCATION-16-242,Aisle 3,true
+Location_ID,LOCATION-16-243,Hagatna,true
+Location_ID,LOCATION-16-244,Honolulu,true
+Location_ID,LOCATION-16-245,Stuttgart,true
+Location_ID,Seoul_site,Seoul,true
+Location_ID,CapeTown_site,Cape Town,true
+Location_ID,LOCATION-16-248,St. Thomas,true
+Location_ID,LOCATION-16-249,Training Room 101,true
+Location_ID,LOCATION-16-250,Training Room 102,true
+Location_ID,LOCATION-16-251,Conference Room A,true
+Location_ID,LOCATION-16-252,Conference Room B,true
+Location_ID,LOCATION-16-253,Meeting Room 3E,true
+Location_ID,LOCATION-16-254,Meeting Room 4D,true
+Location_ID,LOCATION-16-255,Conference Room A,true
+Location_ID,LOCATION-16-256,Training Room 102,true
+Location_ID,LOCATION-16-257,Conference Room A,true
+Location_ID,LOCATION-16-258,Conference Room B,true
+Location_ID,LOCATION-16-259,Meeting Room 3E,true
+Location_ID,LOCATION-16-260,Meeting Room 4D,true
+Location_ID,LOCATION-16-261,Training Room 101,true
+Location_ID,LOCATION-16-262,Training Room 102,true
+Location_ID,LOCATION-16-263,Conference Room A,true
+Location_ID,LOCATION-16-264,Conference Room B,true
+Location_ID,LOCATION-16-265,Meeting Room 3E,true
+Location_ID,LOCATION-16-266,Conference Room 4D,true
+Location_ID,LOCATION-16-267,Zone 1,true
+Location_ID,LOCATION-16-268,Zone 2,true
+Location_ID,LOCATION-17-269,TestLoc22,true
+Location_ID,LOCATION-17-270,testing,true

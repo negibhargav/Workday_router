@@ -1,0 +1,10 @@
+id_type,id,note,active
+Management_Level_ID,Management_Hierarchy,Management Hierarchy,true
+Management_Level_ID,1_Board_of_Directors,1 Board of Directors,true
+Management_Level_ID,2_Chief_Executive_Officer,2 Chief Executive Officer,true
+Management_Level_ID,3_Executive_Vice_President,3 Executive Vice President,true
+Management_Level_ID,4_Vice_President,4 Vice President,true
+Management_Level_ID,5_Director,5 Director,true
+Management_Level_ID,6_Manager,6 Manager,true
+Management_Level_ID,7_Supervisor,7 Supervisor,true
+Management_Level_ID,8_Individual_Contributor,8 Individual Contributor,true

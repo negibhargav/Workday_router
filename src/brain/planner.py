@@ -38,104 +38,54 @@ Rules:
    - direct reports, org members, manager lookups
    - "who am I / me / current user" queries
    - anything expressible as a GET against /workers, /workers/{ID}, /workers/{ID}/directReports
-6. For REST steps set `api_hint`, `query_params`, `path_params` (same as before).
+6. For REST steps set `api_hint` (must be generic, no specific names/IDs), `query_params`, `path_params`.
    Leave `soap_args` null.
 
 ── SOAP steps ─────────────────────────────────────────────────────────────
-7. Use `"api_type": "soap"` and `"service": "get_workers"` when the user's query
-   contains ANY of these SOAP trigger keywords or concepts:
-
-   COMPENSATION & PAY:
-     compensation, salary, pay, payroll, pay group, pay rate, pay grade
-
-   BENEFITS:
-     benefit, benefits, enrollment, eligible, eligibility, insurance, health plan
-
-   SKILLS & QUALIFICATIONS:
-     skill, skills, qualification, qualifications, certification, certifications,
-     education, degree, language, competency
-
-   TALENT & PERFORMANCE:
-     talent, talent assessment, performance, review, employee review, goal, goals,
-     development, development items, succession, succession profile
-
-   ORG HIERARCHY FLAGS:
-     cost center, pay group, region, supervisory org, matrix org, custom org,
-     fund, grant, business unit, program, gift, retiree org
-
-   IDENTIFICATION:
-     national ID, SSN, social security, passport, government ID, national id type
-
-   DATE-RANGE / HISTORY:
-     updated between, changed between, updated from, updated through,
-     effective from, effective through, transaction log, history, audit
-
-   CONTRACTS & LEGAL:
-     contract, employee contract, collective agreement, probation, contingent worker tax
-
-   PERSONAL DEEP DATA:
-     photo, document, worker document, background check, user account, career,
-     account provisioning, related person, feedback, management chain
-
-   ADDITIONAL JOBS:
-     additional job, multiple jobs
-
+7. Use `"api_type": "soap"` when the user's query contains concepts requiring deep worker details or actions:
+   - COMPENSATION & PAY: compensation, salary, pay, payroll, pay grade.
+   - BENEFITS: benefit, enrollment, eligible, insurance, health plan.
+   - SKILLS & QUALIFICATIONS: skill, qualification, certification, education, language.
+   - TALENT & PERFORMANCE: performance review, goal, development, talent assessment.
+   - IDENTIFICATION: national ID, SSN, passport, government ID.
+   - CONTRACTS & LEGAL: contract, collective agreement, probation.
+   - HIRING: mutate/hire a new employee, onboard a candidate.
 8. For SOAP steps:
-   - Set `"service": "get_workers"`
-   - Populate `"soap_args"` with ONLY the relevant keys from this list:
+   - Provide a generic, text-only `api_hint` describing the semantic intent (e.g. "get worker compensation details" or "hire a new employee"). Do NOT specify `service` (set it to null).
+   - If querying worker data, populate `"soap_args"` with filters from this list (do NOT include `include_fields` response group flags as they will be resolved dynamically via RAG):
        worker_ids             → list[str]  — employee IDs to fetch
        organization_id        → str        — org reference ID
        include_subordinate_organizations → bool
        country_id             → str        — ISO-2 country code
        position_id            → str
        national_id            → str
-       national_id_type       → str        — e.g. "SSN", "Passport"
-       national_id_country    → str        — ISO-2
        exclude_inactive_workers → bool
-       exclude_employees      → bool
-       exclude_contingent_workers → bool
-       updated_from           → ISO datetime str
-       updated_through        → ISO datetime str
-       effective_from         → ISO datetime str
-       effective_through      → ISO datetime str
-       as_of_effective_date   → ISO date str
        page                   → int
        count                  → int (max 999)
-       include_fields         → list[str] from:
-           Include_Reference, Include_Personal_Information,
-           Show_All_Personal_Information, Include_Additional_Jobs,
-           Include_Employment_Information, Include_Compensation,
-           Include_Organizations, Exclude_Organization_Support_Role_Data,
-           Exclude_Location_Hierarchies, Exclude_Cost_Centers,
-           Exclude_Cost_Center_Hierarchies, Exclude_Companies,
-           Exclude_Company_Hierarchies, Exclude_Matrix_Organizations,
-           Exclude_Pay_Groups, Exclude_Regions, Exclude_Region_Hierarchies,
-           Exclude_Supervisory_Organizations, Exclude_Teams,
-           Exclude_Custom_Organizations, Include_Roles,
-           Include_Management_Chain_Data,
-           Include_Multiple_Managers_in_Management_Chain_Data,
-           Include_Benefit_Enrollments, Include_Benefit_Eligibility,
-           Include_Related_Persons, Include_Qualifications,
-           Include_Employee_Review, Include_Goals, Include_Development_Items,
-           Include_Skills, Include_Photo, Include_Worker_Documents,
-           Include_Transaction_Log_Data, Include_Succession_Profile,
-           Include_Talent_Assessment, Include_Employee_Contract_Data,
-           Include_Feedback_Received, Include_User_Account, Include_Career,
-           Include_Background_Check_Data
-   - Leave `api_hint`, `query_params`, `path_params` null for SOAP steps.
+   - If hiring/creating a new employee, populate `"soap_args"` with values from this list:
+       first_name, last_name, middle_name, organization_id, position_id, job_requisition_id, hire_date, existing_worker_type, existing_worker_id, email_address, phone_number, address_line_1, address_city, address_postal_code, comment, auto_complete, base_pay_amount, base_pay_currency_id, base_pay_frequency_id.
+   - Set `query_params` and `path_params` to null for SOAP steps.
 
 ── Common rules for ALL steps ───────────────────────────────────────────
 9.  `depends_on` is the step `id` this step needs data from (null if independent).
 10. `param_map` maps THIS step's inputs to previous step results.
-    Format: { "worker_ids": ["step_1.id"] } means "take 'id' from step 1 and use as
-    the worker_ids list".
+    Format: { "ID": "step_1.id" } or { "worker_ids": ["step_1.id"] }.
+    IMPORTANT: You must map dynamic dependencies using standard `<step_key>.<field_name>` syntax (like `step_1.id`).
+    NEVER use list indexing or list notation like `step_1.extract_fields[0]`.
     Use null if this step has no dependencies.
 11. `extract_fields` is a list of field names to pull from THIS step's response for
     later steps. Use [] if this is the final step.
 12. For "me" / "current user" / "myself" REST queries, step 1 MUST set
     `"path_params": {"ID": "me"}`.
-13. `query_params` MUST contain literal URL query parameters from the user prompt
-    (e.g. {"search": "B"} for names starting with B). REST only.
+13. `query_params` and `path_params` MUST contain only literal values.
+    NEVER put reference strings like `"step_1.id"` or `"step_1.extract_fields[0]"` inside `path_params` or `query_params` directly.
+    Instead, leave those dynamic variables out of path_params/query_params and define them in `param_map`.
+14. CRITICAL: The `api_hint` MUST be generic (e.g. use "search for worker", "worker profile", "worker direct reports").
+    NEVER include specific names (like "Betty Liu") or IDs (like "21431") in the `api_hint`, as they skew embedding matches in RAG.
+15. IMPORTANT: You CANNOT query a worker's profile or subresources (like `/workers/{ID}`) directly using a person's name (e.g., `path_params: {"ID": "Betty Liu"}` is INVALID).
+    Instead, to lookup a worker by name, you MUST use a multi-step plan:
+    - Step 1: Search for the worker on the collection endpoint using `"api_hint": "search for worker"` and `"query_params": {"search": "<name>"}`. Set `"extract_fields": ["id"]`.
+    - Subsequent steps: Retrieve the profile or subresources mapping `"ID": "step_1.id"` in `"param_map"`.
 
 ALWAYS return ONLY valid JSON in this exact schema. No markdown, no explanation:
 {

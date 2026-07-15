@@ -1,8 +1,8 @@
 # Workday MCP Router
 
-A **Model Context Protocol (MCP) server** that lets any MCP-compatible AI client (Claude Desktop, Cursor, etc.) query and interact with the Workday REST API using plain natural language.
+A **Model Context Protocol (MCP) server** that lets any MCP-compatible AI client (Claude Desktop, Cursor, etc.) query and interact with the Workday REST and SOAP APIs using plain natural language.
 
-Instead of knowing which API endpoint to call, the AI simply asks — the router figures out the right endpoint, executes it, and returns a clean answer.
+Instead of knowing which API endpoint to call, the AI simply asks — the router figures out the right endpoint/service, executes it, and returns a clean answer.
 
 ---
 
@@ -13,18 +13,19 @@ User Query (natural language)
         │
         ▼
   ┌─────────────┐
-  │   Planner   │  GPT-4o-mini decomposes the query into ordered API steps
+  │   Planner   │  Decomposes the query into ordered REST and SOAP API steps
   └──────┬──────┘
          │
          ▼
   ┌─────────────┐
-  │  Dispatcher │  Semantic search (Pinecone + BGE embeddings) finds the right
-  │   (RAG)     │  Workday REST endpoint for each step
+  │  Dispatcher │  Queries Pinecone database to dynamically locate endpoints
+  │   (RAG)     │  for REST (workday_specs) and SOAP (workday_soap_specs)
   └──────┬──────┘
          │
          ▼
   ┌─────────────┐
-  │  Executor   │  Calls the Workday API with OAuth 2.0 auto-refresh
+  │  Executor   │  Runs REST calls (WorkdayClient) or SOAP services (Zeep wrappers),
+  │             │  handling parameter mapping and OAuth token auto-refresh
   └──────┬──────┘
          │
          ▼
@@ -33,14 +34,15 @@ User Query (natural language)
   └─────────────┘
 ```
 
-The system is split into two layers:
+The system is split into multiple layers:
 
-| Layer | File | Role |
+| Layer | File / Directory | Role |
 |---|---|---|
-| **MCP Tools** | `src/server.py` | Exposes `ask_workday` (GET) and `execute_workday_action` (POST) to AI clients |
+| **MCP Tools** | `src/server.py` | Exposes `ask_workday` and `execute_workday_action` to AI clients |
 | **Brain** | `src/supervisor.py` | Orchestrates Planner → Executor → Synthesizer pipeline |
-| **RAG Engine** | `src/rag/` | Embeds queries and routes them to the correct Workday API |
-| **API Client** | `src/services/workday_client.py` | Makes authenticated HTTPS calls to Workday with token auto-refresh |
+| **RAG Engine** | `src/rag/` | Embeds queries and routes them to correct REST/SOAP endpoints |
+| **API Client** | `src/services/` | REST HTTP calls (`workday_client.py`) and SOAP clients (`Worker.py`, `hire.py`) |
+| **Log Folder** | `src/log/` | Centralized project logs (`workday_refresh.log`) |
 
 ---
 
@@ -49,101 +51,106 @@ The system is split into two layers:
 | Requirement | Version |
 |---|---|
 | Python | ≥ 3.13 |
-| [uv](https://github.com/astral-sh/uv) | latest |
+| [uv](https://github.com/astral-sh/uv) or pip | Latest |
 | Pinecone account | Free tier works |
 | OpenAI API key | Required for Planner & Synthesizer |
-| Workday tenant | With an API Client registered for OAuth 2.0 |
+| Workday tenant | With an API Client registered for OAuth 2.0 (Authorization Code Flow) |
 
 ---
 
-## Installation
+## Installation & Setup
 
 ### 1. Clone the repository
-
 ```bash
 git clone https://github.com/your-org/workday-mcp-router.git
 cd workday-mcp-router
 ```
 
 ### 2. Install dependencies
-
+Using `uv` (recommended):
 ```bash
 uv sync
 ```
+Using standard `pip`:
+```bash
+pip install -r requirements.txt
+```
 
 ### 3. Configure environment variables
-
-Copy the example and fill in your values:
-
+Copy the example file and fill in your details:
 ```bash
 cp .env.example .env
 ```
-
 Open `.env` and set:
-
 ```env
-# ── Pinecone ──────────────────────────────────────────────────────────
+# Pinecone Configuration
 PINECONE_API_KEY="your_pinecone_api_key"
 PINECONE_INDEX_NAME="workday-router"
 
-# ── Embedding Model ───────────────────────────────────────────────────
-EMBEDDING_MODEL="BAAI/bge-small-en-v1.5"
-
-# ── Workday ───────────────────────────────────────────────────────────
-WORKDAY_BASE_URL="https://<tenant>-services1.wd101.myworkday.com/api/common/v1/<tenant>"
-
-# OAuth 2.0 client credentials (preferred — enables auto token refresh)
+# Workday OAuth configuration (Authorization Code flow)
+WORKDAY_BASE_URL="https://<tenant>-services1.wd101.myworkday.com"
 WORKDAY_TOKEN_URL="https://<tenant>-services1.wd101.myworkday.com/ccx/oauth2/<tenant>/token"
+WORKDAY_AUTH_URL="https://<tenant>.wd101.myworkday.com/wday/authgwy/<tenant>/authorize"
 WORKDAY_CLIENT_ID="your_client_id"
 WORKDAY_CLIENT_SECRET="your_client_secret"
+WORKDAY_REDIRECT_URI="http://localhost:8742/callback"
 
-# Fallback: static bearer token (used only if OAuth creds above are not set)
-WORKDAY_API_TOKEN=""
+# SOAP Credentials (ISU Account)
+WORKDAY_ISU_USERNAME="soap_user@<tenant>"
+WORKDAY_ISU_PASSWORD="your_password_here"
 
-# ── OpenAI ────────────────────────────────────────────────────────────
+# OpenAI API Configuration
 OPENAI_API_KEY="sk-proj-..."
-
-# ── Brain Model (optional) ────────────────────────────────────────────
 BRAIN_MODEL="gpt-4o-mini"
 ```
 
-> **Where to find Workday OAuth credentials:**  
-> Workday tenant → **System** → **API Clients for Integrations** → select your registered client app.
+### 4. Interactive OAuth Login (First-Time Setup)
+Since Workday OAuth uses the **Authorization Code Flow**, you must execute the login tool interactively to authenticate for the first time:
+```bash
+uv run python src/tools/Refresh_token.py login
+```
+*This command launches a local web browser page, captures the callback authentication code, and creates a local credentials cache file `.workday_tokens.json` in the root of the project.*
+
+* **Checking Token Info:**
+  ```bash
+  uv run python src/tools/Refresh_token.py info
+  ```
+* **Forced Token Refresh:**
+  ```bash
+  uv run python src/tools/Refresh_token.py refresh
+  ```
 
 ---
 
-## Setup: Ingest Workday API Specs into Pinecone
+## Vector Spec Ingestion (RAG)
 
-Before the router can answer questions, you must vectorize your Workday OpenAPI specs and load them into Pinecone. This only needs to be done once (or whenever your specs change).
+Before routing queries, you must vectorize your REST OpenAPI and SOAP specifications and load them into Pinecone.
 
+### Ingest REST APIs (namespace: `workday_specs`)
 ```bash
 uv run python scripts/ingest_workday.py
 ```
 
-This will:
-1. Load your parsed API JSON from `data/`
-2. Generate semantic embedding vectors using `BAAI/bge-small-en-v1.5`
-3. Upsert all vectors into your Pinecone index under the `workday_specs` namespace
+### Ingest SOAP APIs (namespace: `workday_soap_specs`)
+```bash
+uv run python scripts/ingest_soap.py
+```
 
 ---
 
 ## Running the MCP Server
 
 ### Option A — MCP Inspector (recommended for testing)
-
 Launches an interactive browser UI at `http://localhost:5173`:
-
 ```bash
 uv run --with mcp mcp dev src/server.py
 ```
 
 ### Option B — Direct server (for production / Claude Desktop)
-
 ```bash
 uv run python -m src.server
 ```
-
-The server communicates over **stdin/stdout** (STDIO transport) — this is standard MCP behaviour. It won't print anything on startup; it waits for JSON-RPC messages from a client.
+*The server communicates over stdin/stdout (STDIO transport) waiting for JSON-RPC messages from the client.*
 
 ---
 
@@ -151,8 +158,8 @@ The server communicates over **stdin/stdout** (STDIO transport) — this is stan
 
 Add this block to your Claude Desktop config file:
 
-**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`  
-**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+* **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+* **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
 
 ```json
 {
@@ -165,43 +172,7 @@ Add this block to your Claude Desktop config file:
   }
 }
 ```
-
-Restart Claude Desktop — the tools will appear automatically.
-
----
-
-## MCP Tools Reference
-
-The server exposes two tools to AI clients:
-
-### `ask_workday`
-**Purpose:** Answer read-only (GET) questions about Workday data.
-
-```
-natural_language_query: str  →  str (JSON)
-```
-
-**Example queries:**
-- `"Show me all workers in the Engineering department"`
-- `"Who reports to employee 21008?"`
-- `"What is Benny Smith's job profile?"`
-
-**Guardrails built in:**
-- Blocks write operations (routes them to `execute_workday_action` instead)
-- Requires a clear subject — refuses vague queries like "show history"
-- Never guesses IDs or fills in blanks
-
----
-
-### `execute_workday_action`
-**Purpose:** Perform write operations (POST/PUT) on Workday data.
-
-```
-natural_language_query: str
-confirmed: bool = False       →  str (JSON)
-```
-
-Requires `confirmed=True` to actually execute — the first call returns a confirmation prompt with the full routing plan so the user can review before committing.
+Restart Claude Desktop to load the tools.
 
 ---
 
@@ -210,102 +181,44 @@ Requires `confirmed=True` to actually execute — the first call returns a confi
 ```
 workday-mcp-router/
 │
-├── .env                          # Environment variables (never commit this)
-├── pyproject.toml                # Dependencies and project metadata
+├── .env                          # Environment variables
+├── pyproject.toml                # Dependencies configuration (uv project)
+├── requirements.txt              # Standard python requirements file
+├── .workday_tokens.json          # Cached active OAuth tokens (never commit this)
 │
-├── swagger/                      # Your Workday OpenAPI spec files (JSON)
-│
-├── data/                         # Processed API intent files for ingestion
+├── swagger/                      
+│   ├── common_v1.json            # Raw REST specification
+│   └── soap_specs.json           # Defined SOAP operations & intent triggers
 │
 ├── scripts/
-│   └── ingest_workday.py         # One-time ingestion: specs → Pinecone vectors
+│   ├── ingest_workday.py         # Ingestion script for REST specs -> Pinecone
+│   └── ingest_soap.py            # Ingestion script for SOAP specs -> Pinecone
 │
 └── src/
-    ├── server.py                 # MCP server entry point — registers tools
-    ├── supervisor.py             # Orchestrates Planner → Executor → Synthesizer
+    ├── server.py                 # MCP server entry point
+    ├── supervisor.py             # Orchestrates Planner -> Executor pipeline
     │
-    ├── brain/                    # Multi-step AI pipeline
-    │   ├── planner.py            # LLM decomposes query into ordered API steps
-    │   ├── executor.py           # Runs each step, pipes data between them
-    │   └── synthesizer.py        # LLM produces final natural-language answer
+    ├── brain/                    
+    │   ├── planner.py            # Planner (RAG-agnostic REST/SOAP decomposition)
+    │   ├── executor.py           # Runs Rest/Soap calls and performs parameter mappings
+    │   └── synthesizer.py        # Synthesizes execution context into answers
     │
-    ├── rag/                      # Retrieval-Augmented Generation engine
-    │   ├── embedder.py           # Encodes queries using BGE embeddings
-    │   ├── pinecone_store.py     # Pinecone index connection and namespace logic
-    │   └── dispatcher.py        # Routes a query to the best-matching API path
+    ├── rag/                      
+    │   ├── embedder.py           # BGE embedding generator
+    │   ├── pinecone_store.py     # Pinecone index interface
+    │   └── dispatcher.py         # Routes query to REST or SOAP namespaces in Pinecone
     │
-    ├── services/
-    │   └── workday_client.py     # HTTPS calls to Workday with OAuth auto-refresh
+    ├── services/                 
+    │   ├── workday_client.py     # REST client wrapper
+    │   ├── Worker.py             # Worker SOAP Service wrapper
+    │   └── hire.py               # Hire SOAP Service wrapper
+    │
+    ├── log/                      
+    │   └── workday_refresh.log   # Token auto-refresh action logs
     │
     └── utils/
-        ├── parser.py             # Parses Swagger JSON into vectorizable intent records
-        └── logger.py             # Debug logging for routing accuracy
+        └── token_limiter.py      # Cleans payload values to save token limits
 ```
-
----
-
-## Authentication: OAuth 2.0 Auto-Refresh
-
-The Workday client automatically manages your OAuth token:
-
-| Behaviour | Detail |
-|---|---|
-| **Proactive refresh** | Token is refreshed 60 seconds before it expires |
-| **Reactive refresh** | A `401 Unauthorized` response immediately triggers a re-fetch and one retry |
-| **Static fallback** | If `WORKDAY_TOKEN_URL`/`CLIENT_ID`/`CLIENT_SECRET` are not set, `WORKDAY_API_TOKEN` is used as-is |
-
-Tokens are fetched using the **OAuth 2.0 client_credentials grant** with credentials sent as **HTTP Basic Auth** (as required by Workday).
-
----
-
-## Development
-
-### Run a quick smoke test
-
-```bash
-uv run python -c "from src.services.workday_client import WorkdayClient; print('OK')"
-```
-
-### Test the RAG dispatcher in isolation
-
-```bash
-uv run python -m src.rag.dispatcher
-```
-
-### Test the full pipeline without MCP
-
-```bash
-uv run python -c "
-from src.supervisor import run_intelligent_supervisor
-print(run_intelligent_supervisor('show me all workers'))
-"
-```
-
----
-
-## Troubleshooting
-
-| Error | Cause | Fix |
-|---|---|---|
-| `401 Unauthorized` | Expired or invalid token | Fill in `WORKDAY_CLIENT_ID` + `WORKDAY_CLIENT_SECRET` for auto-refresh |
-| `400 Bad Request` on token URL | Wrong OAuth credentials | Check your Workday API Client registration; regenerate the client secret if needed |
-| `No matching API template found` | Query not covered by ingested specs | Re-run `ingest_workday.py` or add the missing OpenAPI spec to `swagger/` |
-| `Port 6277 is in use` | Old MCP Inspector process still running | Run `netstat -ano \| findstr :6277` then `taskkill /PID <pid> /F` |
-| `ModuleNotFoundError: src` | Running from wrong directory | Always run commands from the project root, not from `src/` |
-
----
-
-## Dependencies
-
-| Package | Purpose |
-|---|---|
-| `mcp` | MCP server framework |
-| `openai` | Planner and Synthesizer LLM calls |
-| `pinecone` | Vector database for API routing |
-| `sentence-transformers` | Local BGE embedding model |
-| `fastapi` / `uvicorn` | HTTP layer (if serving via SSE transport) |
-| `python-dotenv` | Environment variable loading |
-| `requests` | Workday API HTTP calls |
 
 ---
 

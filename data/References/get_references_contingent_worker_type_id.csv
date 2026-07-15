@@ -1,0 +1,5 @@
+id_type,id,note,active
+Contingent_Worker_Type_ID,Consultant,Consultant,true
+Contingent_Worker_Type_ID,Contractor,Contractor,true
+Contingent_Worker_Type_ID,Vendor,Vendor,true
+Contingent_Worker_Type_ID,CONTINGENT_WORKER_TYPE-16-4,Temporary,true

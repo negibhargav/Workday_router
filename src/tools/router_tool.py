@@ -12,7 +12,7 @@ class WorkdayRouterTool:
         self.dispatcher = WorkdayDispatcher()
         
         self.client = WorkdayClient(
-            api_token=os.getenv("WORKDAY_API_TOKEN"),
+            api_token=None,
             base_url=os.getenv("WORKDAY_BASE_URL")
         )
 

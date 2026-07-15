@@ -21,10 +21,14 @@ BASE_URL = os.environ.get(
 ).rstrip("/")
 
 RAW_WORKER_ID = os.environ.get("WORKDAY_WORKER_ID", "me")
-TOKEN = os.environ.get("WORKDAY_API_TOKEN")
+# Dynamically resolve using get_valid_token to ensure it's always valid and read after refresh
+from pathlib import Path
+current_dir = str(Path(__file__).resolve().parent)
+if current_dir not in sys.path:
+    sys.path.append(current_dir)
 
-if not TOKEN:
-    raise SystemExit("❌ ERROR: WORKDAY_API_TOKEN is not set in your environment or .env file.")
+from tools.Refresh_token import get_valid_token
+TOKEN = get_valid_token()
 
 
 # ---- HELPER: Apply universal Workday ID formatting ----

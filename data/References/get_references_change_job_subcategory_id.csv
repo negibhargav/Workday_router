@@ -1,0 +1,14 @@
+id_type,id,note,active
+Change_Job_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-4-1,Demotion > Demotion > Decrease in Responsibility,true
+Change_Job_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-4-2,Data Change > Data Change > Change Contractor Details,true
+Change_Job_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-4-3,Data Change > Data Change > Change Job Details,true
+Change_Job_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-4-4,Data Change > Data Change > Change Location,true
+Change_Job_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-4-5,Lateral Move > Lateral Move > Move to Another Position on My Team,true
+Change_Job_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-4-6,Transfer > Transfer > Move to Another Manager,true
+Change_Job_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-4-7,Promotion > Promotion > Promotion,true
+Change_Job_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-16-8,Swap Positions > Data Change > Change Contractor Details,true
+Change_Job_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-16-10,Swap Positions > Demotion > Decrease in Responsibility,true
+Change_Job_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-16-11,Swap Positions > Lateral Move > Move to Other Positions on Same Team,true
+Change_Job_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-16-12,Swap Positions > Transfer > Switch Managers,true
+Change_Job_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-16-14,Swap Positions > Data Change > Change Job Details,true
+Change_Job_Subcategory_ID,CHANGE_JOB_SUBCATEGORY-16-15,Swap Positions > Data Change > Change Location(s),true

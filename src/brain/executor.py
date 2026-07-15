@@ -14,7 +14,9 @@ from openai import OpenAI
 from src.rag.dispatcher import WorkdayDispatcher
 from src.services.workday_client import WorkdayClient
 from src.services.Worker import WorkerSOAPService
+from src.services.hire import HireSOAPService
 from src.utils.token_limiter import clean_workday_response
+from src.utils.reference_resolver import ReferenceResolver
 
 _EXTRACT_PROMPT = """You are a JSON field extractor.
 Given a Workday API JSON response, extract ONLY the requested fields.
@@ -45,9 +47,10 @@ class Executor:
         self.llm = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.dispatcher = WorkdayDispatcher()
         self.client = WorkdayClient(
-            api_token=os.getenv("WORKDAY_API_TOKEN"),
+            api_token=None,
             base_url=os.getenv("WORKDAY_BASE_URL"),
         )
+        self.resolver = ReferenceResolver()
 
     def run(self, plan: dict) -> dict:
         context: dict = {}
@@ -76,25 +79,57 @@ class Executor:
                 
         return context
 
+    def _resolve_references_in_dict(self, d: dict) -> dict:
+        if not d:
+            return d
+        for k, v in list(d.items()):
+            if isinstance(v, str):
+                resolved_val = self.resolver.resolve(k, v)
+                if resolved_val:
+                    d[k] = resolved_val
+            elif isinstance(v, list):
+                resolved_list = []
+                for item in v:
+                    if isinstance(item, str):
+                        resolved_item = self.resolver.resolve(k, item)
+                        resolved_list.append(resolved_item if resolved_item else item)
+                    else:
+                        resolved_list.append(item)
+                d[k] = resolved_list
+        return d
+
     def _run_step(self, step: dict, context: dict) -> dict:
-        # ── SOAP branch — bypass RAG entirely ──────────────────────────────
-        if step.get("api_type") == "soap" and step.get("service") == "get_workers":
+        # ── SOAP branch ────────────────────────────────────────────────────
+        if step.get("api_type") == "soap":
             return self._run_soap_step(step, context)
 
         # ── REST branch — standard RAG → Workday REST path ─────────────────
         # 1. Resolve parameters from previous step results
         resolved_params = self._resolve_params(step.get("param_map"), context)
+        self._resolve_references_in_dict(resolved_params)
         print(f"[Executor] Resolved params: {resolved_params}", file=sys.stderr)
         
-        # 2. RAG → find the best matching API route for this step's intent
-        route = self.dispatcher.route_query(step["api_hint"])
-        if "error" in route:
+        # 2. RAG → find the best matching API route candidates
+        candidates = self.dispatcher.route_candidates(step["api_hint"], top_k=3)
+        if not candidates:
             return {
-                "error": f"RAG dispatch failed: {route['error']}",
+                "error": "No matching API template found in vector database.",
                 "extracted": {},
                 "raw_response": "",
                 "api_called": None,
             }
+
+        # Find the first compatible route
+        route = None
+        for cand in candidates:
+            if self._is_route_compatible(cand["full_path"], step, resolved_params):
+                route = cand
+                break
+
+        if not route:
+            print(f"[Executor] WARNING: No fully compatible candidate route found. Falling back to top match.", file=sys.stderr)
+            route = candidates[0]
+
         api_path = route.get("full_path", route.get("path", ""))
         method = route.get("method", "GET")
         print(f"[Executor] RAG matched: {method} {api_path}", file=sys.stderr)
@@ -119,50 +154,117 @@ class Executor:
         if extract_fields:
             extracted = self._extract_fields(response_str, extract_fields)
             
+        # Interpolate path parameters to construct the final API called path
+        filled_path = final_path
+        if self.client.base_url and "api/common/v1" in self.client.base_url and filled_path.startswith("/api/common/v1"):
+            filled_path = filled_path.replace("/api/common/v1", "", 1)
+            
+        if path_params:
+            for key, value in path_params.items():
+                filled_path = filled_path.replace(f"{{{key}}}", str(value))
+                filled_path = filled_path.replace(f"%7B{key}%7D", str(value))
+
+        from urllib.parse import urlencode
+        api_called = f"{method} {filled_path}"
+        if query_params:
+            api_called = f"{api_called}?{urlencode(query_params)}"
+
         return {
             "raw_response": response_str,
             "extracted": extracted,
-            "api_called": f"{method} {final_path}",
+            "api_called": api_called,
+            "rag_route": f"{method} {api_path}",
+            "api_name": route.get("api_name"),
+            "confidence_score": route.get("confidence_score"),
+            "top_k_candidates": [
+                {
+                    "route": f"{c['method']} {c['full_path']}",
+                    "api_name": c["api_name"],
+                    "confidence_score": c["confidence_score"]
+                }
+                for c in candidates
+            ]
         }
 
     def _run_soap_step(self, step: dict, context: dict) -> dict:
         """
-        Executes a SOAP Get_Workers call directly via WorkerSOAPService.
-        No RAG / Pinecone involved.
-
-        Merges any inter-step resolved params (from param_map) into soap_args
-        before calling, so SOAP steps can chain off prior REST/SOAP results.
+        Executes a SOAP Get_Workers or Hire_Employee call directly.
+        Uses Pinecone RAG to determine the target service and response group fields dynamically if not explicitly specified.
         """
-        print(f"[Executor] SOAP branch — service={step.get('service')}", file=sys.stderr)
-
-        # Build the args dict: start with what the Planner put in soap_args
+        service_name = step.get("service")
         soap_args = dict(step.get("soap_args") or {})
+        self._resolve_references_in_dict(soap_args)
+        confidence = 1.0
+
+        # Run RAG lookup if the planner didn't supply the SOAP service name directly
+        if not service_name and step.get("api_hint"):
+            rag_result = self.dispatcher.route_soap_service_and_fields(step["api_hint"])
+            service_name = rag_result.get("service")
+            confidence = rag_result.get("confidence_score", 0.0)
+            
+            if service_name == "get_workers":
+                # Merge dynamically resolved fields
+                dynamic_fields = rag_result.get("include_fields") or []
+                existing_fields = soap_args.get("include_fields") or []
+                soap_args["include_fields"] = list(set(existing_fields + dynamic_fields))
+
+        if not service_name:
+            return {
+                "error": "No matching SOAP service found in vector database.",
+                "extracted": {},
+                "raw_response": "",
+                "api_called": "SOAP:unknown",
+            }
+
+        print(f"[Executor] SOAP branch — service={service_name} (RAG confidence={confidence:.4f})", file=sys.stderr)
 
         # Merge any cross-step resolved parameters
         resolved = self._resolve_params(step.get("param_map"), context)
         if resolved:
-            # worker_ids should be a list; wrap a single id string if needed
-            if "worker_id" in resolved or "id" in resolved:
-                raw_id = resolved.pop("worker_id", None) or resolved.pop("id", None)
-                if raw_id:
-                    # Strip Workday prefix added by REST executor if present
-                    bare_id = str(raw_id).removeprefix("Worker_ID=")
-                    existing = soap_args.get("worker_ids", [])
-                    soap_args["worker_ids"] = existing + [bare_id]
+            self._resolve_references_in_dict(resolved)
+            if service_name == "get_workers":
+                # worker_ids should be a list; wrap a single id string if needed
+                if "worker_id" in resolved or "id" in resolved:
+                    raw_id = resolved.pop("worker_id", None) or resolved.pop("id", None)
+                    if raw_id:
+                        # Strip Workday prefix added by REST executor if present
+                        bare_id = str(raw_id)
+                        for pfx in ("Worker_ID=", "Employee_ID="):
+                            bare_id = bare_id.removeprefix(pfx)
+                        existing = soap_args.get("worker_ids", [])
+                        soap_args["worker_ids"] = existing + [bare_id]
+            elif service_name == "hire_employee":
+                # Clean up any prefix references for typical references
+                for key in list(resolved.keys()):
+                    if key in ["existing_worker_id", "position_id", "job_requisition_id", "organization_id"]:
+                        val = resolved[key]
+                        if val:
+                            bare_val = str(val)
+                            for pfx in ("Worker_ID=", "Employee_ID=", "ID="):
+                                bare_val = bare_val.removeprefix(pfx)
+                            resolved[key] = bare_val
             # Merge remaining resolved params directly
             soap_args.update(resolved)
 
         print(f"[Executor] soap_args to be sent: {list(soap_args.keys())}", file=sys.stderr)
 
         try:
-            service = WorkerSOAPService()
-            result = service.get_workers(soap_args)
-        except RuntimeError as exc:
+            if service_name == "get_workers":
+                service = WorkerSOAPService()
+                result = service.get_workers(soap_args)
+                api_called = "SOAP:Get_Workers"
+            elif service_name == "hire_employee":
+                service = HireSOAPService()
+                result = service.hire_employee(soap_args)
+                api_called = "SOAP:Hire_Employee"
+            else:
+                raise ValueError(f"Unknown SOAP service: {service_name}")
+        except Exception as exc:
             return {
                 "error": str(exc),
                 "extracted": {},
                 "raw_response": "",
-                "api_called": "SOAP:Get_Workers",
+                "api_called": f"SOAP:{service_name}",
             }
 
         response_str = json.dumps(result, default=str)
@@ -176,7 +278,7 @@ class Executor:
         return {
             "raw_response": response_str,
             "extracted": extracted,
-            "api_called": "SOAP:Get_Workers",
+            "api_called": api_called,
         }
 
     def _resolve_params(self, param_map: dict | None, context: dict) -> dict:
@@ -204,17 +306,37 @@ class Executor:
         field = parts[1]
         
         step_data = context.get(step_key, {})
-        
         extracted = step_data.get("extracted", {})
-        
-        # NOTE: if extracted is list-shaped ({"items": [...]}), a plain field
-        # lookup won't find anything here — that's expected for now. If you
-        # have multi-step plans that need to chain off a list result (e.g.
-        # "get the manager of my first direct report"), flag it and we'll
-        # extend this to support indexed/aggregate refs like "step_1.items[0].id".
-        
+
+        # Auto-heal planner reference hallucinations (e.g., step_1.extract_fields[0])
+        if "extract_fields" in field:
+            if "[0]" in field or field == "extract_fields":
+                if extracted:
+                    val = list(extracted.values())[0]
+                    if isinstance(val, list) and val:
+                        first_item = val[0]
+                        if isinstance(first_item, dict):
+                            return list(first_item.values())[0]
+                        return first_item
+                    return val
+            elif "." in field:
+                actual_field = field.split(".", 1)[1]
+                if actual_field in extracted:
+                    return extracted[actual_field]
+                if "items" in extracted and isinstance(extracted["items"], list) and extracted["items"]:
+                    first_item = extracted["items"][0]
+                    if isinstance(first_item, dict) and actual_field in first_item:
+                        return first_item[actual_field]
+
+        # Normal extraction resolution
         if field in extracted:
             return extracted[field]
+            
+        # Support looking up fields inside collection items (e.g. step_1.id resolving inside {"items": [{"id": ...}]})
+        if "items" in extracted and isinstance(extracted["items"], list) and extracted["items"]:
+            first_item = extracted["items"][0]
+            if isinstance(first_item, dict) and field in first_item:
+                return first_item[field]
         raw = step_data.get("raw_response", "")
         
         if raw:
@@ -245,8 +367,10 @@ class Executor:
         """
         Builds the final executable path, path_params, and query_params.
         """
-        path_params = dict(step.get("path_params", {}))
-        query_params = dict(step.get("query_params", {}))
+        path_params = dict(step.get("path_params") or {})
+        query_params = dict(step.get("query_params") or {})
+        self._resolve_references_in_dict(path_params)
+        self._resolve_references_in_dict(query_params)
         final_path = api_path
 
         # 1. Layer in any parameters resolved from previous steps (param_map)
@@ -265,20 +389,30 @@ class Executor:
                 print("[Executor] Detected self-lookup intent. Auto-binding ID='me'", file=sys.stderr)
                 path_params["ID"] = "me"
 
-        # 3. Apply standard Workday key formatting rules safely
+        # 3. Normalize ID: format correctly for Workday path parameter
         if "ID" in path_params or "id" in path_params or "worker_id" in path_params:
             raw_id = (
                 path_params.get("ID")
                 or path_params.get("id")
                 or path_params.get("worker_id")
             )
-            bare_id = str(raw_id).removeprefix("Worker_ID=")
+            
+            # Clean and strip any known prefixes
+            bare_id = str(raw_id).strip()
+            for prefix in ("Worker_ID=", "Employee_ID=", "ID="):
+                bare_id = bare_id.removeprefix(prefix)
 
-            if bare_id.lower() == "me" or bare_id == "":
-                path_params["ID"] = "me"
+            # Determine the correct format based on the bare ID content
+            if bare_id.lower() == "me" or not bare_id:
+                formatted_id = "me"
+            elif len(bare_id) == 32 and all(c in "0123456789abcdefABCDEF" for c in bare_id):
+                # 32-character hex unique WID
+                formatted_id = bare_id
             else:
-                path_params["ID"] = f"Worker_ID={bare_id}"
+                # Standard numeric badge / employee ID
+                formatted_id = f"Employee_ID={bare_id}"
 
+            path_params["ID"] = formatted_id
             path_params.pop("id", None)
             path_params.pop("worker_id", None)
 
@@ -288,6 +422,30 @@ class Executor:
             final_path = final_path.split("/step")[0].rsplit("/{", 1)[0]
 
         return final_path, path_params, query_params
+
+    def _is_route_compatible(self, route_path: str, step: dict, resolved_params: dict) -> bool:
+        """
+        Validates if all required path parameter placeholders in the route (e.g. {subresourceID})
+        can be populated using parameters available in the step or resolved from prior steps.
+        """
+        import re
+        placeholders = re.findall(r'\{([A-Za-z0-9_]+)\}', route_path)
+        for placeholder in placeholders:
+            # ID is always allowed (has self-lookup/fallback handling)
+            if placeholder == "ID":
+                continue
+            # We have it if it's in static path_params
+            if placeholder in step.get("path_params", {}):
+                continue
+            # Or if it's in the dynamic param_map
+            if step.get("param_map") and placeholder in step.get("param_map"):
+                continue
+            # Or if it was resolved from previous steps
+            if placeholder in resolved_params:
+                continue
+            # Otherwise, we have no way to populate it
+            return False
+        return True
 
     def _extract_fields(self, response_str: str, fields: list[str]) -> dict:
         if not fields or not response_str:

@@ -1,0 +1,8 @@
+id_type,id,note,active
+Employee_Type_ID,Regular,Regular,true
+Employee_Type_ID,Temporary,Temporary (Fixed Term),true
+Employee_Type_ID,Fixed_Term_Contract,Fixed Term Contract (Fixed Term),true
+Employee_Type_ID,Seasonal,Seasonal (Fixed Term) (Seasonal),true
+Employee_Type_ID,Intern,Intern (Fixed Term) (Trainee),true
+Employee_Type_ID,Casual,Casual,true
+Employee_Type_ID,EMPLOYEE_TYPE-16-10,Apprentice (Fixed Term),true

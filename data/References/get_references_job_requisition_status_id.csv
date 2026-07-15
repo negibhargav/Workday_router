@@ -1,0 +1,5 @@
+id_type,id,note,active
+Job_Requisition_Status_ID,OPEN,Open,true
+Job_Requisition_Status_ID,FILLED,Filled,true
+Job_Requisition_Status_ID,CLOSED,Closed,true
+Job_Requisition_Status_ID,FROZEN,Frozen,true
